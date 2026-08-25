@@ -1,87 +1,87 @@
 ---
 name: technical-translator
-description: Перевести технический документ (спецификацию API, архитектурную схему, RFC, техническое предложение) на язык, понятный продакту. Что это значит для продукта и пользователей.
-argument-hint: [путь к техническому документу]
-allowed-tools: Read, Write
-preset: core
+description: Translate a technical document (API specification, architectural diagram, RFC, technical proposal) into a language understandable to the product. What does this mean for the product and users.
+
+
+
 lifecycle: any
-business-model: any
-domain: generic
+
+
 stage: any
-output-artifact: document
+
 ---
 
-# Технический переводчик
 
-Прочитать технический документ и перевести его на язык продуктовых решений. Не упростить до примитива — а именно перевести. Цель — сохранить глубину и нюансы, сделав материал полезным для принятия решений по продукту.
+
+Read the technical document and translate it into the language of product solutions. Don’t simplify it to the point of being primitive—namely, translate it. The goal is to maintain depth and nuance while making the material useful for making product decisions.
 
 ## Process
 
-1. Прочитай технический документ по указанному пути к файлу.
-2. Определи ключевые технические концепции, решения и компромиссы.
-3. Переведи каждый пункт на язык влияния на продукт и пользователей.
-4. Выдели то, что PM обязан понять, отдельно от фонового контекста (nice-to-know).
-5. Подсвети решения, которые PM должен принять или на которые должен повлиять.
-6. Составь список вопросов, которые PM должен обсудить с разработкой.
-7. Сохрани результат в текущей рабочей директории как `translated-[оригинальное-название-файла].md`.
-8. **Сохрани вывод** в текущей рабочей директории как `technical-translator-[контекст].md`.
+1. Read the technical document at the specified file path.
+2. Identify key technical concepts, solutions, and trade-offs.
+3. Translate each point into the language of influence on the product and users.
+
+5. Highlight the decisions that the PM must make or influence.
+
+
+
 
 ## Output Format
 
-### Суть (TL;DR)
-1-2 предложения. О чём этот документ и почему это важно для продакт-менеджера?
 
-### Что это значит для продукта
-- Как это меняет то, что мы можем построить?
-- Открывает ли это новые возможности или, наоборот, закрывает какие-то варианты?
-- Влияет ли это на наш роадмап или сроки?
-- Есть ли влияние на архитектуру продукта или платформенную стратегию?
+1-2 sentences. What is this document about and why is it important for a product manager?
 
-### Что это значит для пользователей
-- Заметят ли пользователи изменения? (Производительность, изменения в интерфейсе, новые фичи, ломающие изменения)
-- Влияет ли это по-разному на разные сегменты пользователей?
-- Потребуются ли миграции, будут ли простои или изменения в поведении систем, о которых пользователям важно знать?
-- Есть ли влияние на данные пользователей, приватность или безопасность?
+### What does this mean for the product?
+- How does this change what we can build?
+- Does this open up new opportunities or, conversely, close some options?
+- Does this affect our roadmap or timing?
+- Is there an impact on product architecture or platform strategy?
 
-### Ключевые решения, которые должен принять PM
-Для каждого решения:
-- В чём суть решения?
-- Какие есть варианты?
-- Каковы компромиссы (в терминах продукта и бизнеса, а не технических)?
-- Какова рекомендация команды разработки и почему?
+### What does this mean for users
+- Will users notice the changes? (Performance, interface changes, new features, breaking changes)
+- Does it affect different user segments differently?
+- Will there be migrations required, downtime or changes in system behavior that are important for users to be aware of?
+- Is there an impact on user data, privacy or security?
 
-### Вопросы к команде разработки
-- Уточняющие вопросы, которые PM должен принести на следующую встречу.
-- Сценарии формата «Что если...», которые не описаны в документе.
-- Вопросы по срокам и ресурсам для валидации.
+### Key decisions the PM must make
+For each solution:
+- What is the essence of the decision?
+- What options are there?
+- What are the trade-offs (in product and business terms, not technical)?
+- What is the development team's recommendation and why?
 
-### Риски
-- Технические риски, переведённые на язык последствий для продукта («Если миграция провалится, пользователи столкнутся с X»).
-- Риски по срокам.
-- Риски зависимостей.
-- Допущения в документе, которые могут оказаться неверными.
+### Questions for the development team
+- Clarifying questions that the PM should bring to the next meeting.
+- “What if...” scenarios that are not described in the document.
+- Questions regarding timing and resources for validation.
 
-### Глоссарий (при необходимости)
-- Технические термины из документа с простыми определениями на человеческом языке.
-- Включай только те термины, с которыми PM столкнется в будущем — пропускай разовый жаргон.
+### Risks
+- Technical risks translated into product impact language (“If the migration fails, users will experience X”).
+- Timing risks.
+- Risks of dependencies.
+- Assumptions in the document that may prove incorrect.
+
+### Glossary (if necessary)
+- Technical terms from the document with simple definitions in human language.
+- Include only terms that the PM will encounter in the future—skip throwaway jargon.
 
 ## Rules
 
-- Не упрощай до примитива. Переводи. Продакт должен понимать инженерные нюансы, а не читать размытую версию.
-- Чётко отделяй то, что PM ОБЯЗАН понять (влияет на решения), от справочного контекста.
-- При описании компромиссов всегда формулируй их с точки зрения влияния на пользователей, сроки или стоимость.
-- Если технический документ двусмысленен — подсвети эту двусмысленность, а не пытайся угадать смысл.
-- Сохраняй ссылки на структуру исходного документа, чтобы PM мог легко вернуться к первоисточнику при необходимости.
-- Если в документе есть код — не копируй его, а объясни, что он делает и почему это важно.
-- Никогда не выдумывай продуктовые последствия, которые не подтверждаются техническим текстом.
+- Don't simplify it to the point of primitiveness. Translate. The product must understand the engineering nuances, and not read a watered-down version.
+- Clearly separate what the PM MUST understand (impacts decisions) from the reference context.
+- When describing trade-offs, always frame them in terms of impact on users, timeline, or cost.
+- If a technical document is ambiguous, highlight that ambiguity rather than trying to guess the meaning.
+- Maintain links to the structure of the source document so that the PM can easily return to the original source if necessary.
+- If there is code in the document, do not copy it, but explain what it does and why it is important.
+- Never invent product implications that are not supported by the technical text.
 - Write in English.
 
 ## Metrics
 
-### Universal Metric Rule
-If you propose a metric, answer these 5 questions:
+### Universal metric rule
+If you are proposing a metric, answer 5 questions:
 1. **Who owns this metric?**
-2. **How often do we track it?**
-3. **What events calculate it?**
+2. **How ​​often do we watch it?**
+3. **What events count it?**
 4. **What is the decision threshold?**
-5. **How can it be gamed or corrupted?
+5. **How ​​can it be spoiled or screwed up?**
