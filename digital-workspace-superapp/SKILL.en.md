@@ -3,7 +3,7 @@ name: digital-workspace-superapp
 description: Specification for enterprise digital workplace and employee superapp.
 argument-hint: [concept of enterprise superapp or employee digital workspace]
 allowed-tools: Read, Write
-preset: b2b
+preset: internal-products
 lifecycle: any
 business-model: internal
 domain: enterprise

@@ -3,7 +3,7 @@ name: admin-ux
 description: Design the interface and logic of the admin panel (Admin UX) for internal use.
 argument-hint: [description of admin functions and admin roles]
 allowed-tools: Read, Write
-preset: b2b
+preset: internal-products
 lifecycle: any
 business-model: any
 domain: generic

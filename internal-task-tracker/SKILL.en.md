@@ -3,7 +3,7 @@ name: internal-task-tracker
 description: Specification for enterprise task tracking and project management system (Jira / Kaiten alternative).
 argument-hint: [concept of internal issue tracker or agile project management tool]
 allowed-tools: Read, Write
-preset: b2b
+preset: internal-products
 lifecycle: any
 business-model: internal
 domain: enterprise

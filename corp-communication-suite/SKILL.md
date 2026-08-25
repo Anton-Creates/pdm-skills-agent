@@ -3,7 +3,7 @@ name: corp-communication-suite
 description: Спецификация корпоративных коммуникаций: защищенный мессенджер, почта, видеоконференции и виртуальная АТС.
 argument-hint: [концепция корпоративного мессенджера, видеосвязи или телефонии]
 allowed-tools: Read, Write
-preset: b2b
+preset: internal-products
 lifecycle: any
 business-model: internal
 domain: enterprise

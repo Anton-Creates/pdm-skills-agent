@@ -3,7 +3,7 @@ name: service-desk-metrics
 description: Develop a dashboard of internal technical support and Service Desk quality metrics.
 argument-hint: [description of IT support processes for employees]
 allowed-tools: Read, Write
-preset: b2b
+preset: internal-products
 lifecycle: any
 business-model: any
 domain: generic

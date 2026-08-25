@@ -3,7 +3,7 @@ name: internal-recruitment-crm
 description: Specification for internal HR CRM and ATS for hiring pipeline and candidate management.
 argument-hint: [concept of internal recruiting CRM or Applicant Tracking System]
 allowed-tools: Read, Write
-preset: b2b
+preset: internal-products
 lifecycle: any
 business-model: internal
 domain: enterprise

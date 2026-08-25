@@ -3,7 +3,7 @@ name: digital-workspace-superapp
 description: Спецификация корпоративного супераппа и цифрового офиса сотрудника (ЦОС).
 argument-hint: [концепция корпоративного супераппа или цифрового офиса компании]
 allowed-tools: Read, Write
-preset: b2b
+preset: internal-products
 lifecycle: any
 business-model: internal
 domain: enterprise

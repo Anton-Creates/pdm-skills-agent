@@ -3,7 +3,7 @@ name: internal-task-tracker
 description: Спецификация корпоративного тасктрекера и системы управления проектами (аналог Jira / Kaiten).
 argument-hint: [концепция корпоративного тасктрекера или системы трекинга задач]
 allowed-tools: Read, Write
-preset: b2b
+preset: internal-products
 lifecycle: any
 business-model: internal
 domain: enterprise

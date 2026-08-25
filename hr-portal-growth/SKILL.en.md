@@ -3,7 +3,7 @@ name: hr-portal-growth
 description: Specification for employee talent development portal, onboarding, IDP, and Performance Review.
 argument-hint: [concept of talent development portal or employee review system]
 allowed-tools: Read, Write
-preset: b2b
+preset: internal-products
 lifecycle: any
 business-model: internal
 domain: enterprise

@@ -3,7 +3,7 @@ name: corp-communication-suite
 description: Specification for enterprise communication tools: secure messenger, email, video conferencing, and PBX telephony.
 argument-hint: [concept of enterprise messenger, video conferencing, or telephony system]
 allowed-tools: Read, Write
-preset: b2b
+preset: internal-products
 lifecycle: any
 business-model: internal
 domain: enterprise

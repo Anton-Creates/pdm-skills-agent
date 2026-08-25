@@ -3,7 +3,7 @@ name: hr-portal-growth
 description: Проектирование портала развития сотрудников, онбординга, ИПР и Performance Review.
 argument-hint: [концепция HR-портала развития или системы оценки сотрудников]
 allowed-tools: Read, Write
-preset: b2b
+preset: internal-products
 lifecycle: any
 business-model: internal
 domain: enterprise

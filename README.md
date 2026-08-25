@@ -53,7 +53,7 @@ flowchart LR
 
 ---
 
-## Структура библиотеки (125 Скиллов по 14 Доменам)
+## Структура библиотеки (125 Скиллов по 15 Доменам)
 
 <details open>
 <summary><b>[01] Ядро PdM / Core Delivery (16 скиллов)</b></summary>
@@ -121,26 +121,32 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[05] B2B и Внутренние продукты компании (13 скиллов)</b></summary>
+<summary><b>[05] B2B Продукты и Продажи / Enterprise Sales (5 скиллов)</b></summary>
+
+- `/enterprise-discovery` — Особенности Discovery в Enterprise: закупочные комитеты и лица принимающие решения (ЛПР).
+- `/enterprise-rollout` — План раската B2B-софта на корпоративных пользователей.
+- `/rfp-response` — Подготовка ответов на тендерные требования и технические задания.
+- `/build-buy-partner` — Фреймворк выбора между собственной разработкой, покупкой или партнерством.
+- `/adoption-strategy` — Стратегия вовлечения и адаптации сотрудников к новым системам.
+
+</details>
+
+<details>
+<summary><b>[06] Внутренние продукты и HR-Tech (8 скиллов)</b></summary>
 
 - `/digital-workspace-superapp` — Корпоративный суперапп и цифровой офис сотрудника (ЦОС, микросервисы, самообслуживание).
 - `/hr-portal-growth` — Портал развития сотрудников, Welcome-онбординг 30-60-90, ИПР и Performance Review 360.
 - `/corp-communication-suite` — Корпоративные коммуникации (защищенный мессенджер, почта, ВКС и облачная АТС).
 - `/internal-task-tracker` — Корпоративный тасктрекер и система управления проектами (доски, воркфлоу, контроль SLA).
 - `/internal-recruitment-crm` — Внутренняя HR CRM и ATS для управления воронкой найма и кандидатами.
-- `/enterprise-discovery` — Особенности Discovery в Enterprise: закупочные комитеты и лица принимающие решения (ЛПР).
-- `/enterprise-rollout` — План раската B2B-софта на корпоративных пользователей.
 - `/internal-product-discovery` — Исследование потребностей внутренних пользователей компании.
 - `/admin-ux` — Проектирование эргономичных бэк-офисов, массовых действий (Bulk) и журнала аудита (Audit Trail).
-- `/adoption-strategy` — Стратегия вовлечения и адаптации сотрудников к новым системам.
 - `/service-desk-metrics` — Метрики технической поддержки и Service Desk (SLA, FCR, MTTR).
-- `/rfp-response` — Подготовка ответов на тендерные требования и технические задания.
-- `/build-buy-partner` — Фреймворк выбора между собственной разработкой, покупкой или партнерством.
 
 </details>
 
 <details>
-<summary><b>[06] Стратегия и CPO / Leadership (13 скиллов)</b></summary>
+<summary><b>[07] Стратегия и CPO / Leadership (13 скиллов)</b></summary>
 
 - `/product-strategy` — Стратегия продукта на 1–3 года с мостами и фазами роста.
 - `/business-case` — Расчет окупаемости и бизнес-обоснование новых инициатив.
@@ -159,7 +165,7 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[07] Платформы и Архитектура / Tech & Platforms (10 скиллов)</b></summary>
+<summary><b>[08] Платформы и Архитектура / Tech & Platforms (10 скиллов)</b></summary>
 
 - `/api-product-spec` — Спецификация API как продукта: SLA, Rate Limits (429), версионирование и DX/Sandbox.
 - `/ai-feature-spec` — Спецификация AI-фичи: ML-постановка, метрики (Precision/Recall vs Бизнес), Fallback и HITL.
@@ -175,7 +181,7 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[08] Финтех и Банкинг (10 скиллов)</b></summary>
+<summary><b>[09] Финтех и Банкинг (10 скиллов)</b></summary>
 
 - `/fintech-product-teardown` — Декомпозиция банковских сервисов, рисков регуляторики и скоринга.
 - `/credit-product-spec` — Спецификация кредитных продуктов, скоринговых карт и условий выдачи.
@@ -191,7 +197,7 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[09] Маркетплейсы (11 скиллов)</b></summary>
+<summary><b>[10] Маркетплейсы (11 скиллов)</b></summary>
 
 - `/marketplace-model` — Экономическая модель двухстороннего маркетплейса.
 - `/marketplace-catalog` — Архитектура товарного каталога, атрибуты, вариации и модерация.
@@ -208,7 +214,7 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[10] E-commerce и Ритейл (11 скиллов)</b></summary>
+<summary><b>[11] E-commerce и Ритейл (11 скиллов)</b></summary>
 
 - `/catalog-strategy` — Управление товарной матрицей и категоризацией интернет-магазина.
 - `/checkout-audit` — Аудит чекаута, оптимизация шагов оплаты и борьба с брошенными корзинами.
@@ -225,7 +231,7 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[11] Медиа, Стриминг и AdTech (5 скиллов)</b></summary>
+<summary><b>[12] Медиа, Стриминг и AdTech (5 скиллов)</b></summary>
 
 - `/ugc-platform` — Механики генерации пользовательского контента (UGC) и модерация.
 - `/content-strategy` — Контентная стратегия и дистрибуция в медиапродуктах.
@@ -236,7 +242,7 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[12] EdTech и Образование (2 скилла)</b></summary>
+<summary><b>[13] EdTech и Образование (2 скилла)</b></summary>
 
 - `/learning-product` — Проектирование образовательного опыта (LMS) и доходимости курсов (Completion Rate).
 - `/b2b-edtech` — Специфика корпоративного обучения и интеграции с HR-системами.
@@ -244,7 +250,7 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[13] Телеком и Инфраструктура (4 скилла)</b></summary>
+<summary><b>[14] Телеком и Инфраструктура (4 скилла)</b></summary>
 
 - `/telecom-subscriber` — Жизненный цикл абонента телеком-оператора и управление оттоком.
 - `/vas-product` — Дополнительные услуги оператора (Value Added Services).
@@ -254,7 +260,7 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[14] Госсектор и Граждане / GovTech (5 скиллов)</b></summary>
+<summary><b>[15] Госсектор и Граждане / GovTech (5 скиллов)</b></summary>
 
 - `/public-service-design` — Проектирование электронных госуслуг, соответствие 152-ФЗ и ГОСТ.
 - `/govtech-metrics` — Метрики эффективности госсервисов (уровень цифровизации, скорость оказания услуг).

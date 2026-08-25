@@ -3,7 +3,7 @@ name: internal-product-discovery
 description: Conduct a needs study (Discovery) for an internal IT product (for employees).
 argument-hint: [description of the company’s internal product and the target role of employees]
 allowed-tools: Read, Write
-preset: b2b
+preset: internal-products
 lifecycle: any
 business-model: any
 domain: generic
