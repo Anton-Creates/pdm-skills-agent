@@ -3,7 +3,7 @@ name: monetization-audit
 description: Conduct an audit of the current monetization model and identify lost profits.
 argument-hint: 
 allowed-tools: Read, Write
-preset: growth
+preset: saas
 lifecycle: any
 business-model: any
 domain: saas

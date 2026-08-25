@@ -3,7 +3,7 @@ name: d2c-subscription-model
 description: Design a D2C subscription for a physical product: food box, beauty box, premium goods, farm basket or regular delivery. The output is model selection, tariffs, unit economics, retention loop, fulfillment risks, supplier economics, subscription metrics and go/no-go decision.
 argument-hint: [description of product, audience, price, frequency of purchase and logistics]
 allowed-tools: Read, Write
-preset: growth
+preset: saas
 lifecycle: strategy,growth,measure
 business-model: d2c,subscription,ecommerce
 domain: retail,food-d2c

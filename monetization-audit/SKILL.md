@@ -3,7 +3,7 @@ name: monetization-audit
 description: Провести аудит текущей модели монетизации и выявить упущенную выгоду.
 argument-hint: [описание бизнес-модели, цен и текущих доходов]
 allowed-tools: Read, Write
-preset: growth
+preset: saas
 lifecycle: any
 business-model: any
 domain: saas

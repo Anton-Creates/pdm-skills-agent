@@ -3,7 +3,7 @@ name: saas-metrics
 description: Analyze and diagnose the metrics of a B2B SaaS product. Input — revenue and churn indicators, output — a structured audit: MRR/ARR, NRR/GRR, LTV/CAC, Logo Churn vs. Revenue Churn, and an action plan to improve the metrics.
 argument-hint: [SaaS revenue, churn, or unit economics metrics]
 allowed-tools: Read, Write
-preset: b2b-saas
+preset: saas
 lifecycle: any
 business-model: any
 domain: saas

@@ -2,7 +2,7 @@
 
 ### Модульный компилятор системных правил ИИ для продакт-менеджеров
 
-[![Skills](https://img.shields.io/badge/Skills-122%20Модуля-0284c7?style=flat-square)](https://anton-creates.github.io/pdm-skills-builder/)
+[![Skills](https://img.shields.io/badge/Skills-125%20Модулей-0284c7?style=flat-square)](https://anton-creates.github.io/pdm-skills-builder/)
 [![IDE](https://img.shields.io/badge/IDE%20Support-9%20Форматов-16a34a?style=flat-square)](https://anton-creates.github.io/pdm-skills-builder/)
 [![Design System](https://img.shields.io/badge/Design%20System-Anti--AI%20Swiss%20Grid-0f172a?style=flat-square)](https://anton-creates.github.io/pdm-skills-builder/)
 [![Author](https://img.shields.io/badge/Telegram-@mikhaylove__anton-229ED9?style=flat-square)](https://t.me/mikhaylove_anton)
@@ -11,11 +11,11 @@
 
 ---
 
-Модульная библиотека из **122 изолированных системных инструкций** для продакт-менеджмента. Позволяет собирать точечный контекст и правила для ChatGPT, Claude, Cursor, Roo Code, Copilot и Antigravity без перегрузки контекстного окна.
+Модульная библиотека из **125 изолированных системных инструкций** для продакт-менеджмента. Позволяет собирать точечный контекст и правила для ChatGPT, Claude, Cursor, Roo Code, Copilot и Antigravity без перегрузки контекстного окна.
 
 ```mermaid
 flowchart LR
-    A["Выбор роли / Скиллов\n(122 модуля)"] --> B["Компилятор правил\n(Token Estimator & Guardrails)"]
+    A["Выбор роли / Скиллов\n(125 модулей)"] --> B["Компилятор правил\n(Token Estimator & Guardrails)"]
     B --> C["Экспорт в 1 клик\n(Cursor / Claude / Copilot)"]
     C --> D["Результат без воды\n(PRD / Метрики / Аналитика)"]
 ```
@@ -53,7 +53,7 @@ flowchart LR
 
 ---
 
-## Структура библиотеки (122 Скилла по 14 Доменам)
+## Структура библиотеки (125 Скиллов по 14 Доменам)
 
 <details open>
 <summary><b>[01] Ядро PdM / Core Delivery (16 скиллов)</b></summary>
@@ -121,15 +121,18 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[05] B2B и Корпоративные продукты (10 скиллов)</b></summary>
+<summary><b>[05] B2B и Внутренние продукты компании (13 скиллов)</b></summary>
 
+- `/digital-workspace-superapp` — Корпоративный суперапп и цифровой офис сотрудника (ЦОС, микросервисы, самообслуживание).
+- `/hr-portal-growth` — Портал развития сотрудников, Welcome-онбординг 30-60-90, ИПР и Performance Review 360.
+- `/corp-communication-suite` — Корпоративные коммуникации (защищенный мессенджер, почта, ВКС и облачная АТС).
+- `/internal-task-tracker` — Корпоративный тасктрекер и система управления проектами (доски, воркфлоу, контроль SLA).
+- `/internal-recruitment-crm` — Внутренняя HR CRM и ATS для управления воронкой найма и кандидатами.
 - `/enterprise-discovery` — Особенности Discovery в Enterprise: закупочные комитеты и лица принимающие решения (ЛПР).
 - `/enterprise-rollout` — План раската B2B-софта на корпоративных пользователей.
 - `/internal-product-discovery` — Исследование потребностей внутренних пользователей компании.
 - `/admin-ux` — Проектирование эргономичных бэк-офисов, массовых действий (Bulk) и журнала аудита (Audit Trail).
 - `/adoption-strategy` — Стратегия вовлечения и адаптации сотрудников к новым системам.
-- `/intranet-product` — Проектирование корпоративных порталов и интранета.
-- `/hrtech-spec` — Спецификация решений для HR и автоматизации найма.
 - `/service-desk-metrics` — Метрики технической поддержки и Service Desk (SLA, FCR, MTTR).
 - `/rfp-response` — Подготовка ответов на тендерные требования и технические задания.
 - `/build-buy-partner` — Фреймворк выбора между собственной разработкой, покупкой или партнерством.

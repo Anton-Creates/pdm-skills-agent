@@ -3,7 +3,7 @@ name: pricing-model
 description: Develop a pricing strategy and tariff structure (Packaging & Pricing). Input — product description and its value, output — a structured tariff grid, choice of monetization metric, justification of the price and mechanics of price testing.
 argument-hint: [product description and hypotheses about tariffs]
 allowed-tools: Read, Write
-preset: growth
+preset: saas
 lifecycle: any
 business-model: any
 domain: saas

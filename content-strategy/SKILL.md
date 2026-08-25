@@ -3,7 +3,7 @@ name: content-strategy
 description: Разработать продуктовую контент-стратегию для стриминговых и медиа-платформ.
 argument-hint: [цели медиа-платформы, типы контента и метрики]
 allowed-tools: Read, Write
-preset: media-edtech
+preset: media-adtech
 lifecycle: any
 business-model: any
 domain: generic

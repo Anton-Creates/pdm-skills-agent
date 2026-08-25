@@ -3,7 +3,7 @@ name: content-strategy
 description: Develop a product content strategy for streaming and media platforms.
 argument-hint: [media platform goals, content types and metrics]
 allowed-tools: Read, Write
-preset: media-edtech
+preset: media-adtech
 lifecycle: any
 business-model: any
 domain: generic

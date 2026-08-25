@@ -3,7 +3,7 @@ name: internal-product-discovery
 description: Провести исследование потребностей (Discovery) для внутреннего ИТ-продукта (для сотрудников).
 argument-hint: [описание внутреннего продукта компании и целевой роли сотрудников]
 allowed-tools: Read, Write
-preset: b2b-saas
+preset: b2b
 lifecycle: any
 business-model: any
 domain: generic

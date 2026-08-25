@@ -3,7 +3,7 @@ name: build-buy-partner
 description: Разработать структурированное обоснование решения: строить самостоятельно, покупать готовое решение или интегрировать партнера (Build / Buy / Partner).
 argument-hint: [проблема или функция для принятия решения build/buy/partner]
 allowed-tools: Read, Write
-preset: b2b-saas
+preset: b2b
 lifecycle: any
 business-model: any
 domain: saas

@@ -3,7 +3,7 @@ name: saas-metrics
 description: Проанализировать и диагностировать метрики B2B SaaS продукта. На входе — показатели выручки и оттока, на выходе — структурированный аудит: MRR/ARR, NRR/GRR, LTV/CAC, Logo Churn vs. Revenue Churn и план действий по улучшению метрик.
 argument-hint: [показатели выручки, оттока или юнит-экономики SaaS]
 allowed-tools: Read, Write
-preset: b2b-saas
+preset: saas
 lifecycle: any
 business-model: any
 domain: saas

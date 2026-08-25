@@ -3,7 +3,7 @@ name: learning-product
 description: Спроектировать образовательный продукт (EdTech): структура трека, метрики вовлечения и completion rate.
 argument-hint: [тематика и цели образовательного курса]
 allowed-tools: Read, Write
-preset: media-edtech
+preset: edtech
 lifecycle: any
 business-model: any
 domain: generic

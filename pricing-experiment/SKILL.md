@@ -3,7 +3,7 @@ name: pricing-experiment
 description: Разработать дизайн ценового эксперимента (Pricing Experiment). На входе — описание продукта и гипотеза цены, на выходе — структурированный план теста: методология (Ван Вестендорп / PSM, Габор-Грейнджер, A/B тест тарифов), опросник, выборка, юридические ограничения и критерии оценки результатов.
 argument-hint: [описание продукта и гипотезы по тестированию цен]
 allowed-tools: Read, Write
-preset: growth
+preset: saas
 lifecycle: any
 business-model: any
 domain: saas

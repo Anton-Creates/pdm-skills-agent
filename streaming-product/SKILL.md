@@ -3,7 +3,7 @@ name: streaming-product
 description: Разработать продуктовую стратегию стриминговой платформы (фильмы, музыка).
 argument-hint: [цели и специфика стримингового сервиса]
 allowed-tools: Read, Write
-preset: media-edtech
+preset: media-adtech
 lifecycle: any
 business-model: any
 domain: generic

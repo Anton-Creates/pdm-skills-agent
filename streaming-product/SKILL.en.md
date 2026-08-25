@@ -3,7 +3,7 @@ name: streaming-product
 description: Develop a product strategy for a streaming platform (movies, music).
 argument-hint: [goals and specifics of a streaming service]
 allowed-tools: Read, Write
-preset: media-edtech
+preset: media-adtech
 lifecycle: any
 business-model: any
 domain: generic

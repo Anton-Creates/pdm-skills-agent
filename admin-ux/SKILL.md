@@ -3,7 +3,7 @@ name: admin-ux
 description: Спроектировать интерфейс и логику админ-панели (Admin UX) для внутреннего использования.
 argument-hint: [описание функций админки и ролей админов]
 allowed-tools: Read, Write
-preset: b2b-saas
+preset: b2b
 lifecycle: any
 business-model: any
 domain: generic
