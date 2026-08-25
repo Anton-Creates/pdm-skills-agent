@@ -37,23 +37,23 @@ flowchart LR
 
 ## Поддерживаемые форматы экспорта (9 IDE и Агентов)
 
-Конструктор генерирует готовый архив для целевой среды разработки:
+Конструктор генерирует чистый архив с изолированными модульными файлами для целевой среды разработки:
 
-| Среда / Инструмент | Формат файла | Описание |
+| Среда / Инструмент | Формат файлов в архиве | Описание |
 | :--- | :--- | :--- |
-| **Универсальный промпт** | `SYSTEM_PROMPT.md` | Для веб-интерфейсов ChatGPT, Claude Web, DeepSeek |
+| **Universal Markdown** | `skills/*.md` | Модульные файлы для ChatGPT, Claude Web, DeepSeek |
 | **Cursor IDE** | `.cursor/rules/*.mdc` | Модульные правила с метаданными и глоб-паттернами |
-| **VS Code / Roo Code / Cline** | `.clinerules` | Системные инструкции для автономных кодинг-агентов |
-| **GitHub Copilot** | `.github/copilot-instructions.md` | Официальный формат инструкций репозитория |
-| **Windsurf IDE** | `.windsurfrules` | Контекстные правила для Cascade Assistant |
-| **Aider** | `CONVENTIONS.md` | Конвенции для терминального AI-ассистента |
-| **Pi Agent** | `APPEND_SYSTEM.md` | Дополнительный системный промпт |
-| **Claude Code** | `CLAUDE.md` | Стандарт системных инструкций для CLI Claude Code |
+| **VS Code / Roo Code / Cline** | `.clinerules.d/*.md` | Изолированные системные инструкции для кодинг-агентов |
+| **GitHub Copilot** | `.github/copilot-instructions.d/*.md` | Модульные инструкции для Copilot |
+| **Windsurf IDE** | `.windsurfrules.d/*.md` | Контекстные правила для Cascade Assistant |
+| **Aider** | `conventions.d/*.md` | Модульные конвенции для терминального AI-ассистента |
+| **Pi Agent** | `skills/*.md` | Дополнительные системные модули |
+| **Claude Code** | `.claude/skills/*.md` | Модульные скиллы для CLI Claude Code |
 | **Gemini Antigravity** | `.agents/skills/*/SKILL.md` | Исполняемые скиллы для Antigravity 2.0 |
 
 ---
 
-## Структура библиотеки (122 Скилла по 12 Доменам)
+## Структура библиотеки (122 Скилла по 14 Доменам)
 
 <details open>
 <summary><b>[01] Ядро PdM / Core Delivery (16 скиллов)</b></summary>
@@ -96,25 +96,48 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[03] Рост, PLG и Монетизация / Growth (12 скиллов)</b></summary>
+<summary><b>[03] Рост и Воронки / Growth & Acquisition (6 скиллов)</b></summary>
 
 - `/growth-loop` — Проектирование самоподдерживающихся петель роста (Viral, Content, Paid Loops).
-- `/plg-design` — Product-Led Growth механики: Time-to-Value, виральный шеринг, бесшовный онбординг.
 - `/onboarding-audit` — Аудит первых 5 минут в продукте и устранение точек отвала (Activation Drop-offs).
 - `/retention-model` — Когортный анализ удержания, построение Retention Curve и поиск Aha-моментов.
 - `/funnel-analysis` — Пошаговая декомпозиция воронок и поиск узких мест.
-- `/pricing-experiment` — Дизайн ценовых тестов (Van Westendorp, Gabor-Granger, Paywall A/B).
-- `/pricing-model` — Разработка моделей тарификации и ценообразования.
-- `/monetization-audit` — Аудит тарифов, Freemium-ограничений и расчет потенциала ARPU.
-- `/subscription-economics` — Экономика регулярных подписок (MRR, Churn, LTV).
-- `/d2c-subscription-model` — Подписочные модели для потребительских товаров и услуг.
 - `/referral-mechanics` — Реферальные программы с двусторонней ценностью.
 - `/channel-mix` — Анализ и приоритизация каналов привлечения (Now / Later / Never).
 
 </details>
 
 <details>
-<summary><b>[04] Стратегия и CPO / Leadership (13 скиллов)</b></summary>
+<summary><b>[04] SaaS и Подписки / Subscriptions & PLG (7 скиллов)</b></summary>
+
+- `/saas-metrics` — Метрики SaaS (CAC, LTV, Magic Number, Net Revenue Retention).
+- `/subscription-economics` — Экономика регулярных подписок (MRR, Churn, Cohorts).
+- `/d2c-subscription-model` — Подписочные модели для B2C сервисов и физических товаров.
+- `/plg-design` — Product-Led Growth механики: Time-to-Value, виральный шеринг, бесшовный онбординг.
+- `/pricing-experiment` — Дизайн ценовых тестов (Van Westendorp, Gabor-Granger, Paywall A/B).
+- `/pricing-model` — Разработка моделей тарификации и монетизации.
+- `/monetization-audit` — Аудит тарифов, Freemium-ограничений и расчет потенциала ARPU.
+
+</details>
+
+<details>
+<summary><b>[05] B2B и Корпоративные продукты (10 скиллов)</b></summary>
+
+- `/enterprise-discovery` — Особенности Discovery в Enterprise: закупочные комитеты и лица принимающие решения (ЛПР).
+- `/enterprise-rollout` — План раската B2B-софта на корпоративных пользователей.
+- `/internal-product-discovery` — Исследование потребностей внутренних пользователей компании.
+- `/admin-ux` — Проектирование эргономичных бэк-офисов, массовых действий (Bulk) и журнала аудита (Audit Trail).
+- `/adoption-strategy` — Стратегия вовлечения и адаптации сотрудников к новым системам.
+- `/intranet-product` — Проектирование корпоративных порталов и интранета.
+- `/hrtech-spec` — Спецификация решений для HR и автоматизации найма.
+- `/service-desk-metrics` — Метрики технической поддержки и Service Desk (SLA, FCR, MTTR).
+- `/rfp-response` — Подготовка ответов на тендерные требования и технические задания.
+- `/build-buy-partner` — Фреймворк выбора между собственной разработкой, покупкой или партнерством.
+
+</details>
+
+<details>
+<summary><b>[06] Стратегия и CPO / Leadership (13 скиллов)</b></summary>
 
 - `/product-strategy` — Стратегия продукта на 1–3 года с мостами и фазами роста.
 - `/business-case` — Расчет окупаемости и бизнес-обоснование новых инициатив.
@@ -133,7 +156,7 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[05] Платформы и Архитектура / Tech & Platforms (10 скиллов)</b></summary>
+<summary><b>[07] Платформы и Архитектура / Tech & Platforms (10 скиллов)</b></summary>
 
 - `/api-product-spec` — Спецификация API как продукта: SLA, Rate Limits (429), версионирование и DX/Sandbox.
 - `/ai-feature-spec` — Спецификация AI-фичи: ML-постановка, метрики (Precision/Recall vs Бизнес), Fallback и HITL.
@@ -149,24 +172,7 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[06] B2B и Корпоративный SaaS (11 скиллов)</b></summary>
-
-- `/saas-metrics` — Метрики SaaS (CAC, LTV, Magic Number, Net Revenue Retention).
-- `/enterprise-discovery` — Особенности Discovery в Enterprise: закупочные комитеты и лица принимающие решения (ЛПР).
-- `/enterprise-rollout` — План раската B2B-софта на корпоративных пользователей.
-- `/internal-product-discovery` — Исследование потребностей внутренних пользователей компании.
-- `/admin-ux` — Проектирование эргономичных бэк-офисов, массовых действий (Bulk) и журнала аудита (Audit Trail).
-- `/adoption-strategy` — Стратегия вовлечения и адаптации сотрудников к новым системам.
-- `/intranet-product` — Проектирование корпоративных порталов и интранета.
-- `/hrtech-spec` — Спецификация решений для HR и автоматизации найма.
-- `/service-desk-metrics` — Метрики технической поддержки и Service Desk (SLA, FCR, MTTR).
-- `/rfp-response` — Подготовка ответов на тендерные требования и технические задания.
-- `/build-buy-partner` — Фреймворк выбора между собственной разработкой, покупкой или партнерством.
-
-</details>
-
-<details>
-<summary><b>[07] Финтех и Банкинг (10 скиллов)</b></summary>
+<summary><b>[08] Финтех и Банкинг (10 скиллов)</b></summary>
 
 - `/fintech-product-teardown` — Декомпозиция банковских сервисов, рисков регуляторики и скоринга.
 - `/credit-product-spec` — Спецификация кредитных продуктов, скоринговых карт и условий выдачи.
@@ -182,7 +188,7 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[08] Маркетплейсы и Платформы (11 скиллов)</b></summary>
+<summary><b>[09] Маркетплейсы (11 скиллов)</b></summary>
 
 - `/marketplace-model` — Экономическая модель двухстороннего маркетплейса.
 - `/marketplace-catalog` — Архитектура товарного каталога, атрибуты, вариации и модерация.
@@ -199,7 +205,7 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[09] E-commerce и Ритейл (11 скиллов)</b></summary>
+<summary><b>[10] E-commerce и Ритейл (11 скиллов)</b></summary>
 
 - `/catalog-strategy` — Управление товарной матрицей и категоризацией интернет-магазина.
 - `/checkout-audit` — Аудит чекаута, оптимизация шагов оплаты и борьба с брошенными корзинами.
@@ -216,20 +222,26 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[10] Медиа, EdTech и AdTech (7 скиллов)</b></summary>
+<summary><b>[11] Медиа, Стриминг и AdTech (5 скиллов)</b></summary>
 
 - `/ugc-platform` — Механики генерации пользовательского контента (UGC) и модерация.
 - `/content-strategy` — Контентная стратегия и дистрибуция в медиапродуктах.
 - `/streaming-product` — Специфика видео- и аудио-стриминговых сервисов.
 - `/ads-platform-pm` — Проектирование собственной рекламной платформы и кабинета рекламодателя.
 - `/dsp-ssp-spec` — Архитектура programmatic-рекламы: DSP, SSP и аукционы RTB.
+
+</details>
+
+<details>
+<summary><b>[12] EdTech и Образование (2 скилла)</b></summary>
+
 - `/learning-product` — Проектирование образовательного опыта (LMS) и доходимости курсов (Completion Rate).
 - `/b2b-edtech` — Специфика корпоративного обучения и интеграции с HR-системами.
 
 </details>
 
 <details>
-<summary><b>[11] Телеком и Инфраструктура (4 скилла)</b></summary>
+<summary><b>[13] Телеком и Инфраструктура (4 скилла)</b></summary>
 
 - `/telecom-subscriber` — Жизненный цикл абонента телеком-оператора и управление оттоком.
 - `/vas-product` — Дополнительные услуги оператора (Value Added Services).
@@ -239,7 +251,7 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[12] Госсектор и Граждане / GovTech (5 скиллов)</b></summary>
+<summary><b>[14] Госсектор и Граждане / GovTech (5 скиллов)</b></summary>
 
 - `/public-service-design` — Проектирование электронных госуслуг, соответствие 152-ФЗ и ГОСТ.
 - `/govtech-metrics` — Метрики эффективности госсервисов (уровень цифровизации, скорость оказания услуг).

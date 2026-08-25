@@ -597,26 +597,30 @@
         .badge-core { border-color: rgba(2, 132, 199, 0.35); color: var(--accent); background: var(--accent-dim); }
         .badge-discovery { border-color: rgba(22, 163, 74, 0.35); color: #16a34a; background: rgba(22, 163, 74, 0.08); }
         .badge-growth { border-color: rgba(16, 185, 129, 0.35); color: #10b981; background: rgba(16, 185, 129, 0.08); }
+        .badge-saas { border-color: rgba(14, 165, 233, 0.35); color: #0ea5e9; background: rgba(14, 165, 233, 0.08); }
+        .badge-b2b { border-color: rgba(147, 51, 234, 0.35); color: #9333ea; background: rgba(147, 51, 234, 0.08); }
         .badge-strategy { border-color: rgba(168, 85, 247, 0.35); color: #a855f7; background: rgba(168, 85, 247, 0.08); }
         .badge-platforms-tech { border-color: rgba(99, 102, 241, 0.35); color: #6366f1; background: rgba(99, 102, 241, 0.08); }
-        .badge-b2b-saas { border-color: rgba(147, 51, 234, 0.35); color: #9333ea; background: rgba(147, 51, 234, 0.08); }
         .badge-fintech { border-color: rgba(217, 119, 6, 0.35); color: #d97706; background: rgba(217, 119, 6, 0.08); }
         .badge-marketplace { border-color: rgba(234, 88, 12, 0.35); color: #ea580c; background: rgba(234, 88, 12, 0.08); }
         .badge-ecom-retail { border-color: rgba(13, 148, 136, 0.35); color: #0d9488; background: rgba(13, 148, 136, 0.08); }
-        .badge-media-edtech { border-color: rgba(236, 72, 153, 0.35); color: #db2777; background: rgba(236, 72, 153, 0.08); }
+        .badge-media-adtech { border-color: rgba(236, 72, 153, 0.35); color: #db2777; background: rgba(236, 72, 153, 0.08); }
+        .badge-edtech { border-color: rgba(245, 158, 11, 0.35); color: #d97706; background: rgba(245, 158, 11, 0.08); }
         .badge-telecom { border-color: rgba(220, 38, 38, 0.35); color: #dc2626; background: rgba(220, 38, 38, 0.08); }
         .badge-govtech-b2g { border-color: rgba(71, 85, 105, 0.35); color: #475569; background: rgba(71, 85, 105, 0.08); }
 
         [data-theme="dark"] .badge-core { border-color: rgba(56, 189, 248, 0.35); color: #38bdf8; background: rgba(56, 189, 248, 0.1); }
         [data-theme="dark"] .badge-discovery { border-color: rgba(74, 222, 128, 0.35); color: #4ade80; background: rgba(74, 222, 128, 0.1); }
         [data-theme="dark"] .badge-growth { border-color: rgba(52, 211, 153, 0.35); color: #34d399; background: rgba(52, 211, 153, 0.1); }
+        [data-theme="dark"] .badge-saas { border-color: rgba(56, 189, 248, 0.35); color: #38bdf8; background: rgba(56, 189, 248, 0.1); }
+        [data-theme="dark"] .badge-b2b { border-color: rgba(192, 132, 252, 0.35); color: #c084fc; background: rgba(192, 132, 252, 0.1); }
         [data-theme="dark"] .badge-strategy { border-color: rgba(192, 132, 252, 0.35); color: #c084fc; background: rgba(192, 132, 252, 0.1); }
         [data-theme="dark"] .badge-platforms-tech { border-color: rgba(129, 140, 248, 0.35); color: #818cf8; background: rgba(129, 140, 248, 0.1); }
-        [data-theme="dark"] .badge-b2b-saas { border-color: rgba(192, 132, 252, 0.35); color: #c084fc; background: rgba(192, 132, 252, 0.1); }
         [data-theme="dark"] .badge-fintech { border-color: rgba(250, 204, 21, 0.35); color: #facc15; background: rgba(250, 204, 21, 0.1); }
         [data-theme="dark"] .badge-marketplace { border-color: rgba(251, 146, 60, 0.35); color: #fb923c; background: rgba(251, 146, 60, 0.1); }
         [data-theme="dark"] .badge-ecom-retail { border-color: rgba(45, 212, 191, 0.35); color: #2dd4bf; background: rgba(45, 212, 191, 0.1); }
-        [data-theme="dark"] .badge-media-edtech { border-color: rgba(244, 114, 182, 0.35); color: #f472b6; background: rgba(244, 114, 182, 0.1); }
+        [data-theme="dark"] .badge-media-adtech { border-color: rgba(244, 114, 182, 0.35); color: #f472b6; background: rgba(244, 114, 182, 0.1); }
+        [data-theme="dark"] .badge-edtech { border-color: rgba(251, 191, 36, 0.35); color: #fbbf24; background: rgba(251, 191, 36, 0.1); }
         [data-theme="dark"] .badge-telecom { border-color: rgba(248, 113, 113, 0.35); color: #f87171; background: rgba(248, 113, 113, 0.1); }
         [data-theme="dark"] .badge-govtech-b2g { border-color: rgba(148, 163, 184, 0.35); color: #94a3b8; background: rgba(148, 163, 184, 0.1); }
 
@@ -1229,8 +1233,16 @@
                         <span class="preset-count" id="count-discovery">0</span>
                     </button>
                     <button class="preset-btn" data-preset="growth">
-                        <span>Рост и Монетизация</span>
+                        <span>Рост и Воронки</span>
                         <span class="preset-count" id="count-growth">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="saas">
+                        <span>SaaS и Подписки</span>
+                        <span class="preset-count" id="count-saas">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="b2b">
+                        <span>B2B и Enterprise</span>
+                        <span class="preset-count" id="count-b2b">0</span>
                     </button>
                     <button class="preset-btn" data-preset="strategy">
                         <span>Стратегия и CPO</span>
@@ -1239,10 +1251,6 @@
                     <button class="preset-btn" data-preset="platforms-tech">
                         <span>Платформы и Архитектура</span>
                         <span class="preset-count" id="count-platforms-tech">0</span>
-                    </button>
-                    <button class="preset-btn" data-preset="b2b-saas">
-                        <span>B2B и SaaS</span>
-                        <span class="preset-count" id="count-b2b-saas">0</span>
                     </button>
                     <button class="preset-btn" data-preset="fintech">
                         <span>Финтех и Банкинг</span>
@@ -1256,9 +1264,13 @@
                         <span>Ритейл и E-com</span>
                         <span class="preset-count" id="count-ecom-retail">0</span>
                     </button>
-                    <button class="preset-btn" data-preset="media-edtech">
-                        <span>Медиа и EdTech</span>
-                        <span class="preset-count" id="count-media-edtech">0</span>
+                    <button class="preset-btn" data-preset="media-adtech">
+                        <span>Медиа и AdTech</span>
+                        <span class="preset-count" id="count-media-adtech">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="edtech">
+                        <span>EdTech (Обучение)</span>
+                        <span class="preset-count" id="count-edtech">0</span>
                     </button>
                     <button class="preset-btn" data-preset="telecom">
                         <span>Телеком</span>
@@ -1458,14 +1470,16 @@
                 allSkills: "Все скиллы",
                 coreSkills: "Ядро PdM (Core)",
                 discoverySkills: "Исследования (Discovery)",
-                growthSkills: "Рост и Монетизация",
+                growthSkills: "Рост и Воронки",
+                saasSkills: "SaaS и Подписки",
+                b2bSkills: "B2B и Enterprise",
                 strategySkills: "Стратегия и CPO",
                 platformsTechSkills: "Платформы и Архитектура",
-                b2bSaasSkills: "B2B и SaaS",
                 fintechSkills: "Финтех и Банкинг",
                 marketplaceSkills: "Маркетплейсы",
                 ecomSkills: "Ритейл и E-com",
-                mediaSkills: "Медиа и EdTech",
+                mediaSkills: "Медиа и AdTech",
+                edtechSkills: "EdTech (Обучение)",
                 telecomSkills: "Телеком",
                 b2gSkills: "Госсектор (B2G)",
                 btnSelectAll: "Выбрать все",
@@ -1496,8 +1510,8 @@
                 modalTitle: "Детали скилла",
                 relevantTitle: "Релевантные скиллы:",
                 comboPrefix: "Сборка:",
-                promptHeader: "# СИСТЕМНЫЕ ПРАВИЛА PRODUCT MANAGEMENT ({count} скиллов)\\n\\n",
-                copyPromptHeader: "# СИСТЕМНЫЕ ИНСТРУКЦИИ ДЛЯ АССИСТЕНТА PRODUCT MANAGEMENT\\n\\n"
+                promptHeader: "# СИСТЕМНЫЕ ПРАВИЛА PRODUCT MANAGEMENT ({count} скиллов)\n\n",
+                copyPromptHeader: "# СИСТЕМНЫЕ ИНСТРУКЦИИ ДЛЯ АССИСТЕНТА PRODUCT MANAGEMENT\n\n"
             },
             en: {
                 heroTitle: "Contextual System Instructions Catalog for Product Management",
@@ -1508,14 +1522,16 @@
                 allSkills: "All Skills",
                 coreSkills: "Core PdM Craft",
                 discoverySkills: "Discovery & Research",
-                growthSkills: "Growth & Monetization",
+                growthSkills: "Growth & Acquisition",
+                saasSkills: "SaaS & Subscriptions",
+                b2bSkills: "B2B & Enterprise",
                 strategySkills: "Strategy & Leadership",
                 platformsTechSkills: "Tech & Platforms",
-                b2bSaasSkills: "B2B & SaaS",
                 fintechSkills: "Fintech & Banking",
                 marketplaceSkills: "Marketplaces",
                 ecomSkills: "Retail & E-commerce",
-                mediaSkills: "Media & EdTech",
+                mediaSkills: "Media & AdTech",
+                edtechSkills: "EdTech & Learning",
                 telecomSkills: "Telecom",
                 b2gSkills: "Public Sector (B2G)",
                 btnSelectAll: "Select All",
@@ -1700,13 +1716,15 @@
                 core: t.coreSkills,
                 discovery: t.discoverySkills,
                 growth: t.growthSkills,
+                saas: t.saasSkills,
+                b2b: t.b2bSkills,
                 strategy: t.strategySkills,
                 'platforms-tech': t.platformsTechSkills,
-                'b2b-saas': t.b2bSaasSkills,
                 fintech: t.fintechSkills,
                 marketplace: t.marketplaceSkills,
                 'ecom-retail': t.ecomSkills,
-                'media-edtech': t.mediaSkills,
+                'media-adtech': t.mediaSkills,
+                edtech: t.edtechSkills,
                 telecom: t.telecomSkills,
                 'govtech-b2g': t.b2gSkills
             };
@@ -1843,13 +1861,15 @@
                 core: t.coreSkills,
                 discovery: t.discoverySkills,
                 growth: t.growthSkills,
+                saas: t.saasSkills,
+                b2b: t.b2bSkills,
                 strategy: t.strategySkills,
                 'platforms-tech': t.platformsTechSkills,
-                'b2b-saas': t.b2bSaasSkills,
                 fintech: t.fintechSkills,
                 marketplace: t.marketplaceSkills,
                 'ecom-retail': t.ecomSkills,
-                'media-edtech': t.mediaSkills,
+                'media-adtech': t.mediaSkills,
+                edtech: t.edtechSkills,
                 telecom: t.telecomSkills,
                 'govtech-b2g': t.b2gSkills
             };
@@ -1859,7 +1879,7 @@
         // Calculate count per category
         function updatePresetCounts() {
             document.getElementById('count-all').innerText = SKILLS_DB.length;
-            const presets = ['core', 'discovery', 'growth', 'strategy', 'platforms-tech', 'b2b-saas', 'fintech', 'marketplace', 'ecom-retail', 'media-edtech', 'telecom', 'govtech-b2g'];
+            const presets = ['core', 'discovery', 'growth', 'saas', 'b2b', 'strategy', 'platforms-tech', 'fintech', 'marketplace', 'ecom-retail', 'media-adtech', 'edtech', 'telecom', 'govtech-b2g'];
             presets.forEach(p => {
                 const el = document.getElementById(`count-${p}`);
                 if (el) {
@@ -2224,76 +2244,72 @@
             const target = exporterType.value;
             const zip = new JSZip();
 
-            if (target === 'prompt') {
-                let fullPrompt = t.copyPromptHeader;
-                selectedList.forEach(s => { fullPrompt += getSkillContent(s) + "\\n\\n---\\n\\n"; });
-                zip.file("SYSTEM_PROMPT.md", fullPrompt);
-            } else if (target === 'cursor') {
+            if (target === 'cursor') {
                 const folder = zip.folder(".cursor/rules");
                 selectedList.forEach(s => {
-                    const ruleContent = `---\\ndescription: ${getSkillDesc(s)}\\nglobs: *\\n---\\n\\n${getSkillContent(s)}`;
+                    const ruleContent = `---\ndescription: ${getSkillDesc(s)}\nglobs: *\n---\n\n# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`;
                     folder.file(`${s.id}.mdc`, ruleContent);
                 });
-            } else if (target === 'vscode') {
-                let clineRules = "# ROO CODE / CLINE CUSTOM INSTRUCTIONS\\n\\n";
-                selectedList.forEach(s => { clineRules += getSkillContent(s) + "\\n\\n---\\n\\n"; });
-                zip.file(".clinerules", clineRules);
-            } else if (target === 'copilot') {
-                let copilotDoc = "# GITHUB COPILOT INSTRUCTIONS\\n\\n";
-                selectedList.forEach(s => { copilotDoc += getSkillContent(s) + "\\n\\n---\\n\\n"; });
-                zip.file(".github/copilot-instructions.md", copilotDoc);
-            } else if (target === 'windsurf') {
-                let windsurfDoc = "# WINDSURF RULES\\n\\n";
-                selectedList.forEach(s => { windsurfDoc += getSkillContent(s) + "\\n\\n---\\n\\n"; });
-                zip.file(".windsurfrules", windsurfDoc);
-            } else if (target === 'aider') {
-                let aiderDoc = "# AIDER CONVENTIONS\\n\\n";
-                selectedList.forEach(s => { aiderDoc += getSkillContent(s) + "\\n\\n---\\n\\n"; });
-                zip.file("CONVENTIONS.md", aiderDoc);
-            } else if (target === 'pi') {
-                let piDoc = "# PI AGENT SYSTEM INSTRUCTIONS\\n\\n";
-                selectedList.forEach(s => { piDoc += getSkillContent(s) + "\\n\\n---\\n\\n"; });
-                zip.file("APPEND_SYSTEM.md", piDoc);
-            } else if (target === 'claudeprompt') {
-                let claudeDoc = "# CLAUDE CODE INSTRUCTIONS (CLAUDE.md)\\n\\n";
-                selectedList.forEach(s => { claudeDoc += getSkillContent(s) + "\\n\\n---\\n\\n"; });
-                zip.file("CLAUDE.md", claudeDoc);
             } else if (target === 'agents') {
                 const folder = zip.folder(".agents/skills");
                 selectedList.forEach(s => {
                     const skillDir = folder.folder(s.id);
-                    skillDir.file("SKILL.md", `---
-name: ${s.id}
-description: ${getSkillDesc(s)}
----
-
-${getSkillContent(s)}`);
+                    skillDir.file("SKILL.md", `---\nname: ${s.id}\ndescription: ${getSkillDesc(s)}\n---\n\n${getSkillContent(s)}`);
+                });
+            } else if (target === 'vscode') {
+                const folder = zip.folder(".clinerules.d");
+                selectedList.forEach(s => {
+                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                });
+            } else if (target === 'copilot') {
+                const folder = zip.folder(".github/copilot-instructions.d");
+                selectedList.forEach(s => {
+                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                });
+            } else if (target === 'windsurf') {
+                const folder = zip.folder(".windsurfrules.d");
+                selectedList.forEach(s => {
+                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                });
+            } else if (target === 'aider') {
+                const folder = zip.folder("conventions.d");
+                selectedList.forEach(s => {
+                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                });
+            } else if (target === 'pi') {
+                const folder = zip.folder("skills");
+                selectedList.forEach(s => {
+                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                });
+            } else if (target === 'claudeprompt') {
+                const folder = zip.folder(".claude/skills");
+                selectedList.forEach(s => {
+                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                });
+            } else {
+                // Universal Markdown (ChatGPT / Claude Web / Custom)
+                const folder = zip.folder("skills");
+                selectedList.forEach(s => {
+                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n> **Описание:** ${getSkillDesc(s)}\n> **Домен:** ${getPresetLabel(s.preset || 'core')}\n\n---\n\n${getSkillContent(s)}`);
                 });
             }
-            // 2. Also ALWAYS provide individual-skills/ modular folder for maximum flexibility
-            const modularFolder = zip.folder("individual-skills");
-            selectedList.forEach(s => {
-                const modContent = `# /${s.id} — ${getSkillName(s)}\n\n> **Описание:** ${getSkillDesc(s)}\n> **Домен:** ${getPresetLabel(s.preset || 'core')}\n\n---\n\n${getSkillContent(s)}`;
-                modularFolder.file(`${s.id}.md`, modContent);
-            });
 
-            // 3. Add README inside archive
+            // Add clear README inside archive
             const readmeTxt = `==============================================================================
-PdM-Skills Builder — Rules Archive Export
+PdM-Skills Builder — Modular Rules Archive Export
 Target Format: ${target.toUpperCase()}
 Language: ${currentLang.toUpperCase()}
 Total Exported Skills: ${selectedList.length}
 ==============================================================================
 
-СОДЕРЖИМОЕ АРХИВА / ARCHIVE STRUCTURE:
+КАК ИСПОЛЬЗОВАТЬ МОДУЛИ / HOW TO USE:
 
-1. [Основной файл конфигурации / Main config file]:
-   Сконфигурирован под выбранную среду (${target}).
-
-2. individual-skills/
-   Каждый выбранный навык сохранен в виде отдельного изолированного .md файла.
-   Используйте их для точечного подключения в чатах ChatGPT, Claude или вашей IDE,
-   чтобы не перегружать контекст LLM лишней информацией.
+1. Все выбранные навыки сохранены в виде изолированных модульных файлов.
+2. Подключайте только 3–5 целевых модулей под конкретную текущую задачу:
+   - Это защищает контекстное окно LLM от перегрузки (No Lost-in-the-Middle).
+   - Модель отвечает точнее, дешевле и быстрее.
+3. Если вам нужно скопировать скомпилированный текст для быстрой вставки в чат:
+   - Используйте кнопку «Копировать правила» в веб-интерфейсе конструктора.
 
 ==============================================================================
 Author: Anton Mikhailov (@mikhaylove_anton)
