@@ -3,7 +3,7 @@ name: dark-store-ops
 description: Develop a product strategy and optimize the operations of dark stores (e-grocery). The input is a description of the warehouse and delivery processes, the output is a specification for slot management, picking rules, delivery SLA and slot unit economics.
 argument-hint: [description of darkstore or e-grocery project operations]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: retail-ops
 lifecycle: any
 business-model: any
 domain: ecom-retail

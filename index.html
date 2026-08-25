@@ -604,7 +604,8 @@
         .badge-platforms-tech { border-color: rgba(99, 102, 241, 0.35); color: #6366f1; background: rgba(99, 102, 241, 0.08); }
         .badge-fintech { border-color: rgba(217, 119, 6, 0.35); color: #d97706; background: rgba(217, 119, 6, 0.08); }
         .badge-marketplace { border-color: rgba(234, 88, 12, 0.35); color: #ea580c; background: rgba(234, 88, 12, 0.08); }
-        .badge-ecom-retail { border-color: rgba(13, 148, 136, 0.35); color: #0d9488; background: rgba(13, 148, 136, 0.08); }
+        .badge-e-commerce { border-color: rgba(13, 148, 136, 0.35); color: #0d9488; background: rgba(13, 148, 136, 0.08); }
+        .badge-retail-ops { border-color: rgba(101, 163, 13, 0.35); color: #65a30d; background: rgba(101, 163, 13, 0.08); }
         .badge-media-adtech { border-color: rgba(236, 72, 153, 0.35); color: #db2777; background: rgba(236, 72, 153, 0.08); }
         .badge-edtech { border-color: rgba(245, 158, 11, 0.35); color: #d97706; background: rgba(245, 158, 11, 0.08); }
         .badge-telecom { border-color: rgba(220, 38, 38, 0.35); color: #dc2626; background: rgba(220, 38, 38, 0.08); }
@@ -620,7 +621,8 @@
         [data-theme="dark"] .badge-platforms-tech { border-color: rgba(129, 140, 248, 0.35); color: #818cf8; background: rgba(129, 140, 248, 0.1); }
         [data-theme="dark"] .badge-fintech { border-color: rgba(250, 204, 21, 0.35); color: #facc15; background: rgba(250, 204, 21, 0.1); }
         [data-theme="dark"] .badge-marketplace { border-color: rgba(251, 146, 60, 0.35); color: #fb923c; background: rgba(251, 146, 60, 0.1); }
-        [data-theme="dark"] .badge-ecom-retail { border-color: rgba(45, 212, 191, 0.35); color: #2dd4bf; background: rgba(45, 212, 191, 0.1); }
+        [data-theme="dark"] .badge-e-commerce { border-color: rgba(45, 212, 191, 0.35); color: #2dd4bf; background: rgba(45, 212, 191, 0.1); }
+        [data-theme="dark"] .badge-retail-ops { border-color: rgba(163, 230, 53, 0.35); color: #a3e635; background: rgba(163, 230, 53, 0.1); }
         [data-theme="dark"] .badge-media-adtech { border-color: rgba(244, 114, 182, 0.35); color: #f472b6; background: rgba(244, 114, 182, 0.1); }
         [data-theme="dark"] .badge-edtech { border-color: rgba(251, 191, 36, 0.35); color: #fbbf24; background: rgba(251, 191, 36, 0.1); }
         [data-theme="dark"] .badge-telecom { border-color: rgba(248, 113, 113, 0.35); color: #f87171; background: rgba(248, 113, 113, 0.1); }
@@ -1269,9 +1271,13 @@
                         <span>Маркетплейсы</span>
                         <span class="preset-count" id="count-marketplace">0</span>
                     </button>
-                    <button class="preset-btn" data-preset="ecom-retail">
-                        <span>Ритейл и E-com</span>
-                        <span class="preset-count" id="count-ecom-retail">0</span>
+                    <button class="preset-btn" data-preset="e-commerce">
+                        <span>E-commerce (D2C / Онлайн)</span>
+                        <span class="preset-count" id="count-e-commerce">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="retail-ops">
+                        <span>Ритейл и FoodTech Ops</span>
+                        <span class="preset-count" id="count-retail-ops">0</span>
                     </button>
                     <button class="preset-btn" data-preset="media-adtech">
                         <span>Медиа и AdTech</span>
@@ -1465,7 +1471,7 @@
     </footer>
 
     <!-- Load Skills Database with Cache-Busting -->
-    <script src="skills_db.js?v=3.0"></script>
+    <script src="skills_db.js?v=4.0"></script>
 
     <script>
         // Bilingual UI Dictionary
@@ -1487,7 +1493,8 @@
                 platformsTechSkills: "Платформы и Архитектура",
                 fintechSkills: "Финтех и Банкинг",
                 marketplaceSkills: "Маркетплейсы",
-                ecomSkills: "Ритейл и E-com",
+                ecomSkills: "E-commerce (Онлайн)",
+                retailOpsSkills: "Ритейл и FoodTech",
                 mediaSkills: "Медиа и AdTech",
                 edtechSkills: "EdTech (Обучение)",
                 telecomSkills: "Телеком",
@@ -1540,7 +1547,8 @@
                 platformsTechSkills: "Tech & Platforms",
                 fintechSkills: "Fintech & Banking",
                 marketplaceSkills: "Marketplaces",
-                ecomSkills: "Retail & E-commerce",
+                ecomSkills: "E-commerce & D2C",
+                retailOpsSkills: "Retail & FoodTech Ops",
                 mediaSkills: "Media & AdTech",
                 edtechSkills: "EdTech & Learning",
                 telecomSkills: "Telecom",
@@ -1584,7 +1592,7 @@
             { id: 2, ruName: "SaaS & Subscription PM", enName: "SaaS & Subscription PM", skills: ["saas-metrics", "subscription-economics", "d2c-subscription-model", "plg-design", "pricing-experiment", "pricing-model", "monetization-audit", "retention-model"] },
             { id: 3, ruName: "Internal & HR-Tech PM", enName: "Internal & HR-Tech PM", skills: ["digital-workspace-superapp", "hr-portal-growth", "corp-communication-suite", "internal-task-tracker", "internal-recruitment-crm", "internal-product-discovery", "admin-ux", "service-desk-metrics"] },
             { id: 4, ruName: "Growth & PLG PM", enName: "Growth & PLG PM", skills: ["growth-loop", "gtm-strategy", "channel-mix", "plg-design", "referral-mechanics", "cro-audit", "onboarding-audit", "retention-model"] },
-            { id: 5, ruName: "Marketplace & E-com PM", enName: "Marketplace & E-com PM", skills: ["marketplace-catalog", "seller-economics", "supply-quality", "marketplace-fraud", "c2c-dynamics", "fulfillment-model", "loyalty-program", "monetization-audit", "demand-forecasting-pm"] },
+            { id: 5, ruName: "Marketplace & E-com PM", enName: "Marketplace & E-com PM", skills: ["pdp-spec", "plp-filters-spec", "ecom-checkout-split", "ecom-recommendations", "wishlist-alert-mechanics", "marketplace-catalog", "seller-economics", "supply-quality", "fulfillment-model", "promo-engine"] },
             { id: 6, ruName: "Fintech & Banking PM", enName: "Fintech & Banking PM", skills: ["fintech-product-teardown", "credit-product-spec", "unit-economics", "compliance-checkpoint", "risk-heatmap", "trust-safety", "incident-pm-role", "api-product-spec", "admin-ux"] },
             { id: 7, ruName: "AI, LLM & Data PM", enName: "AI, LLM & Data PM", skills: ["ai-feature-spec", "llm-product-design", "data-product-spec", "ab-test-design", "metrics-analyzer", "decision-doc", "technical-translator", "trust-safety"] },
             { id: 8, ruName: "GovTech & B2G PM", enName: "GovTech & B2G PM", skills: ["public-service-design", "citizen-journey", "govtech-metrics", "mini-app-platform", "localization-strategy", "compliance-checkpoint", "rfp-response"] },
@@ -1737,7 +1745,8 @@
                 'platforms-tech': t.platformsTechSkills,
                 fintech: t.fintechSkills,
                 marketplace: t.marketplaceSkills,
-                'ecom-retail': t.ecomSkills,
+                'e-commerce': t.ecomSkills,
+                'retail-ops': t.retailOpsSkills,
                 'media-adtech': t.mediaSkills,
                 edtech: t.edtechSkills,
                 telecom: t.telecomSkills,
@@ -1883,7 +1892,8 @@
                 'platforms-tech': t.platformsTechSkills,
                 fintech: t.fintechSkills,
                 marketplace: t.marketplaceSkills,
-                'ecom-retail': t.ecomSkills,
+                'e-commerce': t.ecomSkills,
+                'retail-ops': t.retailOpsSkills,
                 'media-adtech': t.mediaSkills,
                 edtech: t.edtechSkills,
                 telecom: t.telecomSkills,
@@ -1895,7 +1905,7 @@
         // Calculate count per category
         function updatePresetCounts() {
             document.getElementById('count-all').innerText = SKILLS_DB.length;
-            const presets = ['core', 'discovery', 'growth', 'saas', 'b2b', 'internal-products', 'strategy', 'platforms-tech', 'fintech', 'marketplace', 'ecom-retail', 'media-adtech', 'edtech', 'telecom', 'govtech-b2g'];
+            const presets = ['core', 'discovery', 'growth', 'saas', 'b2b', 'internal-products', 'strategy', 'platforms-tech', 'fintech', 'marketplace', 'e-commerce', 'retail-ops', 'media-adtech', 'edtech', 'telecom', 'govtech-b2g'];
             presets.forEach(p => {
                 const el = document.getElementById(`count-${p}`);
                 if (el) {

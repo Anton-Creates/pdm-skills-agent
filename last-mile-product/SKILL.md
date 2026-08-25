@@ -3,7 +3,7 @@ name: last-mile-product
 description: Спроектировать или проанализировать продукт доставки «последней мили» (Last-Mile) или сеть пунктов выдачи (ПВЗ). На входе — концепт доставки или операционная проблема, на выходе — структурированная спецификация: маршрутизация курьеров, управление SLA, кабинет ПВЗ и UX трекинга посылки.
 argument-hint: [концепт доставки последней мили или требования к ПВЗ]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: retail-ops
 lifecycle: any
 business-model: any
 domain: ecom-retail

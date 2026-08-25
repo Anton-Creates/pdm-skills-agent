@@ -3,7 +3,7 @@ name: retail-supply-chain
 description: Design or analyze algorithms and control logic for supply chains in retail and e-groceries. The input is a description of warehouse/dark store processes or a product availability problem; the output is a structured specification: auto-replenishment, inventory control, minimizing write-offs, and OSA.
 argument-hint: [description of the logistics process or the issue of leftovers]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: retail-ops
 lifecycle: any
 business-model: any
 domain: ecom-retail

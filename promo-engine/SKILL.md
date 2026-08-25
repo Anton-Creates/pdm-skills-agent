@@ -3,7 +3,7 @@ name: promo-engine
 description: Спроектировать или проанализировать продукт промо-механик и скидок (Promo Engine). На входе — концепт промо-кампании или логика скидок, на выходе — структурированная спецификация: типы промо-кодов, расчет деградации маржи, механики персональных скидок и защита от фрода.
 argument-hint: [концепт промо-механики или скидочной системы]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: e-commerce
 lifecycle: any
 business-model: any
 domain: ecom-retail

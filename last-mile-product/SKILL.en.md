@@ -3,7 +3,7 @@ name: last-mile-product
 description: Design or analyze a last-mile delivery product or pick-up point network. The input is a delivery concept or operational problem, the output is a structured specification: couriers routing, SLA management, pickup room and parcel tracking UX.
 argument-hint: 
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: retail-ops
 lifecycle: any
 business-model: any
 domain: ecom-retail

@@ -3,7 +3,7 @@ name: catalog-strategy
 description: Разработать стратегию управления товарным каталогом (Catalog Strategy) в ритейле или e-commerce. На входе — структура товаров, на выходе — спецификация: таксономия и классификация, логика персонализации выдачи, оптимизация Long Tail товаров и метрики качества каталога.
 argument-hint: [описание товарного каталога и структуры ассортимента]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: e-commerce
 lifecycle: any
 business-model: any
 domain: ecom-retail

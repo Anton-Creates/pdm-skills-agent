@@ -2,7 +2,7 @@
 
 ### Модульный компилятор системных правил ИИ для продакт-менеджеров
 
-[![Skills](https://img.shields.io/badge/Skills-125%20Модулей-0284c7?style=flat-square)](https://anton-creates.github.io/pdm-skills-builder/)
+[![Skills](https://img.shields.io/badge/Skills-130%20Модулей-0284c7?style=flat-square)](https://anton-creates.github.io/pdm-skills-builder/)
 [![IDE](https://img.shields.io/badge/IDE%20Support-9%20Форматов-16a34a?style=flat-square)](https://anton-creates.github.io/pdm-skills-builder/)
 [![Design System](https://img.shields.io/badge/Design%20System-Anti--AI%20Swiss%20Grid-0f172a?style=flat-square)](https://anton-creates.github.io/pdm-skills-builder/)
 [![Author](https://img.shields.io/badge/Telegram-@mikhaylove__anton-229ED9?style=flat-square)](https://t.me/mikhaylove_anton)
@@ -11,11 +11,11 @@
 
 ---
 
-Модульная библиотека из **125 изолированных системных инструкций** для продакт-менеджмента. Позволяет собирать точечный контекст и правила для ChatGPT, Claude, Cursor, Roo Code, Copilot и Antigravity без перегрузки контекстного окна.
+Модульная библиотека из **130 изолированных системных инструкций** для продакт-менеджмента. Позволяет собирать точечный контекст и правила для ChatGPT, Claude, Cursor, Roo Code, Copilot и Antigravity без перегрузки контекстного окна.
 
 ```mermaid
 flowchart LR
-    A["Выбор роли / Скиллов\n(125 модулей)"] --> B["Компилятор правил\n(Token Estimator & Guardrails)"]
+    A["Выбор роли / Скиллов\n(130 модулей)"] --> B["Компилятор правил\n(Token Estimator & Guardrails)"]
     B --> C["Экспорт в 1 клик\n(Cursor / Claude / Copilot)"]
     C --> D["Результат без воды\n(PRD / Метрики / Аналитика)"]
 ```
@@ -53,7 +53,7 @@ flowchart LR
 
 ---
 
-## Структура библиотеки (125 Скиллов по 15 Доменам)
+## Структура библиотеки (130 Скиллов по 16 Доменам)
 
 <details open>
 <summary><b>[01] Ядро PdM / Core Delivery (16 скиллов)</b></summary>
@@ -214,24 +214,35 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[11] E-commerce и Ритейл (11 скиллов)</b></summary>
+<summary><b>[11] E-commerce / Онлайн-ритейл, Fashion & D2C (11 скиллов)</b></summary>
 
-- `/catalog-strategy` — Управление товарной матрицей и категоризацией интернет-магазина.
+- `/pdp-spec` — Спецификация карточки товара (PDP), размерные сетки, Rich-контент и выбор вариаций.
+- `/plp-filters-spec` — Каталог, страница листинга (PLP), фасетные фильтры, сортировка и Quick Add.
 - `/checkout-audit` — Аудит чекаута, оптимизация шагов оплаты и борьба с брошенными корзинами.
+- `/ecom-checkout-split` — Корзина, сплит-доставка со складов, интерактивная карта ПВЗ и примерка (Try & Buy).
+- `/ecom-recommendations` — Товарные рекомендации, Cross-Sell и комплекты «Собери образ» (Total Look).
+- `/wishlist-alert-mechanics` — Избранное, вишлисты и триггерные алерты (Price Drop & Back in Stock).
 - `/cro-audit` — Аудит конверсии страниц и устранение барьеров покупки.
 - `/promo-engine` — Проектирование промо-механик, скидок, купонов и бандлов.
 - `/loyalty-program` — Дизайн программ лояльности: баллы, кешбэк, уровни привилегий.
 - `/loyalty-crm` — Сегментация базы (RFM-анализ) и триггерные CRM-коммуникации.
-- `/returns-management` — Процессы возвратов товаров и минимизация логистических потерь.
-- `/demand-forecasting-pm` — Прогнозирование спроса для управления складскими запасами.
-- `/retail-supply-chain` — Продуктовая оптимизация цепочек поставок ритейла.
-- `/dark-store-ops` — Продуктовое проектирование дарксторов и скорости сборки заказов.
-- `/last-mile-product` — Управление курьерской доставкой и клиентским опытом последней мили.
+- `/catalog-strategy` — Управление товарной матрицей и категоризацией интернет-магазина.
 
 </details>
 
 <details>
-<summary><b>[12] Медиа, Стриминг и AdTech (5 скиллов)</b></summary>
+<summary><b>[12] Офлайн-ритейл, FoodTech и Логистика (5 скиллов)</b></summary>
+
+- `/dark-store-ops` — Продуктовое проектирование дарксторов и скорости сборки заказов.
+- `/retail-supply-chain` — Продуктовая оптимизация цепочек поставок ритейла.
+- `/demand-forecasting-pm` — Прогнозирование спроса для управления складскими запасами.
+- `/last-mile-product` — Управление курьерской доставкой и клиентским опытом последней мили.
+- `/returns-management` — Процессы возвратов товаров и минимизация логистических потерь.
+
+</details>
+
+<details>
+<summary><b>[13] Медиа, Стриминг и AdTech (5 скиллов)</b></summary>
 
 - `/ugc-platform` — Механики генерации пользовательского контента (UGC) и модерация.
 - `/content-strategy` — Контентная стратегия и дистрибуция в медиапродуктах.
@@ -242,7 +253,7 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[13] EdTech и Образование (2 скилла)</b></summary>
+<summary><b>[14] EdTech и Образование (2 скилла)</b></summary>
 
 - `/learning-product` — Проектирование образовательного опыта (LMS) и доходимости курсов (Completion Rate).
 - `/b2b-edtech` — Специфика корпоративного обучения и интеграции с HR-системами.
@@ -250,7 +261,7 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[14] Телеком и Инфраструктура (4 скилла)</b></summary>
+<summary><b>[15] Телеком и Инфраструктура (4 скилла)</b></summary>
 
 - `/telecom-subscriber` — Жизненный цикл абонента телеком-оператора и управление оттоком.
 - `/vas-product` — Дополнительные услуги оператора (Value Added Services).
@@ -260,7 +271,7 @@ flowchart LR
 </details>
 
 <details>
-<summary><b>[15] Госсектор и Граждане / GovTech (5 скиллов)</b></summary>
+<summary><b>[16] Госсектор и Граждане / GovTech (5 скиллов)</b></summary>
 
 - `/public-service-design` — Проектирование электронных госуслуг, соответствие 152-ФЗ и ГОСТ.
 - `/govtech-metrics` — Метрики эффективности госсервисов (уровень цифровизации, скорость оказания услуг).

@@ -3,7 +3,7 @@ name: dark-store-ops
 description: Разработать продуктовую стратегию и оптимизировать операции дарксторов (e-grocery). На входе — описание процессов склада и доставки, на выходе — спецификация по управлению слотами, логике сборки (picking rules), SLA доставки и юнит-экономике слота.
 argument-hint: [описание операций даркстора или e-grocery проекта]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: retail-ops
 lifecycle: any
 business-model: any
 domain: ecom-retail

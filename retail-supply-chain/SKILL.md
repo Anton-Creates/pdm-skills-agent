@@ -3,7 +3,7 @@ name: retail-supply-chain
 description: Спроектировать или проанализировать алгоритмы и логику управления цепочками поставок (Supply Chain) в ритейле и e-groceries. На входе — описание процессов склада/даркстора или проблема доступности товара, на выходе — структурированная спецификация: автозаказ (auto-replenishment), контроль остатков, минимизация списаний и OSA.
 argument-hint: [описание логистического процесса или проблемы остатков]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: retail-ops
 lifecycle: any
 business-model: any
 domain: ecom-retail

@@ -3,7 +3,7 @@ name: promo-engine
 description: 
 argument-hint: [concept of a promo mechanism or discount system]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: e-commerce
 lifecycle: any
 business-model: any
 domain: ecom-retail

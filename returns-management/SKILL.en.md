@@ -3,7 +3,7 @@ name: returns-management
 description: Develop a product strategy and optimize the process of product returns (Reverse Logistics). The input is a description of the returns funnel, and the output is a specification: return logic for the customer (returns UX), fraud protection, reverse logistics to the warehouse, and return economics.
 argument-hint: [description of return processes or e-commerce project]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: retail-ops
 lifecycle: any
 business-model: any
 domain: ecom-retail

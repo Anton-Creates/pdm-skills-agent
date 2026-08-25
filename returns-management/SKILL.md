@@ -3,7 +3,7 @@ name: returns-management
 description: Разработать продуктовую стратегию и оптимизировать процесс возврата товаров (Reverse Logistics). На входе — описание воронки возвратов, на выходе — спецификация: логика возврата для клиента (returns UX), защита от фрода, обратная логистика на склад и экономика возвратов.
 argument-hint: [описание процессов возврата или e-commerce проекта]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: retail-ops
 lifecycle: any
 business-model: any
 domain: ecom-retail

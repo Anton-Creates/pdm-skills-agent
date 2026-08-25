@@ -3,7 +3,7 @@ name: checkout-audit
 description: Analyze and optimize the ordering funnel (Checkout). The input is a description of the checkout or abandoned cart metrics, the output is a structured audit of the funnel: reasons for cart abandonment, payment friction, integration of payment methods and UX recommendations.
 argument-hint: [description of checkout steps or funnel metrics]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: e-commerce
 lifecycle: any
 business-model: any
 domain: ecom-retail

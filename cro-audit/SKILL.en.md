@@ -3,7 +3,7 @@ name: cro-audit
 description: Conduct a Conversion Rate Optimization (CRO) audit for a landing page or registration/onboarding scenario. The input is a description or URL page, the output is a structured audit using the Clarity/Relevance/Friction/Trust/Urgency framework and the top 5 improvements for the A/B test.
 argument-hint: [description or text of landing page/audit screen]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: e-commerce
 lifecycle: any
 business-model: any
 domain: ecom-retail

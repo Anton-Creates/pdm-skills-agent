@@ -3,7 +3,7 @@ name: catalog-strategy
 description: Develop a product catalog management strategy (Catalog Strategy) in retail or e-commerce. The input is the product structure, the output is the specification: taxonomy and classification, search personalization logic, optimization of Long Tail products and catalog quality metrics.
 argument-hint: [description of product catalog and assortment structure]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: e-commerce
 lifecycle: any
 business-model: any
 domain: ecom-retail

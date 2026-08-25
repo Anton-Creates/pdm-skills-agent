@@ -3,7 +3,7 @@ name: demand-forecasting-pm
 description: Разработать продуктовые требования к системе прогнозирования спроса (Demand Forecasting) в ритейле.
 argument-hint: [категории товаров и структура данных ритейлера для прогнозирования спроса]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: retail-ops
 lifecycle: any
 business-model: any
 domain: ecom-retail

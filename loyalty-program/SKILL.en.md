@@ -3,7 +3,7 @@ name: loyalty-program
 description: 
 argument-hint: [parameters of the ecosystem or holding for the loyalty program]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: e-commerce
 lifecycle: any
 business-model: any
 domain: ecom-retail

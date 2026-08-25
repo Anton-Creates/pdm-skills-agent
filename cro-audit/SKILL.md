@@ -3,7 +3,7 @@ name: cro-audit
 description: Провести аудит оптимизации конверсии (Conversion Rate Optimization / CRO) для посадочной страницы (landing page) или сценария регистрации/онбординга. На входе — описание или URL-страницы, на выходе — структурированный аудит по фреймворку Clarity/Relevance/Friction/Trust/Urgency и топ-5 доработок для A/B-теста.
 argument-hint: [описание или текст посадочной страницы/экрана для аудита]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: e-commerce
 lifecycle: any
 business-model: any
 domain: ecom-retail

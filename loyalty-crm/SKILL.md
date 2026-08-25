@@ -3,7 +3,7 @@ name: loyalty-crm
 description: Разработать стратегию программы лояльности и CRM-кампаний для ритейла/FMCG. На входе — описание продукта и структуры чеков, на выходе — структурированная механика лояльности: тип начисления (cashback/points), правила персональных предложений, триггерные коммуникации и расчет ROI.
 argument-hint: [описание ритейл-продукта и целей лояльности]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: e-commerce
 lifecycle: any
 business-model: any
 domain: ecom-retail

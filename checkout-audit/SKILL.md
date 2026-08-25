@@ -3,7 +3,7 @@ name: checkout-audit
 description: Проанализировать и оптимизировать воронку оформления заказа (Checkout). На входе — описание чекаута или метрики брошенных корзин, на выходе — структурированный аудит воронки: причины бросания корзин, платежный friction, интеграция платежных методов и UX-рекомендации.
 argument-hint: [описание шагов оформления заказа или метрики воронки]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: e-commerce
 lifecycle: any
 business-model: any
 domain: ecom-retail

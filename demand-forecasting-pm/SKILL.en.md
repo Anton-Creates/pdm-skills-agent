@@ -3,7 +3,7 @@ name: demand-forecasting-pm
 description: Develop product requirements for a Demand Forecasting system in retail.
 argument-hint: [product categories and retailer data structure for demand forecasting]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: retail-ops
 lifecycle: any
 business-model: any
 domain: ecom-retail

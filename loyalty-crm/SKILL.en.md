@@ -3,7 +3,7 @@ name: loyalty-crm
 description: 
 argument-hint: [description of retail product and loyalty goals]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: e-commerce
 lifecycle: any
 business-model: any
 domain: ecom-retail

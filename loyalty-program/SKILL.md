@@ -3,7 +3,7 @@ name: loyalty-program
 description: Спроектировать экосистемную программу лояльности на основе балльного кэшбэка.
 argument-hint: [параметры экосистемы или холдинга для программы лояльности]
 allowed-tools: Read, Write
-preset: ecom-retail
+preset: e-commerce
 lifecycle: any
 business-model: any
 domain: ecom-retail
