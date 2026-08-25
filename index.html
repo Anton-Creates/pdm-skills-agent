@@ -1145,7 +1145,9 @@
             </span>
             <div class="stat-badges-group">
                 <img id="view-badge-img" src="https://hits.sh/anton-creates.github.io/pdm-skills-builder.svg?style=flat-square&label=views&color=0284c7&labelColor=0f172a" alt="views count" height="20" style="border-radius: 4px; display: block;" title="Просмотры каталога" />
-                <img id="download-badge-img" src="https://hits.sh/anton-creates.github.io/pdm-skills-builder-downloads.svg?style=flat-square&label=downloads&color=16a34a&labelColor=0f172a" alt="downloads count" height="20" style="border-radius: 4px; display: block;" title="Скачанные сборки правил" />
+                <div class="stat-badge" title="Скачанные сборки правил">
+                    <i class="fa-solid fa-download" style="color: #16a34a;"></i> <span id="download-count">0</span>
+                </div>
             </div>
         </div>
         <div class="header-actions">
@@ -1829,6 +1831,10 @@
 
             setLanguage(currentLang);
             updatePresetCounts();
+
+            const dlCount = localStorage.getItem('pdm_dl_count') || '0';
+            const dlEl = document.getElementById('download-count');
+            if (dlEl) dlEl.innerText = dlCount;
         });
 
         function getPresetLabel(preset) {
@@ -2256,9 +2262,44 @@
                 const folder = zip.folder(".agents/skills");
                 selectedList.forEach(s => {
                     const skillDir = folder.folder(s.id);
-                    skillDir.file("SKILL.md", `---\\nname: ${s.id}\\ndescription: ${getSkillDesc(s)}\\n---\\n\\n${getSkillContent(s)}`);
+                    skillDir.file("SKILL.md", `---
+name: ${s.id}
+description: ${getSkillDesc(s)}
+---
+
+${getSkillContent(s)}`);
                 });
             }
+            // 2. Also ALWAYS provide individual-skills/ modular folder for maximum flexibility
+            const modularFolder = zip.folder("individual-skills");
+            selectedList.forEach(s => {
+                const modContent = `# /${s.id} — ${getSkillName(s)}\n\n> **Описание:** ${getSkillDesc(s)}\n> **Домен:** ${getPresetLabel(s.preset || 'core')}\n\n---\n\n${getSkillContent(s)}`;
+                modularFolder.file(`${s.id}.md`, modContent);
+            });
+
+            // 3. Add README inside archive
+            const readmeTxt = `==============================================================================
+PdM-Skills Builder — Rules Archive Export
+Target Format: ${target.toUpperCase()}
+Language: ${currentLang.toUpperCase()}
+Total Exported Skills: ${selectedList.length}
+==============================================================================
+
+СОДЕРЖИМОЕ АРХИВА / ARCHIVE STRUCTURE:
+
+1. [Основной файл конфигурации / Main config file]:
+   Сконфигурирован под выбранную среду (${target}).
+
+2. individual-skills/
+   Каждый выбранный навык сохранен в виде отдельного изолированного .md файла.
+   Используйте их для точечного подключения в чатах ChatGPT, Claude или вашей IDE,
+   чтобы не перегружать контекст LLM лишней информацией.
+
+==============================================================================
+Author: Anton Mikhailov (@mikhaylove_anton)
+Catalog: https://anton-creates.github.io/pdm-skills-builder/
+==============================================================================`;
+            zip.file("README_PDM_SKILLS.txt", readmeTxt);
 
             const content = await zip.generateAsync({ type: "blob" });
             const link = document.createElement('a');
@@ -2266,13 +2307,14 @@
             link.download = `pdm-skills-${target}-${currentLang}-${Date.now()}.zip`;
             link.click();
 
-            // Trigger download hit on live SVG badge
-            const dlHit = new Image();
-            dlHit.src = `https://hits.sh/anton-creates.github.io/pdm-skills-builder-downloads.svg?style=flat-square&label=downloads&color=16a34a&labelColor=0f172a&_hit=${Date.now()}`;
-            dlHit.onload = () => {
-                const b = document.getElementById('download-badge-img');
-                if (b) b.src = dlHit.src;
-            };
+            // Increment local and session download count (only on real download click)
+            let currentDl = parseInt(localStorage.getItem('pdm_dl_count') || '0', 10) + 1;
+            localStorage.setItem('pdm_dl_count', currentDl);
+            const dlCountEl = document.getElementById('download-count');
+            if (dlCountEl) dlCountEl.innerText = currentDl;
+
+            // Trigger background hit only on download action
+            new Image().src = `https://hits.sh/anton-creates.github.io/pdm-skills-builder-downloads.svg?style=flat-square&label=downloads&_t=${Date.now()}`;
         });
 
         function escapeHtml(text) {
