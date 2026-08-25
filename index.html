@@ -1193,27 +1193,30 @@
                         <span>Lead / Senior PM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="1">
-                        <span>B2B & SaaS PM</span>
+                        <span>B2B & Enterprise PM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="2">
-                        <span>Growth & PLG PM</span>
+                        <span>SaaS & Subscription PM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="3">
-                        <span>Marketplace & E-com</span>
+                        <span>Internal & HR-Tech PM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="4">
-                        <span>Fintech & Banking</span>
+                        <span>Growth & PLG PM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="5">
-                        <span>Enterprise & B2G</span>
+                        <span>Marketplace & E-com PM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="6">
-                        <span>AI & Data Products</span>
+                        <span>Fintech & Banking PM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="7">
-                        <span>D2C & Subscription</span>
+                        <span>AI, LLM & Data PM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="8">
+                        <span>GovTech & B2G PM</span>
+                    </button>
+                    <button class="preset-btn combo-btn" data-combo="9">
                         <span>CPO / Leadership</span>
                     </button>
                 </div>
@@ -1577,38 +1580,41 @@
 
         const COMBOS = [
             { id: 0, ruName: "Lead / Senior PM", enName: "Lead / Senior PM", skills: ["prd", "user-stories", "roadmap", "prioritize", "decision-doc", "technical-translator", "meeting-prep", "metrics-analyzer", "ab-test-design", "risk-heatmap"] },
-            { id: 1, ruName: "B2B & SaaS PM", enName: "B2B & SaaS PM", skills: ["prd", "user-stories", "business-case", "saas-metrics", "pricing-model", "build-buy-partner", "icp-definition", "enterprise-rollout", "admin-ux", "api-product-spec"] },
-            { id: 2, ruName: "Growth & PLG PM", enName: "Growth & PLG PM", skills: ["growth-loop", "gtm-strategy", "channel-mix", "plg-design", "referral-mechanics", "cro-audit", "onboarding-audit", "retention-model", "pricing-experiment", "ab-test-design"] },
-            { id: 3, ruName: "Marketplace & E-com", enName: "Marketplace & E-com", skills: ["marketplace-catalog", "seller-economics", "supply-quality", "marketplace-fraud", "c2c-dynamics", "fulfillment-model", "loyalty-program", "monetization-audit", "demand-forecasting-pm"] },
-            { id: 4, ruName: "Fintech & Banking", enName: "Fintech & Banking", skills: ["metrics-analyzer", "risk-heatmap", "decision-doc", "trust-safety", "incident-pm-role", "api-product-spec", "admin-ux", "business-case", "monetization-audit"] },
-            { id: 5, ruName: "Enterprise & B2G", enName: "Enterprise & B2G", skills: ["enterprise-rollout", "admin-ux", "adoption-strategy", "public-service-design", "citizen-journey", "govtech-metrics", "rfp-response", "service-desk-metrics", "intranet-product"] },
-            { id: 6, ruName: "AI & Data Products", enName: "AI & Data Products", skills: ["ai-feature-spec", "data-product-spec", "ab-test-design", "metrics-analyzer", "decision-doc", "technical-translator", "trust-safety"] },
-            { id: 7, ruName: "D2C & Subscription", enName: "D2C & Subscription", skills: ["d2c-subscription-model", "subscription-economics", "retention-model", "notification-strategy", "growth-loop", "referral-mechanics", "cro-audit", "onboarding-audit"] },
-            { id: 8, ruName: "CPO / Leadership", enName: "CPO / Leadership", skills: ["product-strategy", "okr-writer", "north-star-metric", "business-case", "competitive-moat", "tenets-writer", "risk-heatmap", "product-health-review", "kill-or-scale-decision"] }
+            { id: 1, ruName: "B2B & Enterprise PM", enName: "B2B & Enterprise PM", skills: ["enterprise-discovery", "enterprise-rollout", "rfp-response", "build-buy-partner", "adoption-strategy", "admin-ux", "business-case", "icp-definition"] },
+            { id: 2, ruName: "SaaS & Subscription PM", enName: "SaaS & Subscription PM", skills: ["saas-metrics", "subscription-economics", "d2c-subscription-model", "plg-design", "pricing-experiment", "pricing-model", "monetization-audit", "retention-model"] },
+            { id: 3, ruName: "Internal & HR-Tech PM", enName: "Internal & HR-Tech PM", skills: ["digital-workspace-superapp", "hr-portal-growth", "corp-communication-suite", "internal-task-tracker", "internal-recruitment-crm", "internal-product-discovery", "admin-ux", "service-desk-metrics"] },
+            { id: 4, ruName: "Growth & PLG PM", enName: "Growth & PLG PM", skills: ["growth-loop", "gtm-strategy", "channel-mix", "plg-design", "referral-mechanics", "cro-audit", "onboarding-audit", "retention-model"] },
+            { id: 5, ruName: "Marketplace & E-com PM", enName: "Marketplace & E-com PM", skills: ["marketplace-catalog", "seller-economics", "supply-quality", "marketplace-fraud", "c2c-dynamics", "fulfillment-model", "loyalty-program", "monetization-audit", "demand-forecasting-pm"] },
+            { id: 6, ruName: "Fintech & Banking PM", enName: "Fintech & Banking PM", skills: ["fintech-product-teardown", "credit-product-spec", "unit-economics", "compliance-checkpoint", "risk-heatmap", "trust-safety", "incident-pm-role", "api-product-spec", "admin-ux"] },
+            { id: 7, ruName: "AI, LLM & Data PM", enName: "AI, LLM & Data PM", skills: ["ai-feature-spec", "llm-product-design", "data-product-spec", "ab-test-design", "metrics-analyzer", "decision-doc", "technical-translator", "trust-safety"] },
+            { id: 8, ruName: "GovTech & B2G PM", enName: "GovTech & B2G PM", skills: ["public-service-design", "citizen-journey", "govtech-metrics", "mini-app-platform", "localization-strategy", "compliance-checkpoint", "rfp-response"] },
+            { id: 9, ruName: "CPO / Leadership", enName: "CPO / Leadership", skills: ["product-strategy", "okr-writer", "north-star-metric", "business-case", "competitive-moat", "tenets-writer", "portfolio-review", "product-health-review", "kill-or-scale-decision"] }
         ];
 
         const COMBO_DESCRIPTIONS = {
             ru: {
                 0: "Универсальный сбалансированный набор для управления полным циклом продуктовой разработки от идеи до релиза.",
-                1: "Специализированная сборка для B2B-продуктов, длинных циклов сделок, Enterprise-интеграций и SaaS-метрик.",
-                2: "Фокус на воронках, экспериментах, механиках виральности, онбординге и росте метрик удержания (Retention).",
-                3: "Балансировка спроса и предложения, юнит-экономика продавцов, каталог, логистика и борьба с фродом.",
-                4: "Критическая надежность, скоринг, безопасность, комплаенс и работа с финансовыми рисками.",
-                5: "Корпоративное внедрение, безопасность данных, гос-процессы и внутренние сервисы.",
-                6: "Проектирование фичей на базе машинного обучения, LLM, работы с данными и A/B-тестов алгоритмов.",
-                7: "Прямые продажи потребителю, подписные модели, retention-петли и LTV/CAC оптимизация.",
-                8: "Стратегический уровень: вижн продукта, продуктовые рвы, цели OKR и портфельное управление."
+                1: "Специализированная сборка для B2B-продуктов, длинных циклов сделок, тендеров, Enterprise-внедрения и закупочных комитетов.",
+                2: "Управление подписочными моделями, ценообразованием, PLG-механиками, юнит-экономикой (MRR, Churn) и монетизацией.",
+                3: "Проектирование внутренних систем компании: цифровой офис сотрудника (ЦОС), HR-портал развития, коммуникации, тасктрекер и ATS.",
+                4: "Фокус на воронках, экспериментах, механиках виральности, онбординге и росте метрик удержания (Retention).",
+                5: "Балансировка спроса и предложения, юнит-экономика продавцов, каталог, логистика, лояльность и борьба с фродом.",
+                6: "Критическая надежность, банковские регламенты, скоринг, безопасность, комплаенс 152-ФЗ/ЦБ и финансовые риски.",
+                7: "Проектирование фичей на базе машинного обучения, LLM-интерфейсов, витрин данных, RAG-архитектур и A/B-тестов алгоритмов.",
+                8: "Проектирование государственных электронных услуг, соблюдение 152-ФЗ/ГОСТ, клиентский путь гражданина и тендеры.",
+                9: "Стратегический уровень: вижн продукта, продуктовые рвы, цели OKR, портфельное управление и операционная модель команды."
             },
             en: {
                 0: "Balanced foundational toolkit covering end-to-end product lifecycle management from concept to launch.",
-                1: "Tailored bundle for B2B product managers, long enterprise sales cycles, complex integrations, and SaaS metrics.",
-                2: "Focused on funnels, growth loops, viral mechanics, frictionless onboarding, and long-term retention.",
-                3: "Two-sided market balancing, seller economics, catalog architecture, fulfillment, and anti-fraud.",
-                4: "Mission-critical reliability, risk modeling, credit scoring, trust & safety, compliance, and financial operations.",
-                5: "Large enterprise adoption, data governance, public service design, and internal workflow efficiency.",
-                6: "Machine learning specs, LLM product architecture, data products, evaluation systems, and algorithm A/B tests.",
-                7: "Direct-to-consumer models, recurring subscription economics, notification cadences, and LTV/CAC optimization.",
-                8: "Executive CPO toolkit: product vision, competitive moats, OKR cascading, and portfolio health reviews."
+                1: "Tailored bundle for B2B product managers, enterprise sales cycles, procurement committees, RFP, and client rollouts.",
+                2: "Subscription lifecycle management, recurring revenue economics (MRR, Churn), PLG drivers, and monetization audits.",
+                3: "Internal tooling: digital workplace (Employee SuperApp), talent development, enterprise comms, task tracking, and recruiting ATS.",
+                4: "Focused on funnels, growth loops, viral mechanics, frictionless onboarding, and long-term retention.",
+                5: "Two-sided market balancing, seller economics, catalog architecture, fulfillment, loyalty, and anti-fraud.",
+                6: "Mission-critical reliability, credit scoring, trust & safety, banking compliance, and financial operations.",
+                7: "Machine learning specs, LLM product architecture, RAG systems, data products, evaluation systems, and algorithm A/B tests.",
+                8: "Public digital service design, citizen journeys, regulatory standards, mini-app platforms, and government tenders.",
+                9: "Executive CPO toolkit: product vision, competitive moats, OKR cascading, and portfolio health reviews."
             }
         };
 
