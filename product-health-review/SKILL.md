@@ -3,7 +3,7 @@ name: product-health-review
 description: Провести CPO-level диагностику здоровья продукта по пользователям, метрикам, экономике, delivery, рискам и стратегии. На выходе — health scorecard, красные зоны, root causes и план действий на 30/60/90 дней.
 argument-hint: [описание продукта, стадия, ключевые метрики и проблемы]
 allowed-tools: Read, Write
-preset: cpo
+preset: strategy
 lifecycle: measure,strategy,operations
 business-model: any
 domain: any

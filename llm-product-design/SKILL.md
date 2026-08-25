@@ -3,7 +3,7 @@ name: llm-product-design
 description: Спроектировать продукт или фичу на базе больших языковых моделей (LLM). На входе — концепт LLM-решения, на выходе — структурированная спецификация: выбор архитектуры (RAG/Fine-tuning), компромиссы стоимости и скорости (cost/latency), prompt-стратегия и метрики оценки качества генерации (Evaluation).
 argument-hint: [концепт LLM-продукта или функции]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

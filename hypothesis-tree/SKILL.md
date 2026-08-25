@@ -3,7 +3,7 @@ name: hypothesis-tree
 description: Построить дерево продуктовых гипотез (Hypothesis Tree) для достижения бизнес-цели.
 argument-hint: [главная бизнес-цель компании или продукта]
 allowed-tools: Read, Write
-preset: craft
+preset: discovery
 lifecycle: any
 business-model: any
 domain: generic

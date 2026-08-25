@@ -3,7 +3,7 @@ name: product-teardown
 description: Проанализировать стратегию, UX-решения, бизнес-модель и петли роста любого продукта. Используй, когда нужно понять, как устроен продукт и почему.
 argument-hint: [название продукта или URL]
 allowed-tools: Read, WebFetch, WebSearch, Write
-preset: core
+preset: fintech
 lifecycle: any
 business-model: any
 domain: generic

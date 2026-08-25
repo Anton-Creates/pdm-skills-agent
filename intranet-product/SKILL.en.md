@@ -3,7 +3,7 @@ name: intranet-product
 description: Design a corporate intranet portal: navigation, search and information architecture.
 argument-hint: [concept of a corporate portal or company intranet]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: b2b-saas
 lifecycle: any
 business-model: any
 domain: generic

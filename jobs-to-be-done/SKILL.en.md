@@ -3,7 +3,7 @@ name: jobs-to-be-done
 description: Apply Jobs-to-be-Done (JTBD) methodology for user needs research and product design. The input is a product or hypothesis of the problem, the output is formulated “jobs” (Jobs), a Switch interview script, force analysis (Push/Pull, Anxiety/Habit) and Job Map.
 argument-hint: [product or behavior scenario under study]
 allowed-tools: Read, Write
-preset: craft
+preset: discovery
 lifecycle: any
 business-model: any
 domain: generic

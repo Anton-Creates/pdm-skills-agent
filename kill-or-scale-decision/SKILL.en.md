@@ -3,7 +3,7 @@ name: kill-or-scale-decision
 description: Make a decision on the initiative after the pilot or MVP: scale, narrow, iterate, pivot or shut down. The output is evidence review, decision criteria, recommendation and next steps.
 argument-hint: [pilot/MVP results, metrics, qualitative findings, limitations]
 allowed-tools: Read, Write
-preset: cpo
+preset: strategy
 lifecycle: measure,strategy
 business-model: any
 domain: any

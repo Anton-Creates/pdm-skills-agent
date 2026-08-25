@@ -3,7 +3,7 @@ name: enterprise-rollout
 description: Разработать план внедрения (Enterprise Rollout) и управления изменениями для крупного корпоративного софта.
 argument-hint: [описание корпоративного продукта и структуры компании-клиента]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: b2b-saas
 lifecycle: any
 business-model: any
 domain: generic

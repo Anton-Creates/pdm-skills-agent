@@ -3,7 +3,7 @@ name: adoption-strategy
 description: Develop a strategy for introducing a new IT tool into the company and minimizing employee resistance.
 argument-hint: [description of implemented software and employee structure]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: b2b-saas
 lifecycle: any
 business-model: any
 domain: generic

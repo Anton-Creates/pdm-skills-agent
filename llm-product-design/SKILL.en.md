@@ -3,7 +3,7 @@ name: llm-product-design
 description: 
 argument-hint: [LLM product or function concept]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

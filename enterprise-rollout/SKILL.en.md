@@ -3,7 +3,7 @@ name: enterprise-rollout
 description: Develop an implementation plan (Enterprise Rollout) and change management for large enterprise software.
 argument-hint: [description of the corporate product and structure of the client company]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: b2b-saas
 lifecycle: any
 business-model: any
 domain: generic

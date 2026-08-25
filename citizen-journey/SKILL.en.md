@@ -3,7 +3,7 @@ name: citizen-journey
 description: Design a Citizen Journey through a government portal or digital government service.
 argument-hint: [description of public service or process for design]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: govtech-b2g
 lifecycle: any
 business-model: any
 domain: generic

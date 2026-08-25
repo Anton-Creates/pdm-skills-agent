@@ -3,7 +3,7 @@ name: incident-pm-role
 description: Develop a checklist of PM actions in case of accidents (Incident PM Role) and a postmortem template.
 argument-hint: [description of a product failure or incident for analysis]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

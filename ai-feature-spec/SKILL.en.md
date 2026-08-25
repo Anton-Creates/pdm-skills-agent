@@ -3,7 +3,7 @@ name: ai-feature-spec
 description: Create a PRD/specification for an AI/ML based feature. The input is a description of the AI ​​feature, the output is a structured document with an ML task, model metrics, fallback logic, HITL scripts and acceptance criteria.
 argument-hint: [description of an AI feature or ML task]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

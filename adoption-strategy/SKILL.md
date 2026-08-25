@@ -3,7 +3,7 @@ name: adoption-strategy
 description: Разработать стратегию внедрения нового ИТ-инструмента в компании и минимизации сопротивления сотрудников.
 argument-hint: [описание внедряемого ПО и структуры сотрудников]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: b2b-saas
 lifecycle: any
 business-model: any
 domain: generic

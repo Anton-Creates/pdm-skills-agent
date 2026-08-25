@@ -3,7 +3,7 @@ name: subscription-economics
 description: Спроектировать или проанализировать экономику подписочного продукта (SaaS, мобильная подписка или экосистемная подписка). На входе — концепт подписки или метрики оттока, на выходе — структурированный анализ LTV-модели, конверсии trial-to-paid, когортного оттока и удержания.
 argument-hint: [концепт подписочного продукта или метрики]
 allowed-tools: Read, Write
-preset: saas
+preset: growth
 lifecycle: any
 business-model: any
 domain: saas

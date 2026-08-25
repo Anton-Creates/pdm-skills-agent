@@ -3,7 +3,7 @@ name: retention-model
 description: Спроектировать или проанализировать модель удержания (Retention Model) и оттока пользователей. На входе — сырые данные по удержанию или описание проблемы оттока, на выходе — структурированный когортный анализ: построение кривой удержания, поиск плато, расчет Lifetime и сценарии реанимации пользователей.
 argument-hint: [описание проблемы оттока или когортные метрики]
 allowed-tools: Read, Write
-preset: saas
+preset: growth
 lifecycle: any
 business-model: any
 domain: saas

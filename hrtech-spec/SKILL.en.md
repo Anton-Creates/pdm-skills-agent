@@ -3,7 +3,7 @@ name: hrtech-spec
 description: Develop a specification for an HRtech product taking into account the requirements of labor law and personal data protection.
 argument-hint: [description of HRtech solution (onboarding, reviews, evaluation)]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: b2b-saas
 lifecycle: any
 business-model: any
 domain: generic

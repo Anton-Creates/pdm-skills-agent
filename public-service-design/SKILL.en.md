@@ -3,7 +3,7 @@ name: public-service-design
 description: 
 argument-hint: 
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: govtech-b2g
 lifecycle: any
 business-model: any
 domain: generic

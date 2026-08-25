@@ -3,7 +3,7 @@ name: north-star-metric
 description: Разработать фреймворк Метрики Полярной Звезды (North Star Metric) для продукта. На входе — описание продукта и его бизнес-модели, на выходе — структурированное дерево метрик: NSM, отражающая ценность для пользователя, опережающие input-метрики и связь с финансовыми результатами.
 argument-hint: [описание продукта и его бизнес-модели]
 allowed-tools: Read, Write
-preset: craft
+preset: strategy
 lifecycle: any
 business-model: any
 domain: generic

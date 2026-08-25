@@ -3,7 +3,7 @@ name: api-product-spec
 description: Разработать спецификацию API как продукта (API Product Specification). На входе — концепт интеграции, на выходе — структурированный продуктовый документ: сценарии интеграции (developer use cases), SLA и требования к доступности, лимиты (rate limits), версионирование и требования к DX (Developer Experience).
 argument-hint: [описание API-продукта или сценария интеграции]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

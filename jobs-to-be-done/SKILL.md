@@ -3,7 +3,7 @@ name: jobs-to-be-done
 description: Применить методологию Jobs-to-be-Done (JTBD) для исследования потребностей пользователей и проектирования продукта. На входе — продукт или гипотеза проблемы, на выходе — сформулированные "работы" (Jobs), сценарий Switch-интервью, анализ сил (Push/Pull, Anxiety/Habit) и Job Map.
 argument-hint: [продукт или исследуемый сценарий поведения]
 allowed-tools: Read, Write
-preset: craft
+preset: discovery
 lifecycle: any
 business-model: any
 domain: generic

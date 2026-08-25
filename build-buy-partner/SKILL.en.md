@@ -3,7 +3,7 @@ name: build-buy-partner
 description: Develop a structured justification for the decision: build it yourself, buy a ready-made solution or integrate a partner (Build / Buy / Partner).
 argument-hint: [issue or function to decide build/buy/partner]
 allowed-tools: Read, Write
-preset: saas
+preset: b2b-saas
 lifecycle: any
 business-model: any
 domain: saas

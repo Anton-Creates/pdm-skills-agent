@@ -3,7 +3,7 @@ name: platform-strategy
 description: Спроектировать стратегию платформенного продукта (Platform Product / API / Core Infrastructure). На входе — описание платформенного решения или технической инфраструктуры, на выходе — структурированная стратегия платформы, правила API Governance, метрики Developer Experience (DX) и план перехода внутренних команд.
 argument-hint: [описание платформенного продукта или API-решения]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

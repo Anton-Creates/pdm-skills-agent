@@ -3,7 +3,7 @@ name: product-teardown
 description: Analyze the strategy, UX solutions, business model and growth loops of any product. Use it when you need to understand how a product works and why.
 argument-hint: [product name or URL]
 allowed-tools: Read, WebFetch, WebSearch, Write
-preset: core
+preset: fintech
 lifecycle: any
 business-model: any
 domain: generic

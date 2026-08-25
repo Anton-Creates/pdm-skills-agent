@@ -3,7 +3,7 @@ name: risk-heatmap
 description: Build a risk heat map for a product, initiative, or business model: market, operational, financial, tech, regulatory, brand risks; probability × impact; trigger signals; mitigations; owners.
 argument-hint: [description of the initiative, product, or launch]
 allowed-tools: Read, Write
-preset: strategy
+preset: fintech
 lifecycle: strategy,operations,measure
 business-model: any
 domain: any

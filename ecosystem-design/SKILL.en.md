@@ -3,7 +3,7 @@ name: ecosystem-design
 description: Design a product ecosystem and rules for synergy of services (Ecosystem Design).
 argument-hint: [list of company services for integration into an ecosystem]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

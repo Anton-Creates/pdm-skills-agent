@@ -3,7 +3,7 @@ name: product-health-review
 description: Conduct a CPO-level product health diagnosis based on users, metrics, economics, delivery, risks, and strategy. The output — a health scorecard, red zones, root causes, and an action plan for 30/60/90 days.
 argument-hint: [product description, stage, key metrics and issues]
 allowed-tools: Read, Write
-preset: cpo
+preset: strategy
 lifecycle: measure,strategy,operations
 business-model: any
 domain: any

@@ -3,7 +3,7 @@ name: product-strategy
 description: Сформулировать продуктовую стратегию: целевой рынок, ICP, пользовательская ценность, стратегические ставки, метрики, trade-offs и критерии отказа. На выходе — короткий strategy doc, который связывает пользовательскую проблему, бизнес-модель, roadmap и измеримые результаты.
 argument-hint: [продукт, рынок, текущая стадия и стратегическая цель]
 allowed-tools: Read, Write
-preset: cpo
+preset: strategy
 lifecycle: strategy
 business-model: any
 domain: any

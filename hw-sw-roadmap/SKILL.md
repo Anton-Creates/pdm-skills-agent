@@ -3,7 +3,7 @@ name: hw-sw-roadmap
 description: Разработать дорожную карту синхронизации аппаратного и программного обеспечения (Hardware + Software / IoT Roadmap).
 argument-hint: [описание физического устройства/гаджета и софта для синхронизации роадмапов]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

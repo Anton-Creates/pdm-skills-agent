@@ -3,7 +3,7 @@ name: enterprise-discovery
 description: Conduct a needs research (Discovery) for a large B2B Enterprise client. The input is a description of the product and the target company, the output is an interview script with the purchasing committee, a matrix of stakeholders, requirements for the pilot (PoC) and barriers of information security/lawyers.
 argument-hint: [B2B product description and target corporate client profile]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: b2b-saas
 lifecycle: any
 business-model: any
 domain: generic

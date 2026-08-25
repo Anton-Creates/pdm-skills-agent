@@ -3,7 +3,7 @@ name: okr-writer
 description: Превратить бизнес-цели в структурированные OKR с измеримыми Key Results, связанными инициативами, проверкой выравнивания и анти-целями. На входе — стратегический приоритет, на выходе — готовые к использованию OKR.
 argument-hint: [бизнес-цель или стратегический приоритет]
 allowed-tools: Read, Write
-preset: core
+preset: strategy
 lifecycle: any
 business-model: any
 domain: generic

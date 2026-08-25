@@ -3,7 +3,7 @@ name: channel-mix
 description: Проанализировать и приоритизировать каналы привлечения клиентов (Channel Mix) с точки зрения юнит-экономики. На входе — описание продукта и доступных каналов, на выходе — структурированная матрица оценки каналов: CAC, потенциал масштабирования, риски насыщения и план запуска (Now/Later/Never).
 argument-hint: [описание продукта и гипотез по каналам привлечения]
 allowed-tools: Read, Write
-preset: craft
+preset: growth
 lifecycle: any
 business-model: any
 domain: generic

@@ -3,7 +3,7 @@ name: feature-flag-strategy
 description: Develop a strategy for the gradual rollout of features using feature flags/toggles. The input is a description of the feature, the output is a structured rollout plan: dogfooding, canary testing, targeting logic, stability monitoring metrics and a code cleanup plan (Sunset plan).
 argument-hint: [description of the feature to be rolled out and stability risks]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

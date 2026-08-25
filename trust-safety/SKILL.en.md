@@ -3,7 +3,7 @@ name: trust-safety
 description: Develop a Trust & Safety strategy for a C2C marketplace or sharing platform.
 
 allowed-tools: Read, Write
-preset: marketplace
+preset: fintech
 lifecycle: any
 business-model: any
 

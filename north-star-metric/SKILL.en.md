@@ -3,7 +3,7 @@ name: north-star-metric
 description: 
 argument-hint: 
 allowed-tools: Read, Write
-preset: craft
+preset: strategy
 lifecycle: any
 business-model: any
 domain: generic

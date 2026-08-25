@@ -3,7 +3,7 @@ name: mini-app-platform
 description: Спроектировать платформу мини-приложений (Mini App Platform) в экосистеме или суперприложении.
 argument-hint: [концепт платформы мини-приложений для сторонних разработчиков]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: govtech-b2g
 lifecycle: any
 business-model: any
 domain: generic

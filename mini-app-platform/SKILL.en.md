@@ -3,7 +3,7 @@ name: mini-app-platform
 description: 
 argument-hint: [widget app platform concept for third party developers]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: govtech-b2g
 lifecycle: any
 business-model: any
 domain: generic

@@ -3,7 +3,7 @@ name: competitive-moat
 description: Assess the security and competitive moat of the product (Competitive Moat). The input is a description of the product and competitors, the output is a structured audit: switching costs, network effects, data moats and recommendations for strengthening the moat.
 argument-hint: [description of product and competitive environment]
 allowed-tools: Read, Write
-preset: craft
+preset: strategy
 lifecycle: any
 business-model: any
 domain: generic

@@ -3,7 +3,7 @@ name: b2b-telecom
 description: Разработать продуктовую стратегию B2B-телеком продуктов и интеграции с корпоративными ИТ-системами.
 argument-hint: [концепт B2B телеком-продукта (виртуальная АТС, VPN, FMC)]
 allowed-tools: Read, Write
-preset: telecom-media
+preset: telecom
 lifecycle: any
 business-model: any
 domain: generic

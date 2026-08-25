@@ -3,7 +3,7 @@ name: referral-mechanics
 description: Design a referral program or a viral loop for a product. Input — product concept, output — structured specification: incentive architecture (one/double-sided), anti-fraud protection, invitation funnel (sharing UX), and K-factor calculation.
 argument-hint: [product concept for a referral program]
 allowed-tools: Read, Write
-preset: saas
+preset: growth
 lifecycle: any
 business-model: any
 domain: saas

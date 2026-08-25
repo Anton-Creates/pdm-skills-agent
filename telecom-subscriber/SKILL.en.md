@@ -1,12 +1,3 @@
-## Metrics
-
-### Universal metric rule
-If you are proposing a metric, answer 5 questions:
-1. **Who owns this metric?**
-2. **How ​​often do we watch it?**
-3. **What events count it?**
-4. **What is the decision threshold?**
-5. **How ​​can it be spoiled or screwed up?**
 ---
 name: telecom-subscriber
 description: Design a B2C product for a telecom operator - tariff package, convergent bundle (Internet + TV + mobile), anti-churn or upsell. The input is the segment and context of the operator, the output is the product structure, pricing logic and retention metrics.
@@ -20,6 +11,15 @@ stage: any
 output-artifact: document
 ---
 
+## Metrics
+
+### Universal metric rule
+If you are proposing a metric, answer 5 questions:
+1. **Who owns this metric?**
+2. **How ​​often do we watch it?**
+3. **What events count it?**
+4. **What is the decision threshold?**
+5. **How ​​can it be spoiled or screwed up?**
 # B2C telecom operator products (telecom-subscriber)
 
 Design a consumer product for a telecom operator: tariff plan, converged service package (Internet + TV + mobile), retention mechanics (anti-churn) or upsell into a premium package. The skill helps the product work with the specifics of the subscription business: high churn, price sensitivity, the role of the call center and cross-selling.

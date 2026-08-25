@@ -3,7 +3,7 @@ name: plg-design
 description: Design a product growth strategy using the Product-Led Growth (PLG) model. The input is a product concept, the output is a structured specification: freemium/trial design, activation points (Aha moment), upgrade triggers and a self-serve onboarding funnel.
 argument-hint: [product description for PLG model design]
 allowed-tools: Read, Write
-preset: saas
+preset: growth
 lifecycle: any
 business-model: any
 domain: saas

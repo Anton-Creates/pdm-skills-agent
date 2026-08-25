@@ -3,7 +3,7 @@ name: portfolio-review
 description: Провести обзор продуктового портфеля: какие направления инвестировать, поддерживать, оптимизировать, пивотить или закрывать. На выходе — портфельная матрица, ресурсные trade-offs и рекомендации по перераспределению ставок.
 argument-hint: [список продуктов/инициатив с метриками, стадией и ресурсами]
 allowed-tools: Read, Write
-preset: cpo
+preset: strategy
 lifecycle: strategy,measure
 business-model: any
 domain: any

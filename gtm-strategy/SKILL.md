@@ -3,7 +3,7 @@ name: gtm-strategy
 description: Разработать стратегию вывода продукта на рынок (Go-to-Market / GTM). На входе — концепт продукта или фичи, на выходе — структурированный GTM-план: определение идеального клиента (ICP), позиционирование и ключевые месседжи по каналам привлечения, этапы запуска и KPI первых 90 дней.
 argument-hint: [концепт продукта или фичи для запуска]
 allowed-tools: Read, Write
-preset: craft
+preset: strategy
 lifecycle: any
 business-model: any
 domain: generic

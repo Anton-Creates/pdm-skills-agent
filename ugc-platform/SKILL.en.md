@@ -3,7 +3,7 @@ name: ugc-platform
 
 argument-hint: [concept of the UGC platform and mechanics of working with authors]
 
-preset: telecom-media
+preset: media-edtech
 
 
 

@@ -3,7 +3,7 @@ name: growth-loop
 description: Design product growth loops: viral, content and paid cycles.
 argument-hint: [product description for growth loop design]
 allowed-tools: Read, Write
-preset: saas
+preset: growth
 lifecycle: any
 business-model: any
 domain: saas

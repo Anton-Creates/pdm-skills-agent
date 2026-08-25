@@ -3,7 +3,7 @@ name: product-operating-model
 description: Спроектировать operating model продуктовой организации: роли, decision rights, ритуалы, метрики, cadence, governance и связь стратегии с delivery. На выходе — модель управления продуктом для команды/направления.
 argument-hint: [описание продуктовой организации, команд, проблем управления]
 allowed-tools: Read, Write
-preset: cpo
+preset: strategy
 lifecycle: operations,strategy
 business-model: any
 domain: any

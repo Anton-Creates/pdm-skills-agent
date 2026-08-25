@@ -3,7 +3,7 @@ name: citizen-journey
 description: Спроектировать путь гражданина (Citizen Journey) через государственный портал или цифровую госуслугу.
 argument-hint: [описание государственной услуги или процесса для проектирования]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: govtech-b2g
 lifecycle: any
 business-model: any
 domain: generic

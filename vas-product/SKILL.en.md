@@ -3,7 +3,7 @@ name: vas-product
 description: Design a product strategy for value-added services (VAS) in telecom.
 argument-hint: [VAS service concept (security, music, content) for telecom]
 allowed-tools: Read, Write
-preset: telecom-media
+preset: telecom
 lifecycle: any
 business-model: any
 domain: generic

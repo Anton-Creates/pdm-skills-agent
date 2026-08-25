@@ -3,7 +3,7 @@ name: public-service-design
 description: Спроектировать государственную услугу (Public Service Design) как продукт с учетом ФЗ-210.
 argument-hint: [концепт государственной услуги для проектирования]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: govtech-b2g
 lifecycle: any
 business-model: any
 domain: generic

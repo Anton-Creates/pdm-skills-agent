@@ -3,7 +3,7 @@ name: funnel-analysis
 description: Diagnose the decline in conversion rates along the funnel (Funnel Analysis) and prepare hypotheses for A/B tests.
 argument-hint: [funnel steps and conversion data at each step]
 allowed-tools: Read, Write
-preset: discovery
+preset: growth
 lifecycle: any
 business-model: any
 domain: generic

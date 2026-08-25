@@ -3,7 +3,7 @@ name: hrtech-spec
 description: Разработать спецификацию HRtech-продукта с учетом требований трудового права и защиты персональных данных.
 argument-hint: [описание HRtech решения (онбординг, отзывы, оценка)]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: b2b-saas
 lifecycle: any
 business-model: any
 domain: generic

@@ -3,7 +3,7 @@ name: ecosystem-design
 description: Спроектировать продуктовую экосистему и правила синергии сервисов (Ecosystem Design).
 argument-hint: [перечень сервисов компании для объединения в экосистему]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

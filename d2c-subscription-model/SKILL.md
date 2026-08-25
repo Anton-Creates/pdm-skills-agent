@@ -3,7 +3,7 @@ name: d2c-subscription-model
 description: Спроектировать D2C-подписку для физического продукта: food box, beauty box, premium goods, фермерская корзина или регулярная доставка. На выходе — выбор модели, тарифы, unit economics, retention loop, fulfillment risks, supplier economics, метрики подписки и go/no-go решение.
 argument-hint: [описание продукта, аудитории, цены, частоты покупки и логистики]
 allowed-tools: Read, Write
-preset: d2c
+preset: growth
 lifecycle: strategy,growth,measure
 business-model: d2c,subscription,ecommerce
 domain: retail,food-d2c

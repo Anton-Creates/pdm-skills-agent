@@ -3,7 +3,7 @@ name: funnel-analysis
 description: Провести диагностику падения конверсии по воронке (Funnel Analysis) и подготовить гипотезы для A/B тестов.
 argument-hint: [шаги воронки и данные по конверсиям на каждом шаге]
 allowed-tools: Read, Write
-preset: discovery
+preset: growth
 lifecycle: any
 business-model: any
 domain: generic

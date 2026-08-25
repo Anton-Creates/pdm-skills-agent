@@ -3,7 +3,7 @@ name: ai-feature-spec
 description: Создать PRD / спецификацию для функции на базе AI/ML. На входе — описание AI-фичи, на выходе — структурированный документ с ML-задачей, метриками модели, fallback-логикой, сценариями HITL и критериями приёмки.
 argument-hint: [описание AI-фичи или ML-задачи]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

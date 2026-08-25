@@ -3,7 +3,7 @@ name: enterprise-discovery
 description: Провести исследование потребностей (Discovery) для крупного B2B Enterprise клиента. На входе — описание продукта и целевой компании, на выходе — сценарий интервью с закупочным комитетом, матрица стейкхолдеров, требования к пилоту (PoC) и барьеры ИБ/юристов.
 argument-hint: [описание B2B-продукта и профиль целевого корпоративного клиента]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: b2b-saas
 lifecycle: any
 business-model: any
 domain: generic

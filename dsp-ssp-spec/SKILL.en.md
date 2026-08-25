@@ -3,7 +3,7 @@ name: dsp-ssp-spec
 description: Develop specifications for a programmatic advertising platform (DSP/SSP).
 argument-hint: [concept of DSP or SSP advertising product]
 allowed-tools: Read, Write
-preset: telecom-media
+preset: media-edtech
 lifecycle: any
 business-model: any
 domain: generic

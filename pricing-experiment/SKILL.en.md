@@ -3,7 +3,7 @@ name: pricing-experiment
 description: Develop a pricing experiment design. The input is a product description and price hypothesis, the output is a structured test plan: methodology (Van Westendorp / PSM, Gabor-Granger, A/B tariff test), questionnaire, sampling, legal restrictions and criteria for evaluating results.
 argument-hint: [product description and price testing hypotheses]
 allowed-tools: Read, Write
-preset: saas
+preset: growth
 lifecycle: any
 business-model: any
 domain: saas

@@ -3,7 +3,7 @@ name: pricing-model
 description: Разработать стратегию ценообразования и структуру тарифов (Packaging & Pricing). На входе — описание продукта и его ценности, на выходе — структурированная сетка тарифов, выбор метрики монетизации, обоснование цены и механики ценовых тестов.
 argument-hint: [описание продукта и гипотез по тарифам]
 allowed-tools: Read, Write
-preset: saas
+preset: growth
 lifecycle: any
 business-model: any
 domain: saas

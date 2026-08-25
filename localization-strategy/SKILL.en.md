@@ -3,7 +3,7 @@ name: localization-strategy
 description: 
 argument-hint: [description of product and target country for launch]
 allowed-tools: Read, Write
-preset: craft
+preset: govtech-b2g
 lifecycle: any
 business-model: any
 domain: generic

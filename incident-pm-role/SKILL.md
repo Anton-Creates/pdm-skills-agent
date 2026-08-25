@@ -3,7 +3,7 @@ name: incident-pm-role
 description: Разработать чеклист действий PM при авариях (Incident PM Role) и шаблон постмортема (Postmortem).
 argument-hint: [описание сбоя на проде или инцидента для разбора]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

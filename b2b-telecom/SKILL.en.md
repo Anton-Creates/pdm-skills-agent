@@ -3,7 +3,7 @@ name: b2b-telecom
 description: Develop a product strategy for B2B telecom products and integration with corporate IT systems.
 argument-hint: [B2B telecom product concept (virtual PBX, VPN, FMC)]
 allowed-tools: Read, Write
-preset: telecom-media
+preset: telecom
 lifecycle: any
 business-model: any
 domain: generic

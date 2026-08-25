@@ -3,7 +3,7 @@ name: metrics-tree
 description: Декомпозировать высокоуровневые бизнес-метрики (Revenue, LTV, Profit) до продуктовых метрик и опережающих индикаторов конкретных фич. Строит кастомное 4-уровневое дерево метрик.
 argument-hint: [продукт, бизнес-модель, зона для декомпозиции]
 allowed-tools: Read, Write
-preset: analytics
+preset: core
 lifecycle: measure
 business-model: any
 domain: generic

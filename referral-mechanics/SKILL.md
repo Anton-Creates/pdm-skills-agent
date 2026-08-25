@@ -3,7 +3,7 @@ name: referral-mechanics
 description: Спроектировать реферальную программу или виральную петлю (Viral Loop) для продукта. На входе — концепт продукта, на выходе — структурированная спецификация: архитектура стимулов (one/double-sided), защита от фрода (anti-fraud), воронка приглашений (sharing UX) и расчет K-фактора.
 argument-hint: [концепт продукта для реферальной программы]
 allowed-tools: Read, Write
-preset: saas
+preset: growth
 lifecycle: any
 business-model: any
 domain: saas

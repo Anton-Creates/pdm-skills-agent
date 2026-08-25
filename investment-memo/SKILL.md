@@ -3,7 +3,7 @@ name: investment-memo
 description: Подготовить инвестиционное обоснование продуктовой инициативы для CEO/CFO/board: размер ставки, ожидаемый эффект, экономика, риски, milestones и условия продолжения финансирования.
 argument-hint: [инициатива, бюджет, ожидаемый эффект и срок]
 allowed-tools: Read, Write
-preset: cpo
+preset: strategy
 lifecycle: strategy,measure
 business-model: any
 domain: any

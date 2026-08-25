@@ -3,7 +3,7 @@ name: kill-or-scale-decision
 description: Принять решение по инициативе после пилота или MVP: масштабировать, сузить, итерировать, пивотить или закрыть. На выходе — evidence review, decision criteria, recommendation и next steps.
 argument-hint: [результаты пилота/MVP, метрики, качественные выводы, ограничения]
 allowed-tools: Read, Write
-preset: cpo
+preset: strategy
 lifecycle: measure,strategy
 business-model: any
 domain: any

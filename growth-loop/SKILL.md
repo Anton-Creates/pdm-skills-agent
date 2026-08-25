@@ -3,7 +3,7 @@ name: growth-loop
 description: Спроектировать петли роста продукта (Growth Loops): виральные, контентные и платные циклы.
 argument-hint: [описание продукта для проектирования петель роста]
 allowed-tools: Read, Write
-preset: saas
+preset: growth
 lifecycle: any
 business-model: any
 domain: saas

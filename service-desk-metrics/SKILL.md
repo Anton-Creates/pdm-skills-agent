@@ -3,7 +3,7 @@ name: service-desk-metrics
 description: Разработать дашборд метрик качества внутренней технической поддержки и Service Desk.
 argument-hint: [описание процессов ИТ-поддержки сотрудников]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: b2b-saas
 lifecycle: any
 business-model: any
 domain: generic

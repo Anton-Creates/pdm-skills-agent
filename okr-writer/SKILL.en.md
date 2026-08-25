@@ -3,7 +3,7 @@ name: okr-writer
 description: Translate business goals into structured OKRs with measurable Key Results, associated initiatives, alignment checks and anti-goals. The input is a strategic priority, the output is ready-to-use OKRs.
 argument-hint: 
 allowed-tools: Read, Write
-preset: core
+preset: strategy
 lifecycle: any
 business-model: any
 domain: generic

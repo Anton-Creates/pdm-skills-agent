@@ -3,7 +3,7 @@ name: rfp-response
 description: Разработать требования и продуктовое обоснование для участия в тендерах и ТЗ (RFP Response).
 argument-hint: [описание тендерных требований и продукта]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: b2b-saas
 lifecycle: any
 business-model: any
 domain: generic

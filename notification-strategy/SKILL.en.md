@@ -3,7 +3,7 @@ name: notification-strategy
 description: Develop a push, SMS and email notification strategy to retain users and reduce spam.
 argument-hint: 
 allowed-tools: Read, Write
-preset: saas
+preset: telecom
 lifecycle: any
 business-model: any
 domain: saas

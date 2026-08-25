@@ -3,7 +3,7 @@ name: gtm-strategy
 description: Develop a strategy for bringing the product to market (Go-to-Market / GTM). The input is a product or feature concept, the output is a structured GTM plan: defining an ideal customer (ICP), positioning and key messages across acquisition channels, launch stages and KPIs for the first 90 days.
 argument-hint: [product concept or feature to be launched]
 allowed-tools: Read, Write
-preset: craft
+preset: strategy
 lifecycle: any
 business-model: any
 domain: generic

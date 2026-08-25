@@ -3,7 +3,7 @@ name: onboarding-audit
 description: 
 argument-hint: [description of the current new user onboarding process]
 allowed-tools: Read, Write
-preset: discovery
+preset: growth
 lifecycle: any
 business-model: any
 domain: generic

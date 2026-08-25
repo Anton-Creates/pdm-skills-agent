@@ -3,7 +3,7 @@ name: portfolio-review
 description: 
 argument-hint: [list of products/initiatives with metrics, stage and resources]
 allowed-tools: Read, Write
-preset: cpo
+preset: strategy
 lifecycle: strategy,measure
 business-model: any
 domain: any

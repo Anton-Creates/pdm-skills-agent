@@ -3,7 +3,7 @@ name: ugc-platform
 description: Спроектировать продуктовую стратегию и механики модерации UGC-платформы.
 argument-hint: [концепт UGC платформы и механики работы с авторами]
 allowed-tools: Read, Write
-preset: telecom-media
+preset: media-edtech
 lifecycle: any
 business-model: any
 domain: generic

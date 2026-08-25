@@ -3,7 +3,7 @@ name: rfp-response
 description: Develop requirements and a product rationale for participation in tenders and terms of reference (RFP Response).
 argument-hint: [description of tender requirements and product]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: b2b-saas
 lifecycle: any
 business-model: any
 domain: generic

@@ -3,7 +3,7 @@ name: product-operating-model
 description: Design an operating model of a product organization: roles, decision rights, rituals, metrics, cadence, governance and the connection between strategy and delivery. The output is a product management model for the team/direction.
 argument-hint: [description of product organization, teams, management problems]
 allowed-tools: Read, Write
-preset: cpo
+preset: strategy
 lifecycle: operations,strategy
 business-model: any
 domain: any

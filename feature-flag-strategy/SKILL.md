@@ -3,7 +3,7 @@ name: feature-flag-strategy
 description: Разработать стратегию поэтапной выкатки фичи с использованием фича-флагов (feature flags / toggles). На входе — описание фичи, на выходе — структурированный план раската: dogfooding, canary-тестирование, логика таргетирования, метрики мониторинга стабильности и план очистки кода (Sunset plan).
 argument-hint: [описание фичи для выкатки и риски стабильности]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

@@ -3,7 +3,7 @@ name: localization-strategy
 description: Разработать стратегию локализации и выхода продукта на новое географическое направление (Localization Strategy).
 argument-hint: [описание продукта и целевой страны для запуска]
 allowed-tools: Read, Write
-preset: craft
+preset: govtech-b2g
 lifecycle: any
 business-model: any
 domain: generic

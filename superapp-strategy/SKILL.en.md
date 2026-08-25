@@ -3,7 +3,7 @@ name: superapp-strategy
 description: Спроектировать экосистему сервисов или стратегию SuperApp. На входе — список сервисов или экосистемная гипотеза, на выходе — структурированная стратегия интеграции, единого профиля (ID), программы лояльности/подписки и предотвращения каннибализации продуктов.
 argument-hint: [экосистемная гипотеза или список сервисов]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

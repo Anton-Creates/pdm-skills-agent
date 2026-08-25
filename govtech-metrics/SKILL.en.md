@@ -3,7 +3,7 @@ name: govtech-metrics
 description: Design efficiency and quality metrics for a government or social service/portal (GovTech). The input is a description of the service or process, the output is a structured dashboard of metrics with a focus on self-service rate, accessibility, citizen CES and reducing the load on the MFC.
 argument-hint: [description of government service or portal]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: govtech-b2g
 lifecycle: any
 business-model: any
 domain: generic

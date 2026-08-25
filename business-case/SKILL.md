@@ -3,7 +3,7 @@ name: business-case
 description: Подготовить CPO-grade бизнес-кейс для новой инициативы, продукта или бизнес-модели. На входе — идея продукта, рынок или инициатива; на выходе — problem/background, альтернативы, выбранная модель, BMC, unit economics, roadmap, risk heat map, stakeholder communications и decision request.
 argument-hint: [идея продукта или инициативы]
 allowed-tools: Read, Write
-preset: cpo
+preset: strategy
 lifecycle: strategy,measure
 business-model: any
 domain: any

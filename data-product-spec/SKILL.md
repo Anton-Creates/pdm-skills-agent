@@ -3,7 +3,7 @@ name: data-product-spec
 description: Разработать спецификацию продукта данных (Data Product Specification).
 argument-hint: [описание набора данных или витрины данных для спецификации]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

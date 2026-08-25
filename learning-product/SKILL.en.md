@@ -3,7 +3,7 @@ name: learning-product
 description: Design an educational product (EdTech): track structure, engagement metrics and completion rate.
 argument-hint: [topics and goals of the educational course]
 allowed-tools: Read, Write
-preset: telecom-media
+preset: media-edtech
 lifecycle: any
 business-model: any
 domain: generic

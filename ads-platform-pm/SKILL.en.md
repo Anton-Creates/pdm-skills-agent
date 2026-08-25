@@ -3,7 +3,7 @@ name: ads-platform-pm
 description: Design or analyze a product in the field of advertising technologies (AdTech / Advertising account). The input is the concept of an advertising account or auction, the output is a structured specification: auction mechanics (GSP/VCG), purchasing models (CPM/CPC/CPA), targeting and conversion attribution logic.
 argument-hint: [concept of an advertising platform or advertising account]
 allowed-tools: Read, Write
-preset: telecom-media
+preset: media-edtech
 lifecycle: any
 business-model: any
 domain: generic

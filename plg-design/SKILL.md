@@ -3,7 +3,7 @@ name: plg-design
 description: Спроектировать стратегию роста продукта по модели Product-Led Growth (PLG). На входе — концепт продукта, на выходе — структурированная спецификация: дизайн фримиума/триала, точки активации (Aha moment), триггеры для апгрейда и воронка self-serve онбординга.
 argument-hint: [описание продукта для проектирования PLG-модели]
 allowed-tools: Read, Write
-preset: saas
+preset: growth
 lifecycle: any
 business-model: any
 domain: saas

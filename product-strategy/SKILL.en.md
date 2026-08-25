@@ -3,7 +3,7 @@ name: product-strategy
 description: Formulate a product strategy: target market, ICP, user value, strategic bids, metrics, trade-offs and rejection criteria. The output is a short strategy doc that links the user problem, business model, roadmap and measurable results.
 argument-hint: 
 allowed-tools: Read, Write
-preset: cpo
+preset: strategy
 lifecycle: strategy
 business-model: any
 domain: any

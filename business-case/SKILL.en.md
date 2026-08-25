@@ -3,7 +3,7 @@ name: business-case
 description: Prepare a CPO-grade business case for a new initiative, product or business model. The input is a product idea, market or initiative; The output is problem/background, alternatives, selected model, BMC, unit economics, roadmap, risk heat map, stakeholder communications and decision request.
 argument-hint: [product or initiative idea]
 allowed-tools: Read, Write
-preset: cpo
+preset: strategy
 lifecycle: strategy,measure
 business-model: any
 domain: any

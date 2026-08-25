@@ -3,7 +3,7 @@ name: investment-memo
 description: Prepare an investment case for a product initiative for the CEO/CFO/board: rate size, expected effect, economics, risks, milestones and conditions for continued financing.
 argument-hint: [initiative, budget, expected effect and deadline]
 allowed-tools: Read, Write
-preset: cpo
+preset: strategy
 lifecycle: strategy,measure
 business-model: any
 domain: any

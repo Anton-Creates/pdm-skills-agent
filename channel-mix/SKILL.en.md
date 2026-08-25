@@ -3,7 +3,7 @@ name: channel-mix
 description: Analyze and prioritize customer acquisition channels (Channel Mix) from the point of view of unit economics. The input is a description of the product and available channels, the output is a structured channel assessment matrix: CAC, scaling potential, saturation risks and launch plan (Now/Later/Never).
 argument-hint: [description of product and hypotheses by attraction channels]
 allowed-tools: Read, Write
-preset: craft
+preset: growth
 lifecycle: any
 business-model: any
 domain: generic

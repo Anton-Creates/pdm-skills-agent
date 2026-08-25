@@ -3,7 +3,7 @@ name: hw-sw-roadmap
 description: Develop a roadmap for synchronizing hardware and software (Hardware + Software / IoT Roadmap).
 argument-hint: [description of the physical device/gadget and software for synchronizing roadmaps]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

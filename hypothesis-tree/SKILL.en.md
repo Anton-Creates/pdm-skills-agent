@@ -3,7 +3,7 @@ name: hypothesis-tree
 description: Build a tree of product hypotheses (Hypothesis Tree) to achieve a business goal.
 argument-hint: [the main business goal of the company or product]
 allowed-tools: Read, Write
-preset: craft
+preset: discovery
 lifecycle: any
 business-model: any
 domain: generic

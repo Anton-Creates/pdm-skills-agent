@@ -3,7 +3,7 @@ name: metrics-tree
 description: 
 argument-hint: 
 allowed-tools: Read, Write
-preset: analytics
+preset: core
 lifecycle: measure
 business-model: any
 domain: generic

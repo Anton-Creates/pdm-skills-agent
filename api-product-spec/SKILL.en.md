@@ -3,7 +3,7 @@ name: api-product-spec
 description: Develop an API Product Specification. The input is an integration concept, the output is a structured product document: integration scenarios (developer use cases), SLA and availability requirements, rate limits, versioning and DX (Developer Experience) requirements.
 argument-hint: [description of API product or integration scenario]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

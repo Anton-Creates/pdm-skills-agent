@@ -3,7 +3,7 @@ name: ads-platform-pm
 description: Спроектировать или проанализировать продукт в сфере рекламных технологий (AdTech / Рекламный кабинет). На входе — концепт рекламного кабинета или аукциона, на выходе — структурированная спецификация: аукционная механика (GSP/VCG), модели закупки (CPM/CPC/CPA), таргетинги и логика атрибуции конверсий.
 argument-hint: [концепт рекламной платформы или рекламного кабинета]
 allowed-tools: Read, Write
-preset: telecom-media
+preset: media-edtech
 lifecycle: any
 business-model: any
 domain: generic

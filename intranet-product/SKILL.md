@@ -3,7 +3,7 @@ name: intranet-product
 description: Спроектировать корпоративный интранет-портал: навигация, поиск и информационная архитектура.
 argument-hint: [концепт корпоративного портала или интранета компании]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: b2b-saas
 lifecycle: any
 business-model: any
 domain: generic

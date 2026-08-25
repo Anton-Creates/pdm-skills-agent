@@ -3,7 +3,7 @@ name: vas-product
 description: Спроектировать продуктовую стратегию дополнительных услуг (VAS) в телекоме.
 argument-hint: [концепт VAS услуги (безопасность, музыка, контент) для телекома]
 allowed-tools: Read, Write
-preset: telecom-media
+preset: telecom
 lifecycle: any
 business-model: any
 domain: generic

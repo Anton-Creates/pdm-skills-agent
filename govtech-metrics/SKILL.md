@@ -3,7 +3,7 @@ name: govtech-metrics
 description: Спроектировать метрики эффективности и качества для государственной или социальной услуги/портала (GovTech). На входе — описание услуги или процесса, на выходе — структурированный дашборд метрик с фокусом на self-service rate, доступность, CES гражданина и снижение нагрузки на МФЦ.
 argument-hint: [описание госуслуги или портала]
 allowed-tools: Read, Write
-preset: enterprise-gov
+preset: govtech-b2g
 lifecycle: any
 business-model: any
 domain: generic

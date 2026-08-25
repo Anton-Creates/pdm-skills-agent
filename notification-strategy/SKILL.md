@@ -3,7 +3,7 @@ name: notification-strategy
 description: Разработать стратегию push, SMS и email уведомлений для удержания пользователей и снижения спама.
 argument-hint: [цели продукта по рассылкам и список событий]
 allowed-tools: Read, Write
-preset: saas
+preset: telecom
 lifecycle: any
 business-model: any
 domain: saas

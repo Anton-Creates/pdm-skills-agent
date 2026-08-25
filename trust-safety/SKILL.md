@@ -3,7 +3,7 @@ name: trust-safety
 description: Разработать стратегию безопасности и доверия (Trust & Safety) для C2C маркетплейса или шеринг-платформы.
 argument-hint: [описание C2C платформы и ключевых рисков мошенничества]
 allowed-tools: Read, Write
-preset: marketplace
+preset: fintech
 lifecycle: any
 business-model: any
 domain: marketplace

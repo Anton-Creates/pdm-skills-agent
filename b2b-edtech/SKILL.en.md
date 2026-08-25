@@ -3,7 +3,7 @@ name: b2b-edtech
 description: Develop a specification for a corporate learning platform (LMS/B2B EdTech).
 argument-hint: [corporate training objectives and client company profile]
 allowed-tools: Read, Write
-preset: telecom-media
+preset: media-edtech
 lifecycle: any
 business-model: any
 domain: generic

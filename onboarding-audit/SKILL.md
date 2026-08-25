@@ -3,7 +3,7 @@ name: onboarding-audit
 description: Провести аудит онбординга и спроектировать воронку активации до Aha-moment.
 argument-hint: [описание текущего процесса онбординга нового пользователя]
 allowed-tools: Read, Write
-preset: discovery
+preset: growth
 lifecycle: any
 business-model: any
 domain: generic

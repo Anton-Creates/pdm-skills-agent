@@ -3,7 +3,7 @@ name: b2b-edtech
 description: Разработать спецификацию платформы корпоративного обучения (LMS / B2B EdTech).
 argument-hint: [цели корпоративного обучения и профиль компании-клиента]
 allowed-tools: Read, Write
-preset: telecom-media
+preset: media-edtech
 lifecycle: any
 business-model: any
 domain: generic

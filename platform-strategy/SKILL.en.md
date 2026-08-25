@@ -3,7 +3,7 @@ name: platform-strategy
 description: 
 argument-hint: [description of platform product or API solution]
 allowed-tools: Read, Write
-preset: craft
+preset: platforms-tech
 lifecycle: any
 business-model: any
 domain: generic

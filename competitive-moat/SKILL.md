@@ -3,7 +3,7 @@ name: competitive-moat
 description: Оценить защищенность и конкурентный ров продукта (Competitive Moat). На входе — описание продукта и конкурентов, на выходе — структурированный аудит: барьеры для перехода (switching costs), сетевые эффекты (network effects), защищенность данных (data moats) и рекомендации по укреплению рва.
 argument-hint: [описание продукта и конкурентного окружения]
 allowed-tools: Read, Write
-preset: craft
+preset: strategy
 lifecycle: any
 business-model: any
 domain: generic

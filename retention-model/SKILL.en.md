@@ -3,7 +3,7 @@ name: retention-model
 description: Design or analyze a retention model and user churn. The input is raw retention data or a description of the churn problem, the output is a structured cohort analysis: building a retention curve, finding the plateau, calculating Lifetime, and creating user recovery scenarios.
 argument-hint: [description of churn problem or cohort metrics]
 allowed-tools: Read, Write
-preset: saas
+preset: growth
 lifecycle: any
 business-model: any
 domain: saas
