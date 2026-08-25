@@ -41,6 +41,7 @@ output-artifact: d2c-subscription-business-case
 8. **Построй growth loop.** Referral, content, community, brand, gift mechanics.
 9. **Собери risk heat map.** Логистика, CAC, churn, качество, поставщики, сезонность, репутация.
 10. **Дай go/no-go решение.** Pilot / narrow wedge / build / partner / kill.
+11. **Сохрани вывод** в текущей рабочей директории как `d2c-subscription-model-[контекст].md`.
 
 ## Формат вывода
 

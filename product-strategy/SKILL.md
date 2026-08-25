@@ -25,6 +25,7 @@ output-artifact: product-strategy-doc
 6. **Определи метрики.** North Star, input metrics, guardrails, diagnostics.
 7. **Назови trade-offs.** Что сознательно не делаем.
 8. **Задай kill/review criteria.** Когда стратегию пересматривать.
+9. **Сохрани вывод** в текущей рабочей директории как `product-strategy-[контекст].md`.
 
 ## Формат вывода
 

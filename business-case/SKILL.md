@@ -40,6 +40,7 @@ output-artifact: business-case
 8. **Построй risk heat map.** Market, operational, brand/reputation, financial, tech, regulatory risks.
 9. **Сформулируй roadmap и ресурсы.** Фазы, команда, бюджет, зависимости, decision gates.
 10. **Дай recommendation и decision request.** Что именно нужно одобрить сейчас.
+11. **Сохрани вывод** в текущей рабочей директории как `business-case-[контекст].md`.
 
 ## Формат вывода
 

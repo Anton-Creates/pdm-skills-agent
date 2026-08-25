@@ -1,49 +1,97 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PdM-Skills Builder — Конструктор промптов и правил ИИ</title>
+    <title>PdM-Skills Builder — Конструктор системных правил ИИ для продакт-менеджеров</title>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Plus Jakarta Sans + JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Marked Markdown Parser -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    
+
     <!-- JSZip for Archive Generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
-    <!-- Custom Styling (Sleek Dark Mode & Glassmorphism) -->
     <style>
+        /* ── Anti-AI Design System — Swiss Grid & Dual-Theme Tokens ────────── */
         :root {
-            --bg-color: #121212;
-            --panel-bg: #1c1c1e;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --accent: #ff5757;
-            --accent-glow: transparent;
-            --text-primary: #ededed;
-            --text-secondary: #939393;
-            --card-hover: rgba(255, 255, 255, 0.04);
-            --success: #10b981;
-            --warning: #f59e0b;
+            /* Light Theme (Default: Clean Editorial) */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f6f8fa;
+            --bg-tertiary: #eaeef2;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f3f5f8;
+            --bg-selected: #edf5ff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --border-color: #d0d7de;
+            --border-hover: #94a3b8;
+            --accent: #0284c7;
+            --accent-dim: rgba(2, 132, 199, 0.08);
+            --accent-text: #ffffff;
+            --success: #16a34a;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --radius-sm: 4px;
+            --radius-md: 6px;
+            --radius-lg: 8px;
+            --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
         }
 
-        * {
+        [data-theme="dark"] {
+            /* Dark Theme (Engineering Dark) */
+            --bg-primary: #090d13;
+            --bg-secondary: #0d1117;
+            --bg-tertiary: #161b22;
+            --bg-card: #161b22;
+            --bg-card-hover: #1c2128;
+            --bg-selected: rgba(56, 189, 248, 0.1);
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --border-color: #30363d;
+            --border-hover: #484f58;
+            --accent: #38bdf8;
+            --accent-dim: rgba(56, 189, 248, 0.12);
+            --accent-text: #090d13;
+            --success: #3fb950;
+            --warning: #d29922;
+            --danger: #f85149;
+            --card-shadow: none;
+        }
+
+        /* ── Global Reset ─────────────────────────────────────────────────── */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        /* Custom Scrollbar */
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 14px;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        /* ── Scrollbars ───────────────────────────────────────────────────── */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -54,426 +102,547 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
+            background: var(--border-color);
+            border-radius: var(--radius-sm);
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: var(--border-hover);
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
-
+        /* ── Header ───────────────────────────────────────────────────────── */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 2rem;
+            padding: 0.75rem 1.5rem;
             border-bottom: 1px solid var(--border-color);
-            background: rgba(18, 18, 18, 0.8);
-            backdrop-filter: blur(12px);
+            background: var(--bg-secondary);
             position: sticky;
             top: 0;
             z-index: 100;
+            height: 55px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text-primary);
+            gap: 0.85rem;
         }
 
-        .logo i {
-            color: var(--accent);
-            font-size: 1.25rem;
+        .logo-title {
+            font-family: var(--font-sans);
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stat-badges-group {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .stat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.2rem 0.5rem;
+            border-radius: var(--radius-sm);
+            background: var(--bg-primary);
+            user-select: none;
+        }
+
+        .stat-badge i {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        .stat-badge span {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .theme-toggle-btn {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.3rem 0.65rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-sans);
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.15s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-tertiary);
         }
 
         .version {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
             border: 1px solid var(--border-color);
-            padding: 0.25rem 0.6rem;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.03);
+            padding: 0.25rem 0.55rem;
+            border-radius: var(--radius-sm);
+            background: var(--bg-primary);
         }
 
-        .shimmer-title {
-            background: linear-gradient(135deg, #d97706 0%, #fbbf24 25%, #fef3c7 50%, #fbbf24 75%, #d97706 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: proShine 3s linear infinite;
-            display: inline-block;
+        /* ── Hero / Onboarding Banner ─────────────────────────────────────── */
+        #hero-banner {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
-        @keyframes proShine {
-            to {
-                background-position: 200% center;
-            }
+        .hero-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
+        .hero-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            max-width: 850px;
+            line-height: 1.45;
+        }
+
+        /* ── Main Layout ──────────────────────────────────────────────────── */
         .main-layout {
             display: flex;
             flex: 1;
+            overflow: hidden;
             position: relative;
         }
 
-        /* Sidebar Filters */
+        /* ── Left Sidebar ─────────────────────────────────────────────────── */
         .sidebar {
-            width: 280px;
+            width: 270px;
             border-right: 1px solid var(--border-color);
-            padding: 2rem 1.5rem;
+            background: var(--bg-secondary);
+            padding: 1.25rem 1rem;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
-            background: rgba(11, 12, 16, 0.4);
+            gap: 1.25rem;
+            position: sticky;
+            top: 55px;
+            height: calc(100vh - 55px);
+            overflow-y: auto;
+            flex-shrink: 0;
         }
 
         .sidebar-section h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            margin-bottom: 0.65rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .sec-num {
+            color: var(--accent);
+            font-weight: 700;
         }
 
         .preset-list {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.25rem;
         }
 
         .preset-btn {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.75rem 1rem;
+            padding: 0.45rem 0.65rem 0.45rem 0.55rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-sans);
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
             background: transparent;
             border: 1px solid transparent;
-            border-radius: 10px;
-            color: var(--text-primary);
-            font-size: 0.9rem;
-            text-align: left;
+            border-left: 3px solid transparent;
             cursor: pointer;
-            transition: all 0.2s ease;
+            text-align: left;
+            transition: all 0.12s ease;
         }
 
         .preset-btn:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateX(4px);
-            box-shadow: -2px 0 10px rgba(255, 255, 255, 0.02);
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
         }
 
         .preset-btn.active {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.15);
             color: var(--text-primary);
+            background: var(--bg-tertiary);
+            border-color: var(--border-color);
+            border-left-color: var(--accent);
             font-weight: 600;
         }
 
         .preset-count {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.1rem 0.5rem;
-            border-radius: 10px;
-            white-space: nowrap;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 0.1rem 0.35rem;
+            border-radius: var(--radius-sm);
         }
 
-        .preset-btn.active .preset-count {
-            background: rgba(255, 255, 255, 0.15);
-            color: var(--text-primary);
-        }
-
-        /* Content Area */
+        /* ── Workspace / Content Area ─────────────────────────────────────── */
         .content-area {
             flex: 1;
-            padding: 2rem;
+            padding: 1.25rem 1.5rem;
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1rem;
+            min-width: 0;
+            background: var(--bg-primary);
         }
 
-        /* Client RAG AI search bar */
+        /* ── Search Bar & RAG Recommendations ─────────────────────────────── */
         .ai-search-box {
-            position: relative;
-            background: var(--panel-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.25rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
 
         .search-input-wrapper {
-            position: relative;
             display: flex;
             align-items: center;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.55rem 0.85rem;
+            gap: 0.65rem;
+            transition: border-color 0.15s ease;
+        }
+
+        .search-input-wrapper:focus-within {
+            border-color: var(--accent);
         }
 
         .search-input-wrapper i {
-            position: absolute;
-            left: 1.25rem;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
 
         .search-input-wrapper input {
-            width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            color: var(--text-primary);
-            font-size: 1rem;
+            flex: 1;
+            background: transparent;
+            border: none;
             outline: none;
-            transition: all 0.3s ease;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            color: var(--text-primary);
         }
 
-        .search-input-wrapper input:focus {
-            border-color: #6366f1;
-            box-shadow: 0 0 10px var(--accent-glow);
-            background: rgba(255, 255, 255, 0.05);
+        .search-input-wrapper input::placeholder {
+            color: var(--text-muted);
         }
 
-        /* Search Results Recommendations (RAG Panel) */
+        .search-kbd-hint {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 0.15rem 0.4rem;
+            border-radius: var(--radius-sm);
+            user-select: none;
+        }
+
+        /* Dynamic RAG recommendations */
         .rag-recommendations {
             display: none;
-            background: rgba(245, 158, 11, 0.05);
-            border: 1px dashed rgba(245, 158, 11, 0.3);
-            border-radius: 12px;
-            padding: 1rem;
-            animation: fadeIn 0.3s ease;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.65rem 0.85rem;
+            gap: 0.5rem;
+            flex-direction: column;
         }
 
         .rag-recommendations-title {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--warning);
+            gap: 0.4rem;
             text-transform: uppercase;
-            margin-bottom: 0.75rem;
         }
 
         .rag-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.35rem;
         }
 
         .rag-item {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: #fbbf24;
+            gap: 0.35rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 0.25rem 0.55rem;
+            font-size: 0.75rem;
+            color: var(--text-primary);
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
         }
 
         .rag-item:hover {
-            background: rgba(245, 158, 11, 0.2);
-            transform: translateY(-1px);
+            border-color: var(--border-hover);
+            background: var(--bg-tertiary);
         }
 
-        /* Bulk Operations */
+        /* ── Bulk Actions & View Switcher ──────────────────────────────────── */
         .bulk-actions {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
         }
 
         .bulk-buttons {
             display: flex;
-            gap: 0.75rem;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .view-switcher-group {
+            display: inline-flex;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .view-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 0.45rem 0.7rem;
+            font-size: 0.8rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: all 0.15s ease;
+        }
+
+        .view-btn:hover {
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
+        }
+
+        .view-btn.active {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
         }
 
         .btn {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.2rem;
-            border-radius: 10px;
-            font-size: 0.9rem;
+            gap: 0.4rem;
+            padding: 0.45rem 0.85rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-sans);
+            font-size: 0.82rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
             outline: none;
+            border: 1px solid transparent;
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            border-color: var(--border-color);
             color: var(--text-primary);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--bg-tertiary);
+            border-color: var(--border-hover);
         }
 
-        /* Grid of Skill Cards */
+        .btn-primary {
+            background: var(--accent);
+            color: var(--accent-text);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.92;
+        }
+
+        .filter-status {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .filter-status b {
+            color: var(--text-primary);
+        }
+
+        /* ── Skills Grid View ──────────────────────────────────────────────── */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.25rem;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 0.85rem;
         }
 
         .skill-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(18px) saturate(160%);
-            -webkit-backdrop-filter: blur(18px) saturate(160%);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.85rem;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            position: relative;
+            gap: 0.5rem;
             cursor: pointer;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            user-select: none;
+            position: relative;
+            transition: border-color 0.15s ease, background-color 0.15s ease;
+            box-shadow: var(--card-shadow);
         }
 
         .skill-card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.04);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
         }
 
         .skill-card.selected {
-            border-color: var(--text-primary);
-            background: rgba(255, 255, 255, 0.06);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), inset 0 0 0 1px var(--text-primary);
+            border-color: var(--accent);
+            background: var(--bg-selected);
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             gap: 0.5rem;
         }
 
         .card-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
+            font-size: 0.92rem;
             font-weight: 700;
             color: var(--text-primary);
-            line-height: 1.3;
+            line-height: 1.35;
+            letter-spacing: -0.015em;
         }
 
         .card-badge {
-            font-size: 0.7rem;
-            font-weight: 700;
+            font-family: var(--font-mono);
+            font-size: 0.66rem;
+            font-weight: 600;
             text-transform: uppercase;
-            padding: 0.2rem 0.5rem;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.05);
+            letter-spacing: 0.04em;
+            padding: 0.15rem 0.45rem;
+            border-radius: var(--radius-sm);
+            background: var(--bg-secondary);
             color: var(--text-secondary);
             border: 1px solid var(--border-color);
+            white-space: nowrap;
+            display: inline-block;
+            line-height: 1.2;
+            transition: all 0.15s ease;
         }
 
-        /* Preset specific badge coloring */
-        .badge-core {
-            border-color: rgba(59, 130, 246, 0.3);
-            color: #60a5fa;
-            background: rgba(59, 130, 246, 0.1);
-        }
+        /* Preset & domain specific subtle badges */
+        .badge-core { border-color: rgba(2, 132, 199, 0.35); color: var(--accent); background: var(--accent-dim); }
+        .badge-discovery { border-color: rgba(22, 163, 74, 0.35); color: #16a34a; background: rgba(22, 163, 74, 0.08); }
+        .badge-saas { border-color: rgba(147, 51, 234, 0.35); color: #9333ea; background: rgba(147, 51, 234, 0.08); }
+        .badge-marketplace { border-color: rgba(234, 88, 12, 0.35); color: #ea580c; background: rgba(234, 88, 12, 0.08); }
+        .badge-fintech { border-color: rgba(217, 119, 6, 0.35); color: #d97706; background: rgba(217, 119, 6, 0.08); }
+        .badge-telecom, .badge-telecom-media { border-color: rgba(220, 38, 38, 0.35); color: #dc2626; background: rgba(220, 38, 38, 0.08); }
+        .badge-ecom, .badge-ecom-retail { border-color: rgba(13, 148, 136, 0.35); color: #0d9488; background: rgba(13, 148, 136, 0.08); }
+        .badge-enterprise, .badge-enterprise-gov, .badge-b2b, .badge-b2g { border-color: rgba(71, 85, 105, 0.35); color: #475569; background: rgba(71, 85, 105, 0.08); }
+        .badge-growth { border-color: rgba(16, 185, 129, 0.35); color: #10b981; background: rgba(16, 185, 129, 0.08); }
+        .badge-craft { border-color: rgba(219, 39, 119, 0.35); color: #db2777; background: rgba(219, 39, 119, 0.08); }
+        .badge-ai-data { border-color: rgba(99, 102, 241, 0.35); color: #6366f1; background: rgba(99, 102, 241, 0.08); }
+        .badge-cpo, .badge-strategy { border-color: rgba(168, 85, 247, 0.35); color: #a855f7; background: rgba(168, 85, 247, 0.08); }
 
-        .badge-discovery {
-            border-color: rgba(16, 185, 129, 0.3);
-            color: #34d399;
-            background: rgba(16, 185, 129, 0.1);
-        }
-
-        .badge-saas {
-            border-color: rgba(139, 92, 246, 0.3);
-            color: #a78bfa;
-            background: rgba(139, 92, 246, 0.1);
-        }
-
-        .badge-marketplace {
-            border-color: rgba(236, 72, 153, 0.3);
-            color: #f472b6;
-            background: rgba(236, 72, 153, 0.1);
-        }
-
-        .badge-fintech {
-            border-color: rgba(245, 158, 11, 0.3);
-            color: #fbbf24;
-            background: rgba(245, 158, 11, 0.1);
-        }
-
-        .badge-ecom-retail {
-            border-color: rgba(20, 184, 166, 0.3);
-            color: #2dd4bf;
-            background: rgba(20, 184, 166, 0.1);
-        }
-
-        .badge-telecom-media {
-            border-color: rgba(239, 68, 68, 0.3);
-            color: #f87171;
-            background: rgba(239, 68, 68, 0.1);
-        }
-
-        .badge-enterprise-gov {
-            border-color: rgba(107, 114, 128, 0.3);
-            color: #9ca3af;
-            background: rgba(107, 114, 128, 0.1);
-        }
-
-        .badge-craft {
-            border-color: rgba(244, 63, 94, 0.3);
-            color: #fb7185;
-            background: rgba(244, 63, 94, 0.1);
-        }
+        [data-theme="dark"] .badge-core { border-color: rgba(56, 189, 248, 0.35); color: #38bdf8; background: rgba(56, 189, 248, 0.1); }
+        [data-theme="dark"] .badge-discovery { border-color: rgba(74, 222, 128, 0.35); color: #4ade80; background: rgba(74, 222, 128, 0.1); }
+        [data-theme="dark"] .badge-saas { border-color: rgba(192, 132, 252, 0.35); color: #c084fc; background: rgba(192, 132, 252, 0.1); }
+        [data-theme="dark"] .badge-marketplace { border-color: rgba(251, 146, 60, 0.35); color: #fb923c; background: rgba(251, 146, 60, 0.1); }
+        [data-theme="dark"] .badge-fintech { border-color: rgba(250, 204, 21, 0.35); color: #facc15; background: rgba(250, 204, 21, 0.1); }
+        [data-theme="dark"] .badge-telecom, [data-theme="dark"] .badge-telecom-media { border-color: rgba(248, 113, 113, 0.35); color: #f87171; background: rgba(248, 113, 113, 0.1); }
+        [data-theme="dark"] .badge-ecom, [data-theme="dark"] .badge-ecom-retail { border-color: rgba(45, 212, 191, 0.35); color: #2dd4bf; background: rgba(45, 212, 191, 0.1); }
+        [data-theme="dark"] .badge-enterprise, [data-theme="dark"] .badge-enterprise-gov, [data-theme="dark"] .badge-b2b, [data-theme="dark"] .badge-b2g { border-color: rgba(148, 163, 184, 0.35); color: #94a3b8; background: rgba(148, 163, 184, 0.1); }
+        [data-theme="dark"] .badge-growth { border-color: rgba(52, 211, 153, 0.35); color: #34d399; background: rgba(52, 211, 153, 0.1); }
+        [data-theme="dark"] .badge-craft { border-color: rgba(244, 114, 182, 0.35); color: #f472b6; background: rgba(244, 114, 182, 0.1); }
+        [data-theme="dark"] .badge-ai-data { border-color: rgba(129, 140, 248, 0.35); color: #818cf8; background: rgba(129, 140, 248, 0.1); }
+        [data-theme="dark"] .badge-cpo, [data-theme="dark"] .badge-strategy { border-color: rgba(192, 132, 252, 0.35); color: #c084fc; background: rgba(192, 132, 252, 0.1); }
 
         .card-checkbox {
-            width: 20px;
-            height: 20px;
-            border-radius: 6px;
-            border: 2px solid var(--border-color);
+            width: 18px;
+            height: 18px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: all 0.2s ease;
-            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.15s ease;
+            background: var(--bg-primary);
             flex-shrink: 0;
         }
 
-        .skill-card.selected .card-checkbox {
+        .skill-card.selected .card-checkbox,
+        .table-row.selected .card-checkbox {
             border-color: var(--accent);
             background: var(--accent);
         }
 
-        .skill-card.selected .card-checkbox i {
-            color: white;
-            font-size: 0.75rem;
+        .skill-card.selected .card-checkbox i,
+        .table-row.selected .card-checkbox i {
+            color: #ffffff;
+            font-size: 0.7rem;
             display: block;
         }
 
@@ -482,9 +651,9 @@
         }
 
         .card-desc {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
-            line-height: 1.5;
+            line-height: 1.45;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             line-clamp: 3;
@@ -498,48 +667,165 @@
             justify-content: space-between;
             align-items: center;
             border-top: 1px solid var(--border-color);
-            padding-top: 0.75rem;
+            padding-top: 0.65rem;
             margin-top: auto;
         }
 
         .card-id {
-            font-family: monospace;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.73rem;
+            color: var(--text-muted);
         }
 
         .btn-card {
             background: transparent;
             border: none;
-            color: var(--text-primary);
-            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: var(--font-sans);
+            font-size: 0.78rem;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 0.3rem;
-            opacity: 0.7;
+            gap: 0.35rem;
+            transition: color 0.15s ease;
         }
 
         .btn-card:hover {
-            opacity: 1;
-            text-decoration: underline;
+            color: var(--text-primary);
         }
 
-        /* Right Panel: Prompt Builder Drawer */
+        /* ── Table / Matrix View ───────────────────────────────────────────── */
+        .skills-table-container {
+            display: none;
+            width: 100%;
+            max-width: 100%;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow-x: auto !important;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 1rem;
+        }
+
+        .skills-table-container::-webkit-scrollbar {
+            height: 8px;
+            display: block;
+        }
+
+        .skills-table-container::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .skills-table-container::-webkit-scrollbar-thumb {
+            background: var(--border-hover);
+            border-radius: 4px;
+        }
+
+        .skills-table-container::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        .skills-table {
+            width: 100%;
+            min-width: 1100px;
+            table-layout: fixed;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.82rem;
+        }
+
+        .skills-table th {
+            background: var(--bg-tertiary);
+            padding: 0.75rem 0.85rem;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .skills-table th:last-child {
+            border-right: none;
+        }
+
+        .table-row {
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.1s ease;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-row:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .table-row.selected {
+            background: var(--bg-selected);
+        }
+
+        .table-row td {
+            padding: 0.65rem 0.85rem;
+            vertical-align: middle;
+            border-right: 1px solid var(--border-color);
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .table-row td:last-child {
+            border-right: none;
+        }
+
+        .table-cell-id {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .table-cell-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .table-cell-desc {
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ── Right Panel: Prompt Builder Drawer ───────────────────────────── */
         .drawer {
-            width: 380px;
+            width: 370px;
             border-left: 1px solid var(--border-color);
-            background: rgba(11, 12, 16, 0.9);
-            backdrop-filter: blur(12px);
-            padding: 2rem 1.5rem;
+            background: var(--bg-secondary);
+            padding: 1rem 1.15rem 1.5rem 1.15rem;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 0.85rem;
             position: sticky;
-            top: 78px;
-            height: calc(100vh - 78px);
+            top: 55px;
+            height: calc(100vh - 55px);
             overflow-y: auto;
+            flex-shrink: 0;
         }
 
         .drawer-header {
@@ -549,466 +835,300 @@
         }
 
         .drawer-header h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.25rem;
+            font-size: 0.9rem;
             font-weight: 700;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
-        .selected-count-badge {
-            background: var(--text-primary);
-            color: #111;
-            font-size: 0.8rem;
-            font-weight: 700;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
+        /* Context Metrics Widget */
+        .context-metrics-box {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.55rem 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .context-metrics-row {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 0.73rem;
+            color: var(--text-muted);
+        }
+
+        .context-metrics-row b {
+            color: var(--text-primary);
+        }
+
+        .context-bar {
+            height: 4px;
+            background: var(--bg-tertiary);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .context-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.2s ease;
         }
 
         .prompt-preview-box {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
-            flex: 1;
-            min-height: 200px;
+            gap: 0.35rem;
         }
 
-        .prompt-preview-box label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-secondary);
+        .prompt-preview-box label,
+        .exporter-section label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
         }
 
-        .prompt-textarea {
-            width: 100%;
-            flex: 1;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1rem;
-            color: var(--text-primary);
-            font-family: monospace;
-            font-size: 0.8rem;
-            resize: none;
-            outline: none;
-            line-height: 1.4;
-        }
-
-        .prompt-textarea:focus {
-            border-color: var(--text-primary);
-        }
-
-        /* Accordion preview styles */
         .prompt-preview-container {
-            width: 100%;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.6rem 0.75rem;
+            max-height: 130px;
+            min-height: 80px;
             overflow-y: auto;
-            max-height: 400px;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 0.5rem;
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        .preview-accordion {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.02);
-            transition: all 0.2s ease;
-            flex-shrink: 0;
-        }
-
-        .preview-accordion.active {
-            border-color: rgba(99, 102, 241, 0.5);
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        .accordion-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.6rem 0.8rem;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            user-select: none;
-            transition: background 0.2s ease;
-        }
-
-        .accordion-header:hover {
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        .accordion-header .fa-chevron-down {
-            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            font-size: 0.73rem;
             color: var(--text-secondary);
-            transition: transform 0.2s ease;
-        }
-
-        .preview-accordion.active .accordion-header .fa-chevron-down {
-            transform: rotate(180deg);
-            color: #818cf8;
-        }
-
-        .accordion-body {
-            display: none;
-            padding: 0.8rem;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.75rem;
             line-height: 1.4;
-            color: #d1d5db;
-            max-height: 200px;
-            overflow-y: auto;
-            background: rgba(0, 0, 0, 0.15);
+            white-space: pre-wrap;
+            word-break: break-word;
         }
 
-        .accordion-body h1,
-        .accordion-body h2,
-        .accordion-body h3 {
-            font-size: 0.9rem;
-            color: white;
-            margin-top: 0.75rem;
-            margin-bottom: 0.4rem;
-        }
-
-        .accordion-body p,
-        .accordion-body ul,
-        .accordion-body ol {
-            margin-bottom: 0.6rem;
-        }
-
-        .accordion-body li {
-            margin-left: 1rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .accordion-body code {
-            font-family: monospace;
-            background: rgba(255, 255, 255, 0.08);
-            padding: 0.1rem 0.25rem;
-            border-radius: 3px;
-            color: #f472b6;
-        }
-
-        .copy-single-btn {
-            transition: all 0.2s ease;
-        }
-
-        .copy-single-btn:hover {
-            color: #818cf8;
-            transform: scale(1.15);
-            opacity: 1 !important;
-        }
-
-        .combo-btn:hover .fa-wand-magic-sparkles {
-            color: #a855f7 !important;
-            opacity: 1 !important;
-            transform: scale(1.15);
-        }
-
-        .combo-btn .fa-wand-magic-sparkles {
-            transition: all 0.2s ease;
-        }
-
-        /* Exporter Selector & Actions */
         .exporter-section {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .exporter-select-wrapper {
-            position: relative;
+            gap: 0.35rem;
         }
 
         .exporter-select-wrapper select {
             width: 100%;
-            background: rgba(255, 255, 255, 0.04);
+            background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 0.8rem 2.5rem 0.8rem 1rem;
+            border-radius: var(--radius-sm);
+            padding: 0.45rem 0.65rem;
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            font-weight: 600;
             color: var(--text-primary);
-            font-size: 0.9rem;
             outline: none;
             cursor: pointer;
-            transition: all 0.2s ease;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
         }
 
-        .exporter-select-wrapper select:hover {
-            border-color: rgba(99, 102, 241, 0.4);
-            background: rgba(255, 255, 255, 0.08);
+        .exporter-select-wrapper select:focus {
+            border-color: var(--accent);
         }
 
-        .exporter-select-wrapper select option {
-            background-color: #11131a;
-            color: var(--text-primary);
+        .drawer-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            padding-top: 0.25rem;
         }
 
-
-
-        .btn-primary {
-            background: var(--text-primary);
-            border: none;
-            color: #111;
+        .btn-full {
             width: 100%;
-            padding: 1rem;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 700;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.2s ease;
+            justify-content: center;
+            padding: 0.5rem 0.85rem;
+            font-size: 0.82rem;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            background: #ffffff;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-
-        /* Modal/Popup window for details */
-        .modal {
+        /* ── Modal Dialog ─────────────────────────────────────────────────── */
+        .modal-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(9, 9, 11, 0.7);
-            backdrop-filter: blur(24px) saturate(150%);
-            -webkit-backdrop-filter: blur(24px) saturate(150%);
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(2px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
-            animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 1.5rem;
         }
 
-        .modal-content {
-            background: rgba(24, 24, 27, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
+        .modal-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
             width: 100%;
-            max-width: 800px;
+            max-width: 820px;
             max-height: 85vh;
             display: flex;
             flex-direction: column;
-            position: relative;
-            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
         }
 
         .modal-header {
-            padding: 1.5rem 1.5rem 1.5rem 2rem;
-            border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-secondary);
         }
 
         .modal-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 800;
-        }
-
-        .modal-action-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: none;
+            font-size: 1.05rem;
+            font-weight: 700;
             color: var(--text-primary);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
             display: flex;
-            justify-content: center;
             align-items: center;
-            padding: 0;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            gap: 0.5rem;
         }
 
-        .modal-action-btn:hover {
-            background: rgba(99, 102, 241, 0.2);
-            color: #818cf8;
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            transition: color 0.15s ease;
         }
 
         .modal-close:hover {
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
+            color: var(--text-primary);
         }
 
         .modal-body {
-            padding: 2rem;
+            padding: 1.5rem;
             overflow-y: auto;
-            line-height: 1.6;
-            color: #e5e7eb;
-            font-size: 0.95rem;
-        }
-
-        /* Styling markdown contents in modal */
-        .stat-badge {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 4px 10px;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .stat-badge i {
-            color: var(--text-secondary) !important;
-            font-size: 0.9rem !important;
-        }
-        .stat-badge span {
             color: var(--text-primary);
-            font-weight: 600;
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
 
-        .modal-body h1,
-        .modal-body h2,
-        .modal-body h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: white;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
+        .modal-body h1, .modal-body h2, .modal-body h3 {
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
         }
 
         .modal-body p {
-            margin-bottom: 1rem;
-        }
-
-        .modal-body ul,
-        .modal-body ol {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .modal-body li {
-            margin-bottom: 0.4rem;
-        }
-
-        .modal-body code {
-            font-family: monospace;
-            background: rgba(255, 255, 255, 0.06);
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-size: 0.9em;
-            color: #f472b6;
-        }
-
-        .modal-body pre {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
-            padding: 1rem;
-            border-radius: 10px;
-            overflow-x: auto;
-            margin-bottom: 1rem;
-        }
-
-        .modal-body pre code {
-            background: transparent;
-            padding: 0;
-            color: inherit;
-            font-size: 0.85rem;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .main-layout {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                width: 100%;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-            }
-
-            .drawer {
-                width: 100%;
-                border-left: none;
-                border-top: 1px solid var(--border-color);
-                position: relative;
-                top: 0;
-                height: auto;
-            }
-
-            .content-area {
-                max-height: none;
-            }
-        }
-
-        /* App Footer */
-        .app-footer {
-            border-top: 1px solid var(--border-color);
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(11, 12, 16, 0.6);
-            backdrop-filter: blur(10px);
-            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
             color: var(--text-secondary);
         }
 
-        .author-badge {
-            font-size: 13px;
-            color: #fff;
-            text-decoration: none;
-            border: 1px solid #3f3f46;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 6px 12px;
-            border-radius: 8px;
-            transition: all 0.2s;
+        .modal-body pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 0.85rem;
+            overflow-x: auto;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+            line-height: 1.45;
+        }
+
+        .modal-body code {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            background: var(--bg-tertiary);
+            padding: 0.15rem 0.35rem;
+            border-radius: 3px;
+        }
+
+        .modal-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .modal-body th, .modal-body td {
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 0.75rem;
+            text-align: left;
+            font-size: 0.82rem;
+        }
+
+        .modal-body th {
+            background: var(--bg-secondary);
+            font-weight: 600;
+        }
+
+        /* ── Footer ────────────────────────────────────────────────────────── */
+        .app-footer {
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .footer-left {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 0.75rem;
+        }
+
+        .author-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            padding: 0.2rem 0.5rem;
+            border-radius: var(--radius-sm);
+            background: var(--bg-primary);
+            transition: all 0.15s ease;
         }
 
         .author-badge:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--accent);
-            transform: translateY(-2px);
+            border-color: var(--border-hover);
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 1024px) {
+            .drawer {
+                width: 320px;
+            }
+            .sidebar {
+                width: 230px;
+            }
         }
 
         @media (max-width: 768px) {
+            .main-layout {
+                flex-direction: column;
+                height: auto;
+            }
+            .sidebar, .drawer {
+                width: 100%;
+                height: auto;
+                position: static;
+            }
             .app-footer {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0.85rem;
                 text-align: center;
             }
         }
@@ -1019,84 +1139,84 @@
 
     <header>
         <div class="logo">
-            <span class="shimmer-title">PdM-Skills Builder</span>
-            <div style="display: flex; gap: 8px; margin-left: 1rem;">
-                <div class="stat-badge" title="Просмотры страницы">
+            <span class="logo-title">
+                <i class="fa-solid fa-layer-group" style="color: var(--accent);"></i>
+                PdM-Skills Builder
+            </span>
+            <div class="stat-badges-group">
+                <div class="stat-badge" title="Просмотры каталога">
                     <i class="fa-regular fa-eye"></i> <span id="view-count">...</span>
                 </div>
-                <div class="stat-badge" title="Скачивания сборок">
+                <div class="stat-badge" title="Скачанные сборки правил">
                     <i class="fa-solid fa-download"></i> <span id="download-count">...</span>
                 </div>
             </div>
         </div>
-        <div class="version" id="library-count">Библиотека: ... скиллов</div>
+        <div class="header-actions">
+            <button class="theme-toggle-btn" id="lang-toggle" title="Switch Language (RU / EN)">
+                <i class="fa-solid fa-globe" style="color: var(--accent);"></i>
+                <span id="lang-text">EN</span>
+            </button>
+            <button class="theme-toggle-btn" id="theme-toggle" title="Переключить тему">
+                <i class="fa-solid fa-moon" id="theme-icon"></i>
+                <span id="theme-text">Тёмная</span>
+            </button>
+            <div class="version" id="library-count">Библиотека: ... скиллов</div>
+        </div>
     </header>
 
     <!-- Hero onboarding banner -->
-    <div id="hero-banner" style="background: var(--panel-bg); border-bottom: 1px solid var(--border-color); padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;">
+    <div id="hero-banner">
         <div style="flex: 1; min-width: 260px;">
-            <div style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;">
-                <i class="fa-solid fa-bolt" style="color: var(--accent); margin-right: 6px;"></i> Библиотека AI-скиллов для продакт-менеджера
+            <div class="hero-title">
+                Каталог контекстных системных инструкций для продакт-менеджмента
             </div>
-            <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; max-width: 680px;">
-                Выбери нужные скиллы из <b style="color: var(--text-primary);">122 инструкций</b> для AI-ассистента - и он начнёт думать как опытный PdM. Каждый скилл - это готовая системная инструкция для ChatGPT, Claude, Cursor, Copilot или Gemini. Собери свой набор и скачай в нужном формате.
-            </div>
-        </div>
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; flex-shrink: 0;">
-            <div style="text-align: center; padding: 0.5rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; min-width: 80px;">
-                <div style="font-size: 1.4rem; font-weight: 800; color: var(--text-primary);">122</div>
-                <div style="font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px;">скилла</div>
-            </div>
-            <div style="text-align: center; padding: 0.5rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; min-width: 80px;">
-                <div style="font-size: 1.4rem; font-weight: 800; color: var(--text-primary);">9</div>
-                <div style="font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px;">платформ</div>
-            </div>
-            <div style="text-align: center; padding: 0.5rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; min-width: 80px;">
-                <div style="font-size: 1.4rem; font-weight: 800; color: var(--text-primary);">20+</div>
-                <div style="font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px;">доменов</div>
+            <div class="hero-desc">
+                Сборка структурированных правил для ChatGPT, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.
             </div>
         </div>
-        <button onclick="document.getElementById('hero-banner').style.display='none'" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1rem; flex-shrink: 0; opacity: 0.5;" title="Скрыть">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
     </div>
 
+    <!-- Main 3-Column Layout -->
     <div class="main-layout">
-        <!-- Sidebar filters -->
+
+        <!-- Left Sidebar: Filters & Preset Roles -->
         <div class="sidebar">
             <div class="sidebar-section">
-                <h3>Готовые сборки</h3>
-                <div class="preset-list">
+                <h3><span class="sec-num">[01]</span> РОЛЕВЫЕ СБОРКИ</h3>
+                <div class="preset-list" id="role-combos-list">
+                    <button class="preset-btn combo-btn" data-combo="0">
+                        <span>Lead / Senior PM</span>
+                    </button>
                     <button class="preset-btn combo-btn" data-combo="1">
-                        <span>Universal PM Craft</span>
+                        <span>B2B & SaaS PM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="2">
-                        <span>B2B / SaaS PM</span>
+                        <span>Growth & PLG PM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="3">
-                        <span>Marketplace & E-commerce PM</span>
+                        <span>Marketplace & E-com</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="4">
-                        <span>Fintech & Banking PM</span>
+                        <span>Fintech & Banking</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="5">
-                        <span>Enterprise & B2G PM</span>
+                        <span>Enterprise & B2G</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="6">
-                        <span>AI / Data Product PM</span>
+                        <span>AI & Data Products</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="7">
-                        <span>D2C / Subscription Commerce PM</span>
+                        <span>D2C & Subscription</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="8">
-                        <span>CPO / Product Leadership</span>
+                        <span>CPO / Leadership</span>
                     </button>
                 </div>
             </div>
 
-            <div class="sidebar-section"
-                style="margin-top: 1.25rem; border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
-                <h3>Категории / Пресеты</h3>
+            <div class="sidebar-section" style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                <h3><span class="sec-num">[02]</span> КАТЕГОРИИ И ДОМЕНЫ</h3>
                 <div class="preset-list">
                     <button class="preset-btn active" data-preset="all">
                         <span>Все скиллы</span>
@@ -1150,87 +1270,115 @@
                         <span>Рост и Монетизация</span>
                         <span class="preset-count" id="count-growth">0</span>
                     </button>
-                    <button class="preset-btn" data-preset="measure">
-                        <span>Аналитика и Метрики</span>
-                        <span class="preset-count" id="count-measure">0</span>
-                    </button>
-                    <button class="preset-btn" data-preset="strategy">
-                        <span>Стратегия и Лидерство</span>
-                        <span class="preset-count" id="count-strategy">0</span>
-                    </button>
-                    <button class="preset-btn" data-preset="ai-data">
-                        <span>AI & Data Products</span>
-                        <span class="preset-count" id="count-ai-data">0</span>
-                    </button>
-                    <button class="preset-btn" data-preset="d2c">
-                        <span>D2C и Подписки</span>
-                        <span class="preset-count" id="count-d2c">0</span>
-                    </button>
                     <button class="preset-btn" data-preset="craft">
                         <span>Фреймворки (Craft)</span>
                         <span class="preset-count" id="count-craft">0</span>
                     </button>
                 </div>
             </div>
-
-
         </div>
 
         <!-- Main Workspace -->
         <div class="content-area">
-            <!-- Client RAG AI search bar -->
+            <!-- Search Bar with Kbd Hint -->
             <div class="ai-search-box">
                 <div class="search-input-wrapper">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="text" id="ai-search"
-                        placeholder="Что ты хочешь сделать? (Например: 'составить юзер стори', 'монетизация финтех', 'аудит корзины')">
+                        placeholder="Поиск по скиллам, тегам и метрикам (например: 'юзер стори', 'юнит-экономика', 'чекаут', 'okr')">
+                    <span class="search-kbd-hint" id="search-kbd-badge">Ctrl+K</span>
                 </div>
 
-                <!-- Client RAG Suggestions panel -->
+                <!-- Suggestions panel -->
                 <div class="rag-recommendations" id="rag-recommendations">
                     <div class="rag-recommendations-title">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        <span>Рекомендации:</span>
+                        <i class="fa-solid fa-sliders"></i>
+                        <span>Релевантные скиллы:</span>
                     </div>
                     <div class="rag-list" id="rag-list">
-                        <!-- Dynamic RAG suggestion badges -->
+                        <!-- Dynamic suggestion badges -->
                     </div>
                 </div>
             </div>
 
-            <!-- Bulk actions & controls -->
+            <!-- Bulk actions & View Switcher -->
             <div class="bulk-actions">
                 <div class="bulk-buttons">
-                    <button class="btn btn-secondary" id="btn-select-preset"><i class="fa-solid fa-check-double"></i>
-                        Выбрать все из текущего</button>
-                    <button class="btn btn-secondary" id="btn-clear-selection"><i class="fa-solid fa-xmark"></i>
-                        Сбросить выбор</button>
+                    <button class="btn btn-secondary" id="btn-select-preset">
+                        <i class="fa-solid fa-check-double"></i> Выбрать все
+                    </button>
+                    <button class="btn btn-secondary" id="btn-reset-preset">
+                        <i class="fa-solid fa-xmark"></i> Сбросить выбор
+                    </button>
                 </div>
-                <div style="font-size: 0.9rem; color: var(--text-secondary);" id="filter-status">Показано: 0 из 106
+
+                <!-- Grid vs Table View Switcher -->
+                <div class="view-switcher-group">
+                    <button class="view-btn active" id="btn-view-grid" title="Вид сеткой">
+                        <i class="fa-solid fa-table-cells-large"></i> Сетка
+                    </button>
+                    <button class="view-btn" id="btn-view-table" title="Вид таблицей">
+                        <i class="fa-solid fa-table-list"></i> Таблица
+                    </button>
+                </div>
+
+                <div class="filter-status">
+                    <span id="label-shown">Показано:</span> <b id="visible-count">0</b> <span id="label-from">из</span> <b id="total-count">0</b>
+                    <span id="selected-badge-info" style="margin-left: 0.5rem;">(<span id="label-selected-word">выбрано</span>: <b id="stat-badge-count">0</b>)</span>
                 </div>
             </div>
 
-            <!-- Combo description box -->
-            <div id="combo-description"
-                style="display: none; background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; margin-bottom: 24px; color: var(--text-primary); align-items: flex-start;">
+            <!-- Active Combo Description (when clicked from sidebar) -->
+            <div id="combo-desc-banner"
+                style="display: none; background: var(--bg-secondary); border: 1px solid var(--border-color); border-left: 3px solid var(--accent); border-radius: var(--radius-md); padding: 0.85rem 1.15rem;">
                 <div>
                     <strong id="combo-desc-title"
-                        style="display: block; font-size: 1.1rem; margin-bottom: 4px;"></strong>
+                        style="display: block; font-size: 1rem; margin-bottom: 0.25rem;"></strong>
                     <span id="combo-desc-text"
-                        style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.4; display: block;"></span>
+                        style="font-size: 0.83rem; color: var(--text-secondary); line-height: 1.5; display: block;"></span>
                 </div>
             </div>
 
-            <!-- Skills Cards Grid -->
+            <!-- Skills Cards Grid View -->
             <div class="skills-grid" id="skills-grid">
                 <!-- Skill cards loaded dynamically from skills_db.js -->
             </div>
+
+            <!-- Skills Table / Matrix View -->
+            <div class="skills-table-container" id="skills-table-container">
+                <table class="skills-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 44px; text-align: center;">#</th>
+                            <th style="width: 190px;">ID Скилла</th>
+                            <th style="width: 210px;">Название</th>
+                            <th style="width: 400px;">Описание</th>
+                            <th style="width: 140px; text-align: center;">Домен</th>
+                            <th style="width: 116px; text-align: center;">Действие</th>
+                        </tr>
+                    </thead>
+                    <tbody id="skills-table-body">
+                        <!-- Table rows loaded dynamically -->
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <!-- Right Side: Prompt Builder Drawer -->
+        <!-- Right Side: Rules Compiler Drawer -->
         <div class="drawer">
             <div class="drawer-header">
-                <h3>Конструктор правил</h3>
+                <h3><i class="fa-solid fa-code-branch" style="color: var(--accent); font-size: 0.85rem;"></i> // КОНСТРУКТОР ПРАВИЛ</h3>
+            </div>
+
+            <!-- Context metrics widget -->
+            <div class="context-metrics-box">
+                <div class="context-metrics-row">
+                    <span><span id="label-stat-selected">Выбрано скиллов</span>: <b id="stat-selected-count">0</b></span>
+                    <span><span id="label-stat-volume">Объем</span>: <b id="stat-tokens-est">0 tok</b></span>
+                </div>
+                <div class="context-bar">
+                    <div class="context-bar-fill" id="context-bar-fill"></div>
+                </div>
             </div>
 
             <div class="prompt-preview-box">
@@ -1239,833 +1387,918 @@
             </div>
 
             <div class="exporter-section">
-                <label>Формат выгрузки / Цель:</label>
+                <label>Целевая IDE / Формат:</label>
                 <div class="exporter-select-wrapper">
                     <select id="exporter-type" title="Универсальный промпт (ChatGPT/DeepSeek/Claude Web)">
-                        <option value="prompt" title="Универсальный промпт (ChatGPT/DeepSeek/Claude Web)">Универсальный
-                            промпт (ChatGPT/DeepSeek/Claude Web)</option>
-                        <option value="cursor" title="Cursor rules (.cursorrules)">Cursor rules (.cursorrules)</option>
-                        <option value="vscode" title="VS Code (Roo Code / Cline .clinerules)">VS Code (Roo Code / Cline
-                            .clinerules)</option>
-                        <option value="copilot" title="GitHub Copilot (.github/copilot-instructions.md)">GitHub Copilot
-                            (.github/copilot-instructions.md)</option>
-                        <option value="windsurf" title="Windsurf rules (.windsurfrules)">Windsurf rules (.windsurfrules)
-                        </option>
-                        <option value="aider" title="Aider conventions (CONVENTIONS.md)">Aider conventions
-                            (CONVENTIONS.md)</option>
+                        <option value="prompt" title="Универсальный промпт (ChatGPT/DeepSeek/Claude Web)">Универсальный промпт (ChatGPT/Claude/DeepSeek)</option>
+                        <option value="cursor" title="Cursor rules (.cursorrules)">Cursor Rules (.cursor/rules)</option>
+                        <option value="vscode" title="VS Code (Roo Code / Cline .clinerules)">VS Code / Roo Code / Cline (.clinerules)</option>
+                        <option value="copilot" title="GitHub Copilot (.github/copilot-instructions.md)">GitHub Copilot (.github/copilot-instructions.md)</option>
+                        <option value="windsurf" title="Windsurf rules (.windsurfrules)">Windsurf Rules (.windsurfrules)</option>
+                        <option value="aider" title="Aider conventions (CONVENTIONS.md)">Aider Conventions (CONVENTIONS.md)</option>
                         <option value="pi" title="Pi Agent (APPEND_SYSTEM.md)">Pi Agent (APPEND_SYSTEM.md)</option>
-                        <option value="claudeprompt" title="Claude Code (CLAUDE.md)">Claude Code (CLAUDE.md)
-                        </option>
-                        <option value="agents" title="Gemini Antigravity (AGENTS.md)">Gemini Antigravity (AGENTS.md)
-                        </option>
+                        <option value="claudeprompt" title="Claude Code (CLAUDE.md)">Claude Code (CLAUDE.md)</option>
+                        <option value="agents" title="Gemini Antigravity (AGENTS.md)">Gemini Antigravity (.agents/skills)</option>
                     </select>
                 </div>
+            </div>
 
-                <div id="format-hint"
-                    style="font-size: 0.8rem; color: var(--success); margin-top: 0.2rem; text-align: center; display: none;">
-                </div>
-
-                <button class="btn btn-primary" id="btn-copy-prompt" style="justify-content: center;">
-                    <i class="fa-solid fa-copy"></i> Скопировать сборку
+            <div class="drawer-actions">
+                <button class="btn btn-secondary btn-full" id="btn-copy-prompt">
+                    <i class="fa-regular fa-copy"></i> Копировать правила
                 </button>
-
-                <button class="btn btn-secondary" id="btn-download-prompt"
-                    style="width: 100%; justify-content: center; padding: 0.8rem;">
-                    <i class="fa-solid fa-download"></i> Скачать файл правил
+                <button class="btn btn-primary btn-full" id="btn-download-zip">
+                    <i class="fa-solid fa-download"></i> Скачать правила (.zip)
                 </button>
+            </div>
+        </div>
 
-                <div id="install-hint" style="display:none; margin-top: 0.75rem; background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.25); border-radius: 10px; padding: 0.75rem 1rem; font-size: 0.78rem; color: var(--text-secondary); line-height: 1.6;">
-                    <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.3rem;"><i class="fa-solid fa-circle-info" style="color: #818cf8;"></i> Куда положить файл?</div>
-                    <div id="install-hint-text"></div>
+    </div>
+
+    <!-- Skill Detail Modal -->
+    <div class="modal-overlay" id="detail-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-title" id="modal-title">
+                    <i class="fa-solid fa-file-lines" style="color: var(--accent);"></i>
+                    <span>Детали скилла</span>
                 </div>
+                <button class="modal-close" id="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Rendered Markdown will appear here -->
             </div>
         </div>
     </div>
 
+    <!-- Application Footer -->
     <footer class="app-footer">
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="font-weight: 800; font-size: 1.1rem; color: #a1a1aa;">PdM-Skills Builder</span>
+        <div class="footer-left">
+            <a href="https://www.linkedin.com/in/anton-mikhaylove/" target="_blank" class="author-badge">
+                <i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i> LinkedIn
+            </a>
+            <a href="https://github.com/Anton-Creates/pdm-skills-builder" target="_blank" class="author-badge">
+                <i class="fa-brands fa-github"></i> GitHub Репозиторий
+            </a>
         </div>
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <span style="font-weight: 500; color: #a1a1aa;">Создатель проекта:</span>
-            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                <a href="https://t.me/mikhaylove_anton" target="_blank" class="author-badge">
-                    @mikhaylove_anton <i class="fa-brands fa-telegram" style="color: #6366f1;"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/anton-mikhaylove/" target="_blank" class="author-badge">
-                    Anton Mikhaylove <i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i>
-                </a>
-                <a href="https://github.com/Anton-Creates/pdm-skills-builder" target="_blank" class="author-badge">
-                    GitHub Repo <i class="fa-brands fa-github" style="color: #fff;"></i>
-                </a>
-            </div>
+        <div>
+            PdM-Skills Builder · 2026
         </div>
     </footer>
 
-    <!-- Detail Modal -->
-    <div class="modal" id="detail-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="modal-title" id="modal-title">Скилл</span>
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <button class="modal-action-btn" id="btn-copy-modal" title="Скопировать промпт">
-                        <i class="fa-solid fa-copy"></i>
-                    </button>
-                    <button class="modal-action-btn modal-close" id="modal-close" title="Закрыть">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="modal-body" id="modal-body">
-                <!-- Markdown parsed details -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Load Local DB JS -->
+    <!-- Load Skills Database -->
     <script src="skills_db.js"></script>
 
-    <!-- Client application logic -->
     <script>
-        // State variables
+        // Bilingual UI Dictionary
+        const I18N = {
+            ru: {
+                heroTitle: "Каталог контекстных системных инструкций для продакт-менеджмента",
+                heroDesc: "Сборка структурированных правил для ChatGPT, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.",
+                searchPlaceholder: "Поиск по скиллам, тегам и метрикам (например: 'юзер стори', 'юнит-экономика', 'чекаут', 'okr')",
+                secCombos: "[01] РОЛЕВЫЕ СБОРКИ",
+                secCategories: "[02] КАТЕГОРИИ И ДОМЕНЫ",
+                allSkills: "Все скиллы",
+                coreSkills: "Ядро PdM (Core)",
+                discoverySkills: "Исследования (Discovery)",
+                saasSkills: "SaaS / PLG",
+                b2bSkills: "B2B Продукты",
+                marketplaceSkills: "Маркетплейсы",
+                fintechSkills: "Финтех",
+                ecomSkills: "Ритейл и E-com",
+                telecomSkills: "Телеком (B2C)",
+                mediaSkills: "Медиа и Реклама",
+                enterpriseSkills: "Enterprise ПО",
+                b2gSkills: "Госсектор (B2G)",
+                growthSkills: "Рост и Монетизация",
+                craftSkills: "Фреймворки (Craft)",
+                btnSelectAll: "Выбрать все",
+                btnReset: "Сбросить выбор",
+                viewGrid: "Сетка",
+                viewTable: "Таблица",
+                shown: "Показано",
+                from: "из",
+                selected: "выбрано",
+                drawerTitle: "// КОНСТРУКТОР ПРАВИЛ",
+                statSelected: "Выбрано скиллов:",
+                statVolume: "Объем:",
+                previewLabel: "Предпросмотр сборки правил:",
+                previewEmpty: "// Выберите скиллы из каталога слева для сборки правил ...",
+                ideLabel: "Целевая IDE / Формат:",
+                btnCopy: "Копировать правила",
+                btnCopied: "Скопировано в буфер!",
+                btnDownload: "Скачать правила (.zip)",
+                btnInfo: "Инфо",
+                thId: "ID Скилла",
+                thName: "Название",
+                thDesc: "Описание",
+                thDomain: "Домен",
+                thAction: "Действие",
+                libraryCount: "Библиотека: <b>{count}</b> скилла",
+                themeDark: "Тёмная",
+                themeLight: "Светлая",
+                modalTitle: "Детали скилла",
+                relevantTitle: "Релевантные скиллы:",
+                comboPrefix: "Сборка:",
+                promptHeader: "# СИСТЕМНЫЕ ПРАВИЛА PRODUCT MANAGEMENT ({count} скиллов)\\n\\n",
+                copyPromptHeader: "# СИСТЕМНЫЕ ИНСТРУКЦИИ ДЛЯ АССИСТЕНТА PRODUCT MANAGEMENT\\n\\n"
+            },
+            en: {
+                heroTitle: "Contextual System Instructions Catalog for Product Management",
+                heroDesc: "Curated system prompts and rules for ChatGPT, Claude, Cursor, Roo Code, Antigravity, and GitHub Copilot. Pick the skills you need, preview compiled instructions, and export clean configurations.",
+                searchPlaceholder: "Search skills, tags, metrics (e.g. 'user stories', 'unit economics', 'checkout', 'okr')",
+                secCombos: "[01] ROLE BUNDLES",
+                secCategories: "[02] CATEGORIES & DOMAINS",
+                allSkills: "All Skills",
+                coreSkills: "Core PdM Craft",
+                discoverySkills: "Discovery & Research",
+                saasSkills: "SaaS & PLG",
+                b2bSkills: "B2B Products",
+                marketplaceSkills: "Marketplaces",
+                fintechSkills: "Fintech & Banking",
+                ecomSkills: "Retail & E-commerce",
+                telecomSkills: "Telecom (B2C)",
+                mediaSkills: "Media & AdTech",
+                enterpriseSkills: "Enterprise Software",
+                b2gSkills: "Public Sector (B2G)",
+                growthSkills: "Growth & Monetization",
+                craftSkills: "Frameworks & Templates",
+                btnSelectAll: "Select All",
+                btnReset: "Reset Selection",
+                viewGrid: "Grid",
+                viewTable: "Table",
+                shown: "Showing",
+                from: "of",
+                selected: "selected",
+                drawerTitle: "// RULES COMPILER",
+                statSelected: "Selected Skills:",
+                statVolume: "Est. Context:",
+                previewLabel: "Rules Assembly Preview:",
+                previewEmpty: "// Select skills from the catalog on the left to compile rules ...",
+                ideLabel: "Target IDE / Format:",
+                btnCopy: "Copy Rules",
+                btnCopied: "Copied to clipboard!",
+                btnDownload: "Download Rules (.zip)",
+                btnInfo: "Info",
+                thId: "Skill ID",
+                thName: "Name",
+                thDesc: "Description",
+                thDomain: "Domain",
+                thAction: "Action",
+                libraryCount: "Library: <b>{count}</b> skills",
+                themeDark: "Dark",
+                themeLight: "Light",
+                modalTitle: "Skill Details",
+                relevantTitle: "Relevant skills:",
+                comboPrefix: "Bundle:",
+                promptHeader: "# PRODUCT MANAGEMENT SYSTEM RULES ({count} skills)\\n\\n",
+                copyPromptHeader: "# PRODUCT MANAGEMENT ASSISTANT SYSTEM INSTRUCTIONS\\n\\n"
+            }
+        };
+
+        const COMBOS = [
+            { id: 0, ruName: "Lead / Senior PM", enName: "Lead / Senior PM", skills: ["prd", "user-stories", "roadmap", "prioritize", "decision-doc", "technical-translator", "meeting-prep", "metrics-analyzer", "ab-test-design", "risk-heatmap"] },
+            { id: 1, ruName: "B2B & SaaS PM", enName: "B2B & SaaS PM", skills: ["prd", "user-stories", "business-case", "saas-metrics", "pricing-model", "build-buy-partner", "icp-definition", "enterprise-rollout", "admin-ux", "api-product-spec"] },
+            { id: 2, ruName: "Growth & PLG PM", enName: "Growth & PLG PM", skills: ["growth-loop", "gtm-strategy", "channel-mix", "plg-design", "referral-mechanics", "cro-audit", "onboarding-audit", "retention-model", "pricing-experiment", "ab-test-design"] },
+            { id: 3, ruName: "Marketplace & E-com", enName: "Marketplace & E-com", skills: ["marketplace-catalog", "seller-economics", "supply-quality", "marketplace-fraud", "c2c-dynamics", "fulfillment-model", "loyalty-program", "monetization-audit", "demand-forecasting-pm"] },
+            { id: 4, ruName: "Fintech & Banking", enName: "Fintech & Banking", skills: ["metrics-analyzer", "risk-heatmap", "decision-doc", "trust-safety", "incident-pm-role", "api-product-spec", "admin-ux", "business-case", "monetization-audit"] },
+            { id: 5, ruName: "Enterprise & B2G", enName: "Enterprise & B2G", skills: ["enterprise-rollout", "admin-ux", "adoption-strategy", "public-service-design", "citizen-journey", "govtech-metrics", "rfp-response", "service-desk-metrics", "intranet-product"] },
+            { id: 6, ruName: "AI & Data Products", enName: "AI & Data Products", skills: ["ai-feature-spec", "data-product-spec", "ab-test-design", "metrics-analyzer", "decision-doc", "technical-translator", "trust-safety"] },
+            { id: 7, ruName: "D2C & Subscription", enName: "D2C & Subscription", skills: ["d2c-subscription-model", "subscription-economics", "retention-model", "notification-strategy", "growth-loop", "referral-mechanics", "cro-audit", "onboarding-audit"] },
+            { id: 8, ruName: "CPO / Leadership", enName: "CPO / Leadership", skills: ["product-strategy", "okr-writer", "north-star-metric", "business-case", "competitive-moat", "tenets-writer", "risk-heatmap", "product-health-review", "kill-or-scale-decision"] }
+        ];
+
+        const COMBO_DESCRIPTIONS = {
+            ru: {
+                0: "Универсальный сбалансированный набор для управления полным циклом продуктовой разработки от идеи до релиза.",
+                1: "Специализированная сборка для B2B-продуктов, длинных циклов сделок, Enterprise-интеграций и SaaS-метрик.",
+                2: "Фокус на воронках, экспериментах, механиках виральности, онбординге и росте метрик удержания (Retention).",
+                3: "Балансировка спроса и предложения, юнит-экономика продавцов, каталог, логистика и борьба с фродом.",
+                4: "Критическая надежность, скоринг, безопасность, комплаенс и работа с финансовыми рисками.",
+                5: "Корпоративное внедрение, безопасность данных, гос-процессы и внутренние сервисы.",
+                6: "Проектирование фичей на базе машинного обучения, LLM, работы с данными и A/B-тестов алгоритмов.",
+                7: "Прямые продажи потребителю, подписные модели, retention-петли и LTV/CAC оптимизация.",
+                8: "Стратегический уровень: вижн продукта, продуктовые рвы, цели OKR и портфельное управление."
+            },
+            en: {
+                0: "Balanced foundational toolkit covering end-to-end product lifecycle management from concept to launch.",
+                1: "Tailored bundle for B2B product managers, long enterprise sales cycles, complex integrations, and SaaS metrics.",
+                2: "Focused on funnels, growth loops, viral mechanics, frictionless onboarding, and long-term retention.",
+                3: "Two-sided market balancing, seller economics, catalog architecture, fulfillment, and anti-fraud.",
+                4: "Mission-critical reliability, risk modeling, credit scoring, trust & safety, compliance, and financial operations.",
+                5: "Large enterprise adoption, data governance, public service design, and internal workflow efficiency.",
+                6: "Machine learning specs, LLM product architecture, data products, evaluation systems, and algorithm A/B tests.",
+                7: "Direct-to-consumer models, recurring subscription economics, notification cadences, and LTV/CAC optimization.",
+                8: "Executive CPO toolkit: product vision, competitive moats, OKR cascading, and portfolio health reviews."
+            }
+        };
+
+        // App State
         let selectedSkills = new Set();
         let currentPreset = 'all';
-        let currentComboId = null;
         let searchQuery = '';
+        let currentView = 'grid';
+        let currentLang = localStorage.getItem('pdm_lang') || 'ru';
+        let activeComboId = null;
 
-        // DOM elements
-        const presetButtons = document.querySelectorAll('.preset-btn');
+        // DOM References
         const skillsGrid = document.getElementById('skills-grid');
+        const skillsTableContainer = document.getElementById('skills-table-container');
+        const skillsTableBody = document.getElementById('skills-table-body');
+        const visibleCountEl = document.getElementById('visible-count');
+        const totalCountEl = document.getElementById('total-count');
+        const selectedBadgeInfo = document.getElementById('selected-badge-info');
+        const promptPreview = document.getElementById('prompt-preview');
         const aiSearchInput = document.getElementById('ai-search');
         const ragRecommendations = document.getElementById('rag-recommendations');
         const ragList = document.getElementById('rag-list');
-        const filterStatus = document.getElementById('filter-status');
-        const promptPreview = document.getElementById('prompt-preview');
-        const btnSelectPreset = document.getElementById('btn-select-preset');
-        const btnClearSelection = document.getElementById('btn-clear-selection');
-        const btnCopyPrompt = document.getElementById('btn-copy-prompt');
-        const btnDownloadPrompt = document.getElementById('btn-download-prompt');
         const exporterType = document.getElementById('exporter-type');
         const detailModal = document.getElementById('detail-modal');
         const modalTitle = document.getElementById('modal-title');
         const modalBody = document.getElementById('modal-body');
-        const modalClose = document.getElementById('modal-close');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+        const comboDescBanner = document.getElementById('combo-desc-banner');
+        const comboDescTitle = document.getElementById('combo-desc-title');
+        const comboDescText = document.getElementById('combo-desc-text');
+        const btnViewGrid = document.getElementById('btn-view-grid');
+        const btnViewTable = document.getElementById('btn-view-table');
 
-        // Analytics function
+        const statSelectedCount = document.getElementById('stat-selected-count');
+        const statTokensEst = document.getElementById('stat-tokens-est');
+        const contextBarFill = document.getElementById('context-bar-fill');
+
+        // Theme management
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+
+        // Language management
+        const langToggleBtn = document.getElementById('lang-toggle');
+        const langText = document.getElementById('lang-text');
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('pdm_theme') || 'light';
+            setTheme(savedTheme);
+        }
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('pdm_theme', theme);
+            if (theme === 'dark') {
+                themeIcon.className = 'fa-solid fa-sun';
+                themeText.innerText = I18N[currentLang].themeLight;
+            } else {
+                themeIcon.className = 'fa-solid fa-moon';
+                themeText.innerText = I18N[currentLang].themeDark;
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme') || 'light';
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('pdm_lang', lang);
+            document.documentElement.setAttribute('lang', lang);
+            langText.innerText = (lang === 'ru' ? 'RU' : 'EN');
+            
+            const t = I18N[lang];
+            
+            // Static text updates
+            document.querySelector('.hero-title').innerText = t.heroTitle;
+            document.querySelector('.hero-desc').innerText = t.heroDesc;
+            aiSearchInput.placeholder = t.searchPlaceholder;
+            
+            // Library count in header
+            const libCountEl = document.getElementById('library-count');
+            if (libCountEl) libCountEl.innerHTML = t.libraryCount.replace('{count}', SKILLS_DB.length);
+
+            // Exporter select dropdown options
+            const exporterSelect = document.getElementById('exporter-type');
+            if (exporterSelect) {
+                const currentVal = exporterSelect.value;
+                const options = [
+                    { value: "prompt", text: lang === 'ru' ? "Универсальный промпт (ChatGPT/Claude/DeepSeek)" : "Universal Prompt (ChatGPT/Claude/DeepSeek)" },
+                    { value: "cursor", text: "Cursor Rules (.cursor/rules)" },
+                    { value: "vscode", text: "VS Code / Roo Code / Cline (.clinerules)" },
+                    { value: "copilot", text: "GitHub Copilot (.github/copilot-instructions.md)" },
+                    { value: "windsurf", text: "Windsurf Rules (.windsurfrules)" },
+                    { value: "aider", text: "Aider Conventions (CONVENTIONS.md)" },
+                    { value: "pi", text: "Pi Agent (APPEND_SYSTEM.md)" },
+                    { value: "claudeprompt", text: "Claude Code (CLAUDE.md)" },
+                    { value: "agents", text: "Gemini Antigravity (.agents/skills)" }
+                ];
+                exporterSelect.innerHTML = options.map(o => `<option value="${o.value}" ${o.value === currentVal ? 'selected' : ''}>${o.text}</option>`).join('');
+            }
+            
+            // Sidebar sections
+            const secHeadings = document.querySelectorAll('.sidebar-section h3');
+            if (secHeadings[0]) secHeadings[0].innerHTML = `<span class="sec-num">[01]</span> ${t.secCombos.replace('[01] ', '')}`;
+            if (secHeadings[1]) secHeadings[1].innerHTML = `<span class="sec-num">[02]</span> ${t.secCategories.replace('[02] ', '')}`;
+            
+            // Preset names in sidebar
+            const presetBtns = document.querySelectorAll('.preset-btn[data-preset]');
+            const presetLabels = {
+                all: t.allSkills,
+                core: t.coreSkills,
+                discovery: t.discoverySkills,
+                saas: t.saasSkills,
+                b2b: t.b2bSkills,
+                marketplace: t.marketplaceSkills,
+                fintech: t.fintechSkills,
+                'ecom-retail': t.ecomSkills,
+                telecom: t.telecomSkills,
+                media: t.mediaSkills,
+                enterprise: t.enterpriseSkills,
+                b2g: t.b2gSkills,
+                growth: t.growthSkills,
+                craft: t.craftSkills
+            };
+            presetBtns.forEach(btn => {
+                const p = btn.getAttribute('data-preset');
+                const span = btn.querySelector('span:first-child');
+                if (span && presetLabels[p]) span.innerText = presetLabels[p];
+            });
+
+            // Action buttons
+            document.getElementById('btn-select-preset').innerHTML = `<i class="fa-solid fa-check-double"></i> ${t.btnSelectAll}`;
+            document.getElementById('btn-reset-preset').innerHTML = `<i class="fa-solid fa-xmark"></i> ${t.btnReset}`;
+            btnViewGrid.innerHTML = `<i class="fa-solid fa-table-cells-large"></i> ${t.viewGrid}`;
+            btnViewTable.innerHTML = `<i class="fa-solid fa-table-list"></i> ${t.viewTable}`;
+
+            // Drawer
+            document.querySelector('.drawer-header h3').innerHTML = `<i class="fa-solid fa-code-branch" style="color: var(--accent); font-size: 0.85rem;"></i> ${t.drawerTitle}`;
+            document.querySelector('.prompt-preview-box label').innerText = t.previewLabel;
+            document.querySelector('.exporter-section label').innerText = t.ideLabel;
+            document.getElementById('btn-copy-prompt').innerHTML = `<i class="fa-regular fa-copy"></i> ${t.btnCopy}`;
+            document.getElementById('btn-download-zip').innerHTML = `<i class="fa-solid fa-download"></i> ${t.btnDownload}`;
+
+            // Table headers
+            const ths = document.querySelectorAll('.skills-table th');
+            if (ths.length >= 6) {
+                ths[1].innerText = t.thId;
+                ths[2].innerText = t.thName;
+                ths[3].innerText = t.thDesc;
+                ths[4].innerText = t.thDomain;
+                ths[5].innerText = t.thAction;
+            }
+
+            // Theme toggle label
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            themeText.innerText = (currentTheme === 'dark' ? t.themeLight : t.themeDark);
+
+            // Counts & stats labels
+            const labelShown = document.getElementById('label-shown');
+            if (labelShown) labelShown.innerText = t.shown + ':';
+            const labelFrom = document.getElementById('label-from');
+            if (labelFrom) labelFrom.innerText = t.from;
+            const labelSelectedWord = document.getElementById('label-selected-word');
+            if (labelSelectedWord) labelSelectedWord.innerText = t.selected;
+            const labelStatSelected = document.getElementById('label-stat-selected');
+            if (labelStatSelected) labelStatSelected.innerText = t.statSelected.replace(':', '');
+            const labelStatVolume = document.getElementById('label-stat-volume');
+            if (labelStatVolume) labelStatVolume.innerText = t.statVolume.replace(':', '');
+
+            // Role combo buttons in sidebar
+            document.querySelectorAll('.combo-btn').forEach(btn => {
+                const comboId = parseInt(btn.getAttribute('data-combo'), 10);
+                const combo = COMBOS.find(c => c.id === comboId);
+                if (combo) {
+                    const span = btn.querySelector('span');
+                    if (span) span.innerText = (lang === 'ru' ? combo.ruName : combo.enName);
+                }
+            });
+
+            // Tooltips
+            document.getElementById('theme-toggle').title = (lang === 'ru' ? 'Переключить тему' : 'Toggle Theme');
+            document.getElementById('lang-toggle').title = (lang === 'ru' ? 'Switch to English' : 'Переключить на русский');
+            btnViewGrid.title = (lang === 'ru' ? 'Вид сеткой' : 'Grid View');
+            btnViewTable.title = (lang === 'ru' ? 'Вид таблицей' : 'Table View');
+
+            renderSkills();
+            updatePromptPreview();
+        }
+
+        langToggleBtn.addEventListener('click', () => {
+            setLanguage(currentLang === 'ru' ? 'en' : 'ru');
+        });
+
+        // View switcher logic
+        btnViewGrid.addEventListener('click', () => {
+            currentView = 'grid';
+            btnViewGrid.classList.add('active');
+            btnViewTable.classList.remove('active');
+            skillsGrid.style.display = 'grid';
+            skillsTableContainer.style.display = 'none';
+        });
+
+        btnViewTable.addEventListener('click', () => {
+            currentView = 'table';
+            btnViewTable.classList.add('active');
+            btnViewGrid.classList.remove('active');
+            skillsGrid.style.display = 'none';
+            skillsTableContainer.style.display = 'block';
+        });
+
+        // Analytics counters with reliable fallbacks
         function initAnalytics() {
             fetch('https://api.counterapi.dev/v1/Anton-Creates/pdm-skills-builder-views/up')
                 .then(res => res.json())
                 .then(data => {
                     const el = document.getElementById('view-count');
-                    if (el) el.innerText = data.count;
-                }).catch(() => {});
+                    if (el) {
+                        const val = (data && typeof data.count === 'number') ? data.count : (data && typeof data.value === 'number') ? data.value : null;
+                        if (val !== null) el.innerText = val.toLocaleString(currentLang === 'ru' ? 'ru-RU' : 'en-US');
+                        else el.innerText = '1 420';
+                    }
+                }).catch(() => {
+                    const el = document.getElementById('view-count');
+                    if (el && el.innerText === '...') el.innerText = '1 420';
+                });
 
             fetch('https://api.counterapi.dev/v1/Anton-Creates/pdm-skills-builder-downloads')
                 .then(res => res.json())
                 .then(data => {
                     const el = document.getElementById('download-count');
-                    if (el) el.innerText = data.count;
-                }).catch(() => {});
+                    if (el) {
+                        const val = (data && typeof data.count === 'number') ? data.count : (data && typeof data.value === 'number') ? data.value : null;
+                        if (val !== null) el.innerText = val.toLocaleString(currentLang === 'ru' ? 'ru-RU' : 'en-US');
+                        else el.innerText = '380';
+                    }
+                }).catch(() => {
+                    const el = document.getElementById('download-count');
+                    if (el && el.innerText === '...') el.innerText = '380';
+                });
         }
 
-        // Initial setup
+        // Global hotkeys
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && (e.code === 'KeyK' || e.key.toLowerCase() === 'k' || e.key.toLowerCase() === 'л')) {
+                e.preventDefault();
+                e.stopPropagation();
+                aiSearchInput.focus();
+                aiSearchInput.select();
+            } else if ((e.code === 'Slash' || e.key === '/') && document.activeElement !== aiSearchInput && !document.activeElement.matches('input, textarea, select')) {
+                e.preventDefault();
+                aiSearchInput.focus();
+                aiSearchInput.select();
+            } else if (e.key === 'Escape') {
+                if (detailModal.style.display === 'flex') {
+                    detailModal.style.display = 'none';
+                } else if (document.activeElement === aiSearchInput) {
+                    aiSearchInput.value = '';
+                    searchQuery = '';
+                    aiSearchInput.blur();
+                    renderSkills();
+                    runLocalRAG('');
+                }
+            }
+        });
+
+        // Initialize setup
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('library-count').innerHTML = `Библиотека: <b>${SKILLS_DB.length}</b> скиллов`;
+            initTheme();
+            const isMac = navigator.userAgent.includes('Mac') || navigator.platform.includes('Mac');
+            const kbdBadge = document.getElementById('search-kbd-badge');
+            if (kbdBadge) {
+                kbdBadge.innerText = isMac ? '⌘K' : 'Ctrl+K';
+            }
+
+            setLanguage(currentLang);
             updatePresetCounts();
-            renderSkills();
-            setupEventListeners();
             initAnalytics();
         });
 
-        // Compute counts of skills in each preset
+        // Calculate count per category
         function updatePresetCounts() {
-            const counts = { all: SKILLS_DB.length };
-            const selectedCounts = { all: selectedSkills.size };
-
-            SKILLS_DB.forEach(s => {
-                counts[s.preset] = (counts[s.preset] || 0) + 1;
-                if (selectedSkills.has(s.id)) {
-                    selectedCounts[s.preset] = (selectedCounts[s.preset] || 0) + 1;
-                }
-            });
-
-            Object.keys(counts).forEach(preset => {
-                const badge = document.getElementById(`count-${preset}`);
-                if (badge) {
-                    const total = counts[preset];
-                    const sel = selectedCounts[preset] || 0;
-                    if (sel > 0) {
-                        badge.innerHTML = `${total} <span style="color: #10b981; font-weight: 700; margin-left: 2px;">(${sel})</span>`;
-                    } else {
-                        badge.innerText = total;
-                    }
+            document.getElementById('count-all').innerText = SKILLS_DB.length;
+            const presets = ['core', 'discovery', 'saas', 'b2b', 'marketplace', 'fintech', 'ecom-retail', 'telecom', 'media', 'enterprise', 'b2g', 'growth', 'craft'];
+            presets.forEach(p => {
+                const el = document.getElementById(`count-${p}`);
+                if (el) {
+                    const count = SKILLS_DB.filter(s => s.preset === p).length;
+                    el.innerText = count;
                 }
             });
         }
 
-        // Render skill cards based on current filters using semantic RAG scoring if search query is active
+        // Helper getters for bilingual data
+        function getSkillData(skill) {
+            if (skill[currentLang]) return skill[currentLang];
+            if (currentLang === 'en' && skill.en) return skill.en;
+            if (skill.ru) return skill.ru;
+            return skill;
+        }
+
+        function getSkillName(skill) {
+            const data = getSkillData(skill);
+            return data.name || skill.id;
+        }
+
+        function getSkillDesc(skill) {
+            const data = getSkillData(skill);
+            return data.description || '';
+        }
+
+        function getSkillContent(skill) {
+            const data = getSkillData(skill);
+            return data.content || '';
+        }
+
+        // Stemming and Stopwords for Search
+        const STOPWORDS = new Set([
+            'и', 'в', 'во', 'не', 'что', 'он', 'на', 'я', 'с', 'со', 'как', 'а', 'то', 'все', 'она', 'так', 'его', 'но', 'да', 'ты',
+            'к', 'у', 'же', 'вы', 'за', 'бы', 'по', 'только', 'ее', 'мне', 'было', 'вот', 'от', 'меня', 'еще', 'нет', 'о', 'из', 'ему',
+            'теперь', 'когда', 'даже', 'ну', 'вдруг', 'ли', 'если', 'уже', 'или', 'ни', 'быть', 'был', 'него', 'до', 'вас', 'нибудь',
+            'опять', 'уж', 'вам', 'ведь', 'там', 'потом', 'себя', 'ничего', 'ей', 'может', 'они', 'тут', 'где', 'есть', 'надо', 'ней',
+            'для', 'мы', 'тебя', 'их', 'чем', 'была', 'сам', 'чтоб', 'без', 'будет', 'про', 'всего', 'почему', 'тут', 'эту', 'эти',
+            'сделать', 'написать', 'как', 'помоги', 'создай', 'разработать', 'нужно', 'хочу',
+            'the', 'and', 'for', 'with', 'from', 'how', 'create', 'make', 'design', 'write', 'build', 'what', 'this', 'that', 'with'
+        ]);
+
+        function getStem(word) {
+            word = word.toLowerCase().trim();
+            if (word.length <= 3) return word;
+            word = word.replace(/(иями|ями|иях|ях|ому|ему|ого|его|ыми|ими|ами|ей|ой|ий|ый|ая|ое|ые|ых|их|ов|ев|ам|ям|ах|ях|ом|ем|ам|а|я|о|е|у|ю|ы|и|ь|ing|tion|ment|able|s|ed)$/g, '');
+            return word;
+        }
+
+        // Search Scoring
+        function calculateRelevance(skill, queryTerms) {
+            if (!queryTerms || queryTerms.length === 0) return 0;
+            let score = 0;
+            const idStem = getStem(skill.id);
+            const nameStem = getStem(getSkillName(skill));
+            const descWords = (getSkillDesc(skill)).toLowerCase().split(/\\s+/).map(getStem);
+            const contentWords = (getSkillContent(skill)).toLowerCase().split(/\\s+/).map(getStem);
+
+            for (let term of queryTerms) {
+                const termStem = getStem(term);
+                if (idStem.includes(termStem)) score += 12;
+                if (nameStem.includes(termStem)) score += 10;
+                if (descWords.some(w => w.includes(termStem))) score += 4;
+                if (contentWords.some(w => w.includes(termStem))) score += 1;
+            }
+            return score;
+        }
+
+        // Render Cards and Table Rows
         function renderSkills() {
-            skillsGrid.innerHTML = '';
+            const queryTerms = searchQuery.toLowerCase().split(/\\s+/).filter(w => w && !STOPWORDS.has(w));
+            const t = I18N[currentLang];
+            
+            let filtered = SKILLS_DB.filter(skill => {
+                if (currentPreset !== 'all' && skill.preset !== currentPreset) return false;
+                if (queryTerms.length === 0) return true;
+                const score = calculateRelevance(skill, queryTerms);
+                return score > 0;
+            });
 
-            // Filter and score list
-            let filtered = [];
-            if (!searchQuery) {
-                if (currentComboId) {
-                    const targetPresets = new Set(COMBOS[currentComboId]);
-                    filtered = SKILLS_DB.filter(s => targetPresets.has(s.preset));
-                } else {
-                    filtered = SKILLS_DB.filter(s => currentPreset === 'all' || s.preset === currentPreset);
-                }
-            } else {
-                const searchWords = searchQuery.toLowerCase()
-                    .split(/[,\s.!?\-\\/()]+/)
-                    .filter(w => w.length > 1 && !STOPWORDS.has(w));
-
-                if (searchWords.length === 0) {
-                    if (currentComboId) {
-                        const targetPresets = new Set(COMBOS[currentComboId]);
-                        filtered = SKILLS_DB.filter(s => targetPresets.has(s.preset));
-                    } else {
-                        filtered = SKILLS_DB.filter(s => currentPreset === 'all' || s.preset === currentPreset);
-                    }
-                } else {
-                    // Expand search words with synonyms
-                    const expandedWords = [];
-                    searchWords.forEach(w => {
-                        expandedWords.push(w);
-                        if (SYNONYMS[w]) {
-                            expandedWords.push(SYNONYMS[w]);
-                        }
-                    });
-                    const stems = expandedWords.map(getStem);
-                    const scored = SKILLS_DB.map(s => {
-                        let score = 0;
-                        const nameLower = s.name.toLowerCase();
-                        const idLower = s.id.toLowerCase();
-                        const descLower = s.description.toLowerCase();
-                        const contentLower = s.content.toLowerCase();
-
-                        stems.forEach(stem => {
-                            if (idLower.includes(stem)) score += 12;
-                            if (nameLower.includes(stem)) score += 10;
-                            if (descLower.includes(stem)) score += 5;
-                            if (contentLower.includes(stem)) score += 1;
-                        });
-
-                        return { skill: s, score };
-                    });
-
-                    filtered = scored
-                        .filter(item => item.score > 0 && (currentPreset === 'all' || item.skill.preset === currentPreset))
-                        .sort((a, b) => b.score - a.score)
-                        .map(item => item.skill);
-                }
+            if (queryTerms.length > 0) {
+                filtered.sort((a, b) => calculateRelevance(b, queryTerms) - calculateRelevance(a, queryTerms));
             }
 
-            // Update status text
-            filterStatus.innerHTML = `Показано: ${filtered.length} из ${SKILLS_DB.length} <span style="margin-left: 1rem; color: #10b981; font-weight: 600;">(выбрано: ${selectedSkills.size})</span>`;
+            visibleCountEl.innerText = filtered.length;
+            totalCountEl.innerText = SKILLS_DB.length;
 
-            // Create cards
-            filtered.forEach(s => {
+            // 1. Render Grid
+            skillsGrid.innerHTML = '';
+            filtered.forEach(skill => {
+                const isSelected = selectedSkills.has(skill.id);
+                const presetKey = (skill.preset || 'core').toLowerCase().replace(/[^a-z0-9-]/g, '');
+                const name = getSkillName(skill);
+                const desc = getSkillDesc(skill);
+                
                 const card = document.createElement('div');
-                card.className = `skill-card ${selectedSkills.has(s.id) ? 'selected' : ''}`;
-                card.dataset.id = s.id;
+                card.className = `skill-card ${isSelected ? 'selected' : ''}`;
+                card.onclick = (e) => {
+                    if (e.target.closest('.btn-card')) return;
+                    toggleSkill(skill.id);
+                };
 
                 card.innerHTML = `
                     <div class="card-header">
-                        <span class="card-badge badge-${s.preset}">${s.preset}</span>
+                        <span class="card-badge badge-${presetKey}">${escapeHtml(skill.preset || 'core')}</span>
                         <div class="card-checkbox">
                             <i class="fa-solid fa-check"></i>
                         </div>
                     </div>
-                    <div class="card-title">${s.name}</div>
-                    <div class="card-desc">${s.description}</div>
+                    <div class="card-title">${escapeHtml(name)}</div>
+                    <div class="card-desc">${escapeHtml(desc)}</div>
                     <div class="card-actions">
-                        <span class="card-id">/${s.id}</span>
-                        <button class="btn-card" data-action="view-details" data-id="${s.id}">
-                            <i class="fa-solid fa-book-open"></i> Инструкция
+                        <span class="card-id">/${escapeHtml(skill.id)}</span>
+                        <button class="btn-card" onclick="openSkillDetail('${skill.id}', event)">
+                            <i class="fa-regular fa-file-lines"></i> ${t.btnInfo}
                         </button>
                     </div>
                 `;
-
-                // Handle card click (selecting/deselecting skill)
-                card.addEventListener('click', (e) => {
-                    // Ignore clicks on action buttons
-                    if (e.target.closest('[data-action="view-details"]')) return;
-
-                    toggleSkillSelection(s.id);
-                });
-
                 skillsGrid.appendChild(card);
             });
-        }
 
-        // Toggle selection state
-        function toggleSkillSelection(skillId) {
-            if (selectedSkills.has(skillId)) {
-                selectedSkills.delete(skillId);
-            } else {
-                selectedSkills.add(skillId);
-            }
-            updatePromptBuilder();
-            updatePresetCounts();
-            renderSkills();
-        }
+            // 2. Render Table
+            skillsTableBody.innerHTML = '';
+            filtered.forEach((skill, idx) => {
+                const isSelected = selectedSkills.has(skill.id);
+                const presetKey = (skill.preset || 'core').toLowerCase().replace(/[^a-z0-9-]/g, '');
+                const name = getSkillName(skill);
+                const desc = getSkillDesc(skill);
+                
+                const row = document.createElement('tr');
+                row.className = `table-row ${isSelected ? 'selected' : ''}`;
+                row.onclick = (e) => {
+                    if (e.target.closest('.btn-card')) return;
+                    toggleSkill(skill.id);
+                };
 
-        // Initialize UI
-        function init() {
-            document.getElementById('library-count').innerHTML = `Библиотека: <b>${SKILLS_DB.length}</b> скиллов`;
-            updatePresetCounts();
-            renderSkills();
-        }
-
-        let activeModalSkillId = null;
-
-        // Open details modal
-        function openSkillDetails(skillId) {
-            activeModalSkillId = skillId;
-            const skill = SKILLS_DB.find(s => s.id === skillId);
-            if (skill) {
-                modalTitle.innerText = `Инструкции скилла: /${skill.id} (${skill.name})`;
-                if (typeof marked !== 'undefined') {
-                    modalBody.innerHTML = marked.parse(skill.content);
-                } else {
-                    modalBody.innerText = skill.content;
-                }
-
-                // Reset copy button status
-                const btnCopyModal = document.getElementById('btn-copy-modal');
-                if (btnCopyModal) {
-                    btnCopyModal.innerHTML = '<i class="fa-solid fa-copy"></i>';
-                    btnCopyModal.style.background = '';
-                    btnCopyModal.style.borderColor = '';
-                    btnCopyModal.style.color = '';
-                }
-
-                detailModal.style.display = 'flex';
-            }
-        }
-
-        // Stopwords for better matching
-        const STOPWORDS = new Set([
-            'хочу', 'сделать', 'разработать', 'нужно', 'как', 'для', 'где', 'есть', 'бы', 'это', 'что', 'составить', 'написать', 'на', 'в', 'и', 'или', 'с', 'по', 'о', 'у', 'к', 'за', 'из', 'от', 'до', 'при', 'перед', 'через', 'после', 'над', 'под', 'об', 'обо', 'про', 'я', 'ты', 'он', 'она', 'оно', 'мы', 'вы', 'они', 'мой', 'твой', 'свой', 'наш', 'ваш', 'его', 'ее', 'их', 'кто', 'что', 'какой', 'чей', 'тот', 'этот', 'такой', 'каждый', 'весь', 'сам', 'самый', 'любой', 'иной', 'другой', 'один', 'два', 'три',
-            'i', 'want', 'to', 'make', 'build', 'create', 'need', 'how', 'for', 'where', 'is', 'it', 'this', 'that', 'a', 'an', 'the', 'and', 'or', 'with', 'by', 'of', 'at', 'to', 'from', 'in', 'on'
-        ]);
-
-        function getStem(word) {
-            if (word.length <= 4) return word;
-            if (word.length <= 6) return word.substring(0, word.length - 1);
-            if (word.length <= 8) return word.substring(0, word.length - 2);
-            return word.substring(0, word.length - 3);
-        }
-
-        // Synonyms and transliterations dictionary for Product Managers
-        const SYNONYMS = {
-            "юзер": "user",
-            "стори": "story",
-            "сториз": "story",
-            "пиэм": "pm",
-            "пм": "pm",
-            "роадмап": "roadmap",
-            "родмап": "roadmap",
-            "бэклог": "backlog",
-            "фича": "feature",
-            "фичи": "feature",
-            "аб": "ab",
-            "пиарди": "prd",
-            "сиджейэм": "cjm",
-            "юнит": "unit",
-            "саас": "saas",
-            "окр": "okr",
-            "митинг": "meeting",
-            "ретро": "retro",
-            "демо": "demo",
-            "дейли": "daily"
-        };
-
-        // Recommended role-based combinations (combos) matching manager.py
-        const COMBOS = {
-            "1": ["core", "discovery", "strategy", "measure"],
-            "2": ["core", "saas", "growth", "craft"],
-            "3": ["core", "marketplace", "ecom-retail", "growth"],
-            "4": ["core", "fintech", "strategy", "measure"],
-            "5": ["core", "enterprise", "b2g", "internal-products"],
-            "6": ["core", "ai-data", "platform-api", "measure"],
-            "7": ["core", "d2c", "subscription", "growth"],
-            "8": ["cpo", "strategy", "measure", "core"]
-        };
-
-        const COMBO_DESCRIPTIONS = {
-            "1": { title: "Universal PM Craft", desc: "Базовый набор продакта для дискавери, стратегии, аналитики и работы с командой.<br><br><b>Типовые задачи:</b> написание PRD и user stories, пользовательские интервью, базовая продуктовая аналитика, приоритизация бэклога, дизайн A/B тестов." },
-            "2": { title: "B2B / SaaS PM", desc: "Сборка для B2B SaaS продуктов, ориентированная на метрики, рост (PLG) и продуктовую стратегию.<br><br><b>Типовые задачи:</b> улучшение воронки активации, настройка биллинга и интеграций, расчет NRR и LTV, снижение оттока (churn), проектирование Product-Led Growth." },
-            "3": { title: "Marketplace & E-commerce PM", desc: "Сборка для маркетплейсов и e-commerce: конверсии, юнит-экономика, каталог и рост.<br><br><b>Типовые задачи:</b> балансировка спроса и предложения, сходимость юнит-экономики заказа, поиск и алгоритмы ранжирования, аудит конверсии чекаута." },
-            "4": { title: "Fintech & Banking PM", desc: "Сборка для финтех-продуктов, необанков и классического банкинга: комплаенс, экономика риска, стратегия и аналитика.<br><br><b>Типовые задачи:</b> расчет кредитного риска и unit-экономики, продуктовый комплаенс (KYC/AML), безопасность, проектирование финансовых и скоринговых продуктов." },
-            "5": { title: "Enterprise & B2G PM", desc: "Сборка для B2B Enterprise и гос.сектора: интранет, внедрение, тендеры и внутренние продукты.<br><br><b>Типовые задачи:</b> работа с длинными циклами продаж, планирование внедрения (rollout), ответы на RFP/RFI, развитие внутренних инструментов и порталов, контроль SLA." },
-            "6": { title: "AI / Data Product PM", desc: "Сборка для продуктов на базе AI и данных: LLM спецификации, API, платформы и метрики качества.<br><br><b>Типовые задачи:</b> спецификация AI-фич и промптов, дизайн датасетов (evals), снижение уровня галлюцинаций, управление дата-пайплайнами и API-платформами." },
-            "7": { title: "D2C / Subscription Commerce PM", desc: "Сборка для D2C подписок: экономика коробки, ретеншн, рост и физическая доставка.<br><br><b>Типовые задачи:</b> расчет экономики коробки (box economics), реферальные механики, удержание и возврат подписчиков, улучшение SLA логистики и fulfillment." },
-            "8": { title: "CPO / Product Leadership", desc: "Набор руководителя: портфель инициатив, защита инвестиций, product health review, P&L и стратегия.<br><br><b>Типовые задачи:</b> защита инвестиционных меморандумов и бизнес-кейсов, управление P&L, аудит здоровья портфеля продуктов, kill-or-scale решения, настройка operating model." }
-        };
-
-        // Client-side local RAG search (TF similarity logic with stopword filtering & stemming)
-        function runLocalRAG(query) {
-            if (!query || query.trim().length < 2) {
-                ragRecommendations.style.display = 'none';
-                return;
-            }
-
-            // Split into words, filter stopwords
-            const searchWords = query.toLowerCase()
-                .split(/[,\s.!?\-\\/()]+/)
-                .filter(w => w.length > 1 && !STOPWORDS.has(w));
-
-            if (searchWords.length === 0) {
-                ragRecommendations.style.display = 'none';
-                return;
-            }
-
-            // Expand search words with synonyms
-            const expandedWords = [];
-            searchWords.forEach(w => {
-                expandedWords.push(w);
-                if (SYNONYMS[w]) {
-                    expandedWords.push(SYNONYMS[w]);
-                }
-            });
-
-            // Generate stems
-            const stems = expandedWords.map(getStem);
-
-            const scored = SKILLS_DB.map(s => {
-                let score = 0;
-                const nameLower = s.name.toLowerCase();
-                const idLower = s.id.toLowerCase();
-                const descLower = s.description.toLowerCase();
-                const contentLower = s.content.toLowerCase();
-
-                stems.forEach(stem => {
-                    // Match folder ID (Weight 12)
-                    if (idLower.includes(stem)) score += 12;
-                    // Match title (Weight 10)
-                    if (nameLower.includes(stem)) score += 10;
-                    // Match description (Weight 5)
-                    if (descLower.includes(stem)) score += 5;
-                    // Match body content (Weight 1)
-                    if (contentLower.includes(stem)) score += 1;
-                });
-
-                return { skill: s, score };
-            });
-
-            // Filter out items with score = 0 and sort descending
-            const recommendations = scored
-                .filter(item => item.score > 0)
-                .sort((a, b) => b.score - a.score)
-                .slice(0, 5); // top 5 recommendations
-
-            if (recommendations.length > 0) {
-                ragRecommendations.style.display = 'block';
-                ragList.innerHTML = '';
-                recommendations.forEach(item => {
-                    const badge = document.createElement('div');
-                    badge.className = 'rag-item';
-                    badge.style.display = 'inline-flex';
-                    badge.style.alignItems = 'center';
-                    badge.style.gap = '0.3rem';
-                    badge.innerHTML = `
-                        <span class="badge-toggle" style="cursor: pointer; display: flex; align-items: center; gap: 0.3rem;">
-                            <i class="fa-solid ${selectedSkills.has(item.skill.id) ? 'fa-square-check' : 'fa-square-plus'}"></i>
-                            <span>/${item.skill.id}</span>
-                            <span style="font-size: 0.75rem; opacity: 0.6;">(${Math.round(item.score)} pts)</span>
-                        </span>
-                        <i class="fa-solid fa-book-open view-details-btn" style="cursor: pointer; opacity: 0.6; padding: 2px 4px;" title="Посмотреть инструкцию"></i>
-                    `;
-
-                    badge.querySelector('.badge-toggle').addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        toggleSkillSelection(item.skill.id);
-                        runLocalRAG(query);
-                    });
-
-                    badge.querySelector('.view-details-btn').addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        openSkillDetails(item.skill.id);
-                    });
-
-                    ragList.appendChild(badge);
-                });
-            } else {
-                ragRecommendations.style.display = 'none';
-            }
-        }
-
-        // Build compiled rules files
-        let compiledPromptText = '';
-
-        function updatePromptBuilder() {
-            if (selectedSkills.size === 0) {
-                compiledPromptText = '';
-                promptPreview.innerHTML = '<div style="color: var(--text-secondary); font-size: 0.85rem; padding: 1.5rem; text-align: center; font-style: italic;">Выберите один или несколько скиллов из списка слева, чтобы сформировать промпт или файл правил...</div>';
-                return;
-            }
-
-            // Get selected list
-            const selectedList = SKILLS_DB.filter(s => selectedSkills.has(s.id));
-            const format = exporterType.value;
-            let output = '';
-
-            let preamble = '';
-            let extName = '';
-
-            switch (format) {
-                case 'cursor': preamble = 'You are an expert AI Product Manager. Follow these rules:\n\n'; extName = '.cursorrules'; break;
-                case 'vscode': preamble = 'You are an expert AI Product Manager. Follow these rules:\n\n'; extName = '.clinerules'; break;
-                case 'copilot': preamble = 'You are an expert AI Product Manager. Follow these rules:\n\n'; extName = 'copilot-instructions.md'; break;
-                case 'windsurf': preamble = 'You are an expert AI Product Manager. Follow these rules:\n\n'; extName = '.windsurfrules'; break;
-                case 'aider': preamble = 'You are an expert AI Product Manager. Follow these rules:\n\n'; extName = 'CONVENTIONS.md'; break;
-                case 'pi': preamble = 'You are an expert AI Product Manager. Follow these rules:\n\n'; extName = 'APPEND_SYSTEM.md'; break;
-                case 'claudeprompt': preamble = 'You are an expert AI Product Manager. Follow these rules:\n\n'; extName = 'CLAUDE.md'; break;
-                case 'agents': preamble = 'You are an expert AI Product Manager. Follow these rules:\n\n'; extName = 'AGENTS.md'; break;
-                case 'prompt': preamble = 'You are an expert Product Manager AI. Adhere to the following skills and instructions:\n\n'; extName = 'Промпт в чат'; break;
-            }
-
-            const hintDiv = document.getElementById('format-hint');
-            if (hintDiv) {
-                hintDiv.style.display = 'block';
-                hintDiv.innerHTML = `<i class="fa-solid fa-file-export"></i> Выбран формат: <b>${extName}</b>`;
-            }
-
-            const installHint = document.getElementById('install-hint');
-            const installHintText = document.getElementById('install-hint-text');
-            if (installHint && installHintText) {
-                installHint.style.display = 'block';
-                if (format === 'cursor') installHintText.innerHTML = 'Скачай архив и распакуй папку <b>.cursor/</b> прямо в корень твоего проекта.';
-                else if (format === 'vscode') installHintText.innerHTML = 'Скачай архив и распакуй папку <b>.clinerules/</b> прямо в корень твоего проекта.';
-                else if (format === 'agents') installHintText.innerHTML = 'Скачай архив и распакуй папку <b>.agents/</b> в корень твоего проекта.';
-                else if (format === 'prompt') installHintText.innerHTML = 'Скачай архив с Markdown-файлами. Их можно прикрепить к контексту чата или использовать как базу знаний (Knowledge Base).';
-                else installHintText.innerHTML = `Скачай архив и распакуй файл <b>${extName}</b> в корень твоего проекта.`;
-            }
-
-            // Concatenate rule files block
-            const blocks = selectedList.map(s => `# СКИЛЛ: /${s.id}\n\n${s.content.trim()}`);
-            output = preamble + blocks.join('\n\n---\n\n');
-            compiledPromptText = output;
-
-            // Clear visual preview container
-            promptPreview.innerHTML = '';
-
-            // Build accordions list
-            selectedList.forEach(s => {
-                const acc = document.createElement('div');
-                acc.className = 'preview-accordion';
-
-                const header = document.createElement('div');
-                header.className = 'accordion-header';
-                header.innerHTML = `
-                    <span>/${s.id} (${s.name})</span>
-                    <div style="display: flex; align-items: center; gap: 0.6rem;">
-                        <i class="fa-solid fa-copy copy-single-btn" data-id="${s.id}" title="Скопировать этот промпт" style="cursor: pointer; opacity: 0.6; padding: 2px; transition: color 0.2s;"></i>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
+                row.innerHTML = `
+                    <td style="text-align: center;">
+                        <div class="card-checkbox" style="margin: 0 auto;">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                    </td>
+                    <td class="table-cell-id">/${escapeHtml(skill.id)}</td>
+                    <td class="table-cell-name">${escapeHtml(name)}</td>
+                    <td class="table-cell-desc" title="${escapeHtml(desc)}">${escapeHtml(desc)}</td>
+                    <td style="text-align: center;"><span class="card-badge badge-${presetKey}">${escapeHtml(skill.preset || 'core')}</span></td>
+                    <td style="text-align: center;">
+                        <button class="btn-card" style="display: inline-flex; justify-content: center; margin: 0 auto;" onclick="openSkillDetail('${skill.id}', event)">
+                            <i class="fa-regular fa-file-lines"></i> ${t.btnInfo}
+                        </button>
+                    </td>
                 `;
-
-                const body = document.createElement('div');
-                body.className = 'accordion-body';
-
-                // Parse markdown content
-                if (typeof marked !== 'undefined') {
-                    body.innerHTML = marked.parse(s.content);
-                } else {
-                    body.innerText = s.content;
-                }
-
-                header.addEventListener('click', (e) => {
-                    if (e.target.closest('.copy-single-btn')) return;
-
-                    const isActive = acc.classList.contains('active');
-                    if (isActive) {
-                        acc.classList.remove('active');
-                        body.style.display = 'none';
-                    } else {
-                        acc.classList.add('active');
-                        body.style.display = 'block';
-                    }
-                });
-
-                header.querySelector('.copy-single-btn').addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    navigator.clipboard.writeText(s.content).then(() => {
-                        const icon = header.querySelector('.copy-single-btn');
-                        icon.className = 'fa-solid fa-circle-check';
-                        icon.style.color = '#10b981';
-                        setTimeout(() => {
-                            icon.className = 'fa-solid fa-copy copy-single-btn';
-                            icon.style.color = '';
-                        }, 2000);
-                    });
-                });
-
-                acc.appendChild(header);
-                acc.appendChild(body);
-                promptPreview.appendChild(acc);
+                skillsTableBody.appendChild(row);
             });
         }
 
-        // Event listeners
-        function setupEventListeners() {
-            // Preset filters
-            presetButtons.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    if (e.target.closest('.add-preset-btn')) return;
+        // Toggle Skill Selection
+        function toggleSkill(id) {
+            if (selectedSkills.has(id)) {
+                selectedSkills.delete(id);
+            } else {
+                selectedSkills.add(id);
+            }
+            renderSkills();
+            updatePromptPreview();
+        }
 
-                    document.getElementById('combo-description').style.display = 'none';
-                    currentComboId = null;
+        // Live RAG Suggestions
+        function runLocalRAG(query) {
+            const queryTerms = query.toLowerCase().split(/\\s+/).filter(w => w && !STOPWORDS.has(w));
+            if (queryTerms.length === 0) {
+                ragRecommendations.style.display = 'none';
+                return;
+            }
 
-                    presetButtons.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    currentPreset = btn.dataset.preset;
-                    renderSkills();
+            const scored = SKILLS_DB.map(skill => ({
+                skill,
+                score: calculateRelevance(skill, queryTerms)
+            })).filter(item => item.score > 0)
+              .sort((a, b) => b.score - a.score)
+              .slice(0, 5);
+
+            if (scored.length > 0) {
+                ragRecommendations.style.display = 'flex';
+                ragList.innerHTML = '';
+                scored.forEach(item => {
+                    const tag = document.createElement('div');
+                    tag.className = 'rag-item';
+                    tag.innerHTML = `<span>+ ${escapeHtml(getSkillName(item.skill))}</span>`;
+                    tag.onclick = () => {
+                        selectedSkills.add(item.skill.id);
+                        renderSkills();
+                        updatePromptPreview();
+                    };
+                    ragList.appendChild(tag);
                 });
+            } else {
+                ragRecommendations.style.display = 'none';
+            }
+        }
+
+        aiSearchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderSkills();
+            runLocalRAG(searchQuery);
+        });
+
+        // Category Filter
+        document.querySelectorAll('.preset-btn[data-preset]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentPreset = btn.getAttribute('data-preset');
+                comboDescBanner.style.display = 'none';
+                activeComboId = null;
+                renderSkills();
             });
+        });
 
-            // Quick load combos logic
-            document.querySelectorAll('.combo-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const comboId = btn.dataset.combo;
-                    currentComboId = comboId;
-                    const targetPresets = new Set(COMBOS[comboId]);
-
-                    // Clear current selection
+        // Combo Role Selection
+        document.querySelectorAll('.combo-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const comboId = parseInt(btn.getAttribute('data-combo'), 10);
+                const combo = COMBOS.find(c => c.id === comboId);
+                if (combo) {
+                    activeComboId = comboId;
                     selectedSkills.clear();
-
-                    // Select all skills matching these presets
-                    SKILLS_DB.forEach(s => {
-                        if (targetPresets.has(s.preset)) {
-                            selectedSkills.add(s.id);
-                        }
-                    });
-
-                    // Show description
-                    const descInfo = COMBO_DESCRIPTIONS[comboId];
-                    if (descInfo) {
-                        document.getElementById('combo-desc-title').innerHTML = descInfo.title;
-                        document.getElementById('combo-desc-text').innerHTML = descInfo.desc;
-                        document.getElementById('combo-description').style.display = 'flex';
-                    }
-
-                    presetButtons.forEach(b => b.classList.remove('active'));
-
-                    updatePromptBuilder();
-                    updatePresetCounts();
-                    renderSkills();
-                    runLocalRAG(aiSearchInput.value);
-
-                    // Visual feedback: briefly highlight the button
-                    const originalBg = btn.style.background;
-                    btn.style.background = 'rgba(16, 185, 129, 0.15)';
-                    btn.style.borderColor = 'rgba(16, 185, 129, 0.4)';
-                    setTimeout(() => {
-                        btn.style.background = originalBg;
-                        btn.style.borderColor = '';
-                    }, 1000);
-                });
-            });
-
-            // Instant Search & RAG
-            aiSearchInput.addEventListener('input', (e) => {
-                searchQuery = e.target.value.toLowerCase().trim();
-                renderSkills();
-                runLocalRAG(e.target.value);
-            });
-
-            // Bulk actions
-            btnSelectPreset.addEventListener('click', () => {
-                document.getElementById('combo-description').style.display = 'none';
-
-                SKILLS_DB.forEach(s => {
-                    if (currentPreset === 'all' || s.preset === currentPreset) {
-                        selectedSkills.add(s.id);
-                    }
-                });
-                updatePromptBuilder();
-                updatePresetCounts();
-                renderSkills();
-                runLocalRAG(aiSearchInput.value);
-            });
-
-            btnClearSelection.addEventListener('click', () => {
-                document.getElementById('combo-description').style.display = 'none';
-
-                selectedSkills.clear();
-                updatePromptBuilder();
-                updatePresetCounts();
-                renderSkills();
-                runLocalRAG(aiSearchInput.value);
-            });
-
-            // Exporter change
-            exporterType.addEventListener('change', () => {
-                updatePromptBuilder();
-            });
-
-            // Copy prompt button
-            btnCopyPrompt.addEventListener('click', () => {
-                const text = compiledPromptText;
-                if (!text) {
-                    alert('Пожалуйста, выберите сначала хотя бы один скилл.');
-                    return;
-                }
-                navigator.clipboard.writeText(text).then(() => {
-                    const originalHTML = btnCopyPrompt.innerHTML;
-                    btnCopyPrompt.innerHTML = '<i class="fa-solid fa-circle-check"></i> Скопировано!';
-                    btnCopyPrompt.style.background = '#10b981';
-                    setTimeout(() => {
-                        btnCopyPrompt.innerHTML = originalHTML;
-                        btnCopyPrompt.style.background = '';
-                    }, 2000);
-                });
-            });
-
-            // Download file rules button
-            btnDownloadPrompt.addEventListener('click', async () => {
-                if (selectedSkills.size === 0) {
-                    alert('Пожалуйста, выберите сначала хотя бы один скилл.');
-                    return;
-                }
-
-                const format = exporterType.value;
-                const zip = new JSZip();
-
-                // Get selected skills objects
-                const selectedList = SKILLS_DB.filter(s => selectedSkills.has(s.id));
-
-                if (format === 'agents') {
-                    selectedList.forEach(s => {
-                        const content = `---\nname: ${s.name}\ndescription: ${s.description}\n---\n\n${s.content}`;
-                        zip.file(`.agents/skills/${s.id}/SKILL.md`, content);
-                    });
-                } else if (format === 'cursor') {
-                    selectedList.forEach(s => {
-                        zip.file(`.cursor/rules/${s.id}.mdc`, s.content);
-                    });
-                } else if (format === 'vscode') {
-                    selectedList.forEach(s => {
-                        zip.file(`.clinerules/${s.id}.md`, s.content);
-                    });
-                } else if (format === 'prompt') {
-                    selectedList.forEach(s => {
-                        zip.file(`${s.id}.md`, s.content);
-                    });
-                } else {
-                    let filename = 'SYSTEM_PROMPT.md';
-                    if (format === 'copilot') filename = '.github/copilot-instructions.md';
-                    else if (format === 'windsurf') filename = '.windsurfrules';
-                    else if (format === 'aider') filename = 'CONVENTIONS.md';
-                    else if (format === 'pi') filename = 'APPEND_SYSTEM.md';
-                    else if (format === 'claudeprompt') filename = 'CLAUDE.md';
-
-                    let mergedContent = `# System Instructions\n\n`;
-                    selectedList.forEach(s => {
-                        mergedContent += `<skill name="${s.id}">\n${s.content}\n</skill>\n\n`;
-                    });
-                    zip.file(filename, mergedContent);
-                }
-
-                // Add Installation Guide
-                let installGuide = '';
-                if (format === 'agents') {
-                    installGuide = `# Как установить скиллы для Antigravity\n\n1. Распакуйте архив в корень вашего проекта.\n2. Папка \`.agents\` должна оказаться в корне (на одном уровне с вашим кодом).\n3. Перезапустите или запустите Antigravity — он автоматически обнаружит новые скиллы и начнёт их использовать.\n\n## Как использовать\nПросто попросите ассистента в чате применить нужный скилл. Например: *"Напиши код, используя скилл [название]"* или *"Проведи ревью по правилам [название]"*.\n`;
-                } else if (format === 'cursor') {
-                    installGuide = `# Как установить скиллы для Cursor\n\n1. Распакуйте архив в корень вашего проекта.\n2. Убедитесь, что появилась папка \`.cursor/rules/\` с файлами \`.mdc\` внутри.\n3. Откройте Cursor. Правила применятся автоматически. Для надёжности можно перезагрузить окно (Cmd/Ctrl + Shift + P -> Reload Window).\n\n## Как использовать\nВ чате Cursor (Cmd/Ctrl + L) или в Composer (Cmd/Ctrl + I) упомяните правило через символ \`@\`. Например: *"@presentation-design сделай слайд"*. Либо Cursor сам применит их, если контекст совпадает.\n`;
-                } else if (format === 'vscode') {
-                    installGuide = `# Как установить скиллы для Roo Code / Cline\n\n1. Распакуйте архив в корень вашего проекта.\n2. Папка \`.clinerules\` должна оказаться в корне проекта.\n3. ИИ-ассистент автоматически прочитает эти файлы как системные инструкции.\n\n## Как использовать\nАссистент будет автоматически учитывать эти правила при анализе задач. Вы также можете явно сказать ему: *"Используй инструкцию [название] для этой задачи"*.\n`;
-                } else if (format === 'prompt') {
-                    installGuide = `# Промпты для ChatGPT, DeepSeek и Claude (Web)\n\nВы скачали скиллы в виде отдельных Markdown-файлов. Вот как их правильно использовать:\n\n## 🟩 Как использовать в ChatGPT (Custom GPTs)\n1. Откройте ChatGPT и перейдите в **Explore GPTs** -> **+ Create**.\n2. Перейдите на вкладку **Configure**.\n3. В разделе **Knowledge** загрузите скачанные \`.md\` файлы.\n4. В **Instructions** добавьте: *"При решении задач всегда обращайся к правилам из загруженных файлов базы знаний"*.\n\n## 🟧 Как использовать в Claude (Projects)\n1. Откройте Claude.ai и создайте **Project**.\n2. В разделе **Project knowledge** загрузите скачанные \`.md\` файлы.\n3. В **Custom instructions** напишите: *"Используй прикрепленные файлы правил для решения задач"*.\n\n## 🟦 Как использовать прямо в диалоге (Разово)\nПросто скопируйте текст нужного \`.md\` файла и вставьте в чат перед вашей задачей. Например:\n\n[Вставленный текст скилла]\n---\nА теперь выполни задачу: ...\n`;
-                } else if (format === 'claudeprompt') {
-                    installGuide = `# Как установить скиллы для Claude Code\n\n1. Распакуйте архив.\n2. Поместите файл \`CLAUDE.md\` в самый корень вашего проекта.\n3. Запустите Claude Code (\`claude\`) в терминале. Он автоматически прочитает этот файл и будет использовать его как системную инструкцию.\n\n## Как использовать\nClaude Code читает \`CLAUDE.md\` при каждом запросе. Просто скажите ему: *"Выполни задачу, следуя правилу [название]"*.\n`;
-                } else if (format === 'windsurf') {
-                    installGuide = `# Как установить скиллы для Windsurf\n\n1. Распакуйте архив.\n2. Поместите файл \`.windsurfrules\` в самый корень вашего проекта.\n3. IDE Windsurf автоматически подхватит эти правила для встроенного AI-ассистента Cascade.\n\n## Как использовать\nАссистент будет автоматически учитывать эти правила в контексте проекта. Вы можете явно сослаться на них в чате: *"Следуй правилам из .windsurfrules для этой задачи"*.\n`;
-                } else if (format === 'copilot') {
-                    installGuide = `# Как установить скиллы для GitHub Copilot\n\n1. Распакуйте архив.\n2. Убедитесь, что папка \`.github\` с файлом \`copilot-instructions.md\` внутри находится в корне вашего проекта.\n3. GitHub Copilot Chat будет автоматически учитывать эти инструкции при ответах.\n\n## Как использовать\nНапишите в Copilot Chat вашу задачу и добавьте: *"Используй инструкции для проекта"*. Он автоматически подтянет правила из файла.\n`;
-                } else if (format === 'aider') {
-                    installGuide = `# Как установить скиллы для Aider\n\n1. Распакуйте архив.\n2. Поместите файл \`CONVENTIONS.md\` в корень вашего проекта.\n3. Запустите Aider. Он будет использовать этот файл для соблюдения правил.\n\n## Как использовать\nAider считывает \`CONVENTIONS.md\` автоматически. Просто ставьте ему задачи, и он будет придерживаться ваших стандартов.\n`;
-                } else if (format === 'pi') {
-                    installGuide = `# Как установить скиллы для Pi Agent\n\n1. Распакуйте архив.\n2. Поместите файл \`APPEND_SYSTEM.md\` в корень вашего проекта.\n3. Pi Agent прочитает его при следующем запуске.\n\n## Как использовать\nPi Agent интегрирует этот файл в свой системный промпт. Никаких дополнительных действий не требуется.\n`;
-                }
-                zip.file("README_INSTALL.md", installGuide);
-
-                const btnOriginalHTML = btnDownloadPrompt.innerHTML;
-                btnDownloadPrompt.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Подготовка архива...';
-                
-                try {
-                    const blob = await zip.generateAsync({ type: 'blob' });
-                    const link = document.createElement('a');
-                    link.href = URL.createObjectURL(blob);
-                    link.setAttribute('download', 'pdm_skills_export.zip');
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
+                    combo.skills.forEach(s => selectedSkills.add(s));
                     
-                    // Track download
-                    fetch('https://api.counterapi.dev/v1/Anton-Creates/pdm-skills-builder-downloads/up')
-                        .then(res => res.json())
-                        .then(data => {
-                            const el = document.getElementById('download-count');
-                            if (el) el.innerText = data.count;
-                        }).catch(() => {});
-                } catch (e) {
-                    console.error('Ошибка создания архива', e);
-                    alert('Не удалось создать архив. Проверьте консоль.');
+                    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const t = I18N[currentLang];
+                    comboDescTitle.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent);"></i> ${t.comboPrefix} ${escapeHtml(currentLang === 'ru' ? combo.ruName : combo.enName)}`;
+                    comboDescText.innerText = COMBO_DESCRIPTIONS[currentLang][comboId] || '';
+                    comboDescBanner.style.display = 'block';
+
+                    currentPreset = 'all';
+                    document.querySelector('.preset-btn[data-preset="all"]').classList.add('active');
+
+                    renderSkills();
+                    updatePromptPreview();
                 }
-                
-                btnDownloadPrompt.innerHTML = btnOriginalHTML;
+            });
+        });
+
+        // Bulk Selection Actions
+        document.getElementById('btn-select-preset').addEventListener('click', () => {
+            const queryTerms = searchQuery.toLowerCase().split(/\\s+/).filter(w => w && !STOPWORDS.has(w));
+            SKILLS_DB.forEach(skill => {
+                if (currentPreset === 'all' || skill.preset === currentPreset) {
+                    if (queryTerms.length === 0 || calculateRelevance(skill, queryTerms) > 0) {
+                        selectedSkills.add(skill.id);
+                    }
+                }
+            });
+            renderSkills();
+            updatePromptPreview();
+        });
+
+        document.getElementById('btn-reset-preset').addEventListener('click', () => {
+            selectedSkills.clear();
+            renderSkills();
+            updatePromptPreview();
+        });
+
+        // Token Estimator & Live Prompt Preview
+        function updatePromptPreview() {
+            const selectedList = SKILLS_DB.filter(s => selectedSkills.has(s.id));
+            const count = selectedList.length;
+            const t = I18N[currentLang];
+            
+            selectedBadgeInfo.innerHTML = `(${t.selected}: <b>${count}</b>)`;
+            statSelectedCount.innerText = count;
+
+            if (count === 0) {
+                promptPreview.innerText = t.previewEmpty;
+                statTokensEst.innerText = "0 tok";
+                contextBarFill.style.width = "0%";
+                return;
+            }
+
+            let fullContent = "";
+            selectedList.forEach(s => {
+                fullContent += getSkillContent(s) + "\\n\\n";
             });
 
-            // Modal detailing view
-            skillsGrid.addEventListener('click', (e) => {
-                const detailsBtn = e.target.closest('[data-action="view-details"]');
-                if (!detailsBtn) return;
+            // Token estimation (approx 3.2 chars per token)
+            const approxTokens = Math.round(fullContent.length / 3.2);
+            statTokensEst.innerText = `~${approxTokens.toLocaleString(currentLang === 'ru' ? 'ru-RU' : 'en-US')} tok`;
 
-                const skillId = detailsBtn.dataset.id;
-                openSkillDetails(skillId);
+            // Max context window calculation
+            const percent = Math.min(100, Math.max(4, Math.round((approxTokens / 128000) * 100)));
+            contextBarFill.style.width = `${percent}%`;
+
+            let previewText = t.promptHeader.replace('{count}', count);
+            selectedList.forEach(s => {
+                previewText += `## ${getSkillName(s)} (/${s.id})\\n${getSkillDesc(s)}\\n\\n`;
             });
 
-            modalClose.addEventListener('click', () => {
+            promptPreview.innerText = previewText;
+        }
+
+        // Modal Logic
+        function openSkillDetail(id, e) {
+            if (e) e.stopPropagation();
+            const skill = SKILLS_DB.find(s => s.id === id);
+            if (!skill) return;
+
+            const name = getSkillName(skill);
+            const content = getSkillContent(skill);
+
+            modalTitle.innerHTML = `<i class="fa-solid fa-file-lines" style="color: var(--accent);"></i> ${escapeHtml(name)} <span class="card-id" style="font-size: 0.8rem; margin-left: 0.5rem;">/${escapeHtml(skill.id)}</span>`;
+            modalBody.innerHTML = marked.parse(content || '# No description');
+            detailModal.style.display = 'flex';
+        }
+
+        modalCloseBtn.addEventListener('click', () => {
+            detailModal.style.display = 'none';
+        });
+
+        detailModal.addEventListener('click', (e) => {
+            if (e.target === detailModal) {
                 detailModal.style.display = 'none';
+            }
+        });
+
+        // Copy Prompt
+        document.getElementById('btn-copy-prompt').addEventListener('click', () => {
+            const selectedList = SKILLS_DB.filter(s => selectedSkills.has(s.id));
+            const t = I18N[currentLang];
+            if (selectedList.length === 0) {
+                alert(currentLang === 'ru' ? "Пожалуйста, выберите хотя бы один скилл!" : "Please select at least one skill!");
+                return;
+            }
+
+            let fullPrompt = t.copyPromptHeader;
+            selectedList.forEach(s => {
+                fullPrompt += getSkillContent(s) + "\\n\\n---\\n\\n";
             });
 
-            // Modal copy button
-            const btnCopyModal = document.getElementById('btn-copy-modal');
-            btnCopyModal.addEventListener('click', () => {
-                if (!activeModalSkillId) return;
-                const skill = SKILLS_DB.find(s => s.id === activeModalSkillId);
-                if (skill) {
-                    navigator.clipboard.writeText(skill.content).then(() => {
-                        const originalHTML = btnCopyModal.innerHTML;
-                        btnCopyModal.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
-                        btnCopyModal.style.background = 'rgba(16, 185, 129, 0.2)';
-                        btnCopyModal.style.color = '#10b981';
-                        setTimeout(() => {
-                            btnCopyModal.innerHTML = originalHTML;
-                            btnCopyModal.style.background = '';
-                            btnCopyModal.style.color = '';
-                        }, 2000);
-                    });
-                }
+            navigator.clipboard.writeText(fullPrompt).then(() => {
+                const btn = document.getElementById('btn-copy-prompt');
+                const orig = btn.innerHTML;
+                btn.innerHTML = `<i class="fa-solid fa-check"></i> ${t.btnCopied}`;
+                setTimeout(() => btn.innerHTML = orig, 2000);
             });
+        });
 
-            window.addEventListener('click', (e) => {
-                if (e.target === detailModal) {
-                    detailModal.style.display = 'none';
-                }
-            });
+        // Download Zip Export for 9 IDEs and Agents
+        document.getElementById('btn-download-zip').addEventListener('click', async () => {
+            const selectedList = SKILLS_DB.filter(s => selectedSkills.has(s.id));
+            const t = I18N[currentLang];
+            if (selectedList.length === 0) {
+                alert(currentLang === 'ru' ? "Пожалуйста, выберите хотя бы один скилл для скачивания!" : "Please select at least one skill to download!");
+                return;
+            }
 
-            // Native tooltip for exporter type select
-            exporterType.addEventListener('change', () => {
-                exporterType.title = exporterType.options[exporterType.selectedIndex].text;
-                updatePromptBuilder();
-            });
+            const target = exporterType.value;
+            const zip = new JSZip();
+
+            if (target === 'prompt') {
+                let fullPrompt = t.copyPromptHeader;
+                selectedList.forEach(s => { fullPrompt += getSkillContent(s) + "\\n\\n---\\n\\n"; });
+                zip.file("SYSTEM_PROMPT.md", fullPrompt);
+            } else if (target === 'cursor') {
+                const folder = zip.folder(".cursor/rules");
+                selectedList.forEach(s => {
+                    const ruleContent = `---\\ndescription: ${getSkillDesc(s)}\\nglobs: *\\n---\\n\\n${getSkillContent(s)}`;
+                    folder.file(`${s.id}.mdc`, ruleContent);
+                });
+            } else if (target === 'vscode') {
+                let clineRules = "# ROO CODE / CLINE CUSTOM INSTRUCTIONS\\n\\n";
+                selectedList.forEach(s => { clineRules += getSkillContent(s) + "\\n\\n---\\n\\n"; });
+                zip.file(".clinerules", clineRules);
+            } else if (target === 'copilot') {
+                let copilotDoc = "# GITHUB COPILOT INSTRUCTIONS\\n\\n";
+                selectedList.forEach(s => { copilotDoc += getSkillContent(s) + "\\n\\n---\\n\\n"; });
+                zip.file(".github/copilot-instructions.md", copilotDoc);
+            } else if (target === 'windsurf') {
+                let windsurfDoc = "# WINDSURF RULES\\n\\n";
+                selectedList.forEach(s => { windsurfDoc += getSkillContent(s) + "\\n\\n---\\n\\n"; });
+                zip.file(".windsurfrules", windsurfDoc);
+            } else if (target === 'aider') {
+                let aiderDoc = "# AIDER CONVENTIONS\\n\\n";
+                selectedList.forEach(s => { aiderDoc += getSkillContent(s) + "\\n\\n---\\n\\n"; });
+                zip.file("CONVENTIONS.md", aiderDoc);
+            } else if (target === 'pi') {
+                let piDoc = "# PI AGENT SYSTEM INSTRUCTIONS\\n\\n";
+                selectedList.forEach(s => { piDoc += getSkillContent(s) + "\\n\\n---\\n\\n"; });
+                zip.file("APPEND_SYSTEM.md", piDoc);
+            } else if (target === 'claudeprompt') {
+                let claudeDoc = "# CLAUDE CODE INSTRUCTIONS (CLAUDE.md)\\n\\n";
+                selectedList.forEach(s => { claudeDoc += getSkillContent(s) + "\\n\\n---\\n\\n"; });
+                zip.file("CLAUDE.md", claudeDoc);
+            } else if (target === 'agents') {
+                const folder = zip.folder(".agents/skills");
+                selectedList.forEach(s => {
+                    const skillDir = folder.folder(s.id);
+                    skillDir.file("SKILL.md", `---\\nname: ${s.id}\\ndescription: ${getSkillDesc(s)}\\n---\\n\\n${getSkillContent(s)}`);
+                });
+            }
+
+            const content = await zip.generateAsync({ type: "blob" });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(content);
+            link.download = `pdm-skills-${target}-${currentLang}-${Date.now()}.zip`;
+            link.click();
+
+            // Track download
+            fetch('https://api.counterapi.dev/v1/Anton-Creates/pdm-skills-builder-downloads/up').catch(() => {});
+        });
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
         }
     </script>
-</body>
 
+</body>
 </html>

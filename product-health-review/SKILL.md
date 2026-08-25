@@ -24,6 +24,7 @@ output-artifact: product-health-review
 5. Проверь качество продукта: reliability, support, UX, complaints.
 6. Найди root causes красных зон.
 7. Сформируй 30/60/90 day action plan.
+8. **Сохрани вывод** в текущей рабочей директории как `product-health-review-[контекст].md`.
 
 ## Формат вывода
 
