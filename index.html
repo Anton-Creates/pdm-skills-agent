@@ -1805,34 +1805,40 @@
             skillsTableContainer.style.display = 'block';
         });
 
-        // Analytics counters with reliable fallbacks
+        // Real Live Analytics Counters (starting from real hits)
+        function parseBadgeCount(svg) {
+            const matches = svg.match(/>([0-9,]+)</g);
+            if (matches && matches.length > 0) {
+                const raw = matches[matches.length - 1].replace(/[><]/g, '').replace(/,/g, '');
+                const val = parseInt(raw, 10);
+                if (!isNaN(val)) return val;
+            }
+            return null;
+        }
+
         function initAnalytics() {
-            fetch('https://api.counterapi.dev/v1/Anton-Creates/pdm-skills-builder-views/up')
-                .then(res => res.json())
-                .then(data => {
+            // Live Page Views Counter
+            fetch(`https://visitor-badge.laobi.icu/badge?page_id=Anton-Creates.pdm-skills-builder.live_views&_t=${Date.now()}`)
+                .then(res => res.text())
+                .then(svg => {
+                    const val = parseBadgeCount(svg);
                     const el = document.getElementById('view-count');
-                    if (el) {
-                        const val = (data && typeof data.count === 'number') ? data.count : (data && typeof data.value === 'number') ? data.value : null;
-                        if (val !== null) el.innerText = val.toLocaleString(currentLang === 'ru' ? 'ru-RU' : 'en-US');
-                        else el.innerText = '1 420';
-                    }
+                    if (el) el.innerText = (val !== null ? val.toLocaleString('ru-RU') : '1');
                 }).catch(() => {
                     const el = document.getElementById('view-count');
-                    if (el && el.innerText === '...') el.innerText = '1 420';
+                    if (el && el.innerText === '...') el.innerText = '0';
                 });
 
-            fetch('https://api.counterapi.dev/v1/Anton-Creates/pdm-skills-builder-downloads')
-                .then(res => res.json())
-                .then(data => {
+            // Live Downloads Counter (fetch current count)
+            fetch(`https://visitor-badge.laobi.icu/badge?page_id=Anton-Creates.pdm-skills-builder.live_downloads&_t=${Date.now()}`)
+                .then(res => res.text())
+                .then(svg => {
+                    const val = parseBadgeCount(svg);
                     const el = document.getElementById('download-count');
-                    if (el) {
-                        const val = (data && typeof data.count === 'number') ? data.count : (data && typeof data.value === 'number') ? data.value : null;
-                        if (val !== null) el.innerText = val.toLocaleString(currentLang === 'ru' ? 'ru-RU' : 'en-US');
-                        else el.innerText = '380';
-                    }
+                    if (el) el.innerText = (val !== null ? val.toLocaleString('ru-RU') : '0');
                 }).catch(() => {
                     const el = document.getElementById('download-count');
-                    if (el && el.innerText === '...') el.innerText = '380';
+                    if (el && el.innerText === '...') el.innerText = '0';
                 });
         }
 
@@ -2288,8 +2294,14 @@
             link.download = `pdm-skills-${target}-${currentLang}-${Date.now()}.zip`;
             link.click();
 
-            // Track download
-            fetch('https://api.counterapi.dev/v1/Anton-Creates/pdm-skills-builder-downloads/up').catch(() => {});
+            // Track download in real counter
+            fetch(`https://visitor-badge.laobi.icu/badge?page_id=Anton-Creates.pdm-skills-builder.live_downloads&_t=${Date.now()}`)
+                .then(res => res.text())
+                .then(svg => {
+                    const val = parseBadgeCount(svg);
+                    const el = document.getElementById('download-count');
+                    if (el && val !== null) el.innerText = val.toLocaleString('ru-RU');
+                }).catch(() => {});
         });
 
         function escapeHtml(text) {
