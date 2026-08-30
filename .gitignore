@@ -9,3 +9,5 @@ recommendations/
 Thumbs.db
 
 enrichment/
+__pycache__/
+*.pyc

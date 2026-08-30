@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding='utf-8')
 
-ROOT_DIR = Path(r"c:\Users\anton\.gemini\antigravity\projects\pdm-skills-builder")
+ROOT_DIR = Path(__file__).parent.resolve()
 
 def parse_skill_file(file_path):
     if not file_path.exists():
