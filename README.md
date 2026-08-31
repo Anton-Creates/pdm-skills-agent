@@ -32,13 +32,13 @@ git clone https://github.com/Anton-Creates/pdm-skills-agent.git
 @skills/prd @skills/roadmap Подготовь документацию для фичи авторизации.
 ```
 
-### Claude Projects
+### Claude
 
 1. Создайте новый Project на claude.ai.
 2. В «Custom Instructions» вставьте содержимое `.agents/AGENTS.md`.
 3. Загрузите нужные `SKILL.md` файлы в базу знаний проекта.
 
-### OpenAI / ChatGPT
+### ChatGPT / OpenAI
 
 1. Создайте GPT или Project.
 2. Загрузите `.agents/AGENTS.md` как системную инструкцию.
@@ -90,3 +90,5 @@ pdm-skills-agent/
 ---
 
 > Рабочий репозиторий (сайт, аудит, инструменты разработки): [pdm-skills-builder](https://github.com/Anton-Creates/pdm-skills-builder)
+
+
