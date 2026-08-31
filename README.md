@@ -1,74 +1,78 @@
-# 🚀 PdM Skills Builder & Co-Pilot Agent
+﻿# PdM Skills Builder
 
-![Product Management](https://img.shields.io/badge/Product-Management-blue) ![E2E Tested](https://img.shields.io/badge/E2E-100%25_Tested-success) ![Antigravity](https://img.shields.io/badge/AI-Agent_Ready-purple) ![Skills](https://img.shields.io/badge/Skills-130-orange)
+![Skills](https://img.shields.io/badge/Skills-130-blue) ![E2E Tested](https://img.shields.io/badge/E2E-100%25_Tested-success) ![Antigravity](https://img.shields.io/badge/AI-Agent_Ready-purple)
 
-**PdM Skills Builder** — это эталонная библиотека из **130 профессиональных скиллов (фреймворков)** для продакт-менеджеров, а также готовая конфигурация для превращения LLM в вашего личного Senior Product Manager Co-Pilot.
+Библиотека из 130 структурированных инструкций для LLM, заточенных под задачи продакт-менеджера: PRD, Roadmap, User Stories, CJM, юнит-экономика, OKR, конкурентный анализ и многое другое.
 
-Забудьте про мусорные подборки "100500 промптов для ChatGPT". Каждая инструкция в этом репозитории:
-- Прошла автоматизированное E2E-тестирование.
-- Закодирована в строгий Markdown с BDD-сценариями (Given/When/Then).
-- Заставляет LLM генерировать сложные артефакты (PRD, CJM, юнит-экономику, Roadmap) с таблицами, формулами и расчетами, не давая "скатиться" в воду.
+Каждая инструкция написана в Markdown, содержит строгую выходную структуру с BDD-сценариями и протестирована на реальных прогонах через LLM. Без воды, без «помоги мне написать промпт» — только конкретные артефакты.
 
----
-
-## 🏆 Результаты глобального аудита
-Библиотека доказала свою надежность. В ходе последнего 100-процентного E2E-аудита (прогона всех 130 скиллов через LLM):
-- **130 из 130 скиллов** получили оценку `🟢 KEEP (MUST-HAVE)`.
-- Средний размер генерируемого артефакта составил **от 500 до 1100 слов**.
-- Среднее количество расчетных таблиц в одном ответе: **от 10 до 35**.
-- **0 дубликатов**: семантический анализатор доказал уникальность каждого из 130 скиллов.
+**Каталог с поиском и экспортом:** https://anton-creates.github.io/pdm-skills-builder/
 
 ---
 
-## 🤖 Использование как AI-Агента (Автоматический режим)
+## Как использовать
 
-Репозиторий настроен как **плагин (Workspace)** для современных AI-IDE. Когда вы подключаете эту папку, нейросеть автоматически получает доступ ко всем 130 фреймворкам и превращается в профессионального продакта.
+### Вариант 1 — Antigravity IDE (полноавтоматический режим)
 
-### Опция 1: Antigravity IDE (Рекомендуется)
-Конфигурация уже встроена в папку `.agents`.
-1. Склонируйте репозиторий.
-2. Откройте папку в **Antigravity IDE**.
-3. Агент автоматически прочитает `.agents/skills.json` и `AGENTS.md`.
-4. Напишите в чат задачу (например, *"Я запускаю B2B маркетплейс, подготовь PRD и Roadmap"*). Агент **сам** выберет нужные скиллы из 130 доступных, составит цепочку и выдаст результат по золотому стандарту.
+Конфигурация встроена в папку `.agents`. Клонируйте репозиторий и откройте его в Antigravity IDE — агент автоматически загружает все 130 скиллов через `.agents/skills.json` и системный промпт из `AGENTS.md`.
 
-### Опция 2: Cursor / Codex
-Если вы используете Cursor, вы можете добавить эти скиллы как контекст для AI:
-1. Создайте в корне вашего проекта файл `.cursorrules`.
-2. Скопируйте в него содержимое `.agents/AGENTS.md`, чтобы задать Cursor-у роль Senior PdM.
-3. Используйте функцию `@Folder`, чтобы прикрепить папку `skills/` к запросу. Пример промпта в чате Cursor: 
-   > `@skills/prd` `@skills/roadmap` Построй документацию для нашей новой фичи авторизации на основе этих фреймворков.
+Просто пишите задачу в чат:
+> *«Я запускаю B2B маркетплейс, подготовь PRD и Roadmap»*
 
-### Опция 3: Claude Projects (Claude.ai)
-Вы можете создать виртуального Co-Pilot в веб-версии Claude:
-1. Создайте новый **Project** в Claude.
-2. В раздел "Custom Instructions" скопируйте текст из `.agents/AGENTS.md`.
-3. Загрузите файлы `SKILL.md` из нужных вам папок внутри `skills/` в базу знаний проекта (Project Knowledge).
-4. Клод будет неукоснительно следовать вашим фреймворкам при ответах.
+Агент сам подберёт нужные скиллы и выдаст результат по заданной структуре.
 
----
+### Вариант 2 — Cursor / Windsurf / Roo Code
 
-## 👤 Использование вручную (Copy-Paste)
+1. Скопируйте содержимое `.agents/AGENTS.md` в `.cursorrules` (или аналог в вашем редакторе).
+2. Добавьте нужные скиллы через `@Folder` или `@File`:
 
-Если вы просто хотите использовать промпт в ChatGPT или веб-версии Claude:
-1. Откройте папку `skills/`.
-2. Найдите нужный домен (например, `core/`, `discovery/`, `growth/`).
-3. Откройте файл `SKILL.md` внутри папки.
-4. Скопируйте блок `instructions` и вставьте его в чат-бот как системный промпт (или просто отправьте первым сообщением).
-5. Пришлите боту вводные данные — и получите идеальный артефакт.
+```
+@skills/prd @skills/roadmap Подготовь документацию для фичи авторизации.
+```
+
+### Вариант 3 — Claude Projects / OpenAI Projects
+
+1. Создайте новый проект.
+2. В «Custom Instructions» вставьте текст из `.agents/AGENTS.md`.
+3. Добавьте нужные `SKILL.md` файлы в базу знаний проекта.
+
+### Вариант 4 — Copy-Paste в любой чат
+
+1. Откройте `skills/<нужный_скилл>/SKILL.md`.
+2. Скопируйте блок `instructions`.
+3. Вставьте как системный промпт (или первым сообщением) и передайте задачу.
 
 ---
 
-## 📂 Структура библиотеки (10+ Доменов)
+## Структура библиотеки
 
-Библиотека охватывает все фазы продуктового цикла:
-- **`core/`**: PRD, Roadmap, User Stories, Prioritization, Launch Checklist.
-- **`discovery/`**: CustDev, Persona, CJM, Market Sizing, Hypothesis Tree.
-- **`strategy/`**: Product Strategy, OKRs, Business Model Canvas, Investment Memo.
-- **`growth/`**: Funnel Analysis, Retention Model, Referral Mechanics.
-- **`saas/` & `b2b/`**: Unit Economics, Pricing Models, RFP, Enterprise Rollout.
-- **`marketplace/` & `e-commerce/`**: Matching Algorithms, Seller Economics, Loyalty CRM, Checkout Audits.
-- **`fintech/`, `govtech/`, `platforms/`** и многое другое!
+| Домен | Скиллы |
+|---|---|
+| Ядро PdM (Core) | PRD, Roadmap, User Stories, Prioritize, Launch Checklist, Decision Doc |
+| Исследования (Discovery) | Persona, CJM, Market Sizing, JTBD, User Interview, Hypothesis Tree |
+| Рост и воронки | Funnel Analysis, Onboarding Audit, Referral Mechanics, Retention Model |
+| Стратегия | OKR, Business Model Canvas, Business Case, Competitor Scan, Tenets |
+| SaaS / B2B | Subscription Economics, Pricing Model, Enterprise Discovery, RFP Response |
+| Маркетплейсы / E-com | Marketplace Model, Seller Economics, Search Ranking, Loyalty, Checkout |
+| Финтех | Credit Product Spec, Fintech Teardown, Finmarket Spec |
+| Платформы | Platform Strategy, Data Product, DSP/SSP, Mini App Platform |
+| HR-Tech / Internal | Internal Product Discovery, Admin UX, HR Portal, Task Tracker |
+| GovTech | Public Service Design, Citizen Journey, GovTech Metrics |
+| Телеком / EdTech / Retail | Telecom Subscriber, B2B Telecom, B2B EdTech, Dark Store Ops |
 
 ---
 
-*Создано с помощью AI-агентов для AI-агентов. Будущее продуктовой разработки уже здесь.*
+## Результаты аудита
+
+Все 130 скиллов прошли автоматический E2E-аудит: каждый прогонялся через LLM с реальными вводными данными и оценивался по структуре, полноте и наличию расчётов.
+
+- **130 / 130** — оценка `KEEP (MUST-HAVE)`
+- Средний объём артефакта: 500–1100 слов
+- Расчётных таблиц в одном ответе: 10–35
+- Дубликатов: 0 (подтверждено семантическим анализом)
+
+---
+
+## Автор
+
+[Антон Михайлов](https://www.linkedin.com/in/anton-mikhaylove/) · [Telegram](https://t.me/mikhaylove_anton)
