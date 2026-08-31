@@ -2005,13 +2005,30 @@
 
         // Calculate count per category
         function updatePresetCounts() {
-            document.getElementById('count-all').innerText = SKILLS_DB.length;
+            const totalSelected = selectedSkills.size;
+            const countAllEl = document.getElementById('count-all');
+            if (countAllEl) {
+                if (totalSelected > 0) {
+                    countAllEl.innerHTML = `<span style="color: var(--accent); font-weight: 700;">${totalSelected}</span> / ${SKILLS_DB.length}`;
+                } else {
+                    countAllEl.innerText = SKILLS_DB.length;
+                }
+            }
+
             const presets = ['core', 'discovery', 'growth', 'saas', 'b2b', 'internal-products', 'strategy', 'platforms-tech', 'fintech', 'marketplace', 'e-commerce', 'retail-ops', 'media-adtech', 'edtech', 'telecom', 'govtech-b2g'];
             presets.forEach(p => {
                 const el = document.getElementById(`count-${p}`);
                 if (el) {
-                    const count = SKILLS_DB.filter(s => s.preset === p).length;
-                    el.innerText = count;
+                    const totalInCategory = SKILLS_DB.filter(s => s.preset === p).length;
+                    const selectedInCategory = SKILLS_DB.filter(s => s.preset === p && selectedSkills.has(s.id)).length;
+                    
+                    if (selectedInCategory > 0) {
+                        el.innerHTML = `<span style="color: var(--accent); font-weight: 700;">${selectedInCategory}</span> / ${totalInCategory}`;
+                        el.style.borderColor = 'var(--accent)';
+                    } else {
+                        el.innerText = totalInCategory;
+                        el.style.borderColor = 'transparent';
+                    }
                 }
             });
         }
@@ -2292,6 +2309,7 @@
                 promptPreview.innerText = t.previewEmpty;
                 statTokensEst.innerText = "0 tok";
                 contextBarFill.style.width = "0%";
+                updatePresetCounts();
                 return;
             }
 
@@ -2314,6 +2332,7 @@
             });
 
             promptPreview.innerText = previewText;
+            updatePresetCounts();
         }
 
         // Modal Logic
