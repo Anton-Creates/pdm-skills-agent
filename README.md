@@ -12,9 +12,9 @@
 
 ## Быстрый старт
 
-### Antigravity IDE
+### Antigravity
 
-Конфигурация уже встроена в `.agents/`. Просто клонируйте репозиторий и откройте в Antigravity IDE:
+Конфигурация уже встроена в `.agents/`. Просто клонируйте репозиторий и откройте в Antigravity:
 
 ```bash
 git clone https://github.com/Anton-Creates/pdm-skills-agent.git
