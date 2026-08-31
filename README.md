@@ -1,8 +1,10 @@
 # PdM Skills Agent
 
-![Skills](https://img.shields.io/badge/Skills-130-blue) ![E2E Tested](https://img.shields.io/badge/E2E-100%25_Tested-success) ![License](https://img.shields.io/badge/License-MIT-green) ![Antigravity](https://img.shields.io/badge/Antigravity-Ready-purple) ![Cursor](https://img.shields.io/badge/Cursor-Ready-emerald) ![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-orange)
+![Skills](https://img.shields.io/badge/Skills-130-blue) ![Catalog](https://img.shields.io/badge/Web_Catalog-Live-green) ![E2E Tested](https://img.shields.io/badge/E2E-100%25_Tested-success) ![License](https://img.shields.io/badge/License-MIT-green) ![Antigravity](https://img.shields.io/badge/Antigravity-Ready-purple) ![Cursor](https://img.shields.io/badge/Cursor-Ready-emerald) ![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-orange)
 
 Библиотека из **130 структурных продуктовых скиллов (фреймворков)** для AI-агентов кодинга (**Antigravity, Cursor, Windsurf, Codex, Claude Code**). 
+
+🌐 **[Интерактивный веб-каталог и конструктор правил](https://anton-creates.github.io/pdm-skills-agent/)**
 
 Превращает вашего AI-помощника в **Senior Product Manager Co-Pilot**, готового разрабатывать PRD, карты CJM, бизнес-кейсы, юнит-экономику, деревья гипотез и роадмапы без «нейрослопа» и общих слов.
 
