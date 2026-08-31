@@ -1,0 +1,20 @@
+{
+  "name": "pdm-skills-agent",
+  "description": "Library of 130 Grade-A E2E-tested Product Management skills and frameworks for AI coding agents. PRDs, Roadmaps, Unit Economics, Discovery, Analytics, and Architecture.",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Anton-Creates/pdm-skills-agent",
+  "repository": "https://github.com/Anton-Creates/pdm-skills-agent",
+  "license": "MIT",
+  "keywords": [
+    "product-management",
+    "prd",
+    "roadmap",
+    "pm",
+    "unit-economics",
+    "discovery",
+    "okr",
+    "prioritization",
+    "skills",
+    "agent"
+  ]
+}
