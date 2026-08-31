@@ -1,6 +1,6 @@
 # PdM Skills Agent
 
-[Читать на русском (Russian README)](README.ru.md)
+(Russian README)](README.ru.md)
 
 ![Skills](https://img.shields.io/badge/Skills-130-blue) ![Catalog](https://img.shields.io/badge/Web_Catalog-Live-green) ![E2E Tested](https://img.shields.io/badge/E2E-100%25_Tested-success) ![License](https://img.shields.io/badge/License-MIT-green) ![Antigravity](https://img.shields.io/badge/Antigravity-Ready-purple) ![Cursor](https://img.shields.io/badge/Cursor-Ready-emerald) ![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-orange)
 
