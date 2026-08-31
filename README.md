@@ -1,61 +1,63 @@
 # PdM Skills Agent
 
+[Читать на русском (Russian README)](README.ru.md)
+
 ![Skills](https://img.shields.io/badge/Skills-130-blue) ![Catalog](https://img.shields.io/badge/Web_Catalog-Live-green) ![E2E Tested](https://img.shields.io/badge/E2E-100%25_Tested-success) ![License](https://img.shields.io/badge/License-MIT-green) ![Antigravity](https://img.shields.io/badge/Antigravity-Ready-purple) ![Cursor](https://img.shields.io/badge/Cursor-Ready-emerald) ![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-orange)
 
-Библиотека из **130 структурных продуктовых скиллов (фреймворков)** для AI-агентов кодинга (**Antigravity, Cursor, Windsurf, Codex, Claude Code**). 
+**A production-ready library of 130 structured Product Management skills and frameworks for AI Coding Agents (Antigravity, Cursor, Windsurf, Codex, Claude Code).**
 
-🌐 **[Интерактивный веб-каталог и конструктор правил](https://anton-creates.github.io/pdm-skills-agent/)**
+🌐 **[Open Interactive Web Catalog & Rule Builder](https://anton-creates.github.io/pdm-skills-agent/)**
 
-Превращает вашего AI-помощника в **Senior Product Manager Co-Pilot**, готового разрабатывать PRD, карты CJM, бизнес-кейсы, юнит-экономику, деревья гипотез и роадмапы без «нейрослопа» и общих слов.
+Transforms your AI assistant into a **Senior Product Manager Co-Pilot**, equipped to produce CPO-grade PRDs, Customer Journey Maps, business cases, unit economics, hypothesis trees, and strategic roadmaps with zero fluff.
 
 ---
 
-## Быстрый старт
+## Quick Start
 
-### Antigravity
-Конфигурация уже встроена в `.agents/`. Просто клонируйте репозиторий и откройте в Antigravity:
-
+### 1. Antigravity
+Native agent configuration is included in `.agents/`. Simply clone the repository and open it in Antigravity:
 ```bash
 git clone https://github.com/Anton-Creates/pdm-skills-agent.git
 ```
 
-### Cursor / Windsurf / Roo Code
-Откройте склонированный проект в редакторе — `.cursorrules` автоматически подгрузит роль Senior PM Co-Pilot и даст доступ ко всем 130 скиллам в папке `skills/`.
+### 2. Cursor / Windsurf / Roo Code
+Open the repository in your IDE. `.cursorrules` automatically loads the Senior PM Co-Pilot role and grants access to all 130 skills in `skills/`.
 
-### Codex (OpenAI)
-1. Клонируйте репозиторий.
-2. Скопируйте `.agents/AGENTS.md` в корень проекта как `AGENTS.md` — Codex читает его автоматически как системный промпт.
-3. Запустите Codex в папке проекта — агент получит доступ к скиллам через контекст рабочей директории.
+### 3. Codex (OpenAI)
+1. Clone the repository.
+2. Copy `.agents/AGENTS.md` to root as `AGENTS.md` (Codex reads it automatically as system context).
+3. Launch Codex in the project directory.
 
-### Claude Code
+### 4. Claude Code (CLI)
+Install the native plugin via terminal:
 ```bash
 /plugin marketplace add Anton-Creates/pdm-skills-agent
 /plugin install pdm-skills-agent@pdm-skills-agent
 ```
 
-### Claude
-1. Создайте Project в Claude.ai.
-2. В «Custom Instructions» вставьте содержимое `.agents/AGENTS.md`.
-3. Загрузите нужные `SKILL.md` файлы в базу знаний проекта.
+### 5. Claude.ai (Web App)
+1. Create a **Project** in Claude.ai.
+2. Add the contents of `.agents/AGENTS.md` to **Project Custom Instructions**.
+3. Upload target `SKILL.md` files from `skills/` to **Project Knowledge**.
 
 ---
 
-## Категории скиллов (130 фреймворков)
+## 130 Product Skills Taxonomy
 
-| Домен | Описание | Примеры скиллов |
+| Domain | Description | Example Skills |
 |---|---|---|
-| **Discovery & Strategy** | Исследования, валидация гипотез, JTBD | `discovery-sprint`, `jobs-to-be-done`, `user-interview-prep`, `hypothesis-tree` |
-| **Product Specs & PRD** | Требования, спецификации, BDD-сценарии | `prd`, `user-stories`, `ai-feature-spec`, `data-product-spec` |
-| **Growth & Analytics** | Воронки, метрики, онбординг, CRO | `funnel-analysis`, `metrics-tree`, `onboarding-audit`, `cro-audit` |
-| **Fintech & Banking** | Финтех-продукты, скоринг, маркетплейсы | `fintech-product-teardown`, `credit-product-spec`, `finmarket-spec` |
-| **E-commerce & Retail** | Карточки, листинги, логистика, дарксторы | `pdp-spec`, `plp-filters-spec`, `dark-store-ops`, `ecom-checkout-split` |
-| **B2B & Enterprise** | Закупки, внедрение, интеграции, ROI | `enterprise-discovery`, `enterprise-rollout`, `internal-roi`, `rfp-response` |
-| **Roadmap & OKR** | Планирование, цели, приоритизация | `roadmap`, `okr-writer`, `prioritize` (RICE/ICE/WSJF) |
+| **Discovery & Strategy** | User research, hypothesis validation, JTBD, market sizing | `discovery-sprint`, `jobs-to-be-done`, `user-interview-prep`, `hypothesis-tree` |
+| **Product Specs & PRD** | Requirements, PRD, BDD scenarios, AI/Data specifications | `prd`, `user-stories`, `ai-feature-spec`, `data-product-spec` |
+| **Growth & Analytics** | Funnels, metric trees, onboarding audits, CRO audits | `funnel-analysis`, `metrics-tree`, `onboarding-audit`, `cro-audit` |
+| **Fintech & Banking** | Credit products, scoring funnels, financial marketplaces | `fintech-product-teardown`, `credit-product-spec`, `finmarket-spec` |
+| **E-commerce & Retail** | PDP, PLP filters, dark store operations, checkout splits | `pdp-spec`, `plp-filters-spec`, `dark-store-ops`, `ecom-checkout-split` |
+| **B2B & Enterprise** | Procurement, enterprise discovery, rollout, ROI cases | `enterprise-discovery`, `enterprise-rollout`, `internal-roi`, `rfp-response` |
+| **Roadmap & OKRs** | Strategic horizons, OKR trees, RICE/ICE/WSJF prioritization | `roadmap`, `okr-writer`, `prioritize` |
 
 ---
 
-## Безопасность и Лицензия
+## Security & License
 
-- **Лицензия:** [MIT License](LICENSE) — свободное личное и коммерческое использование.
-- **Безопасность:** См. [SECURITY.md](SECURITY.md) для репортов об уязвимостях.
-- **Вклад в проект:** См. [CONTRIBUTING.md](CONTRIBUTING.md) для правил добавления новых скиллов.
+- **License:** [MIT License](LICENSE) — Free personal and commercial usage.
+- **Security:** See [SECURITY.md](SECURITY.md) for vulnerability reporting.
+- **Contributing:** See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on contributing new skills.
