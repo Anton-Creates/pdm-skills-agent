@@ -1484,8 +1484,8 @@
                 <label>Целевая IDE / Формат:</label>
                 <div class="exporter-select-wrapper">
                     <select id="exporter-type" title="Универсальный промпт (ChatGPT/DeepSeek/Claude Web)">
-                        <option value="prompt" title="Универсальный промпт (ChatGPT/DeepSeek/Claude Web)">Универсальный промпт (ChatGPT/Claude/DeepSeek)</option>
-                        <option value="cursor" title="Cursor rules (.cursorrules)">Cursor Rules (.cursor/rules)</option>
+                        <option value="prompt" title="Универсальный промпт (Codex/DeepSeek/Claude Web)">Универсальный промпт (Codex/Claude/DeepSeek)</option>
+                        <option value="cursor" title="Cursor / Codex rules (.cursorrules)">Cursor / Codex Rules (.cursor/rules)</option>
                         <option value="vscode" title="VS Code (Roo Code / Cline .clinerules)">VS Code / Roo Code / Cline (.clinerules)</option>
                         <option value="copilot" title="GitHub Copilot (.github/copilot-instructions.md)">GitHub Copilot (.github/copilot-instructions.md)</option>
                         <option value="windsurf" title="Windsurf rules (.windsurfrules)">Windsurf Rules (.windsurfrules)</option>
@@ -1551,7 +1551,7 @@
         const I18N = {
             ru: {
                 heroTitle: "Каталог контекстных системных инструкций для продакт-менеджмента",
-                heroDesc: "Сборка структурированных правил для ChatGPT, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.",
+                heroDesc: "Сборка структурированных правил для Codex, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.",
                 searchPlaceholder: "Поиск по скиллам, тегам и метрикам (например: 'юзер стори', 'юнит-экономика', 'чекаут', 'okr')",
                 secCombos: "[01] РОЛЕВЫЕ СБОРКИ",
                 secCategories: "[02] КАТЕГОРИИ И ДОМЕНЫ",
@@ -1605,7 +1605,7 @@
             },
             en: {
                 heroTitle: "Contextual System Instructions Catalog for Product Management",
-                heroDesc: "Curated system prompts and rules for ChatGPT, Claude, Cursor, Roo Code, Antigravity, and GitHub Copilot. Pick the skills you need, preview compiled instructions, and export clean configurations.",
+                heroDesc: "Curated system prompts and rules for Codex, Claude, Cursor, Roo Code, Antigravity, and GitHub Copilot. Pick the skills you need, preview compiled instructions, and export clean configurations.",
                 searchPlaceholder: "Search skills, tags, metrics (e.g. 'user stories', 'unit economics', 'checkout', 'okr')",
                 secCombos: "[01] ROLE BUNDLES",
                 secCategories: "[02] CATEGORIES & DOMAINS",
@@ -1786,8 +1786,8 @@
             if (exporterSelect) {
                 const currentVal = exporterSelect.value;
                 const options = [
-                    { value: "prompt", text: lang === 'ru' ? "Универсальный промпт (ChatGPT/Claude/DeepSeek)" : "Universal Prompt (ChatGPT/Claude/DeepSeek)" },
-                    { value: "cursor", text: "Cursor Rules (.cursor/rules)" },
+                    { value: "prompt", text: lang === 'ru' ? "Универсальный промпт (Codex/Claude/DeepSeek)" : "Universal Prompt (Codex/Claude/DeepSeek)" },
+                    { value: "cursor", text: "Cursor / Codex Rules (.cursor/rules)" },
                     { value: "vscode", text: "VS Code / Roo Code / Cline (.clinerules)" },
                     { value: "copilot", text: "GitHub Copilot (.github/copilot-instructions.md)" },
                     { value: "windsurf", text: "Windsurf Rules (.windsurfrules)" },
