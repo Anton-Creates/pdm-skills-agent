@@ -1,0 +1,5 @@
+﻿# Не попадает в репо
+__pycache__/
+*.pyc
+.env
+audit_checkpoint.json
