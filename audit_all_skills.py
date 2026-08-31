@@ -56,8 +56,11 @@ current_model_idx = 0
 # ─── 2. Сбор и парсинг метаданных скиллов ────────────────────────────────────
 def collect_all_skills():
     skills = []
-    for entry in sorted(os.listdir(ROOT_DIR)):
-        skill_path = os.path.join(ROOT_DIR, entry, 'SKILL.md')
+    skills_dir = os.path.join(ROOT_DIR, 'skills')
+    if not os.path.exists(skills_dir):
+        return []
+    for entry in sorted(os.listdir(skills_dir)):
+        skill_path = os.path.join(skills_dir, entry, 'SKILL.md')
         if not os.path.isfile(skill_path):
             continue
         try:

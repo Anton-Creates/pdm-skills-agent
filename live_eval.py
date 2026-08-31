@@ -156,7 +156,7 @@ JUDGE_CRITERIA = {
 
 # ─── Вспомогательные функции ──────────────────────────────────────────────────
 def load_skill(skill_id):
-    path = os.path.join(ROOT_DIR, skill_id, 'SKILL.md')
+    path = os.path.join(ROOT_DIR, 'skills', skill_id, 'SKILL.md')
     if not os.path.exists(path):
         return None
     raw = open(path, encoding='utf-8').read()
