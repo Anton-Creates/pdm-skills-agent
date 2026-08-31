@@ -250,19 +250,22 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: linear-gradient(135deg, #a855f7, #6366f1);
-            color: #ffffff;
-            font-size: 0.85rem;
-            font-weight: 700;
-            padding: 0.55rem 1rem;
-            border-radius: var(--radius-md);
+            background: var(--accent-dim);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            font-size: 0.82rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            padding: 0.45rem 0.85rem;
+            border-radius: var(--radius-sm);
             text-decoration: none;
-            transition: opacity 0.2s ease, transform 0.2s ease;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+            transition: all 0.15s ease;
         }
 
         .agent-badge:hover {
-            opacity: 0.92;
+            background: var(--accent);
+            color: var(--accent-text);
+            border-color: var(--accent);
             transform: translateY(-1px);
         }
 
@@ -1280,7 +1283,7 @@
                 PdM-Skills Builder
             </span>
             <div class="stat-badges-group">
-                <img id="view-badge-img" class="view-badge-img" src="https://hits.sh/anton-creates.github.io/pdm-skills-builder.svg?style=flat-square&label=views&color=0284c7&labelColor=0f172a" alt="views count" height="20" title="Просмотры каталога" />
+                <img id="view-badge-img" class="view-badge-img" src="https://hits.sh/anton-creates.github.io/pdm-skills-agent.svg?style=flat-square&label=views&color=0284c7&labelColor=0f172a" alt="views count" height="20" title="Просмотры каталога" />
                 <div class="stat-badge" title="Скачанные сборки правил">
                     <i class="fa-solid fa-download icon-success"></i> <span id="download-count">0</span>
                 </div>
@@ -1309,7 +1312,7 @@
                 Сборка структурированных правил для Codex, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.
             </div>
         </div>
-        <a href="https://github.com/Anton-Creates/pdm-skills-builder?tab=readme-ov-file#-использование-как-ai-агента-автоматический-режим" target="_blank" rel="noopener" class="agent-badge">
+        <a href="https://github.com/Anton-Creates/pdm-skills-agent" target="_blank" rel="noopener" class="agent-badge">
             <i class="fa-solid fa-robot"></i> <span id="agent-badge-text">Доступен режим AI-Агента!</span>
         </a>
     </div>
