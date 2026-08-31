@@ -2082,6 +2082,9 @@
             const t = I18N[currentLang];
             
             let filtered = SKILLS_DB.filter(skill => {
+                if (activeComboId !== null && queryTerms.length === 0) {
+                    return selectedSkills.has(skill.id);
+                }
                 if (currentPreset !== 'all' && skill.preset !== currentPreset) return false;
                 if (queryTerms.length === 0) return true;
                 const score = calculateRelevance(skill, queryTerms);
