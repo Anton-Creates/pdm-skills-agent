@@ -1,4 +1,4 @@
-﻿# PdM Skills Agent
+# PdM Skills Agent
 
 ![Skills](https://img.shields.io/badge/Skills-130-blue) ![Antigravity](https://img.shields.io/badge/Antigravity-Ready-purple) ![Cursor](https://img.shields.io/badge/Cursor-Ready-green) ![Claude](https://img.shields.io/badge/Claude-Ready-orange)
 
@@ -38,11 +38,11 @@ git clone https://github.com/Anton-Creates/pdm-skills-agent.git
 2. В «Custom Instructions» вставьте содержимое `.agents/AGENTS.md`.
 3. Загрузите нужные `SKILL.md` файлы в базу знаний проекта.
 
-### ChatGPT / OpenAI
+### Codex (OpenAI)
 
-1. Создайте GPT или Project.
-2. Загрузите `.agents/AGENTS.md` как системную инструкцию.
-3. Прикрепите нужные `SKILL.md` файлы к проекту.
+1. Клонируйте репозиторий.
+2. Скопируйте `.agents/AGENTS.md` в корень проекта как `AGENTS.md` — Codex читает его автоматически как системный промпт.
+3. Запустите Codex в папке проекта — агент получит доступ к скиллам через контекст рабочей директории.
 
 ### Copy-paste в любой чат
 
