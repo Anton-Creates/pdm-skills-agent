@@ -36,7 +36,7 @@
 2. В «Custom Instructions» вставьте текст из `.agents/AGENTS.md`.
 3. Добавьте нужные `SKILL.md` файлы в базу знаний проекта.
 
-### Вариант 4 — Copy-Paste в любой чат
+### Вариант 4 — Copy-Paste в любой чат LLM-ки
 
 1. Откройте `skills/<нужный_скилл>/SKILL.md`.
 2. Скопируйте блок `instructions`.
