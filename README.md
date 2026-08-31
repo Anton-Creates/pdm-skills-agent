@@ -76,3 +76,17 @@
 ## Автор
 
 [Антон Михайлов](https://www.linkedin.com/in/anton-mikhaylove/) · [Telegram](https://t.me/mikhaylove_anton)
+
+---
+
+## Структура репозиториев
+
+Проект разделён на два репозитория:
+
+| Репозиторий | Назначение |
+|---|---|
+| [pdm-skills-builder](https://github.com/Anton-Creates/pdm-skills-builder) | Рабочий репо: сайт-каталог, скрипты аудита, база данных скиллов. Для внутренней разработки. |
+| [pdm-skills-agent](https://github.com/Anton-Creates/pdm-skills-agent) | Дистрибутив: только скиллы и конфигурация агента. Для скачивания и использования. |
+
+Обновление скиллов выходит сначала в pdm-skills-builder, затем синхронизируется в pdm-skills-agent.
+
