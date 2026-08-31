@@ -1,0 +1,15 @@
+{
+  "name": "pdm-skills-agent",
+  "metadata": {
+    "description": "Library of 130 Grade-A E2E-tested Product Management skills and frameworks for AI coding agents."
+  },
+  "owner": {
+    "name": "Anton Mikhailov"
+  },
+  "plugins": [
+    {
+      "name": "pdm-skills-agent",
+      "source": "./"
+    }
+  ]
+}

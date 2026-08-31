@@ -1,0 +1,44 @@
+{
+  "name": "pdm-skills-agent",
+  "description": "Library of 130 Grade-A E2E-tested Product Management skills and frameworks for AI coding agents.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Anton Mikhailov",
+    "url": "https://github.com/Anton-Creates"
+  },
+  "homepage": "https://github.com/Anton-Creates/pdm-skills-agent",
+  "repository": "https://github.com/Anton-Creates/pdm-skills-agent",
+  "license": "MIT",
+  "keywords": [
+    "product-management",
+    "prd",
+    "roadmap",
+    "pm",
+    "unit-economics",
+    "discovery",
+    "okr",
+    "prioritization",
+    "skills",
+    "agent"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "PdM Skills Agent",
+    "shortDescription": "130 Grade-A Product Management skills & frameworks.",
+    "longDescription": "Turn your AI agent into a Senior Product Manager Co-Pilot with 130 structured PM frameworks (PRD, CJM, Unit Economics, OKRs, Roadmaps, B2B Discovery, Competitor Scan).",
+    "developerName": "Anton Mikhailov",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/Anton-Creates/pdm-skills-agent",
+    "defaultPrompt": [
+      "Help me write a clear PRD for a new feature.",
+      "Build a RICE prioritization matrix for these features.",
+      "Conduct a competitor scan for my product.",
+      "Design a Customer Journey Map for user onboarding."
+    ],
+    "brandColor": "#2d3142"
+  }
+}
