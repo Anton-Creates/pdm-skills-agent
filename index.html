@@ -238,6 +238,26 @@
             line-height: 1.45;
         }
 
+        .agent-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0.55rem 1rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+        }
+
+        .agent-badge:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
         /* ── Main Layout ──────────────────────────────────────────────────── */
         .main-layout {
             display: flex;
@@ -1254,9 +1274,12 @@
                 Каталог контекстных системных инструкций для продакт-менеджмента
             </div>
             <div class="hero-desc">
-                Сборка структурированных правил для ChatGPT, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.
+                Сборка структурированных правил для Codex, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.
             </div>
         </div>
+        <a href="https://github.com/Anton-Creates/pdm-skills-builder?tab=readme-ov-file#-использование-как-ai-агента-автоматический-режим" target="_blank" rel="noopener" class="agent-badge">
+            <i class="fa-solid fa-robot"></i> <span id="agent-badge-text">Доступен режим AI-Агента!</span>
+        </a>
     </div>
 
     <!-- Main 3-Column Layout -->
@@ -1601,7 +1624,8 @@
                 relevantTitle: "Релевантные скиллы:",
                 comboPrefix: "Сборка:",
                 promptHeader: "# СИСТЕМНЫЕ ПРАВИЛА PRODUCT MANAGEMENT ({count} скиллов)\n\n",
-                copyPromptHeader: "# СИСТЕМНЫЕ ИНСТРУКЦИИ ДЛЯ АССИСТЕНТА PRODUCT MANAGEMENT\n\n"
+                copyPromptHeader: "# СИСТЕМНЫЕ ИНСТРУКЦИИ ДЛЯ АССИСТЕНТА PRODUCT MANAGEMENT\n\n",
+                agentBadgeText: "Доступен режим AI-Агента!"
             },
             en: {
                 heroTitle: "Contextual System Instructions Catalog for Product Management",
@@ -1655,7 +1679,8 @@
                 relevantTitle: "Relevant skills:",
                 comboPrefix: "Bundle:",
                 promptHeader: "# PRODUCT MANAGEMENT SYSTEM RULES ({count} skills)\\n\\n",
-                copyPromptHeader: "# PRODUCT MANAGEMENT ASSISTANT SYSTEM INSTRUCTIONS\\n\\n"
+                copyPromptHeader: "# PRODUCT MANAGEMENT ASSISTANT SYSTEM INSTRUCTIONS\\n\\n",
+                agentBadgeText: "Agent Mode Available!"
             }
         };
 
@@ -1776,6 +1801,9 @@
             document.querySelector('.hero-title').innerText = t.heroTitle;
             document.querySelector('.hero-desc').innerText = t.heroDesc;
             aiSearchInput.placeholder = t.searchPlaceholder;
+            
+            const agentBadgeTextEl = document.getElementById('agent-badge-text');
+            if (agentBadgeTextEl) agentBadgeTextEl.innerText = t.agentBadgeText;
             
             // Library count in header
             const libCountEl = document.getElementById('library-count');
