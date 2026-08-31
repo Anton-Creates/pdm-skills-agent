@@ -1848,17 +1848,18 @@
             // Exporter select dropdown options
             const exporterSelect = document.getElementById('exporter-type');
             if (exporterSelect) {
-                const currentVal = exporterSelect.value;
+                const currentVal = exporterSelect.value || "claudeprompt";
                 const options = [
-                    { value: "prompt", text: lang === 'ru' ? "Универсальный промпт (Codex/Claude/DeepSeek)" : "Universal Prompt (Codex/Claude/DeepSeek)" },
-                    { value: "cursor", text: "Cursor / Codex Rules (.cursor/rules)" },
+                    { value: "claudeprompt", text: "Claude Code (CLAUDE.md)" },
+                    { value: "codex", text: "OpenAI Codex Rules (AGENTS.md)" },
+                    { value: "cursor", text: "Cursor Rules (.cursorrules)" },
+                    { value: "agents", text: "Gemini Antigravity (.agents/skills)" },
                     { value: "vscode", text: "VS Code / Roo Code / Cline (.clinerules)" },
                     { value: "copilot", text: "GitHub Copilot (.github/copilot-instructions.md)" },
                     { value: "windsurf", text: "Windsurf Rules (.windsurfrules)" },
                     { value: "aider", text: "Aider Conventions (CONVENTIONS.md)" },
                     { value: "pi", text: "Pi Agent (APPEND_SYSTEM.md)" },
-                    { value: "claudeprompt", text: "Claude Code (CLAUDE.md)" },
-                    { value: "agents", text: "Gemini Antigravity (.agents/skills)" }
+                    { value: "prompt", text: lang === 'ru' ? "Универсальный промпт (любая нейросеть / LLM)" : "Universal Prompt (Any LLM / AI Network)" }
                 ];
                 exporterSelect.innerHTML = options.map(o => `<option value="${o.value}" ${o.value === currentVal ? 'selected' : ''}>${o.text}</option>`).join('');
             }
