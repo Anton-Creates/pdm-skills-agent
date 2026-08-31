@@ -1,0 +1,2529 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PdM-Skills Builder — Конструктор системных правил ИИ для продакт-менеджеров</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans + JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Marked Markdown Parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- JSZip for Archive Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <style>
+        /* ── Anti-AI Design System — Swiss Grid & Dual-Theme Tokens ────────── */
+        :root {
+            /* Light Theme (Default: Clean Editorial) */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f6f8fa;
+            --bg-tertiary: #eaeef2;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f3f5f8;
+            --bg-selected: #edf5ff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --border-color: #d0d7de;
+            --border-hover: #94a3b8;
+            --accent: #0284c7;
+            --accent-dim: rgba(2, 132, 199, 0.08);
+            --accent-text: #ffffff;
+            --success: #16a34a;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --radius-sm: 4px;
+            --radius-md: 6px;
+            --radius-lg: 8px;
+            --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme (Engineering Dark) */
+            --bg-primary: #090d13;
+            --bg-secondary: #0d1117;
+            --bg-tertiary: #161b22;
+            --bg-card: #161b22;
+            --bg-card-hover: #1c2128;
+            --bg-selected: rgba(56, 189, 248, 0.1);
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --border-color: #30363d;
+            --border-hover: #484f58;
+            --accent: #38bdf8;
+            --accent-dim: rgba(56, 189, 248, 0.12);
+            --accent-text: #090d13;
+            --success: #3fb950;
+            --warning: #d29922;
+            --danger: #f85149;
+            --card-shadow: none;
+        }
+
+        /* ── Global Reset ─────────────────────────────────────────────────── */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 14px;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        /* ── Scrollbars ───────────────────────────────────────────────────── */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: var(--radius-sm);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--border-hover);
+        }
+
+        /* ── Header ───────────────────────────────────────────────────────── */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: 55px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .logo-title {
+            font-family: var(--font-sans);
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stat-badges-group {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .stat-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            background: var(--bg-primary);
+            -webkit-user-select: none;
+            user-select: none;
+            line-height: 1;
+        }
+
+        .stat-badge i {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        .stat-badge span {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .theme-toggle-btn {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.35rem 0.65rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-sans);
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            transition: all 0.15s ease;
+            line-height: 1;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-tertiary);
+        }
+
+        .version {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 0.3rem 0.55rem;
+            border-radius: var(--radius-sm);
+            background: var(--bg-primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        /* ── Hero / Onboarding Banner ─────────────────────────────────────── */
+        #hero-banner {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            max-width: 850px;
+            line-height: 1.45;
+        }
+
+        .agent-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0.55rem 1rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+        }
+
+        .agent-badge:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        /* ── Main Layout ──────────────────────────────────────────────────── */
+        .main-layout {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ── Left Sidebar ─────────────────────────────────────────────────── */
+        .sidebar {
+            width: 270px;
+            border-right: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            padding: 1.25rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            position: sticky;
+            top: 55px;
+            height: calc(100vh - 55px);
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .sidebar-section h3 {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            margin-bottom: 0.65rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .sec-num {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .preset-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .preset-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.45rem 0.65rem 0.45rem 0.55rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-sans);
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: transparent;
+            border: 1px solid transparent;
+            border-left: 3px solid transparent;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.12s ease;
+        }
+
+        .preset-btn:hover {
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
+        }
+
+        .preset-btn.active {
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
+            border-color: var(--border-color);
+            border-left-color: var(--accent);
+            font-weight: 600;
+        }
+
+        .preset-count {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 0.15rem 0.35rem;
+            border-radius: var(--radius-sm);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-left: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        /* ── Workspace / Content Area ─────────────────────────────────────── */
+        .content-area {
+            flex: 1;
+            padding: 1.25rem 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            min-width: 0;
+            background: var(--bg-primary);
+        }
+
+        /* ── Search Bar & RAG Recommendations ─────────────────────────────── */
+        .ai-search-box {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .search-input-wrapper {
+            display: flex;
+            align-items: center;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.55rem 0.85rem;
+            gap: 0.65rem;
+            transition: border-color 0.15s ease;
+        }
+
+        .search-input-wrapper:focus-within {
+            border-color: var(--accent);
+        }
+
+        .search-input-wrapper i {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .search-input-wrapper input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            color: var(--text-primary);
+        }
+
+        .search-input-wrapper input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-kbd-hint {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 0.15rem 0.4rem;
+            border-radius: var(--radius-sm);
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* Dynamic RAG recommendations */
+        .rag-recommendations {
+            display: none;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.65rem 0.85rem;
+            gap: 0.5rem;
+            flex-direction: column;
+        }
+
+        .rag-recommendations-title {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-transform: uppercase;
+        }
+
+        .rag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+        }
+
+        .rag-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 0.25rem 0.55rem;
+            font-size: 0.75rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .rag-item:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-tertiary);
+        }
+
+        /* ── Bulk Actions & View Switcher ──────────────────────────────────── */
+        .bulk-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .bulk-buttons {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .view-switcher-group {
+            display: inline-flex;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .view-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 0.45rem 0.7rem;
+            font-size: 0.8rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: all 0.15s ease;
+        }
+
+        .view-btn:hover {
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
+        }
+
+        .view-btn.active {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.45rem 0.85rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-sans);
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            outline: none;
+            border: 1px solid transparent;
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--border-hover);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--accent-text);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.92;
+        }
+
+        .filter-status {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .filter-status b {
+            color: var(--text-primary);
+        }
+
+        /* ── Skills Grid View ──────────────────────────────────────────────── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 0.85rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            cursor: pointer;
+            position: relative;
+            transition: border-color 0.15s ease, background-color 0.15s ease;
+            box-shadow: var(--card-shadow);
+        }
+
+        .skill-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+        }
+
+        .skill-card.selected {
+            border-color: var(--accent);
+            background: var(--bg-selected);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.35;
+            letter-spacing: -0.015em;
+        }
+
+        .card-badge {
+            font-family: var(--font-mono);
+            font-size: 0.66rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.15rem 0.45rem;
+            border-radius: var(--radius-sm);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            white-space: normal;
+            word-break: break-word;
+            display: inline-block;
+            line-height: 1.3;
+            transition: all 0.15s ease;
+        }
+
+        /* Preset & domain specific subtle badges */
+        .badge-core { border-color: rgba(2, 132, 199, 0.35); color: var(--accent); background: var(--accent-dim); }
+        .badge-discovery { border-color: rgba(22, 163, 74, 0.35); color: #16a34a; background: rgba(22, 163, 74, 0.08); }
+        .badge-growth { border-color: rgba(16, 185, 129, 0.35); color: #10b981; background: rgba(16, 185, 129, 0.08); }
+        .badge-saas { border-color: rgba(14, 165, 233, 0.35); color: #0ea5e9; background: rgba(14, 165, 233, 0.08); }
+        .badge-b2b { border-color: rgba(147, 51, 234, 0.35); color: #9333ea; background: rgba(147, 51, 234, 0.08); }
+        .badge-internal-products { border-color: rgba(59, 130, 246, 0.35); color: #3b82f6; background: rgba(59, 130, 246, 0.08); }
+        .badge-strategy { border-color: rgba(168, 85, 247, 0.35); color: #a855f7; background: rgba(168, 85, 247, 0.08); }
+        .badge-platforms-tech { border-color: rgba(99, 102, 241, 0.35); color: #6366f1; background: rgba(99, 102, 241, 0.08); }
+        .badge-fintech { border-color: rgba(217, 119, 6, 0.35); color: #d97706; background: rgba(217, 119, 6, 0.08); }
+        .badge-marketplace { border-color: rgba(234, 88, 12, 0.35); color: #ea580c; background: rgba(234, 88, 12, 0.08); }
+        .badge-e-commerce { border-color: rgba(13, 148, 136, 0.35); color: #0d9488; background: rgba(13, 148, 136, 0.08); }
+        .badge-retail-ops { border-color: rgba(101, 163, 13, 0.35); color: #65a30d; background: rgba(101, 163, 13, 0.08); }
+        .badge-media-adtech { border-color: rgba(236, 72, 153, 0.35); color: #db2777; background: rgba(236, 72, 153, 0.08); }
+        .badge-edtech { border-color: rgba(245, 158, 11, 0.35); color: #d97706; background: rgba(245, 158, 11, 0.08); }
+        .badge-telecom { border-color: rgba(220, 38, 38, 0.35); color: #dc2626; background: rgba(220, 38, 38, 0.08); }
+        .badge-govtech-b2g { border-color: rgba(71, 85, 105, 0.35); color: #475569; background: rgba(71, 85, 105, 0.08); }
+
+        [data-theme="dark"] .badge-core { border-color: rgba(56, 189, 248, 0.35); color: #38bdf8; background: rgba(56, 189, 248, 0.1); }
+        [data-theme="dark"] .badge-discovery { border-color: rgba(74, 222, 128, 0.35); color: #4ade80; background: rgba(74, 222, 128, 0.1); }
+        [data-theme="dark"] .badge-growth { border-color: rgba(52, 211, 153, 0.35); color: #34d399; background: rgba(52, 211, 153, 0.1); }
+        [data-theme="dark"] .badge-saas { border-color: rgba(56, 189, 248, 0.35); color: #38bdf8; background: rgba(56, 189, 248, 0.1); }
+        [data-theme="dark"] .badge-b2b { border-color: rgba(192, 132, 252, 0.35); color: #c084fc; background: rgba(192, 132, 252, 0.1); }
+        [data-theme="dark"] .badge-internal-products { border-color: rgba(96, 165, 250, 0.35); color: #60a5fa; background: rgba(96, 165, 250, 0.1); }
+        [data-theme="dark"] .badge-strategy { border-color: rgba(192, 132, 252, 0.35); color: #c084fc; background: rgba(192, 132, 252, 0.1); }
+        [data-theme="dark"] .badge-platforms-tech { border-color: rgba(129, 140, 248, 0.35); color: #818cf8; background: rgba(129, 140, 248, 0.1); }
+        [data-theme="dark"] .badge-fintech { border-color: rgba(250, 204, 21, 0.35); color: #facc15; background: rgba(250, 204, 21, 0.1); }
+        [data-theme="dark"] .badge-marketplace { border-color: rgba(251, 146, 60, 0.35); color: #fb923c; background: rgba(251, 146, 60, 0.1); }
+        [data-theme="dark"] .badge-e-commerce { border-color: rgba(45, 212, 191, 0.35); color: #2dd4bf; background: rgba(45, 212, 191, 0.1); }
+        [data-theme="dark"] .badge-retail-ops { border-color: rgba(163, 230, 53, 0.35); color: #a3e635; background: rgba(163, 230, 53, 0.1); }
+        [data-theme="dark"] .badge-media-adtech { border-color: rgba(244, 114, 182, 0.35); color: #f472b6; background: rgba(244, 114, 182, 0.1); }
+        [data-theme="dark"] .badge-edtech { border-color: rgba(251, 191, 36, 0.35); color: #fbbf24; background: rgba(251, 191, 36, 0.1); }
+        [data-theme="dark"] .badge-telecom { border-color: rgba(248, 113, 113, 0.35); color: #f87171; background: rgba(248, 113, 113, 0.1); }
+        [data-theme="dark"] .badge-govtech-b2g { border-color: rgba(148, 163, 184, 0.35); color: #94a3b8; background: rgba(148, 163, 184, 0.1); }
+
+        .card-checkbox {
+            width: 18px;
+            height: 18px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.15s ease;
+            background: var(--bg-primary);
+            flex-shrink: 0;
+        }
+
+        .skill-card.selected .card-checkbox,
+        .table-row.selected .card-checkbox {
+            border-color: var(--accent);
+            background: var(--accent);
+        }
+
+        .skill-card.selected .card-checkbox i,
+        .table-row.selected .card-checkbox i {
+            color: #ffffff;
+            font-size: 0.7rem;
+            display: block;
+        }
+
+        .card-checkbox i {
+            display: none;
+        }
+
+        .card-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+
+        .card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.65rem;
+            margin-top: auto;
+        }
+
+        .card-id {
+            font-family: var(--font-mono);
+            font-size: 0.73rem;
+            color: var(--text-muted);
+        }
+
+        .btn-card {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: var(--font-sans);
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            transition: color 0.15s ease;
+            line-height: 1;
+        }
+
+        .btn-card:hover {
+            color: var(--text-primary);
+        }
+
+        /* ── Table / Matrix View ───────────────────────────────────────────── */
+        .skills-table-container {
+            display: none;
+            width: 100%;
+            max-width: 100%;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow-x: auto !important;
+            overflow-y: hidden;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 1rem;
+        }
+
+        .skills-table-container::-webkit-scrollbar {
+            height: 8px;
+            display: block;
+        }
+
+        .skills-table-container::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .skills-table-container::-webkit-scrollbar-thumb {
+            background: var(--border-hover);
+            border-radius: 4px;
+        }
+
+        .skills-table-container::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        .skills-table {
+            width: 100%;
+            min-width: 1100px;
+            table-layout: fixed;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.82rem;
+        }
+
+        .skills-table th {
+            background: var(--bg-tertiary);
+            padding: 0.75rem 0.85rem;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            -webkit-user-select: none;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .skills-table th:last-child {
+            border-right: none;
+        }
+
+        .table-row {
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.1s ease;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-row:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .table-row.selected {
+            background: var(--bg-selected);
+        }
+
+        .table-row td {
+            padding: 0.65rem 0.85rem;
+            vertical-align: middle;
+            border-right: 1px solid var(--border-color);
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .table-row td:last-child {
+            border-right: none;
+        }
+
+        .table-cell-id {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .table-cell-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .table-cell-desc {
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ── Right Panel: Prompt Builder Drawer ───────────────────────────── */
+        .drawer {
+            width: 370px;
+            border-left: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            padding: 1rem 1.15rem 1.5rem 1.15rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            position: sticky;
+            top: 55px;
+            height: calc(100vh - 55px);
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .drawer-header h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* Context Metrics Widget */
+        .context-metrics-box {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.55rem 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .context-metrics-row {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 0.73rem;
+            color: var(--text-muted);
+        }
+
+        .context-metrics-row b {
+            color: var(--text-primary);
+        }
+
+        .context-bar {
+            height: 4px;
+            background: var(--bg-tertiary);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .context-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.2s ease;
+        }
+
+        .prompt-preview-box {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .prompt-preview-box label,
+        .exporter-section label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        .prompt-preview-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.6rem 0.75rem;
+            max-height: 130px;
+            min-height: 80px;
+            overflow-y: auto;
+            font-family: var(--font-mono);
+            font-size: 0.73rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .exporter-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .exporter-select-wrapper select {
+            width: 100%;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 0.45rem 0.65rem;
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            outline: none;
+            cursor: pointer;
+        }
+
+        .exporter-select-wrapper select:focus {
+            border-color: var(--accent);
+        }
+
+        .drawer-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            padding-top: 0.25rem;
+        }
+
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+            padding: 0.5rem 0.85rem;
+            font-size: 0.82rem;
+        }
+
+        /* ── Modal Dialog ─────────────────────────────────────────────────── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.65);
+            -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .modal-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 820px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+
+        .modal-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            transition: color 0.15s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .modal-body h1, .modal-body h2, .modal-body h3 {
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal-body p {
+            margin-bottom: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .modal-body pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 0.85rem;
+            overflow-x: auto;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+            line-height: 1.45;
+        }
+
+        .modal-body code {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            background: var(--bg-tertiary);
+            padding: 0.15rem 0.35rem;
+            border-radius: 3px;
+        }
+
+        .modal-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .modal-body th, .modal-body td {
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 0.75rem;
+            text-align: left;
+            font-size: 0.82rem;
+        }
+
+        .modal-body th {
+            background: var(--bg-secondary);
+            font-weight: 600;
+        }
+
+        /* ── Footer ────────────────────────────────────────────────────────── */
+        .app-footer {
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .author-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            padding: 0.35rem 0.45rem;
+            border-radius: var(--radius-sm);
+            background: var(--bg-primary);
+            transition: all 0.15s ease;
+            line-height: 1;
+        }
+
+        .author-badge:hover {
+            border-color: var(--border-hover);
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 1024px) {
+            .drawer {
+                width: 320px;
+            }
+            .sidebar {
+                width: 230px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-layout {
+                flex-direction: column;
+                height: auto;
+            }
+            .sidebar, .drawer {
+                width: 100%;
+                height: auto;
+                position: static;
+            }
+            .app-footer {
+                flex-direction: column;
+                gap: 0.85rem;
+                text-align: center;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .card-badge {
+                font-size: 0.6rem;
+            }
+        }
+
+        /* Utility and semantic styling classes */
+        .icon-accent {
+            color: var(--accent);
+        }
+        .icon-success {
+            color: #16a34a;
+        }
+        .icon-telegram {
+            color: #229ED9;
+        }
+        .icon-linkedin {
+            color: #0a66c2;
+        }
+        .icon-drawer-title {
+            color: var(--accent);
+            font-size: 0.85rem;
+        }
+        .view-badge-img {
+            border-radius: 4px;
+            display: block;
+        }
+        .hero-text-block {
+            flex: 1;
+            min-width: 260px;
+        }
+        .sidebar-section-divider {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+        }
+        .selected-badge-info {
+            margin-left: 0.5rem;
+        }
+        .combo-desc-banner {
+            display: none;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--accent);
+            border-radius: var(--radius-md);
+            padding: 0.85rem 1.15rem;
+        }
+        .combo-desc-title {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        .combo-desc-text {
+            font-size: 0.83rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            display: block;
+        }
+        .col-index {
+            width: 44px;
+            text-align: center;
+        }
+        .col-id {
+            width: 190px;
+        }
+        .col-title {
+            width: 210px;
+        }
+        .col-desc {
+            width: 400px;
+        }
+        .col-domain {
+            width: 140px;
+            text-align: center;
+        }
+        .col-action {
+            width: 116px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <span class="logo-title">
+                <i class="fa-solid fa-layer-group icon-accent"></i>
+                PdM-Skills Builder
+            </span>
+            <div class="stat-badges-group">
+                <img id="view-badge-img" class="view-badge-img" src="https://hits.sh/anton-creates.github.io/pdm-skills-builder.svg?style=flat-square&label=views&color=0284c7&labelColor=0f172a" alt="views count" height="20" title="Просмотры каталога" />
+                <div class="stat-badge" title="Скачанные сборки правил">
+                    <i class="fa-solid fa-download icon-success"></i> <span id="download-count">0</span>
+                </div>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle-btn" id="lang-toggle" title="Switch Language (RU / EN)">
+                <i class="fa-solid fa-globe icon-accent"></i>
+                <span id="lang-text">EN</span>
+            </button>
+            <button class="theme-toggle-btn" id="theme-toggle" title="Переключить тему">
+                <i class="fa-solid fa-moon" id="theme-icon"></i>
+                <span id="theme-text">Тёмная</span>
+            </button>
+            <div class="version" id="library-count">Библиотека: ... скиллов</div>
+        </div>
+    </header>
+
+    <!-- Hero onboarding banner -->
+    <div id="hero-banner">
+        <div class="hero-text-block">
+            <div class="hero-title">
+                Каталог контекстных системных инструкций для продакт-менеджмента
+            </div>
+            <div class="hero-desc">
+                Сборка структурированных правил для Codex, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.
+            </div>
+        </div>
+        <a href="https://github.com/Anton-Creates/pdm-skills-builder?tab=readme-ov-file#-использование-как-ai-агента-автоматический-режим" target="_blank" rel="noopener" class="agent-badge">
+            <i class="fa-solid fa-robot"></i> <span id="agent-badge-text">Доступен режим AI-Агента!</span>
+        </a>
+    </div>
+
+    <!-- Main 3-Column Layout -->
+    <div class="main-layout">
+
+        <!-- Left Sidebar: Filters & Preset Roles -->
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <h3><span class="sec-num">[01]</span> РОЛЕВЫЕ СБОРКИ</h3>
+                <div class="preset-list" id="role-combos-list">
+                    <button class="preset-btn combo-btn" data-combo="0">
+                        <span>Lead / Senior PM</span>
+                    </button>
+                    <button class="preset-btn combo-btn" data-combo="1">
+                        <span>B2B & Enterprise PM</span>
+                    </button>
+                    <button class="preset-btn combo-btn" data-combo="2">
+                        <span>SaaS & Subscription PM</span>
+                    </button>
+                    <button class="preset-btn combo-btn" data-combo="3">
+                        <span>Internal & HR-Tech PM</span>
+                    </button>
+                    <button class="preset-btn combo-btn" data-combo="4">
+                        <span>Growth & PLG PM</span>
+                    </button>
+                    <button class="preset-btn combo-btn" data-combo="5">
+                        <span>Marketplace & E-com PM</span>
+                    </button>
+                    <button class="preset-btn combo-btn" data-combo="6">
+                        <span>Fintech & Banking PM</span>
+                    </button>
+                    <button class="preset-btn combo-btn" data-combo="7">
+                        <span>AI, LLM & Data PM</span>
+                    </button>
+                    <button class="preset-btn combo-btn" data-combo="8">
+                        <span>GovTech & B2G PM</span>
+                    </button>
+                    <button class="preset-btn combo-btn" data-combo="9">
+                        <span>CPO / Leadership</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="sidebar-section sidebar-section-divider">
+                <h3><span class="sec-num">[02]</span> КАТЕГОРИИ И ДОМЕНЫ</h3>
+                <div class="preset-list">
+                    <button class="preset-btn active" data-preset="all">
+                        <span>Все скиллы</span>
+                        <span class="preset-count" id="count-all">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="core">
+                        <span>Ядро PdM (Core)</span>
+                        <span class="preset-count" id="count-core">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="discovery">
+                        <span>Исследования (Discovery)</span>
+                        <span class="preset-count" id="count-discovery">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="growth">
+                        <span>Рост и Воронки</span>
+                        <span class="preset-count" id="count-growth">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="saas">
+                        <span>SaaS и Подписки</span>
+                        <span class="preset-count" id="count-saas">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="b2b">
+                        <span>B2B Продукты</span>
+                        <span class="preset-count" id="count-b2b">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="internal-products">
+                        <span>Внутренние и HR-Tech</span>
+                        <span class="preset-count" id="count-internal-products">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="strategy">
+                        <span>Стратегия и CPO</span>
+                        <span class="preset-count" id="count-strategy">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="platforms-tech">
+                        <span>Платформы и Архитектура</span>
+                        <span class="preset-count" id="count-platforms-tech">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="fintech">
+                        <span>Финтех и Банкинг</span>
+                        <span class="preset-count" id="count-fintech">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="marketplace">
+                        <span>Маркетплейсы</span>
+                        <span class="preset-count" id="count-marketplace">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="e-commerce">
+                        <span>E-commerce (D2C / Онлайн)</span>
+                        <span class="preset-count" id="count-e-commerce">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="retail-ops">
+                        <span>Ритейл и FoodTech Ops</span>
+                        <span class="preset-count" id="count-retail-ops">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="media-adtech">
+                        <span>Медиа и AdTech</span>
+                        <span class="preset-count" id="count-media-adtech">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="edtech">
+                        <span>EdTech (Обучение)</span>
+                        <span class="preset-count" id="count-edtech">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="telecom">
+                        <span>Телеком</span>
+                        <span class="preset-count" id="count-telecom">0</span>
+                    </button>
+                    <button class="preset-btn" data-preset="govtech-b2g">
+                        <span>Госсектор (B2G)</span>
+                        <span class="preset-count" id="count-govtech-b2g">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Workspace -->
+        <div class="content-area">
+            <!-- Search Bar with Kbd Hint -->
+            <div class="ai-search-box">
+                <div class="search-input-wrapper">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="ai-search"
+                        placeholder="Поиск по скиллам, тегам и метрикам (например: 'юзер стори', 'юнит-экономика', 'чекаут', 'okr')">
+                    <span class="search-kbd-hint" id="search-kbd-badge">Ctrl+K</span>
+                </div>
+
+                <!-- Suggestions panel -->
+                <div class="rag-recommendations" id="rag-recommendations">
+                    <div class="rag-recommendations-title">
+                        <i class="fa-solid fa-sliders"></i>
+                        <span>Релевантные скиллы:</span>
+                    </div>
+                    <div class="rag-list" id="rag-list">
+                        <!-- Dynamic suggestion badges -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bulk actions & View Switcher -->
+            <div class="bulk-actions">
+                <div class="bulk-buttons">
+                    <button class="btn btn-secondary" id="btn-select-preset">
+                        <i class="fa-solid fa-check-double"></i> Выбрать все
+                    </button>
+                    <button class="btn btn-secondary" id="btn-reset-preset">
+                        <i class="fa-solid fa-xmark"></i> Сбросить выбор
+                    </button>
+                </div>
+
+                <!-- Grid vs Table View Switcher -->
+                <div class="view-switcher-group">
+                    <button class="view-btn active" id="btn-view-grid" title="Вид сеткой">
+                        <i class="fa-solid fa-table-cells-large"></i> Сетка
+                    </button>
+                    <button class="view-btn" id="btn-view-table" title="Вид таблицей">
+                        <i class="fa-solid fa-table-list"></i> Таблица
+                    </button>
+                </div>
+
+                <div class="filter-status">
+                    <span id="label-shown">Показано:</span> <b id="visible-count">0</b> <span id="label-from">из</span> <b id="total-count">0</b>
+                    <span id="selected-badge-info" class="selected-badge-info">(<span id="label-selected-word">выбрано</span>: <b id="stat-badge-count">0</b>)</span>
+                </div>
+            </div>
+
+            <!-- Active Combo Description (when clicked from sidebar) -->
+            <div id="combo-desc-banner" class="combo-desc-banner">
+                <div>
+                    <strong id="combo-desc-title" class="combo-desc-title"></strong>
+                    <span id="combo-desc-text" class="combo-desc-text"></span>
+                </div>
+            </div>
+
+            <!-- Skills Cards Grid View -->
+            <div class="skills-grid" id="skills-grid">
+                <!-- Skill cards loaded dynamically from skills_db.js -->
+            </div>
+
+            <!-- Skills Table / Matrix View -->
+            <div class="skills-table-container" id="skills-table-container">
+                <table class="skills-table">
+                    <thead>
+                        <tr>
+                            <th class="col-index">#</th>
+                            <th class="col-id">ID Скилла</th>
+                            <th class="col-title">Название</th>
+                            <th class="col-desc">Описание</th>
+                            <th class="col-domain">Домен</th>
+                            <th class="col-action">Действие</th>
+                        </tr>
+                    </thead>
+                    <tbody id="skills-table-body">
+                        <!-- Table rows loaded dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Right Side: Rules Compiler Drawer -->
+        <div class="drawer">
+            <div class="drawer-header">
+                <h3><i class="fa-solid fa-code-branch icon-drawer-title"></i> // КОНСТРУКТОР ПРАВИЛ</h3>
+            </div>
+
+            <!-- Context metrics widget -->
+            <div class="context-metrics-box">
+                <div class="context-metrics-row">
+                    <span><span id="label-stat-selected">Выбрано скиллов</span>: <b id="stat-selected-count">0</b></span>
+                    <span><span id="label-stat-volume">Объем</span>: <b id="stat-tokens-est">0 tok</b></span>
+                </div>
+                <div class="context-bar">
+                    <div class="context-bar-fill" id="context-bar-fill"></div>
+                </div>
+            </div>
+
+            <div class="prompt-preview-box">
+                <label>Предпросмотр сборки правил:</label>
+                <div class="prompt-preview-container" id="prompt-preview"></div>
+            </div>
+
+            <div class="exporter-section">
+                <label>Целевая IDE / Формат:</label>
+                <div class="exporter-select-wrapper">
+                    <select id="exporter-type" title="Универсальный промпт (ChatGPT/DeepSeek/Claude Web)">
+                        <option value="prompt" title="Универсальный промпт (Codex/DeepSeek/Claude Web)">Универсальный промпт (Codex/Claude/DeepSeek)</option>
+                        <option value="cursor" title="Cursor / Codex rules (.cursorrules)">Cursor / Codex Rules (.cursor/rules)</option>
+                        <option value="vscode" title="VS Code (Roo Code / Cline .clinerules)">VS Code / Roo Code / Cline (.clinerules)</option>
+                        <option value="copilot" title="GitHub Copilot (.github/copilot-instructions.md)">GitHub Copilot (.github/copilot-instructions.md)</option>
+                        <option value="windsurf" title="Windsurf rules (.windsurfrules)">Windsurf Rules (.windsurfrules)</option>
+                        <option value="aider" title="Aider conventions (CONVENTIONS.md)">Aider Conventions (CONVENTIONS.md)</option>
+                        <option value="pi" title="Pi Agent (APPEND_SYSTEM.md)">Pi Agent (APPEND_SYSTEM.md)</option>
+                        <option value="claudeprompt" title="Claude Code (CLAUDE.md)">Claude Code (CLAUDE.md)</option>
+                        <option value="agents" title="Gemini Antigravity (AGENTS.md)">Gemini Antigravity (.agents/skills)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="drawer-actions">
+                <button class="btn btn-secondary btn-full" id="btn-copy-prompt">
+                    <i class="fa-regular fa-copy"></i> Копировать правила
+                </button>
+                <button class="btn btn-primary btn-full" id="btn-download-zip">
+                    <i class="fa-solid fa-download"></i> Скачать правила (.zip)
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Skill Detail Modal -->
+    <div class="modal-overlay" id="detail-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-title" id="modal-title">
+                    <i class="fa-solid fa-file-lines icon-accent"></i>
+                    <span>Детали скилла</span>
+                </div>
+                <button class="modal-close" id="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Rendered Markdown will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Footer -->
+    <footer class="app-footer">
+        <div class="footer-left">
+            <a href="https://t.me/mikhaylove_anton" target="_blank" rel="noopener noreferrer" class="author-badge" title="Telegram">
+                <i class="fa-brands fa-telegram icon-telegram"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/anton-mikhaylove/" target="_blank" rel="noopener noreferrer" class="author-badge" title="LinkedIn">
+                <i class="fa-brands fa-linkedin icon-linkedin"></i>
+            </a>
+            <a href="https://github.com/Anton-Creates/pdm-skills-builder" target="_blank" rel="noopener noreferrer" class="author-badge" title="GitHub Репозиторий">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        </div>
+        <div>
+            PdM-Skills Builder · 2026
+        </div>
+    </footer>
+
+    <!-- Load Skills Database with Cache-Busting -->
+    <script src="skills_db.js?v=4.0"></script>
+
+    <script>
+        // Bilingual UI Dictionary
+        const I18N = {
+            ru: {
+                heroTitle: "Каталог контекстных системных инструкций для продакт-менеджмента",
+                heroDesc: "Сборка структурированных правил для Codex, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.",
+                searchPlaceholder: "Поиск по скиллам, тегам и метрикам (например: 'юзер стори', 'юнит-экономика', 'чекаут', 'okr')",
+                secCombos: "[01] РОЛЕВЫЕ СБОРКИ",
+                secCategories: "[02] КАТЕГОРИИ И ДОМЕНЫ",
+                allSkills: "Все скиллы",
+                coreSkills: "Ядро PdM (Core)",
+                discoverySkills: "Исследования (Discovery)",
+                growthSkills: "Рост и Воронки",
+                saasSkills: "SaaS и Подписки",
+                b2bSkills: "B2B Продукты",
+                internalProductsSkills: "Внутренние и HR-Tech",
+                strategySkills: "Стратегия и CPO",
+                platformsTechSkills: "Платформы и Архитектура",
+                fintechSkills: "Финтех и Банкинг",
+                marketplaceSkills: "Маркетплейсы",
+                ecomSkills: "E-commerce (Онлайн)",
+                retailOpsSkills: "Ритейл и FoodTech",
+                mediaSkills: "Медиа и AdTech",
+                edtechSkills: "EdTech (Обучение)",
+                telecomSkills: "Телеком",
+                b2gSkills: "Госсектор (B2G)",
+                btnSelectAll: "Выбрать все",
+                btnReset: "Сбросить выбор",
+                viewGrid: "Сетка",
+                viewTable: "Таблица",
+                shown: "Показано",
+                from: "из",
+                selected: "выбрано",
+                drawerTitle: "// КОНСТРУКТОР ПРАВИЛ",
+                statSelected: "Выбрано скиллов:",
+                statVolume: "Объем:",
+                previewLabel: "Предпросмотр сборки правил:",
+                previewEmpty: "// Выберите скиллы из каталога слева для сборки правил ...",
+                ideLabel: "Целевая IDE / Формат:",
+                btnCopy: "Копировать правила",
+                btnCopied: "Скопировано в буфер!",
+                btnDownload: "Скачать правила (.zip)",
+                btnInfo: "Инфо",
+                thId: "ID Скилла",
+                thName: "Название",
+                thDesc: "Описание",
+                thDomain: "Домен",
+                thAction: "Действие",
+                libraryCount: "Библиотека: <b>{count}</b> скилла",
+                themeDark: "Тёмная",
+                themeLight: "Светлая",
+                modalTitle: "Детали скилла",
+                relevantTitle: "Релевантные скиллы:",
+                comboPrefix: "Сборка:",
+                promptHeader: "# СИСТЕМНЫЕ ПРАВИЛА PRODUCT MANAGEMENT ({count} скиллов)\n\n",
+                copyPromptHeader: "# СИСТЕМНЫЕ ИНСТРУКЦИИ ДЛЯ АССИСТЕНТА PRODUCT MANAGEMENT\n\n",
+                agentBadgeText: "Доступен режим AI-Агента!"
+            },
+            en: {
+                heroTitle: "Contextual System Instructions Catalog for Product Management",
+                heroDesc: "Curated system prompts and rules for Codex, Claude, Cursor, Roo Code, Antigravity, and GitHub Copilot. Pick the skills you need, preview compiled instructions, and export clean configurations.",
+                searchPlaceholder: "Search skills, tags, metrics (e.g. 'user stories', 'unit economics', 'checkout', 'okr')",
+                secCombos: "[01] ROLE BUNDLES",
+                secCategories: "[02] CATEGORIES & DOMAINS",
+                allSkills: "All Skills",
+                coreSkills: "Core PdM Craft",
+                discoverySkills: "Discovery & Research",
+                growthSkills: "Growth & Acquisition",
+                saasSkills: "SaaS & Subscriptions",
+                b2bSkills: "B2B Products",
+                internalProductsSkills: "Internal & Employee Tech",
+                strategySkills: "Strategy & Leadership",
+                platformsTechSkills: "Tech & Platforms",
+                fintechSkills: "Fintech & Banking",
+                marketplaceSkills: "Marketplaces",
+                ecomSkills: "E-commerce & D2C",
+                retailOpsSkills: "Retail & FoodTech Ops",
+                mediaSkills: "Media & AdTech",
+                edtechSkills: "EdTech & Learning",
+                telecomSkills: "Telecom",
+                b2gSkills: "Public Sector (B2G)",
+                btnSelectAll: "Select All",
+                btnReset: "Reset Selection",
+                viewGrid: "Grid",
+                viewTable: "Table",
+                shown: "Showing",
+                from: "of",
+                selected: "selected",
+                drawerTitle: "// RULES COMPILER",
+                statSelected: "Selected Skills:",
+                statVolume: "Est. Context:",
+                previewLabel: "Rules Assembly Preview:",
+                previewEmpty: "// Select skills from the catalog on the left to compile rules ...",
+                ideLabel: "Target IDE / Format:",
+                btnCopy: "Copy Rules",
+                btnCopied: "Copied to clipboard!",
+                btnDownload: "Download Rules (.zip)",
+                btnInfo: "Info",
+                thId: "Skill ID",
+                thName: "Name",
+                thDesc: "Description",
+                thDomain: "Domain",
+                thAction: "Action",
+                libraryCount: "Library: <b>{count}</b> skills",
+                themeDark: "Dark",
+                themeLight: "Light",
+                modalTitle: "Skill Details",
+                relevantTitle: "Relevant skills:",
+                comboPrefix: "Bundle:",
+                promptHeader: "# PRODUCT MANAGEMENT SYSTEM RULES ({count} skills)\\n\\n",
+                copyPromptHeader: "# PRODUCT MANAGEMENT ASSISTANT SYSTEM INSTRUCTIONS\\n\\n",
+                agentBadgeText: "Agent Mode Available!"
+            }
+        };
+
+        const COMBOS = [
+            { id: 0, ruName: "Lead / Senior PM", enName: "Lead / Senior PM", skills: ["prd", "user-stories", "roadmap", "prioritize", "decision-doc", "technical-translator", "meeting-prep", "metrics-analyzer", "ab-test-design", "risk-heatmap"] },
+            { id: 1, ruName: "B2B & Enterprise PM", enName: "B2B & Enterprise PM", skills: ["enterprise-discovery", "enterprise-rollout", "rfp-response", "build-buy-partner", "adoption-strategy", "admin-ux", "business-case", "icp-definition"] },
+            { id: 2, ruName: "SaaS & Subscription PM", enName: "SaaS & Subscription PM", skills: ["saas-metrics", "subscription-economics", "d2c-subscription-model", "plg-design", "pricing-experiment", "pricing-model", "monetization-audit", "retention-model"] },
+            { id: 3, ruName: "Internal & HR-Tech PM", enName: "Internal & HR-Tech PM", skills: ["digital-workspace-superapp", "hr-portal-growth", "corp-communication-suite", "internal-task-tracker", "internal-recruitment-crm", "internal-product-discovery", "admin-ux", "service-desk-metrics"] },
+            { id: 4, ruName: "Growth & PLG PM", enName: "Growth & PLG PM", skills: ["growth-loop", "gtm-strategy", "channel-mix", "plg-design", "referral-mechanics", "cro-audit", "onboarding-audit", "retention-model"] },
+            { id: 5, ruName: "Marketplace & E-com PM", enName: "Marketplace & E-com PM", skills: ["pdp-spec", "plp-filters-spec", "ecom-checkout-split", "ecom-recommendations", "wishlist-alert-mechanics", "marketplace-catalog", "seller-economics", "supply-quality", "fulfillment-model", "promo-engine"] },
+            { id: 6, ruName: "Fintech & Banking PM", enName: "Fintech & Banking PM", skills: ["fintech-product-teardown", "credit-product-spec", "unit-economics", "compliance-checkpoint", "risk-heatmap", "trust-safety", "incident-pm-role", "api-product-spec", "admin-ux"] },
+            { id: 7, ruName: "AI, LLM & Data PM", enName: "AI, LLM & Data PM", skills: ["ai-feature-spec", "llm-product-design", "data-product-spec", "ab-test-design", "metrics-analyzer", "decision-doc", "technical-translator", "trust-safety"] },
+            { id: 8, ruName: "GovTech & B2G PM", enName: "GovTech & B2G PM", skills: ["public-service-design", "citizen-journey", "govtech-metrics", "mini-app-platform", "localization-strategy", "compliance-checkpoint", "rfp-response"] },
+            { id: 9, ruName: "CPO / Leadership", enName: "CPO / Leadership", skills: ["product-strategy", "okr-writer", "north-star-metric", "business-case", "competitive-moat", "tenets-writer", "portfolio-review", "product-health-review", "kill-or-scale-decision"] }
+        ];
+
+        const COMBO_DESCRIPTIONS = {
+            ru: {
+                0: "Универсальный сбалансированный набор для управления полным циклом продуктовой разработки от идеи до релиза.",
+                1: "Специализированная сборка для B2B-продуктов, длинных циклов сделок, тендеров, Enterprise-внедрения и закупочных комитетов.",
+                2: "Управление подписочными моделями, ценообразованием, PLG-механиками, юнит-экономикой (MRR, Churn) и монетизацией.",
+                3: "Проектирование внутренних систем компании: цифровой офис сотрудника (ЦОС), HR-портал развития, коммуникации, тасктрекер и ATS.",
+                4: "Фокус на воронках, экспериментах, механиках виральности, онбординге и росте метрик удержания (Retention).",
+                5: "Балансировка спроса и предложения, юнит-экономика продавцов, каталог, логистика, лояльность и борьба с фродом.",
+                6: "Критическая надежность, банковские регламенты, скоринг, безопасность, комплаенс 152-ФЗ/ЦБ и финансовые риски.",
+                7: "Проектирование фичей на базе машинного обучения, LLM-интерфейсов, витрин данных, RAG-архитектур и A/B-тестов алгоритмов.",
+                8: "Проектирование государственных электронных услуг, соблюдение 152-ФЗ/ГОСТ, клиентский путь гражданина и тендеры.",
+                9: "Стратегический уровень: вижн продукта, продуктовые рвы, цели OKR, портфельное управление и операционная модель команды."
+            },
+            en: {
+                0: "Balanced foundational toolkit covering end-to-end product lifecycle management from concept to launch.",
+                1: "Tailored bundle for B2B product managers, enterprise sales cycles, procurement committees, RFP, and client rollouts.",
+                2: "Subscription lifecycle management, recurring revenue economics (MRR, Churn), PLG drivers, and monetization audits.",
+                3: "Internal tooling: digital workplace (Employee SuperApp), talent development, enterprise comms, task tracking, and recruiting ATS.",
+                4: "Focused on funnels, growth loops, viral mechanics, frictionless onboarding, and long-term retention.",
+                5: "Two-sided market balancing, seller economics, catalog architecture, fulfillment, loyalty, and anti-fraud.",
+                6: "Mission-critical reliability, credit scoring, trust & safety, banking compliance, and financial operations.",
+                7: "Machine learning specs, LLM product architecture, RAG systems, data products, evaluation systems, and algorithm A/B tests.",
+                8: "Public digital service design, citizen journeys, regulatory standards, mini-app platforms, and government tenders.",
+                9: "Executive CPO toolkit: product vision, competitive moats, OKR cascading, and portfolio health reviews."
+            }
+        };
+
+        // App State
+        let selectedSkills = new Set();
+        let currentPreset = 'all';
+        let searchQuery = '';
+        let currentView = 'grid';
+        let currentLang = localStorage.getItem('pdm_lang') || 'ru';
+        let activeComboId = null;
+
+        // DOM References
+        const skillsGrid = document.getElementById('skills-grid');
+        const skillsTableContainer = document.getElementById('skills-table-container');
+        const skillsTableBody = document.getElementById('skills-table-body');
+        const visibleCountEl = document.getElementById('visible-count');
+        const totalCountEl = document.getElementById('total-count');
+        const selectedBadgeInfo = document.getElementById('selected-badge-info');
+        const promptPreview = document.getElementById('prompt-preview');
+        const aiSearchInput = document.getElementById('ai-search');
+        const ragRecommendations = document.getElementById('rag-recommendations');
+        const ragList = document.getElementById('rag-list');
+        const exporterType = document.getElementById('exporter-type');
+        const detailModal = document.getElementById('detail-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+        const comboDescBanner = document.getElementById('combo-desc-banner');
+        const comboDescTitle = document.getElementById('combo-desc-title');
+        const comboDescText = document.getElementById('combo-desc-text');
+        const btnViewGrid = document.getElementById('btn-view-grid');
+        const btnViewTable = document.getElementById('btn-view-table');
+
+        const statSelectedCount = document.getElementById('stat-selected-count');
+        const statTokensEst = document.getElementById('stat-tokens-est');
+        const contextBarFill = document.getElementById('context-bar-fill');
+
+        // Theme management
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+
+        // Language management
+        const langToggleBtn = document.getElementById('lang-toggle');
+        const langText = document.getElementById('lang-text');
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('pdm_theme') || 'light';
+            setTheme(savedTheme);
+        }
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('pdm_theme', theme);
+            if (theme === 'dark') {
+                themeIcon.className = 'fa-solid fa-sun';
+                themeText.innerText = I18N[currentLang].themeLight;
+            } else {
+                themeIcon.className = 'fa-solid fa-moon';
+                themeText.innerText = I18N[currentLang].themeDark;
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme') || 'light';
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('pdm_lang', lang);
+            document.documentElement.setAttribute('lang', lang);
+            langText.innerText = (lang === 'ru' ? 'RU' : 'EN');
+            
+            const t = I18N[lang];
+            
+            // Static text updates
+            document.querySelector('.hero-title').innerText = t.heroTitle;
+            document.querySelector('.hero-desc').innerText = t.heroDesc;
+            aiSearchInput.placeholder = t.searchPlaceholder;
+            
+            const agentBadgeTextEl = document.getElementById('agent-badge-text');
+            if (agentBadgeTextEl) agentBadgeTextEl.innerText = t.agentBadgeText;
+            
+            // Library count in header
+            const libCountEl = document.getElementById('library-count');
+            if (libCountEl) libCountEl.innerHTML = t.libraryCount.replace('{count}', SKILLS_DB.length);
+
+            // Exporter select dropdown options
+            const exporterSelect = document.getElementById('exporter-type');
+            if (exporterSelect) {
+                const currentVal = exporterSelect.value;
+                const options = [
+                    { value: "prompt", text: lang === 'ru' ? "Универсальный промпт (Codex/Claude/DeepSeek)" : "Universal Prompt (Codex/Claude/DeepSeek)" },
+                    { value: "cursor", text: "Cursor / Codex Rules (.cursor/rules)" },
+                    { value: "vscode", text: "VS Code / Roo Code / Cline (.clinerules)" },
+                    { value: "copilot", text: "GitHub Copilot (.github/copilot-instructions.md)" },
+                    { value: "windsurf", text: "Windsurf Rules (.windsurfrules)" },
+                    { value: "aider", text: "Aider Conventions (CONVENTIONS.md)" },
+                    { value: "pi", text: "Pi Agent (APPEND_SYSTEM.md)" },
+                    { value: "claudeprompt", text: "Claude Code (CLAUDE.md)" },
+                    { value: "agents", text: "Gemini Antigravity (.agents/skills)" }
+                ];
+                exporterSelect.innerHTML = options.map(o => `<option value="${o.value}" ${o.value === currentVal ? 'selected' : ''}>${o.text}</option>`).join('');
+            }
+            
+            // Sidebar sections
+            const secHeadings = document.querySelectorAll('.sidebar-section h3');
+            if (secHeadings[0]) secHeadings[0].innerHTML = `<span class="sec-num">[01]</span> ${t.secCombos.replace('[01] ', '')}`;
+            if (secHeadings[1]) secHeadings[1].innerHTML = `<span class="sec-num">[02]</span> ${t.secCategories.replace('[02] ', '')}`;
+            
+            // Preset names in sidebar
+            const presetBtns = document.querySelectorAll('.preset-btn[data-preset]');
+            const presetLabels = {
+                all: t.allSkills,
+                core: t.coreSkills,
+                discovery: t.discoverySkills,
+                growth: t.growthSkills,
+                saas: t.saasSkills,
+                b2b: t.b2bSkills,
+                'internal-products': t.internalProductsSkills,
+                strategy: t.strategySkills,
+                'platforms-tech': t.platformsTechSkills,
+                fintech: t.fintechSkills,
+                marketplace: t.marketplaceSkills,
+                'e-commerce': t.ecomSkills,
+                'retail-ops': t.retailOpsSkills,
+                'media-adtech': t.mediaSkills,
+                edtech: t.edtechSkills,
+                telecom: t.telecomSkills,
+                'govtech-b2g': t.b2gSkills
+            };
+            presetBtns.forEach(btn => {
+                const p = btn.getAttribute('data-preset');
+                const span = btn.querySelector('span:first-child');
+                if (span && presetLabels[p]) span.innerText = presetLabels[p];
+            });
+
+            // Action buttons
+            document.getElementById('btn-select-preset').innerHTML = `<i class="fa-solid fa-check-double"></i> ${t.btnSelectAll}`;
+            document.getElementById('btn-reset-preset').innerHTML = `<i class="fa-solid fa-xmark"></i> ${t.btnReset}`;
+            btnViewGrid.innerHTML = `<i class="fa-solid fa-table-cells-large"></i> ${t.viewGrid}`;
+            btnViewTable.innerHTML = `<i class="fa-solid fa-table-list"></i> ${t.viewTable}`;
+
+            // Drawer
+            document.querySelector('.drawer-header h3').innerHTML = `<i class="fa-solid fa-code-branch" style="color: var(--accent); font-size: 0.85rem;"></i> ${t.drawerTitle}`;
+            document.querySelector('.prompt-preview-box label').innerText = t.previewLabel;
+            document.querySelector('.exporter-section label').innerText = t.ideLabel;
+            document.getElementById('btn-copy-prompt').innerHTML = `<i class="fa-regular fa-copy"></i> ${t.btnCopy}`;
+            document.getElementById('btn-download-zip').innerHTML = `<i class="fa-solid fa-download"></i> ${t.btnDownload}`;
+
+            // Table headers
+            const ths = document.querySelectorAll('.skills-table th');
+            if (ths.length >= 6) {
+                ths[1].innerText = t.thId;
+                ths[2].innerText = t.thName;
+                ths[3].innerText = t.thDesc;
+                ths[4].innerText = t.thDomain;
+                ths[5].innerText = t.thAction;
+            }
+
+            // Theme toggle label
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            themeText.innerText = (currentTheme === 'dark' ? t.themeLight : t.themeDark);
+
+            // Counts & stats labels
+            const labelShown = document.getElementById('label-shown');
+            if (labelShown) labelShown.innerText = t.shown + ':';
+            const labelFrom = document.getElementById('label-from');
+            if (labelFrom) labelFrom.innerText = t.from;
+            const labelSelectedWord = document.getElementById('label-selected-word');
+            if (labelSelectedWord) labelSelectedWord.innerText = t.selected;
+            const labelStatSelected = document.getElementById('label-stat-selected');
+            if (labelStatSelected) labelStatSelected.innerText = t.statSelected.replace(':', '');
+            const labelStatVolume = document.getElementById('label-stat-volume');
+            if (labelStatVolume) labelStatVolume.innerText = t.statVolume.replace(':', '');
+
+            // Role combo buttons in sidebar
+            document.querySelectorAll('.combo-btn').forEach(btn => {
+                const comboId = parseInt(btn.getAttribute('data-combo'), 10);
+                const combo = COMBOS.find(c => c.id === comboId);
+                if (combo) {
+                    const span = btn.querySelector('span');
+                    if (span) span.innerText = (lang === 'ru' ? combo.ruName : combo.enName);
+                }
+            });
+
+            // Tooltips
+            document.getElementById('theme-toggle').title = (lang === 'ru' ? 'Переключить тему' : 'Toggle Theme');
+            document.getElementById('lang-toggle').title = (lang === 'ru' ? 'Switch to English' : 'Переключить на русский');
+            btnViewGrid.title = (lang === 'ru' ? 'Вид сеткой' : 'Grid View');
+            btnViewTable.title = (lang === 'ru' ? 'Вид таблицей' : 'Table View');
+
+            renderSkills();
+            updatePromptPreview();
+        }
+
+        langToggleBtn.addEventListener('click', () => {
+            setLanguage(currentLang === 'ru' ? 'en' : 'ru');
+        });
+
+        // View switcher logic
+        btnViewGrid.addEventListener('click', () => {
+            currentView = 'grid';
+            btnViewGrid.classList.add('active');
+            btnViewTable.classList.remove('active');
+            skillsGrid.style.display = 'grid';
+            skillsTableContainer.style.display = 'none';
+        });
+
+        btnViewTable.addEventListener('click', () => {
+            currentView = 'table';
+            btnViewTable.classList.add('active');
+            btnViewGrid.classList.remove('active');
+            skillsGrid.style.display = 'none';
+            skillsTableContainer.style.display = 'block';
+        });
+
+        // Global hotkeys
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && (e.code === 'KeyK' || e.key.toLowerCase() === 'k' || e.key.toLowerCase() === 'л')) {
+                e.preventDefault();
+                e.stopPropagation();
+                aiSearchInput.focus();
+                aiSearchInput.select();
+            } else if ((e.code === 'Slash' || e.key === '/') && document.activeElement !== aiSearchInput && !document.activeElement.matches('input, textarea, select')) {
+                e.preventDefault();
+                aiSearchInput.focus();
+                aiSearchInput.select();
+            } else if (e.key === 'Escape') {
+                if (detailModal.style.display === 'flex') {
+                    detailModal.style.display = 'none';
+                } else if (document.activeElement === aiSearchInput) {
+                    aiSearchInput.value = '';
+                    searchQuery = '';
+                    aiSearchInput.blur();
+                    renderSkills();
+                    runLocalRAG('');
+                }
+            }
+        });
+
+        // Initialize setup
+        document.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            const isMac = navigator.userAgent.includes('Mac') || navigator.platform.includes('Mac');
+            const kbdBadge = document.getElementById('search-kbd-badge');
+            if (kbdBadge) {
+                kbdBadge.innerText = isMac ? '⌘K' : 'Ctrl+K';
+            }
+
+            setLanguage(currentLang);
+            updatePresetCounts();
+
+            const dlCount = localStorage.getItem('pdm_dl_count') || '0';
+            const dlEl = document.getElementById('download-count');
+            if (dlEl) dlEl.innerText = dlCount;
+        });
+
+        function getPresetLabel(preset) {
+            const t = I18N[currentLang];
+            const map = {
+                core: t.coreSkills,
+                discovery: t.discoverySkills,
+                growth: t.growthSkills,
+                saas: t.saasSkills,
+                b2b: t.b2bSkills,
+                'internal-products': t.internalProductsSkills,
+                strategy: t.strategySkills,
+                'platforms-tech': t.platformsTechSkills,
+                fintech: t.fintechSkills,
+                marketplace: t.marketplaceSkills,
+                'e-commerce': t.ecomSkills,
+                'retail-ops': t.retailOpsSkills,
+                'media-adtech': t.mediaSkills,
+                edtech: t.edtechSkills,
+                telecom: t.telecomSkills,
+                'govtech-b2g': t.b2gSkills
+            };
+            return map[preset] || preset;
+        }
+
+        // Calculate count per category
+        function updatePresetCounts() {
+            const totalSelected = selectedSkills.size;
+            const countAllEl = document.getElementById('count-all');
+            if (countAllEl) {
+                if (totalSelected > 0) {
+                    countAllEl.innerHTML = `<span style="color: var(--accent); font-weight: 700;">${totalSelected}</span> / ${SKILLS_DB.length}`;
+                } else {
+                    countAllEl.innerText = SKILLS_DB.length;
+                }
+            }
+
+            const presets = ['core', 'discovery', 'growth', 'saas', 'b2b', 'internal-products', 'strategy', 'platforms-tech', 'fintech', 'marketplace', 'e-commerce', 'retail-ops', 'media-adtech', 'edtech', 'telecom', 'govtech-b2g'];
+            presets.forEach(p => {
+                const el = document.getElementById(`count-${p}`);
+                if (el) {
+                    const totalInCategory = SKILLS_DB.filter(s => s.preset === p).length;
+                    const selectedInCategory = SKILLS_DB.filter(s => s.preset === p && selectedSkills.has(s.id)).length;
+                    
+                    if (selectedInCategory > 0) {
+                        el.innerHTML = `<span style="color: var(--accent); font-weight: 700;">${selectedInCategory}</span> / ${totalInCategory}`;
+                        el.style.borderColor = 'var(--accent)';
+                    } else {
+                        el.innerText = totalInCategory;
+                        el.style.borderColor = 'transparent';
+                    }
+                }
+            });
+        }
+
+        // Helper getters for bilingual data
+        function getSkillData(skill) {
+            if (skill[currentLang]) return skill[currentLang];
+            if (currentLang === 'en' && skill.en) return skill.en;
+            if (skill.ru) return skill.ru;
+            return skill;
+        }
+
+        function getSkillName(skill) {
+            const data = getSkillData(skill);
+            return data.name || skill.id;
+        }
+
+        function getSkillDesc(skill) {
+            const data = getSkillData(skill);
+            return data.description || '';
+        }
+
+        function getSkillContent(skill) {
+            const data = getSkillData(skill);
+            return data.content || '';
+        }
+
+        // Stemming and Stopwords for Search
+        const STOPWORDS = new Set([
+            'и', 'в', 'во', 'не', 'что', 'он', 'на', 'я', 'с', 'со', 'как', 'а', 'то', 'все', 'она', 'так', 'его', 'но', 'да', 'ты',
+            'к', 'у', 'же', 'вы', 'за', 'бы', 'по', 'только', 'ее', 'мне', 'было', 'вот', 'от', 'меня', 'еще', 'нет', 'о', 'из', 'ему',
+            'теперь', 'когда', 'даже', 'ну', 'вдруг', 'ли', 'если', 'уже', 'или', 'ни', 'быть', 'был', 'него', 'до', 'вас', 'нибудь',
+            'опять', 'уж', 'вам', 'ведь', 'там', 'потом', 'себя', 'ничего', 'ей', 'может', 'они', 'тут', 'где', 'есть', 'надо', 'ней',
+            'для', 'мы', 'тебя', 'их', 'чем', 'была', 'сам', 'чтоб', 'без', 'будет', 'про', 'всего', 'почему', 'тут', 'эту', 'эти',
+            'сделать', 'написать', 'как', 'помоги', 'создай', 'разработать', 'нужно', 'хочу',
+            'the', 'and', 'for', 'with', 'from', 'how', 'create', 'make', 'design', 'write', 'build', 'what', 'this', 'that', 'with'
+        ]);
+
+        function getStem(word) {
+            word = word.toLowerCase().trim();
+            if (word.length <= 3) return word;
+            word = word.replace(/(иями|ями|иях|ях|ому|ему|ого|его|ыми|ими|ами|ей|ой|ий|ый|ая|ое|ые|ых|их|ов|ев|ам|ям|ах|ях|ом|ем|ам|а|я|о|е|у|ю|ы|и|ь|ing|tion|ment|able|s|ed)$/g, '');
+            return word;
+        }
+
+        // Search Scoring
+        function calculateRelevance(skill, queryTerms) {
+            if (!queryTerms || queryTerms.length === 0) return 0;
+            let score = 0;
+            const idStem = getStem(skill.id);
+            const nameStem = getStem(getSkillName(skill));
+            const descWords = (getSkillDesc(skill)).toLowerCase().split(/\\s+/).map(getStem);
+            const contentWords = (getSkillContent(skill)).toLowerCase().split(/\\s+/).map(getStem);
+
+            for (let term of queryTerms) {
+                const termStem = getStem(term);
+                if (idStem.includes(termStem)) score += 12;
+                if (nameStem.includes(termStem)) score += 10;
+                if (descWords.some(w => w.includes(termStem))) score += 4;
+                if (contentWords.some(w => w.includes(termStem))) score += 1;
+            }
+            return score;
+        }
+
+        // Render Cards and Table Rows
+        function renderSkills() {
+            const queryTerms = searchQuery.toLowerCase().split(/\\s+/).filter(w => w && !STOPWORDS.has(w));
+            const t = I18N[currentLang];
+            
+            let filtered = SKILLS_DB.filter(skill => {
+                if (activeComboId !== null && queryTerms.length === 0) {
+                    return selectedSkills.has(skill.id);
+                }
+                if (currentPreset !== 'all' && skill.preset !== currentPreset) return false;
+                if (queryTerms.length === 0) return true;
+                const score = calculateRelevance(skill, queryTerms);
+                return score > 0;
+            });
+
+            if (queryTerms.length > 0) {
+                filtered.sort((a, b) => calculateRelevance(b, queryTerms) - calculateRelevance(a, queryTerms));
+            }
+
+            visibleCountEl.innerText = filtered.length;
+            totalCountEl.innerText = SKILLS_DB.length;
+
+            // 1. Render Grid
+            skillsGrid.innerHTML = '';
+            filtered.forEach(skill => {
+                const isSelected = selectedSkills.has(skill.id);
+                const presetKey = (skill.preset || 'core').toLowerCase().replace(/[^a-z0-9-]/g, '');
+                const name = getSkillName(skill);
+                const desc = getSkillDesc(skill);
+                const badgeText = getPresetLabel(skill.preset || 'core');
+                
+                const card = document.createElement('div');
+                card.className = `skill-card ${isSelected ? 'selected' : ''}`;
+                card.onclick = (e) => {
+                    if (e.target.closest('.btn-card')) return;
+                    toggleSkill(skill.id);
+                };
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        <span class="card-badge badge-${presetKey}">${escapeHtml(badgeText)}</span>
+                        <div class="card-checkbox">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="card-title">${escapeHtml(name)}</div>
+                    <div class="card-desc">${escapeHtml(desc)}</div>
+                    <div class="card-actions">
+                        <span class="card-id">/${escapeHtml(skill.id)}</span>
+                        <button class="btn-card" onclick="openSkillDetail('${skill.id}', event)">
+                            <i class="fa-regular fa-file-lines"></i> ${t.btnInfo}
+                        </button>
+                    </div>
+                `;
+                skillsGrid.appendChild(card);
+            });
+
+            // 2. Render Table
+            skillsTableBody.innerHTML = '';
+            filtered.forEach((skill, idx) => {
+                const isSelected = selectedSkills.has(skill.id);
+                const presetKey = (skill.preset || 'core').toLowerCase().replace(/[^a-z0-9-]/g, '');
+                const name = getSkillName(skill);
+                const desc = getSkillDesc(skill);
+                const badgeText = getPresetLabel(skill.preset || 'core');
+                
+                const row = document.createElement('tr');
+                row.className = `table-row ${isSelected ? 'selected' : ''}`;
+                row.onclick = (e) => {
+                    if (e.target.closest('.btn-card')) return;
+                    toggleSkill(skill.id);
+                };
+
+                row.innerHTML = `
+                    <td style="text-align: center;">
+                        <div class="card-checkbox" style="margin: 0 auto;">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                    </td>
+                    <td class="table-cell-id">/${escapeHtml(skill.id)}</td>
+                    <td class="table-cell-name">${escapeHtml(name)}</td>
+                    <td class="table-cell-desc" title="${escapeHtml(desc)}">${escapeHtml(desc)}</td>
+                    <td style="text-align: center;"><span class="card-badge badge-${presetKey}">${escapeHtml(badgeText)}</span></td>
+                    <td style="text-align: center;">
+                        <button class="btn-card" style="display: inline-flex; justify-content: center; margin: 0 auto;" onclick="openSkillDetail('${skill.id}', event)">
+                            <i class="fa-regular fa-file-lines"></i> ${t.btnInfo}
+                        </button>
+                    </td>
+                `;
+                skillsTableBody.appendChild(row);
+            });
+        }
+
+        // Toggle Skill Selection
+        function toggleSkill(id) {
+            if (selectedSkills.has(id)) {
+                selectedSkills.delete(id);
+            } else {
+                selectedSkills.add(id);
+            }
+            renderSkills();
+            updatePromptPreview();
+        }
+
+        // Live RAG Suggestions
+        function runLocalRAG(query) {
+            const queryTerms = query.toLowerCase().split(/\\s+/).filter(w => w && !STOPWORDS.has(w));
+            if (queryTerms.length === 0) {
+                ragRecommendations.style.display = 'none';
+                return;
+            }
+
+            const scored = SKILLS_DB.map(skill => ({
+                skill,
+                score: calculateRelevance(skill, queryTerms)
+            })).filter(item => item.score > 0)
+              .sort((a, b) => b.score - a.score)
+              .slice(0, 5);
+
+            if (scored.length > 0) {
+                ragRecommendations.style.display = 'flex';
+                ragList.innerHTML = '';
+                scored.forEach(item => {
+                    const tag = document.createElement('div');
+                    tag.className = 'rag-item';
+                    tag.innerHTML = `<span>+ ${escapeHtml(getSkillName(item.skill))}</span>`;
+                    tag.onclick = () => {
+                        selectedSkills.add(item.skill.id);
+                        renderSkills();
+                        updatePromptPreview();
+                    };
+                    ragList.appendChild(tag);
+                });
+            } else {
+                ragRecommendations.style.display = 'none';
+            }
+        }
+
+        aiSearchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderSkills();
+            runLocalRAG(searchQuery);
+        });
+
+        // Category Filter
+        document.querySelectorAll('.preset-btn[data-preset]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentPreset = btn.getAttribute('data-preset');
+                comboDescBanner.style.display = 'none';
+                activeComboId = null;
+                renderSkills();
+            });
+        });
+
+        // Combo Role Selection
+        document.querySelectorAll('.combo-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const comboId = parseInt(btn.getAttribute('data-combo'), 10);
+                const combo = COMBOS.find(c => c.id === comboId);
+                if (combo) {
+                    activeComboId = comboId;
+                    selectedSkills.clear();
+                    combo.skills.forEach(s => selectedSkills.add(s));
+                    
+                    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const t = I18N[currentLang];
+                    comboDescTitle.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent);"></i> ${t.comboPrefix} ${escapeHtml(currentLang === 'ru' ? combo.ruName : combo.enName)}`;
+                    comboDescText.innerText = COMBO_DESCRIPTIONS[currentLang][comboId] || '';
+                    comboDescBanner.style.display = 'block';
+
+                    currentPreset = 'all';
+                    document.querySelector('.preset-btn[data-preset="all"]').classList.add('active');
+
+                    renderSkills();
+                    updatePromptPreview();
+                }
+            });
+        });
+
+        // Bulk Selection Actions
+        document.getElementById('btn-select-preset').addEventListener('click', () => {
+            const queryTerms = searchQuery.toLowerCase().split(/\\s+/).filter(w => w && !STOPWORDS.has(w));
+            SKILLS_DB.forEach(skill => {
+                if (currentPreset === 'all' || skill.preset === currentPreset) {
+                    if (queryTerms.length === 0 || calculateRelevance(skill, queryTerms) > 0) {
+                        selectedSkills.add(skill.id);
+                    }
+                }
+            });
+            renderSkills();
+            updatePromptPreview();
+        });
+
+        document.getElementById('btn-reset-preset').addEventListener('click', () => {
+            selectedSkills.clear();
+            renderSkills();
+            updatePromptPreview();
+        });
+
+        // Token Estimator & Live Prompt Preview
+        function updatePromptPreview() {
+            const selectedList = SKILLS_DB.filter(s => selectedSkills.has(s.id));
+            const count = selectedList.length;
+            const t = I18N[currentLang];
+            
+            selectedBadgeInfo.innerHTML = `(${t.selected}: <b>${count}</b>)`;
+            statSelectedCount.innerText = count;
+
+            if (count === 0) {
+                promptPreview.innerText = t.previewEmpty;
+                statTokensEst.innerText = "0 tok";
+                contextBarFill.style.width = "0%";
+                updatePresetCounts();
+                return;
+            }
+
+            let fullContent = "";
+            selectedList.forEach(s => {
+                fullContent += getSkillContent(s) + "\\n\\n";
+            });
+
+            // Token estimation (approx 3.2 chars per token)
+            const approxTokens = Math.round(fullContent.length / 3.2);
+            statTokensEst.innerText = `~${approxTokens.toLocaleString(currentLang === 'ru' ? 'ru-RU' : 'en-US')} tok`;
+
+            // Max context window calculation
+            const percent = Math.min(100, Math.max(4, Math.round((approxTokens / 128000) * 100)));
+            contextBarFill.style.width = `${percent}%`;
+
+            let previewText = t.promptHeader.replace('{count}', count);
+            selectedList.forEach(s => {
+                previewText += `## ${getSkillName(s)} (/${s.id})\\n${getSkillDesc(s)}\\n\\n`;
+            });
+
+            promptPreview.innerText = previewText;
+            updatePresetCounts();
+        }
+
+        // Modal Logic
+        function openSkillDetail(id, e) {
+            if (e) e.stopPropagation();
+            const skill = SKILLS_DB.find(s => s.id === id);
+            if (!skill) return;
+
+            const name = getSkillName(skill);
+            const content = getSkillContent(skill);
+
+            modalTitle.innerHTML = `<i class="fa-solid fa-file-lines" style="color: var(--accent);"></i> ${escapeHtml(name)} <span class="card-id" style="font-size: 0.8rem; margin-left: 0.5rem;">/${escapeHtml(skill.id)}</span>`;
+            modalBody.innerHTML = marked.parse(content || '# No description');
+            detailModal.style.display = 'flex';
+        }
+
+        modalCloseBtn.addEventListener('click', () => {
+            detailModal.style.display = 'none';
+        });
+
+        detailModal.addEventListener('click', (e) => {
+            if (e.target === detailModal) {
+                detailModal.style.display = 'none';
+            }
+        });
+
+        // Copy Prompt
+        document.getElementById('btn-copy-prompt').addEventListener('click', () => {
+            const selectedList = SKILLS_DB.filter(s => selectedSkills.has(s.id));
+            const t = I18N[currentLang];
+            if (selectedList.length === 0) {
+                alert(currentLang === 'ru' ? "Пожалуйста, выберите хотя бы один скилл!" : "Please select at least one skill!");
+                return;
+            }
+
+            let fullPrompt = t.copyPromptHeader;
+            selectedList.forEach(s => {
+                fullPrompt += getSkillContent(s) + "\\n\\n---\\n\\n";
+            });
+
+            navigator.clipboard.writeText(fullPrompt).then(() => {
+                const btn = document.getElementById('btn-copy-prompt');
+                const orig = btn.innerHTML;
+                btn.innerHTML = `<i class="fa-solid fa-check"></i> ${t.btnCopied}`;
+                setTimeout(() => btn.innerHTML = orig, 2000);
+            });
+        });
+
+        // Download Zip Export for 9 IDEs and Agents
+        document.getElementById('btn-download-zip').addEventListener('click', async () => {
+            const selectedList = SKILLS_DB.filter(s => selectedSkills.has(s.id));
+            const t = I18N[currentLang];
+            if (selectedList.length === 0) {
+                alert(currentLang === 'ru' ? "Пожалуйста, выберите хотя бы один скилл для скачивания!" : "Please select at least one skill to download!");
+                return;
+            }
+
+            const target = exporterType.value;
+            const zip = new JSZip();
+
+            if (target === 'cursor') {
+                const folder = zip.folder(".cursor/rules");
+                selectedList.forEach(s => {
+                    const ruleContent = `---\ndescription: ${getSkillDesc(s)}\nglobs: *\n---\n\n# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`;
+                    folder.file(`${s.id}.mdc`, ruleContent);
+                });
+            } else if (target === 'agents') {
+                const folder = zip.folder(".agents/skills");
+                selectedList.forEach(s => {
+                    const skillDir = folder.folder(s.id);
+                    skillDir.file("SKILL.md", `---\nname: ${s.id}\ndescription: ${getSkillDesc(s)}\n---\n\n${getSkillContent(s)}`);
+                });
+            } else if (target === 'vscode') {
+                const folder = zip.folder(".clinerules.d");
+                selectedList.forEach(s => {
+                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                });
+            } else if (target === 'copilot') {
+                const folder = zip.folder(".github/copilot-instructions.d");
+                selectedList.forEach(s => {
+                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                });
+            } else if (target === 'windsurf') {
+                const folder = zip.folder(".windsurfrules.d");
+                selectedList.forEach(s => {
+                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                });
+            } else if (target === 'aider') {
+                const folder = zip.folder("conventions.d");
+                selectedList.forEach(s => {
+                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                });
+            } else if (target === 'pi') {
+                const folder = zip.folder("skills");
+                selectedList.forEach(s => {
+                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                });
+            } else if (target === 'claudeprompt') {
+                const folder = zip.folder(".claude/skills");
+                selectedList.forEach(s => {
+                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                });
+            } else {
+                // Universal Markdown (ChatGPT / Claude Web / Custom)
+                const folder = zip.folder("skills");
+                selectedList.forEach(s => {
+                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n> **Описание:** ${getSkillDesc(s)}\n> **Домен:** ${getPresetLabel(s.preset || 'core')}\n\n---\n\n${getSkillContent(s)}`);
+                });
+            }
+
+            // Add clear README inside archive
+            const readmeTxt = `==============================================================================
+PdM-Skills Builder — Modular Rules Archive Export
+Target Format: ${target.toUpperCase()}
+Language: ${currentLang.toUpperCase()}
+Total Exported Skills: ${selectedList.length}
+==============================================================================
+
+КАК ИСПОЛЬЗОВАТЬ МОДУЛИ / HOW TO USE:
+
+1. Все выбранные навыки сохранены в виде изолированных модульных файлов.
+2. Подключайте только 3–5 целевых модулей под конкретную текущую задачу:
+   - Это защищает контекстное окно LLM от перегрузки (No Lost-in-the-Middle).
+   - Модель отвечает точнее, дешевле и быстрее.
+3. Если вам нужно скопировать скомпилированный текст для быстрой вставки в чат:
+   - Используйте кнопку «Копировать правила» в веб-интерфейсе конструктора.
+
+==============================================================================
+Author: Anton Mikhailov (@mikhaylove_anton)
+Catalog: https://anton-creates.github.io/pdm-skills-builder/
+==============================================================================`;
+            zip.file("README_PDM_SKILLS.txt", readmeTxt);
+
+            const content = await zip.generateAsync({ type: "blob" });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(content);
+            link.download = `pdm-skills-${target}-${currentLang}-${Date.now()}.zip`;
+            link.click();
+
+            // Increment local and session download count (only on real download click)
+            let currentDl = parseInt(localStorage.getItem('pdm_dl_count') || '0', 10) + 1;
+            localStorage.setItem('pdm_dl_count', currentDl);
+            const dlCountEl = document.getElementById('download-count');
+            if (dlCountEl) dlCountEl.innerText = currentDl;
+
+            // Trigger background hit only on download action
+            new Image().src = `https://hits.sh/anton-creates.github.io/pdm-skills-builder-downloads.svg?style=flat-square&label=downloads&_t=${Date.now()}`;
+        });
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+
+</body>
+</html>
