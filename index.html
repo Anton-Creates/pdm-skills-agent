@@ -150,16 +150,18 @@
         .stat-badge {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.35rem;
             font-family: var(--font-mono);
             font-size: 0.72rem;
             color: var(--text-secondary);
             border: 1px solid var(--border-color);
-            padding: 0.2rem 0.5rem;
+            padding: 0.25rem 0.5rem;
             border-radius: var(--radius-sm);
             background: var(--bg-primary);
             -webkit-user-select: none;
             user-select: none;
+            line-height: 1;
         }
 
         .stat-badge i {
@@ -182,7 +184,7 @@
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
-            padding: 0.3rem 0.65rem;
+            padding: 0.35rem 0.65rem;
             border-radius: var(--radius-sm);
             font-family: var(--font-sans);
             font-size: 0.78rem;
@@ -190,8 +192,10 @@
             cursor: pointer;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.4rem;
             transition: all 0.15s ease;
+            line-height: 1;
         }
 
         .theme-toggle-btn:hover {
@@ -204,9 +208,13 @@
             font-size: 0.72rem;
             color: var(--text-muted);
             border: 1px solid var(--border-color);
-            padding: 0.25rem 0.55rem;
+            padding: 0.3rem 0.55rem;
             border-radius: var(--radius-sm);
             background: var(--bg-primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
         }
 
         /* ── Hero / Onboarding Banner ─────────────────────────────────────── */
@@ -343,11 +351,15 @@
             color: var(--text-muted);
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            padding: 0.1rem 0.35rem;
+            padding: 0.15rem 0.35rem;
             border-radius: var(--radius-sm);
             white-space: nowrap;
             flex-shrink: 0;
             margin-left: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
         }
 
         /* ── Workspace / Content Area ─────────────────────────────────────── */
@@ -718,10 +730,12 @@
             font-size: 0.78rem;
             font-weight: 600;
             cursor: pointer;
-            display: flex;
+            display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.35rem;
             transition: color 0.15s ease;
+            line-height: 1;
         }
 
         .btn-card:hover {
@@ -1126,14 +1140,16 @@
         .author-badge {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.35rem;
             color: var(--text-secondary);
             text-decoration: none;
             border: 1px solid var(--border-color);
-            padding: 0.2rem 0.5rem;
+            padding: 0.35rem 0.45rem;
             border-radius: var(--radius-sm);
             background: var(--bg-primary);
             transition: all 0.15s ease;
+            line-height: 1;
         }
 
         .author-badge:hover {
@@ -1554,14 +1570,14 @@
     <!-- Application Footer -->
     <footer class="app-footer">
         <div class="footer-left">
-            <a href="https://t.me/mikhaylove_anton" target="_blank" rel="noopener noreferrer" class="author-badge">
-                <i class="fa-brands fa-telegram icon-telegram"></i> @mikhaylove_anton
+            <a href="https://t.me/mikhaylove_anton" target="_blank" rel="noopener noreferrer" class="author-badge" title="Telegram">
+                <i class="fa-brands fa-telegram icon-telegram"></i>
             </a>
-            <a href="https://www.linkedin.com/in/anton-mikhaylove/" target="_blank" rel="noopener noreferrer" class="author-badge">
-                <i class="fa-brands fa-linkedin icon-linkedin"></i> LinkedIn
+            <a href="https://www.linkedin.com/in/anton-mikhaylove/" target="_blank" rel="noopener noreferrer" class="author-badge" title="LinkedIn">
+                <i class="fa-brands fa-linkedin icon-linkedin"></i>
             </a>
-            <a href="https://github.com/Anton-Creates/pdm-skills-builder" target="_blank" rel="noopener noreferrer" class="author-badge">
-                <i class="fa-brands fa-github"></i> GitHub Репозиторий
+            <a href="https://github.com/Anton-Creates/pdm-skills-builder" target="_blank" rel="noopener noreferrer" class="author-badge" title="GitHub Репозиторий">
+                <i class="fa-brands fa-github"></i>
             </a>
         </div>
         <div>
