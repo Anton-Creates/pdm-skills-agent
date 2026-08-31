@@ -1541,16 +1541,17 @@
             <div class="exporter-section">
                 <label>Целевая IDE / Формат:</label>
                 <div class="exporter-select-wrapper">
-                    <select id="exporter-type" title="Универсальный промпт (ChatGPT/DeepSeek/Claude Web)">
-                        <option value="prompt" title="Универсальный промпт (Codex/DeepSeek/Claude Web)">Универсальный промпт (Codex/Claude/DeepSeek)</option>
-                        <option value="cursor" title="Cursor / Codex rules (.cursorrules)">Cursor / Codex Rules (.cursor/rules)</option>
+                    <select id="exporter-type" title="Выберите целевой формат или IDE">
+                        <option value="claudeprompt" title="Claude Code (CLAUDE.md)">Claude Code (CLAUDE.md)</option>
+                        <option value="codex" title="OpenAI Codex Rules (AGENTS.md / .codex)">OpenAI Codex Rules (AGENTS.md)</option>
+                        <option value="cursor" title="Cursor Rules (.cursorrules)">Cursor Rules (.cursorrules)</option>
+                        <option value="agents" title="Gemini Antigravity (.agents/skills)">Gemini Antigravity (.agents/skills)</option>
                         <option value="vscode" title="VS Code (Roo Code / Cline .clinerules)">VS Code / Roo Code / Cline (.clinerules)</option>
                         <option value="copilot" title="GitHub Copilot (.github/copilot-instructions.md)">GitHub Copilot (.github/copilot-instructions.md)</option>
                         <option value="windsurf" title="Windsurf rules (.windsurfrules)">Windsurf Rules (.windsurfrules)</option>
                         <option value="aider" title="Aider conventions (CONVENTIONS.md)">Aider Conventions (CONVENTIONS.md)</option>
                         <option value="pi" title="Pi Agent (APPEND_SYSTEM.md)">Pi Agent (APPEND_SYSTEM.md)</option>
-                        <option value="claudeprompt" title="Claude Code (CLAUDE.md)">Claude Code (CLAUDE.md)</option>
-                        <option value="agents" title="Gemini Antigravity (AGENTS.md)">Gemini Antigravity (.agents/skills)</option>
+                        <option value="prompt" title="Универсальный промпт (любая нейросеть / LLM)">Универсальный промпт (любая нейросеть / LLM)</option>
                     </select>
                 </div>
             </div>
@@ -1652,7 +1653,7 @@
                 thDesc: "Описание",
                 thDomain: "Домен",
                 thAction: "Действие",
-                libraryCount: "Библиотека: <b>{count}</b> скилла",
+                libraryCount: "Библиотека: <b>{count}</b> скиллов",
                 themeDark: "Тёмная",
                 themeLight: "Светлая",
                 modalTitle: "Детали скилла",
@@ -2428,7 +2429,17 @@
             const target = exporterType.value;
             const zip = new JSZip();
 
-            if (target === 'cursor') {
+            if (target === 'claudeprompt') {
+                const folder = zip.folder(".claude/skills");
+                selectedList.forEach(s => {
+                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                });
+            } else if (target === 'codex') {
+                const folder = zip.folder(".codex/rules");
+                selectedList.forEach(s => {
+                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                });
+            } else if (target === 'cursor') {
                 const folder = zip.folder(".cursor/rules");
                 selectedList.forEach(s => {
                     const ruleContent = `---\ndescription: ${getSkillDesc(s)}\nglobs: *\n---\n\n# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`;
@@ -2497,7 +2508,7 @@ Total Exported Skills: ${selectedList.length}
 
 ==============================================================================
 Author: Anton Mikhailov (@mikhaylove_anton)
-Catalog: https://anton-creates.github.io/pdm-skills-builder/
+Catalog: https://anton-creates.github.io/pdm-skills-agent/
 ==============================================================================`;
             zip.file("README_PDM_SKILLS.txt", readmeTxt);
 
