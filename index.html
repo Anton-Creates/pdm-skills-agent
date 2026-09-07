@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PdM-Skills Builder — Конструктор системных правил ИИ для продакт-менеджеров</title>
+    <title>PdM-Skills Builder вЂ” РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃРёСЃС‚РµРјРЅС‹С… РїСЂР°РІРёР» РР РґР»СЏ РїСЂРѕРґР°РєС‚-РјРµРЅРµРґР¶РµСЂРѕРІ</title>
 
     <!-- Google Fonts: Plus Jakarta Sans + JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +21,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
     <style>
-        /* ── Anti-AI Design System — Swiss Grid & Dual-Theme Tokens ────────── */
+        /* в”Ђв”Ђ Anti-AI Design System вЂ” Swiss Grid & Dual-Theme Tokens в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         :root {
             /* Light Theme (Default: Clean Editorial) */
             --bg-primary: #ffffff;
@@ -71,7 +71,7 @@
             --card-shadow: none;
         }
 
-        /* ── Global Reset ─────────────────────────────────────────────────── */
+        /* в”Ђв”Ђ Global Reset в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -91,7 +91,7 @@
             transition: background-color 0.2s ease, color 0.2s ease;
         }
 
-        /* ── Scrollbars ───────────────────────────────────────────────────── */
+        /* в”Ђв”Ђ Scrollbars в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -110,7 +110,7 @@
             background: var(--border-hover);
         }
 
-        /* ── Header ───────────────────────────────────────────────────────── */
+        /* в”Ђв”Ђ Header в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         header {
             display: flex;
             justify-content: space-between;
@@ -208,7 +208,7 @@
             background: var(--bg-primary);
         }
 
-        /* ── Hero / Onboarding Banner ─────────────────────────────────────── */
+        /* в”Ђв”Ђ Hero / Onboarding Banner в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         #hero-banner {
             background: var(--bg-secondary);
             border-bottom: 1px solid var(--border-color);
@@ -237,7 +237,7 @@
             line-height: 1.45;
         }
 
-        /* ── Main Layout ──────────────────────────────────────────────────── */
+        /* в”Ђв”Ђ Main Layout в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         .main-layout {
             display: flex;
             flex: 1;
@@ -245,7 +245,7 @@
             position: relative;
         }
 
-        /* ── Left Sidebar ─────────────────────────────────────────────────── */
+        /* в”Ђв”Ђ Left Sidebar в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         .sidebar {
             width: 270px;
             border-right: 1px solid var(--border-color);
@@ -326,7 +326,7 @@
             border-radius: var(--radius-sm);
         }
 
-        /* ── Workspace / Content Area ─────────────────────────────────────── */
+        /* в”Ђв”Ђ Workspace / Content Area в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         .content-area {
             flex: 1;
             padding: 1.25rem 1.5rem;
@@ -338,7 +338,7 @@
             background: var(--bg-primary);
         }
 
-        /* ── Search Bar & RAG Recommendations ─────────────────────────────── */
+        /* в”Ђв”Ђ Search Bar & RAG Recommendations в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         .ai-search-box {
             display: flex;
             flex-direction: column;
@@ -437,7 +437,7 @@
             background: var(--bg-tertiary);
         }
 
-        /* ── Bulk Actions & View Switcher ──────────────────────────────────── */
+        /* в”Ђв”Ђ Bulk Actions & View Switcher в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         .bulk-actions {
             display: flex;
             justify-content: space-between;
@@ -530,7 +530,7 @@
             color: var(--text-primary);
         }
 
-        /* ── Skills Grid View ──────────────────────────────────────────────── */
+        /* в”Ђв”Ђ Skills Grid View в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -703,7 +703,7 @@
             color: var(--text-primary);
         }
 
-        /* ── Table / Matrix View ───────────────────────────────────────────── */
+        /* в”Ђв”Ђ Table / Matrix View в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         .skills-table-container {
             display: none;
             width: 100%;
@@ -820,7 +820,7 @@
             text-overflow: ellipsis;
         }
 
-        /* ── Right Panel: Prompt Builder Drawer ───────────────────────────── */
+        /* в”Ђв”Ђ Right Panel: Prompt Builder Drawer в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         .drawer {
             width: 370px;
             border-left: 1px solid var(--border-color);
@@ -959,7 +959,7 @@
             font-size: 0.82rem;
         }
 
-        /* ── Modal Dialog ─────────────────────────────────────────────────── */
+        /* в”Ђв”Ђ Modal Dialog в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -1079,7 +1079,7 @@
             font-weight: 600;
         }
 
-        /* ── Footer ────────────────────────────────────────────────────────── */
+        /* в”Ђв”Ђ Footer в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         .app-footer {
             border-top: 1px solid var(--border-color);
             background: var(--bg-secondary);
@@ -1115,14 +1115,14 @@
             color: var(--text-primary);
         }
 
-        /* ── Responsive: Tablet (≤ 1024px) ──────────────────────────────────── */
+        /* в”Ђв”Ђ Responsive: Tablet (в‰¤ 1024px) в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         @media (max-width: 1024px) {
             .drawer { width: 300px; }
             .sidebar { width: 220px; }
             .logo-title { font-size: 0.95rem; }
         }
 
-        /* ── Responsive: Tablet Portrait (≤ 768px) ───────────────────────── */
+        /* в”Ђв”Ђ Responsive: Tablet Portrait (в‰¤ 768px) в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         @media (max-width: 768px) {
             /* Header becomes 2-row on tablet portrait */
             header {
@@ -1218,7 +1218,7 @@
             .skills-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
         }
 
-        /* ── Responsive: Mobile (≤ 480px) ─────────────────────────────────── */
+        /* в”Ђв”Ђ Responsive: Mobile (в‰¤ 480px) в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         @media (max-width: 480px) {
             /* Header: compact single row */
             header {
@@ -1243,7 +1243,7 @@
                 padding: 0.3rem 0.5rem;
                 font-size: 0.72rem;
             }
-            /* Hide text labels in header buttons — icon only */
+            /* Hide text labels in header buttons вЂ” icon only */
             #theme-text, #lang-text { display: none; }
             .version { display: none; }
 
@@ -1266,7 +1266,7 @@
             }
             .sidebar-section { min-width: unset; flex: none; width: 100%; }
 
-            /* Preset buttons — larger touch targets */
+            /* Preset buttons вЂ” larger touch targets */
             .preset-btn { padding: 0.55rem 0.75rem; font-size: 0.82rem; min-height: 40px; }
 
             /* Content area */
@@ -1317,7 +1317,7 @@
             .app-footer { padding: 0.65rem 0.85rem; font-size: 0.75rem; gap: 0.5rem; }
         }
 
-        /* ── Responsive: Small Mobile (≤ 360px) ──────────────────────────── */
+        /* в”Ђв”Ђ Responsive: Small Mobile (в‰¤ 360px) в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
         @media (max-width: 360px) {
             .logo-title { max-width: 120px; font-size: 0.78rem; }
             .theme-toggle-btn { padding: 0.25rem 0.4rem; }
@@ -1334,8 +1334,8 @@
                 PdM-Skills Builder
             </span>
             <div class="stat-badges-group">
-                <img id="view-badge-img" src="https://hits.sh/anton-creates.github.io/pdm-skills-builder.svg?style=flat-square&label=views&color=0284c7&labelColor=0f172a" alt="views count" height="20" style="border-radius: 4px; display: block;" title="Просмотры каталога" />
-                <div class="stat-badge" title="Скачанные сборки правил">
+                <img id="view-badge-img" src="https://hits.sh/anton-creates.github.io/pdm-skills-builder.svg?style=flat-square&label=views&color=0284c7&labelColor=0f172a" alt="views count" height="20" style="border-radius: 4px; display: block;" title="РџСЂРѕСЃРјРѕС‚СЂС‹ РєР°С‚Р°Р»РѕРіР°" />
+                <div class="stat-badge" title="РЎРєР°С‡Р°РЅРЅС‹Рµ СЃР±РѕСЂРєРё РїСЂР°РІРёР»">
                     <i class="fa-solid fa-download" style="color: #16a34a;"></i> <span id="download-count">0</span>
                 </div>
             </div>
@@ -1345,11 +1345,11 @@
                 <i class="fa-solid fa-globe" style="color: var(--accent);"></i>
                 <span id="lang-text">EN</span>
             </button>
-            <button class="theme-toggle-btn" id="theme-toggle" title="Переключить тему">
+            <button class="theme-toggle-btn" id="theme-toggle" title="РџРµСЂРµРєР»СЋС‡РёС‚СЊ С‚РµРјСѓ">
                 <i class="fa-solid fa-moon" id="theme-icon"></i>
-                <span id="theme-text">Тёмная</span>
+                <span id="theme-text">РўС‘РјРЅР°СЏ</span>
             </button>
-            <div class="version" id="library-count">Библиотека: ... скиллов</div>
+            <div class="version" id="library-count">Р‘РёР±Р»РёРѕС‚РµРєР°: ... СЃРєРёР»Р»РѕРІ</div>
         </div>
     </header>
 
@@ -1357,10 +1357,10 @@
     <div id="hero-banner">
         <div style="flex: 1; min-width: 260px;">
             <div class="hero-title">
-                Каталог контекстных системных инструкций для продакт-менеджмента
+                РљР°С‚Р°Р»РѕРі РєРѕРЅС‚РµРєСЃС‚РЅС‹С… СЃРёСЃС‚РµРјРЅС‹С… РёРЅСЃС‚СЂСѓРєС†РёР№ РґР»СЏ РїСЂРѕРґР°РєС‚-РјРµРЅРµРґР¶РјРµРЅС‚Р°
             </div>
             <div class="hero-desc">
-                Сборка структурированных правил для ChatGPT, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.
+                РЎР±РѕСЂРєР° СЃС‚СЂСѓРєС‚СѓСЂРёСЂРѕРІР°РЅРЅС‹С… РїСЂР°РІРёР» РґР»СЏ ChatGPT, Claude, Cursor, Roo Code, Antigravity Рё GitHub Copilot. Р’С‹Р±РµСЂРёС‚Рµ РЅСѓР¶РЅС‹Рµ СЃРєРёР»Р»С‹, РїСЂРѕС‚РµСЃС‚РёСЂСѓР№С‚Рµ РїСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ Рё СЃРєР°С‡Р°Р№С‚Рµ РіРѕС‚РѕРІС‹Р№ Р°СЂС…РёРІ РІ С„РѕСЂРјР°С‚Рµ РІР°С€РµР№ IDE.
             </div>
         </div>
     </div>
@@ -1371,34 +1371,34 @@
         <!-- Left Sidebar: Filters & Preset Roles -->
         <div class="sidebar">
             <div class="sidebar-section">
-                <h3><span class="sec-num">[01]</span> РОЛЕВЫЕ СБОРКИ</h3>
+                <h3><span class="sec-num">[01]</span> Р РћР›Р•Р’Р«Р• РЎР‘РћР РљР</h3>
                 <div class="preset-list" id="role-combos-list">
                     <button class="preset-btn combo-btn" data-combo="0">
-                        <span>Lead / Senior PM</span>
+                        <span>Lead / Senior PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="1">
-                        <span>B2B & Enterprise PM</span>
+                        <span>B2B & Enterprise PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="2">
-                        <span>SaaS & Subscription PM</span>
+                        <span>SaaS & Subscription PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="3">
-                        <span>Internal & HR-Tech PM</span>
+                        <span>Internal & HR-Tech PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="4">
-                        <span>Growth & PLG PM</span>
+                        <span>Growth & PLG PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="5">
-                        <span>Marketplace & E-com PM</span>
+                        <span>Marketplace & E-com PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="6">
-                        <span>Fintech & Banking PM</span>
+                        <span>Fintech & Banking PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="7">
-                        <span>AI, LLM & Data PM</span>
+                        <span>AI, LLM & Data PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="8">
-                        <span>GovTech & B2G PM</span>
+                        <span>GovTech & B2G PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="9">
                         <span>CPO / Leadership</span>
@@ -1407,74 +1407,74 @@
             </div>
 
             <div class="sidebar-section" style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
-                <h3><span class="sec-num">[02]</span> КАТЕГОРИИ И ДОМЕНЫ</h3>
+                <h3><span class="sec-num">[02]</span> РљРђРўР•Р“РћР РР Р Р”РћРњР•РќР«</h3>
                 <div class="preset-list">
                     <button class="preset-btn active" data-preset="all">
-                        <span>Все скиллы</span>
+                        <span>Р’СЃРµ СЃРєРёР»Р»С‹</span>
                         <span class="preset-count" id="count-all">0</span>
                     </button>
                     <button class="preset-btn" data-preset="core">
-                        <span>Ядро PdM (Core)</span>
+                        <span>РЇРґСЂРѕ PdM (Core)</span>
                         <span class="preset-count" id="count-core">0</span>
                     </button>
                     <button class="preset-btn" data-preset="discovery">
-                        <span>Исследования (Discovery)</span>
+                        <span>РСЃСЃР»РµРґРѕРІР°РЅРёСЏ (Discovery)</span>
                         <span class="preset-count" id="count-discovery">0</span>
                     </button>
                     <button class="preset-btn" data-preset="growth">
-                        <span>Рост и Воронки</span>
+                        <span>Р РѕСЃС‚ Рё Р’РѕСЂРѕРЅРєРё</span>
                         <span class="preset-count" id="count-growth">0</span>
                     </button>
                     <button class="preset-btn" data-preset="saas">
-                        <span>SaaS и Подписки</span>
+                        <span>SaaS Рё РџРѕРґРїРёСЃРєРё</span>
                         <span class="preset-count" id="count-saas">0</span>
                     </button>
                     <button class="preset-btn" data-preset="b2b">
-                        <span>B2B Продукты</span>
+                        <span>B2B РџСЂРѕРґСѓРєС‚С‹</span>
                         <span class="preset-count" id="count-b2b">0</span>
                     </button>
                     <button class="preset-btn" data-preset="internal-products">
-                        <span>Внутренние и HR-Tech</span>
+                        <span>Р’РЅСѓС‚СЂРµРЅРЅРёРµ Рё HR-Tech</span>
                         <span class="preset-count" id="count-internal-products">0</span>
                     </button>
                     <button class="preset-btn" data-preset="strategy">
-                        <span>Стратегия и CPO</span>
+                        <span>РЎС‚СЂР°С‚РµРіРёСЏ Рё CPO</span>
                         <span class="preset-count" id="count-strategy">0</span>
                     </button>
                     <button class="preset-btn" data-preset="platforms-tech">
-                        <span>Платформы и Архитектура</span>
+                        <span>РџР»Р°С‚С„РѕСЂРјС‹ Рё РђСЂС…РёС‚РµРєС‚СѓСЂР°</span>
                         <span class="preset-count" id="count-platforms-tech">0</span>
                     </button>
                     <button class="preset-btn" data-preset="fintech">
-                        <span>Финтех и Банкинг</span>
+                        <span>Р¤РёРЅС‚РµС… Рё Р‘Р°РЅРєРёРЅРі</span>
                         <span class="preset-count" id="count-fintech">0</span>
                     </button>
                     <button class="preset-btn" data-preset="marketplace">
-                        <span>Маркетплейсы</span>
+                        <span>РњР°СЂРєРµС‚РїР»РµР№СЃС‹</span>
                         <span class="preset-count" id="count-marketplace">0</span>
                     </button>
                     <button class="preset-btn" data-preset="e-commerce">
-                        <span>E-commerce (D2C / Онлайн)</span>
+                        <span>E-commerce (D2C / РћРЅР»Р°Р№РЅ)</span>
                         <span class="preset-count" id="count-e-commerce">0</span>
                     </button>
                     <button class="preset-btn" data-preset="retail-ops">
-                        <span>Ритейл и FoodTech Ops</span>
+                        <span>Р РёС‚РµР№Р» Рё FoodTech Ops</span>
                         <span class="preset-count" id="count-retail-ops">0</span>
                     </button>
                     <button class="preset-btn" data-preset="media-adtech">
-                        <span>Медиа и AdTech</span>
+                        <span>РњРµРґРёР° Рё AdTech</span>
                         <span class="preset-count" id="count-media-adtech">0</span>
                     </button>
                     <button class="preset-btn" data-preset="edtech">
-                        <span>EdTech (Обучение)</span>
+                        <span>EdTech (РћР±СѓС‡РµРЅРёРµ)</span>
                         <span class="preset-count" id="count-edtech">0</span>
                     </button>
                     <button class="preset-btn" data-preset="telecom">
-                        <span>Телеком</span>
+                        <span>РўРµР»РµРєРѕРј</span>
                         <span class="preset-count" id="count-telecom">0</span>
                     </button>
                     <button class="preset-btn" data-preset="govtech-b2g">
-                        <span>Госсектор (B2G)</span>
+                        <span>Р“РѕСЃСЃРµРєС‚РѕСЂ (B2G)</span>
                         <span class="preset-count" id="count-govtech-b2g">0</span>
                     </button>
                 </div>
@@ -1488,7 +1488,7 @@
                 <div class="search-input-wrapper">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="text" id="ai-search"
-                        placeholder="Поиск по скиллам, тегам и метрикам (например: 'юзер стори', 'юнит-экономика', 'чекаут', 'okr')">
+                        placeholder="РџРѕРёСЃРє РїРѕ СЃРєРёР»Р»Р°Рј, С‚РµРіР°Рј Рё РјРµС‚СЂРёРєР°Рј (РЅР°РїСЂРёРјРµСЂ: 'СЋР·РµСЂ СЃС‚РѕСЂРё', 'СЋРЅРёС‚-СЌРєРѕРЅРѕРјРёРєР°', 'С‡РµРєР°СѓС‚', 'okr')">
                     <span class="search-kbd-hint" id="search-kbd-badge">Ctrl+K</span>
                 </div>
 
@@ -1496,7 +1496,7 @@
                 <div class="rag-recommendations" id="rag-recommendations">
                     <div class="rag-recommendations-title">
                         <i class="fa-solid fa-sliders"></i>
-                        <span>Релевантные скиллы:</span>
+                        <span>Р РµР»РµРІР°РЅС‚РЅС‹Рµ СЃРєРёР»Р»С‹:</span>
                     </div>
                     <div class="rag-list" id="rag-list">
                         <!-- Dynamic suggestion badges -->
@@ -1508,26 +1508,26 @@
             <div class="bulk-actions">
                 <div class="bulk-buttons">
                     <button class="btn btn-secondary" id="btn-select-preset">
-                        <i class="fa-solid fa-check-double"></i> Выбрать все
+                        <i class="fa-solid fa-check-double"></i> Р’С‹Р±СЂР°С‚СЊ РІСЃРµ
                     </button>
                     <button class="btn btn-secondary" id="btn-reset-preset">
-                        <i class="fa-solid fa-xmark"></i> Сбросить выбор
+                        <i class="fa-solid fa-xmark"></i> РЎР±СЂРѕСЃРёС‚СЊ РІС‹Р±РѕСЂ
                     </button>
                 </div>
 
                 <!-- Grid vs Table View Switcher -->
                 <div class="view-switcher-group">
-                    <button class="view-btn active" id="btn-view-grid" title="Вид сеткой">
-                        <i class="fa-solid fa-table-cells-large"></i> Сетка
+                    <button class="view-btn active" id="btn-view-grid" title="Р’РёРґ СЃРµС‚РєРѕР№">
+                        <i class="fa-solid fa-table-cells-large"></i> РЎРµС‚РєР°
                     </button>
-                    <button class="view-btn" id="btn-view-table" title="Вид таблицей">
-                        <i class="fa-solid fa-table-list"></i> Таблица
+                    <button class="view-btn" id="btn-view-table" title="Р’РёРґ С‚Р°Р±Р»РёС†РµР№">
+                        <i class="fa-solid fa-table-list"></i> РўР°Р±Р»РёС†Р°
                     </button>
                 </div>
 
                 <div class="filter-status">
-                    <span id="label-shown">Показано:</span> <b id="visible-count">0</b> <span id="label-from">из</span> <b id="total-count">0</b>
-                    <span id="selected-badge-info" style="margin-left: 0.5rem;">(<span id="label-selected-word">выбрано</span>: <b id="stat-badge-count">0</b>)</span>
+                    <span id="label-shown">РџРѕРєР°Р·Р°РЅРѕ:</span> <b id="visible-count">0</b> <span id="label-from">РёР·</span> <b id="total-count">0</b>
+                    <span id="selected-badge-info" style="margin-left: 0.5rem;">(<span id="label-selected-word">РІС‹Р±СЂР°РЅРѕ</span>: <b id="stat-badge-count">0</b>)</span>
                 </div>
             </div>
 
@@ -1553,11 +1553,11 @@
                     <thead>
                         <tr>
                             <th style="width: 44px; text-align: center;">#</th>
-                            <th style="width: 190px;">ID Скилла</th>
-                            <th style="width: 210px;">Название</th>
-                            <th style="width: 400px;">Описание</th>
-                            <th style="width: 140px; text-align: center;">Домен</th>
-                            <th style="width: 116px; text-align: center;">Действие</th>
+                            <th style="width: 190px;">ID РЎРєРёР»Р»Р°</th>
+                            <th style="width: 210px;">РќР°Р·РІР°РЅРёРµ</th>
+                            <th style="width: 400px;">РћРїРёСЃР°РЅРёРµ</th>
+                            <th style="width: 140px; text-align: center;">Р”РѕРјРµРЅ</th>
+                            <th style="width: 116px; text-align: center;">Р”РµР№СЃС‚РІРёРµ</th>
                         </tr>
                     </thead>
                     <tbody id="skills-table-body">
@@ -1570,14 +1570,14 @@
         <!-- Right Side: Rules Compiler Drawer -->
         <div class="drawer">
             <div class="drawer-header">
-                <h3><i class="fa-solid fa-code-branch" style="color: var(--accent); font-size: 0.85rem;"></i> // КОНСТРУКТОР ПРАВИЛ</h3>
+                <h3><i class="fa-solid fa-code-branch" style="color: var(--accent); font-size: 0.85rem;"></i> // РљРћРќРЎРўР РЈРљРўРћР  РџР РђР’РР›</h3>
             </div>
 
             <!-- Context metrics widget -->
             <div class="context-metrics-box">
                 <div class="context-metrics-row">
-                    <span><span id="label-stat-selected">Выбрано скиллов</span>: <b id="stat-selected-count">0</b></span>
-                    <span><span id="label-stat-volume">Объем</span>: <b id="stat-tokens-est">0 tok</b></span>
+                    <span><span id="label-stat-selected">Р’С‹Р±СЂР°РЅРѕ СЃРєРёР»Р»РѕРІ</span>: <b id="stat-selected-count">0</b></span>
+                    <span><span id="label-stat-volume">РћР±СЉРµРј</span>: <b id="stat-tokens-est">0 tok</b></span>
                 </div>
                 <div class="context-bar">
                     <div class="context-bar-fill" id="context-bar-fill"></div>
@@ -1585,15 +1585,15 @@
             </div>
 
             <div class="prompt-preview-box">
-                <label>Предпросмотр сборки правил:</label>
+                <label>РџСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ СЃР±РѕСЂРєРё РїСЂР°РІРёР»:</label>
                 <div class="prompt-preview-container" id="prompt-preview"></div>
             </div>
 
             <div class="exporter-section">
-                <label>Целевая IDE / Формат:</label>
+                <label>Р¦РµР»РµРІР°СЏ IDE / Р¤РѕСЂРјР°С‚:</label>
                 <div class="exporter-select-wrapper">
-                    <select id="exporter-type" title="Универсальный промпт (ChatGPT/DeepSeek/Claude Web)">
-                        <option value="prompt" title="Универсальный промпт (ChatGPT/DeepSeek/Claude Web)">Универсальный промпт (ChatGPT/Claude/DeepSeek)</option>
+                    <select id="exporter-type" title="РЈРЅРёРІРµСЂСЃР°Р»СЊРЅС‹Р№ РїСЂРѕРјРїС‚ (ChatGPT/DeepSeek/Claude Web)">
+                        <option value="prompt" title="РЈРЅРёРІРµСЂСЃР°Р»СЊРЅС‹Р№ РїСЂРѕРјРїС‚ (ChatGPT/DeepSeek/Claude Web)">РЈРЅРёРІРµСЂСЃР°Р»СЊРЅС‹Р№ РїСЂРѕРјРїС‚ (ChatGPT/Claude/DeepSeek)</option>
                         <option value="cursor" title="Cursor rules (.cursorrules)">Cursor Rules (.cursor/rules)</option>
                         <option value="vscode" title="VS Code (Roo Code / Cline .clinerules)">VS Code / Roo Code / Cline (.clinerules)</option>
                         <option value="copilot" title="GitHub Copilot (.github/copilot-instructions.md)">GitHub Copilot (.github/copilot-instructions.md)</option>
@@ -1608,10 +1608,10 @@
 
             <div class="drawer-actions">
                 <button class="btn btn-secondary btn-full" id="btn-copy-prompt">
-                    <i class="fa-regular fa-copy"></i> Копировать правила
+                    <i class="fa-regular fa-copy"></i> РљРѕРїРёСЂРѕРІР°С‚СЊ РїСЂР°РІРёР»Р°
                 </button>
                 <button class="btn btn-primary btn-full" id="btn-download-zip">
-                    <i class="fa-solid fa-download"></i> Скачать правила (.zip)
+                    <i class="fa-solid fa-download"></i> РЎРєР°С‡Р°С‚СЊ РїСЂР°РІРёР»Р° (.zip)
                 </button>
             </div>
         </div>
@@ -1624,7 +1624,7 @@
             <div class="modal-header">
                 <div class="modal-title" id="modal-title">
                     <i class="fa-solid fa-file-lines" style="color: var(--accent);"></i>
-                    <span>Детали скилла</span>
+                    <span>Р”РµС‚Р°Р»Рё СЃРєРёР»Р»Р°</span>
                 </div>
                 <button class="modal-close" id="modal-close-btn">&times;</button>
             </div>
@@ -1644,11 +1644,11 @@
                 <i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i> LinkedIn
             </a>
             <a href="https://github.com/Anton-Creates/pdm-skills-builder" target="_blank" class="author-badge">
-                <i class="fa-brands fa-github"></i> GitHub Репозиторий
+                <i class="fa-brands fa-github"></i> GitHub Р РµРїРѕР·РёС‚РѕСЂРёР№
             </a>
         </div>
         <div>
-            PdM-Skills Builder · 2026
+            PdM-Skills Builder В· 2026
         </div>
     </footer>
 
@@ -1659,58 +1659,58 @@
         // Bilingual UI Dictionary
         const I18N = {
             ru: {
-                heroTitle: "Каталог контекстных системных инструкций для продакт-менеджмента",
-                heroDesc: "Сборка структурированных правил для ChatGPT, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.",
-                searchPlaceholder: "Поиск по скиллам, тегам и метрикам (например: 'юзер стори', 'юнит-экономика', 'чекаут', 'okr')",
-                secCombos: "[01] РОЛЕВЫЕ СБОРКИ",
-                secCategories: "[02] КАТЕГОРИИ И ДОМЕНЫ",
-                allSkills: "Все скиллы",
-                coreSkills: "Ядро PdM (Core)",
-                discoverySkills: "Исследования (Discovery)",
-                growthSkills: "Рост и Воронки",
-                saasSkills: "SaaS и Подписки",
-                b2bSkills: "B2B Продукты",
-                internalProductsSkills: "Внутренние и HR-Tech",
-                strategySkills: "Стратегия и CPO",
-                platformsTechSkills: "Платформы и Архитектура",
-                fintechSkills: "Финтех и Банкинг",
-                marketplaceSkills: "Маркетплейсы",
-                ecomSkills: "E-commerce (Онлайн)",
-                retailOpsSkills: "Ритейл и FoodTech",
-                mediaSkills: "Медиа и AdTech",
-                edtechSkills: "EdTech (Обучение)",
-                telecomSkills: "Телеком",
-                b2gSkills: "Госсектор (B2G)",
-                btnSelectAll: "Выбрать все",
-                btnReset: "Сбросить выбор",
-                viewGrid: "Сетка",
-                viewTable: "Таблица",
-                shown: "Показано",
-                from: "из",
-                selected: "выбрано",
-                drawerTitle: "// КОНСТРУКТОР ПРАВИЛ",
-                statSelected: "Выбрано скиллов:",
-                statVolume: "Объем:",
-                previewLabel: "Предпросмотр сборки правил:",
-                previewEmpty: "// Выберите скиллы из каталога слева для сборки правил ...",
-                ideLabel: "Целевая IDE / Формат:",
-                btnCopy: "Копировать правила",
-                btnCopied: "Скопировано в буфер!",
-                btnDownload: "Скачать правила (.zip)",
-                btnInfo: "Инфо",
-                thId: "ID Скилла",
-                thName: "Название",
-                thDesc: "Описание",
-                thDomain: "Домен",
-                thAction: "Действие",
-                libraryCount: "Библиотека: <b>{count}</b> скилла",
-                themeDark: "Тёмная",
-                themeLight: "Светлая",
-                modalTitle: "Детали скилла",
-                relevantTitle: "Релевантные скиллы:",
-                comboPrefix: "Сборка:",
-                promptHeader: "# СИСТЕМНЫЕ ПРАВИЛА PRODUCT MANAGEMENT ({count} скиллов)\n\n",
-                copyPromptHeader: "# СИСТЕМНЫЕ ИНСТРУКЦИИ ДЛЯ АССИСТЕНТА PRODUCT MANAGEMENT\n\n"
+                heroTitle: "РљР°С‚Р°Р»РѕРі РєРѕРЅС‚РµРєСЃС‚РЅС‹С… СЃРёСЃС‚РµРјРЅС‹С… РёРЅСЃС‚СЂСѓРєС†РёР№ РґР»СЏ РїСЂРѕРґР°РєС‚-РјРµРЅРµРґР¶РјРµРЅС‚Р°",
+                heroDesc: "РЎР±РѕСЂРєР° СЃС‚СЂСѓРєС‚СѓСЂРёСЂРѕРІР°РЅРЅС‹С… РїСЂР°РІРёР» РґР»СЏ ChatGPT, Claude, Cursor, Roo Code, Antigravity Рё GitHub Copilot. Р’С‹Р±РµСЂРёС‚Рµ РЅСѓР¶РЅС‹Рµ СЃРєРёР»Р»С‹, РїСЂРѕС‚РµСЃС‚РёСЂСѓР№С‚Рµ РїСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ Рё СЃРєР°С‡Р°Р№С‚Рµ РіРѕС‚РѕРІС‹Р№ Р°СЂС…РёРІ РІ С„РѕСЂРјР°С‚Рµ РІР°С€РµР№ IDE.",
+                searchPlaceholder: "РџРѕРёСЃРє РїРѕ СЃРєРёР»Р»Р°Рј, С‚РµРіР°Рј Рё РјРµС‚СЂРёРєР°Рј (РЅР°РїСЂРёРјРµСЂ: 'СЋР·РµСЂ СЃС‚РѕСЂРё', 'СЋРЅРёС‚-СЌРєРѕРЅРѕРјРёРєР°', 'С‡РµРєР°СѓС‚', 'okr')",
+                secCombos: "[01] Р РћР›Р•Р’Р«Р• РЎР‘РћР РљР",
+                secCategories: "[02] РљРђРўР•Р“РћР РР Р Р”РћРњР•РќР«",
+                allSkills: "Р’СЃРµ СЃРєРёР»Р»С‹",
+                coreSkills: "РЇРґСЂРѕ PdM (Core)",
+                discoverySkills: "РСЃСЃР»РµРґРѕРІР°РЅРёСЏ (Discovery)",
+                growthSkills: "Р РѕСЃС‚ Рё Р’РѕСЂРѕРЅРєРё",
+                saasSkills: "SaaS Рё РџРѕРґРїРёСЃРєРё",
+                b2bSkills: "B2B РџСЂРѕРґСѓРєС‚С‹",
+                internalProductsSkills: "Р’РЅСѓС‚СЂРµРЅРЅРёРµ Рё HR-Tech",
+                strategySkills: "РЎС‚СЂР°С‚РµРіРёСЏ Рё CPO",
+                platformsTechSkills: "РџР»Р°С‚С„РѕСЂРјС‹ Рё РђСЂС…РёС‚РµРєС‚СѓСЂР°",
+                fintechSkills: "Р¤РёРЅС‚РµС… Рё Р‘Р°РЅРєРёРЅРі",
+                marketplaceSkills: "РњР°СЂРєРµС‚РїР»РµР№СЃС‹",
+                ecomSkills: "E-commerce (РћРЅР»Р°Р№РЅ)",
+                retailOpsSkills: "Р РёС‚РµР№Р» Рё FoodTech",
+                mediaSkills: "РњРµРґРёР° Рё AdTech",
+                edtechSkills: "EdTech (РћР±СѓС‡РµРЅРёРµ)",
+                telecomSkills: "РўРµР»РµРєРѕРј",
+                b2gSkills: "Р“РѕСЃСЃРµРєС‚РѕСЂ (B2G)",
+                btnSelectAll: "Р’С‹Р±СЂР°С‚СЊ РІСЃРµ",
+                btnReset: "РЎР±СЂРѕСЃРёС‚СЊ РІС‹Р±РѕСЂ",
+                viewGrid: "РЎРµС‚РєР°",
+                viewTable: "РўР°Р±Р»РёС†Р°",
+                shown: "РџРѕРєР°Р·Р°РЅРѕ",
+                from: "РёР·",
+                selected: "РІС‹Р±СЂР°РЅРѕ",
+                drawerTitle: "// РљРћРќРЎРўР РЈРљРўРћР  РџР РђР’РР›",
+                statSelected: "Р’С‹Р±СЂР°РЅРѕ СЃРєРёР»Р»РѕРІ:",
+                statVolume: "РћР±СЉРµРј:",
+                previewLabel: "РџСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ СЃР±РѕСЂРєРё РїСЂР°РІРёР»:",
+                previewEmpty: "// Р’С‹Р±РµСЂРёС‚Рµ СЃРєРёР»Р»С‹ РёР· РєР°С‚Р°Р»РѕРіР° СЃР»РµРІР° РґР»СЏ СЃР±РѕСЂРєРё РїСЂР°РІРёР» ...",
+                ideLabel: "Р¦РµР»РµРІР°СЏ IDE / Р¤РѕСЂРјР°С‚:",
+                btnCopy: "РљРѕРїРёСЂРѕРІР°С‚СЊ РїСЂР°РІРёР»Р°",
+                btnCopied: "РЎРєРѕРїРёСЂРѕРІР°РЅРѕ РІ Р±СѓС„РµСЂ!",
+                btnDownload: "РЎРєР°С‡Р°С‚СЊ РїСЂР°РІРёР»Р° (.zip)",
+                btnInfo: "РРЅС„Рѕ",
+                thId: "ID РЎРєРёР»Р»Р°",
+                thName: "РќР°Р·РІР°РЅРёРµ",
+                thDesc: "РћРїРёСЃР°РЅРёРµ",
+                thDomain: "Р”РѕРјРµРЅ",
+                thAction: "Р”РµР№СЃС‚РІРёРµ",
+                libraryCount: "Р‘РёР±Р»РёРѕС‚РµРєР°: <b>{count}</b> СЃРєРёР»Р»Р°",
+                themeDark: "РўС‘РјРЅР°СЏ",
+                themeLight: "РЎРІРµС‚Р»Р°СЏ",
+                modalTitle: "Р”РµС‚Р°Р»Рё СЃРєРёР»Р»Р°",
+                relevantTitle: "Р РµР»РµРІР°РЅС‚РЅС‹Рµ СЃРєРёР»Р»С‹:",
+                comboPrefix: "РЎР±РѕСЂРєР°:",
+                promptHeader: "# РЎРРЎРўР•РњРќР«Р• РџР РђР’РР›Рђ PRODUCT MANAGEMENT ({count} СЃРєРёР»Р»РѕРІ)\n\n",
+                copyPromptHeader: "# РЎРРЎРўР•РњРќР«Р• РРќРЎРўР РЈРљР¦РР Р”Р›РЇ РђРЎРЎРРЎРўР•РќРўРђ PRODUCT MANAGEMENT\n\n"
             },
             en: {
                 heroTitle: "Contextual System Instructions Catalog for Product Management",
@@ -1770,29 +1770,29 @@
 
         const COMBOS = [
             { id: 0, ruName: "Lead / Senior PM", enName: "Lead / Senior PM", skills: ["prd", "user-stories", "roadmap", "prioritize", "decision-doc", "technical-translator", "meeting-prep", "metrics-analyzer", "ab-test-design", "risk-heatmap"] },
-            { id: 1, ruName: "B2B & Enterprise PM", enName: "B2B & Enterprise PM", skills: ["enterprise-discovery", "enterprise-rollout", "rfp-response", "build-buy-partner", "adoption-strategy", "admin-ux", "business-case", "icp-definition"] },
-            { id: 2, ruName: "SaaS & Subscription PM", enName: "SaaS & Subscription PM", skills: ["saas-metrics", "subscription-economics", "d2c-subscription-model", "plg-design", "pricing-experiment", "pricing-model", "monetization-audit", "retention-model"] },
-            { id: 3, ruName: "Internal & HR-Tech PM", enName: "Internal & HR-Tech PM", skills: ["digital-workspace-superapp", "hr-portal-growth", "corp-communication-suite", "internal-task-tracker", "internal-recruitment-crm", "internal-product-discovery", "admin-ux", "service-desk-metrics"] },
-            { id: 4, ruName: "Growth & PLG PM", enName: "Growth & PLG PM", skills: ["growth-loop", "gtm-strategy", "channel-mix", "plg-design", "referral-mechanics", "cro-audit", "onboarding-audit", "retention-model"] },
-            { id: 5, ruName: "Marketplace & E-com PM", enName: "Marketplace & E-com PM", skills: ["pdp-spec", "plp-filters-spec", "ecom-checkout-split", "ecom-recommendations", "wishlist-alert-mechanics", "marketplace-catalog", "seller-economics", "supply-quality", "fulfillment-model", "promo-engine"] },
-            { id: 6, ruName: "Fintech & Banking PM", enName: "Fintech & Banking PM", skills: ["fintech-product-teardown", "credit-product-spec", "unit-economics", "compliance-checkpoint", "risk-heatmap", "trust-safety", "incident-pm-role", "api-product-spec", "admin-ux"] },
-            { id: 7, ruName: "AI, LLM & Data PM", enName: "AI, LLM & Data PM", skills: ["ai-feature-spec", "llm-product-design", "data-product-spec", "ab-test-design", "metrics-analyzer", "decision-doc", "technical-translator", "trust-safety"] },
-            { id: 8, ruName: "GovTech & B2G PM", enName: "GovTech & B2G PM", skills: ["public-service-design", "citizen-journey", "govtech-metrics", "mini-app-platform", "localization-strategy", "compliance-checkpoint", "rfp-response"] },
+            { id: 1, ruName: "B2B & Enterprise PdM", enName: "B2B & Enterprise PdM", skills: ["enterprise-discovery", "enterprise-rollout", "rfp-response", "build-buy-partner", "adoption-strategy", "admin-ux", "business-case", "icp-definition"] },
+            { id: 2, ruName: "SaaS & Subscription PdM", enName: "SaaS & Subscription PdM", skills: ["saas-metrics", "subscription-economics", "d2c-subscription-model", "plg-design", "pricing-experiment", "pricing-model", "monetization-audit", "retention-model"] },
+            { id: 3, ruName: "Internal & HR-Tech PdM", enName: "Internal & HR-Tech PdM", skills: ["digital-workspace-superapp", "hr-portal-growth", "corp-communication-suite", "internal-task-tracker", "internal-recruitment-crm", "internal-product-discovery", "admin-ux", "service-desk-metrics"] },
+            { id: 4, ruName: "Growth & PLG PdM", enName: "Growth & PLG PdM", skills: ["growth-loop", "gtm-strategy", "channel-mix", "plg-design", "referral-mechanics", "cro-audit", "onboarding-audit", "retention-model"] },
+            { id: 5, ruName: "Marketplace & E-com PdM", enName: "Marketplace & E-com PdM", skills: ["pdp-spec", "plp-filters-spec", "ecom-checkout-split", "ecom-recommendations", "wishlist-alert-mechanics", "marketplace-catalog", "seller-economics", "supply-quality", "fulfillment-model", "promo-engine"] },
+            { id: 6, ruName: "Fintech & Banking PdM", enName: "Fintech & Banking PdM", skills: ["fintech-product-teardown", "credit-product-spec", "unit-economics", "compliance-checkpoint", "risk-heatmap", "trust-safety", "incident-pm-role", "api-product-spec", "admin-ux"] },
+            { id: 7, ruName: "AI, LLM & Data PdM", enName: "AI, LLM & Data PdM", skills: ["ai-feature-spec", "llm-product-design", "data-product-spec", "ab-test-design", "metrics-analyzer", "decision-doc", "technical-translator", "trust-safety"] },
+            { id: 8, ruName: "GovTech & B2G PdM", enName: "GovTech & B2G PdM", skills: ["public-service-design", "citizen-journey", "govtech-metrics", "mini-app-platform", "localization-strategy", "compliance-checkpoint", "rfp-response"] },
             { id: 9, ruName: "CPO / Leadership", enName: "CPO / Leadership", skills: ["product-strategy", "okr-writer", "north-star-metric", "business-case", "competitive-moat", "tenets-writer", "portfolio-review", "product-health-review", "kill-or-scale-decision"] }
         ];
 
         const COMBO_DESCRIPTIONS = {
             ru: {
-                0: "Универсальный сбалансированный набор для управления полным циклом продуктовой разработки от идеи до релиза.",
-                1: "Специализированная сборка для B2B-продуктов, длинных циклов сделок, тендеров, Enterprise-внедрения и закупочных комитетов.",
-                2: "Управление подписочными моделями, ценообразованием, PLG-механиками, юнит-экономикой (MRR, Churn) и монетизацией.",
-                3: "Проектирование внутренних систем компании: цифровой офис сотрудника (ЦОС), HR-портал развития, коммуникации, тасктрекер и ATS.",
-                4: "Фокус на воронках, экспериментах, механиках виральности, онбординге и росте метрик удержания (Retention).",
-                5: "Балансировка спроса и предложения, юнит-экономика продавцов, каталог, логистика, лояльность и борьба с фродом.",
-                6: "Критическая надежность, банковские регламенты, скоринг, безопасность, комплаенс 152-ФЗ/ЦБ и финансовые риски.",
-                7: "Проектирование фичей на базе машинного обучения, LLM-интерфейсов, витрин данных, RAG-архитектур и A/B-тестов алгоритмов.",
-                8: "Проектирование государственных электронных услуг, соблюдение 152-ФЗ/ГОСТ, клиентский путь гражданина и тендеры.",
-                9: "Стратегический уровень: вижн продукта, продуктовые рвы, цели OKR, портфельное управление и операционная модель команды."
+                0: "РЈРЅРёРІРµСЂСЃР°Р»СЊРЅС‹Р№ СЃР±Р°Р»Р°РЅСЃРёСЂРѕРІР°РЅРЅС‹Р№ РЅР°Р±РѕСЂ РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ РїРѕР»РЅС‹Рј С†РёРєР»РѕРј РїСЂРѕРґСѓРєС‚РѕРІРѕР№ СЂР°Р·СЂР°Р±РѕС‚РєРё РѕС‚ РёРґРµРё РґРѕ СЂРµР»РёР·Р°.",
+                1: "РЎРїРµС†РёР°Р»РёР·РёСЂРѕРІР°РЅРЅР°СЏ СЃР±РѕСЂРєР° РґР»СЏ B2B-РїСЂРѕРґСѓРєС‚РѕРІ, РґР»РёРЅРЅС‹С… С†РёРєР»РѕРІ СЃРґРµР»РѕРє, С‚РµРЅРґРµСЂРѕРІ, Enterprise-РІРЅРµРґСЂРµРЅРёСЏ Рё Р·Р°РєСѓРїРѕС‡РЅС‹С… РєРѕРјРёС‚РµС‚РѕРІ.",
+                2: "РЈРїСЂР°РІР»РµРЅРёРµ РїРѕРґРїРёСЃРѕС‡РЅС‹РјРё РјРѕРґРµР»СЏРјРё, С†РµРЅРѕРѕР±СЂР°Р·РѕРІР°РЅРёРµРј, PLG-РјРµС…Р°РЅРёРєР°РјРё, СЋРЅРёС‚-СЌРєРѕРЅРѕРјРёРєРѕР№ (MRR, Churn) Рё РјРѕРЅРµС‚РёР·Р°С†РёРµР№.",
+                3: "РџСЂРѕРµРєС‚РёСЂРѕРІР°РЅРёРµ РІРЅСѓС‚СЂРµРЅРЅРёС… СЃРёСЃС‚РµРј РєРѕРјРїР°РЅРёРё: С†РёС„СЂРѕРІРѕР№ РѕС„РёСЃ СЃРѕС‚СЂСѓРґРЅРёРєР° (Р¦РћРЎ), HR-РїРѕСЂС‚Р°Р» СЂР°Р·РІРёС‚РёСЏ, РєРѕРјРјСѓРЅРёРєР°С†РёРё, С‚Р°СЃРєС‚СЂРµРєРµСЂ Рё ATS.",
+                4: "Р¤РѕРєСѓСЃ РЅР° РІРѕСЂРѕРЅРєР°С…, СЌРєСЃРїРµСЂРёРјРµРЅС‚Р°С…, РјРµС…Р°РЅРёРєР°С… РІРёСЂР°Р»СЊРЅРѕСЃС‚Рё, РѕРЅР±РѕСЂРґРёРЅРіРµ Рё СЂРѕСЃС‚Рµ РјРµС‚СЂРёРє СѓРґРµСЂР¶Р°РЅРёСЏ (Retention).",
+                5: "Р‘Р°Р»Р°РЅСЃРёСЂРѕРІРєР° СЃРїСЂРѕСЃР° Рё РїСЂРµРґР»РѕР¶РµРЅРёСЏ, СЋРЅРёС‚-СЌРєРѕРЅРѕРјРёРєР° РїСЂРѕРґР°РІС†РѕРІ, РєР°С‚Р°Р»РѕРі, Р»РѕРіРёСЃС‚РёРєР°, Р»РѕСЏР»СЊРЅРѕСЃС‚СЊ Рё Р±РѕСЂСЊР±Р° СЃ С„СЂРѕРґРѕРј.",
+                6: "РљСЂРёС‚РёС‡РµСЃРєР°СЏ РЅР°РґРµР¶РЅРѕСЃС‚СЊ, Р±Р°РЅРєРѕРІСЃРєРёРµ СЂРµРіР»Р°РјРµРЅС‚С‹, СЃРєРѕСЂРёРЅРі, Р±РµР·РѕРїР°СЃРЅРѕСЃС‚СЊ, РєРѕРјРїР»Р°РµРЅСЃ 152-Р¤Р—/Р¦Р‘ Рё С„РёРЅР°РЅСЃРѕРІС‹Рµ СЂРёСЃРєРё.",
+                7: "РџСЂРѕРµРєС‚РёСЂРѕРІР°РЅРёРµ С„РёС‡РµР№ РЅР° Р±Р°Р·Рµ РјР°С€РёРЅРЅРѕРіРѕ РѕР±СѓС‡РµРЅРёСЏ, LLM-РёРЅС‚РµСЂС„РµР№СЃРѕРІ, РІРёС‚СЂРёРЅ РґР°РЅРЅС‹С…, RAG-Р°СЂС…РёС‚РµРєС‚СѓСЂ Рё A/B-С‚РµСЃС‚РѕРІ Р°Р»РіРѕСЂРёС‚РјРѕРІ.",
+                8: "РџСЂРѕРµРєС‚РёСЂРѕРІР°РЅРёРµ РіРѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅС‹С… СЌР»РµРєС‚СЂРѕРЅРЅС‹С… СѓСЃР»СѓРі, СЃРѕР±Р»СЋРґРµРЅРёРµ 152-Р¤Р—/Р“РћРЎРў, РєР»РёРµРЅС‚СЃРєРёР№ РїСѓС‚СЊ РіСЂР°Р¶РґР°РЅРёРЅР° Рё С‚РµРЅРґРµСЂС‹.",
+                9: "РЎС‚СЂР°С‚РµРіРёС‡РµСЃРєРёР№ СѓСЂРѕРІРµРЅСЊ: РІРёР¶РЅ РїСЂРѕРґСѓРєС‚Р°, РїСЂРѕРґСѓРєС‚РѕРІС‹Рµ СЂРІС‹, С†РµР»Рё OKR, РїРѕСЂС‚С„РµР»СЊРЅРѕРµ СѓРїСЂР°РІР»РµРЅРёРµ Рё РѕРїРµСЂР°С†РёРѕРЅРЅР°СЏ РјРѕРґРµР»СЊ РєРѕРјР°РЅРґС‹."
             },
             en: {
                 0: "Balanced foundational toolkit covering end-to-end product lifecycle management from concept to launch.",
@@ -1895,7 +1895,7 @@
             if (exporterSelect) {
                 const currentVal = exporterSelect.value;
                 const options = [
-                    { value: "prompt", text: lang === 'ru' ? "Универсальный промпт (ChatGPT/Claude/DeepSeek)" : "Universal Prompt (ChatGPT/Claude/DeepSeek)" },
+                    { value: "prompt", text: lang === 'ru' ? "РЈРЅРёРІРµСЂСЃР°Р»СЊРЅС‹Р№ РїСЂРѕРјРїС‚ (ChatGPT/Claude/DeepSeek)" : "Universal Prompt (ChatGPT/Claude/DeepSeek)" },
                     { value: "cursor", text: "Cursor Rules (.cursor/rules)" },
                     { value: "vscode", text: "VS Code / Roo Code / Cline (.clinerules)" },
                     { value: "copilot", text: "GitHub Copilot (.github/copilot-instructions.md)" },
@@ -1990,10 +1990,10 @@
             });
 
             // Tooltips
-            document.getElementById('theme-toggle').title = (lang === 'ru' ? 'Переключить тему' : 'Toggle Theme');
-            document.getElementById('lang-toggle').title = (lang === 'ru' ? 'Switch to English' : 'Переключить на русский');
-            btnViewGrid.title = (lang === 'ru' ? 'Вид сеткой' : 'Grid View');
-            btnViewTable.title = (lang === 'ru' ? 'Вид таблицей' : 'Table View');
+            document.getElementById('theme-toggle').title = (lang === 'ru' ? 'РџРµСЂРµРєР»СЋС‡РёС‚СЊ С‚РµРјСѓ' : 'Toggle Theme');
+            document.getElementById('lang-toggle').title = (lang === 'ru' ? 'Switch to English' : 'РџРµСЂРµРєР»СЋС‡РёС‚СЊ РЅР° СЂСѓСЃСЃРєРёР№');
+            btnViewGrid.title = (lang === 'ru' ? 'Р’РёРґ СЃРµС‚РєРѕР№' : 'Grid View');
+            btnViewTable.title = (lang === 'ru' ? 'Р’РёРґ С‚Р°Р±Р»РёС†РµР№' : 'Table View');
 
             renderSkills();
             updatePromptPreview();
@@ -2022,7 +2022,7 @@
 
         // Global hotkeys
         document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && (e.code === 'KeyK' || e.key.toLowerCase() === 'k' || e.key.toLowerCase() === 'л')) {
+            if ((e.metaKey || e.ctrlKey) && (e.code === 'KeyK' || e.key.toLowerCase() === 'k' || e.key.toLowerCase() === 'Р»')) {
                 e.preventDefault();
                 e.stopPropagation();
                 aiSearchInput.focus();
@@ -2050,7 +2050,7 @@
             const isMac = navigator.userAgent.includes('Mac') || navigator.platform.includes('Mac');
             const kbdBadge = document.getElementById('search-kbd-badge');
             if (kbdBadge) {
-                kbdBadge.innerText = isMac ? '⌘K' : 'Ctrl+K';
+                kbdBadge.innerText = isMac ? 'вЊK' : 'Ctrl+K';
             }
 
             setLanguage(currentLang);
@@ -2122,19 +2122,19 @@
 
         // Stemming and Stopwords for Search
         const STOPWORDS = new Set([
-            'и', 'в', 'во', 'не', 'что', 'он', 'на', 'я', 'с', 'со', 'как', 'а', 'то', 'все', 'она', 'так', 'его', 'но', 'да', 'ты',
-            'к', 'у', 'же', 'вы', 'за', 'бы', 'по', 'только', 'ее', 'мне', 'было', 'вот', 'от', 'меня', 'еще', 'нет', 'о', 'из', 'ему',
-            'теперь', 'когда', 'даже', 'ну', 'вдруг', 'ли', 'если', 'уже', 'или', 'ни', 'быть', 'был', 'него', 'до', 'вас', 'нибудь',
-            'опять', 'уж', 'вам', 'ведь', 'там', 'потом', 'себя', 'ничего', 'ей', 'может', 'они', 'тут', 'где', 'есть', 'надо', 'ней',
-            'для', 'мы', 'тебя', 'их', 'чем', 'была', 'сам', 'чтоб', 'без', 'будет', 'про', 'всего', 'почему', 'тут', 'эту', 'эти',
-            'сделать', 'написать', 'как', 'помоги', 'создай', 'разработать', 'нужно', 'хочу',
+            'Рё', 'РІ', 'РІРѕ', 'РЅРµ', 'С‡С‚Рѕ', 'РѕРЅ', 'РЅР°', 'СЏ', 'СЃ', 'СЃРѕ', 'РєР°Рє', 'Р°', 'С‚Рѕ', 'РІСЃРµ', 'РѕРЅР°', 'С‚Р°Рє', 'РµРіРѕ', 'РЅРѕ', 'РґР°', 'С‚С‹',
+            'Рє', 'Сѓ', 'Р¶Рµ', 'РІС‹', 'Р·Р°', 'Р±С‹', 'РїРѕ', 'С‚РѕР»СЊРєРѕ', 'РµРµ', 'РјРЅРµ', 'Р±С‹Р»Рѕ', 'РІРѕС‚', 'РѕС‚', 'РјРµРЅСЏ', 'РµС‰Рµ', 'РЅРµС‚', 'Рѕ', 'РёР·', 'РµРјСѓ',
+            'С‚РµРїРµСЂСЊ', 'РєРѕРіРґР°', 'РґР°Р¶Рµ', 'РЅСѓ', 'РІРґСЂСѓРі', 'Р»Рё', 'РµСЃР»Рё', 'СѓР¶Рµ', 'РёР»Рё', 'РЅРё', 'Р±С‹С‚СЊ', 'Р±С‹Р»', 'РЅРµРіРѕ', 'РґРѕ', 'РІР°СЃ', 'РЅРёР±СѓРґСЊ',
+            'РѕРїСЏС‚СЊ', 'СѓР¶', 'РІР°Рј', 'РІРµРґСЊ', 'С‚Р°Рј', 'РїРѕС‚РѕРј', 'СЃРµР±СЏ', 'РЅРёС‡РµРіРѕ', 'РµР№', 'РјРѕР¶РµС‚', 'РѕРЅРё', 'С‚СѓС‚', 'РіРґРµ', 'РµСЃС‚СЊ', 'РЅР°РґРѕ', 'РЅРµР№',
+            'РґР»СЏ', 'РјС‹', 'С‚РµР±СЏ', 'РёС…', 'С‡РµРј', 'Р±С‹Р»Р°', 'СЃР°Рј', 'С‡С‚РѕР±', 'Р±РµР·', 'Р±СѓРґРµС‚', 'РїСЂРѕ', 'РІСЃРµРіРѕ', 'РїРѕС‡РµРјСѓ', 'С‚СѓС‚', 'СЌС‚Сѓ', 'СЌС‚Рё',
+            'СЃРґРµР»Р°С‚СЊ', 'РЅР°РїРёСЃР°С‚СЊ', 'РєР°Рє', 'РїРѕРјРѕРіРё', 'СЃРѕР·РґР°Р№', 'СЂР°Р·СЂР°Р±РѕС‚Р°С‚СЊ', 'РЅСѓР¶РЅРѕ', 'С…РѕС‡Сѓ',
             'the', 'and', 'for', 'with', 'from', 'how', 'create', 'make', 'design', 'write', 'build', 'what', 'this', 'that', 'with'
         ]);
 
         function getStem(word) {
             word = word.toLowerCase().trim();
             if (word.length <= 3) return word;
-            word = word.replace(/(иями|ями|иях|ях|ому|ему|ого|его|ыми|ими|ами|ей|ой|ий|ый|ая|ое|ые|ых|их|ов|ев|ам|ям|ах|ях|ом|ем|ам|а|я|о|е|у|ю|ы|и|ь|ing|tion|ment|able|s|ed)$/g, '');
+            word = word.replace(/(РёСЏРјРё|СЏРјРё|РёСЏС…|СЏС…|РѕРјСѓ|РµРјСѓ|РѕРіРѕ|РµРіРѕ|С‹РјРё|РёРјРё|Р°РјРё|РµР№|РѕР№|РёР№|С‹Р№|Р°СЏ|РѕРµ|С‹Рµ|С‹С…|РёС…|РѕРІ|РµРІ|Р°Рј|СЏРј|Р°С…|СЏС…|РѕРј|РµРј|Р°Рј|Р°|СЏ|Рѕ|Рµ|Сѓ|СЋ|С‹|Рё|СЊ|ing|tion|ment|able|s|ed)$/g, '');
             return word;
         }
 
@@ -2423,7 +2423,7 @@
             const selectedList = SKILLS_DB.filter(s => selectedSkills.has(s.id));
             const t = I18N[currentLang];
             if (selectedList.length === 0) {
-                alert(currentLang === 'ru' ? "Пожалуйста, выберите хотя бы один скилл!" : "Please select at least one skill!");
+                alert(currentLang === 'ru' ? "РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РІС‹Р±РµСЂРёС‚Рµ С…РѕС‚СЏ Р±С‹ РѕРґРёРЅ СЃРєРёР»Р»!" : "Please select at least one skill!");
                 return;
             }
 
@@ -2445,7 +2445,7 @@
             const selectedList = SKILLS_DB.filter(s => selectedSkills.has(s.id));
             const t = I18N[currentLang];
             if (selectedList.length === 0) {
-                alert(currentLang === 'ru' ? "Пожалуйста, выберите хотя бы один скилл для скачивания!" : "Please select at least one skill to download!");
+                alert(currentLang === 'ru' ? "РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РІС‹Р±РµСЂРёС‚Рµ С…РѕС‚СЏ Р±С‹ РѕРґРёРЅ СЃРєРёР»Р» РґР»СЏ СЃРєР°С‡РёРІР°РЅРёСЏ!" : "Please select at least one skill to download!");
                 return;
             }
 
@@ -2455,7 +2455,7 @@
             if (target === 'cursor') {
                 const folder = zip.folder(".cursor/rules");
                 selectedList.forEach(s => {
-                    const ruleContent = `---\ndescription: ${getSkillDesc(s)}\nglobs: *\n---\n\n# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`;
+                    const ruleContent = `---\ndescription: ${getSkillDesc(s)}\nglobs: *\n---\n\n# /${s.id} вЂ” ${getSkillName(s)}\n\n${getSkillContent(s)}`;
                     folder.file(`${s.id}.mdc`, ruleContent);
                 });
             } else if (target === 'agents') {
@@ -2467,57 +2467,57 @@
             } else if (target === 'vscode') {
                 const folder = zip.folder(".clinerules.d");
                 selectedList.forEach(s => {
-                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                    folder.file(`${s.id}.md`, `# /${s.id} вЂ” ${getSkillName(s)}\n\n${getSkillContent(s)}`);
                 });
             } else if (target === 'copilot') {
                 const folder = zip.folder(".github/copilot-instructions.d");
                 selectedList.forEach(s => {
-                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                    folder.file(`${s.id}.md`, `# /${s.id} вЂ” ${getSkillName(s)}\n\n${getSkillContent(s)}`);
                 });
             } else if (target === 'windsurf') {
                 const folder = zip.folder(".windsurfrules.d");
                 selectedList.forEach(s => {
-                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                    folder.file(`${s.id}.md`, `# /${s.id} вЂ” ${getSkillName(s)}\n\n${getSkillContent(s)}`);
                 });
             } else if (target === 'aider') {
                 const folder = zip.folder("conventions.d");
                 selectedList.forEach(s => {
-                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                    folder.file(`${s.id}.md`, `# /${s.id} вЂ” ${getSkillName(s)}\n\n${getSkillContent(s)}`);
                 });
             } else if (target === 'pi') {
                 const folder = zip.folder("skills");
                 selectedList.forEach(s => {
-                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                    folder.file(`${s.id}.md`, `# /${s.id} вЂ” ${getSkillName(s)}\n\n${getSkillContent(s)}`);
                 });
             } else if (target === 'claudeprompt') {
                 const folder = zip.folder(".claude/skills");
                 selectedList.forEach(s => {
-                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
+                    folder.file(`${s.id}.md`, `# /${s.id} вЂ” ${getSkillName(s)}\n\n${getSkillContent(s)}`);
                 });
             } else {
                 // Universal Markdown (ChatGPT / Claude Web / Custom)
                 const folder = zip.folder("skills");
                 selectedList.forEach(s => {
-                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n> **Описание:** ${getSkillDesc(s)}\n> **Домен:** ${getPresetLabel(s.preset || 'core')}\n\n---\n\n${getSkillContent(s)}`);
+                    folder.file(`${s.id}.md`, `# /${s.id} вЂ” ${getSkillName(s)}\n\n> **РћРїРёСЃР°РЅРёРµ:** ${getSkillDesc(s)}\n> **Р”РѕРјРµРЅ:** ${getPresetLabel(s.preset || 'core')}\n\n---\n\n${getSkillContent(s)}`);
                 });
             }
 
             // Add clear README inside archive
             const readmeTxt = `==============================================================================
-PdM-Skills Builder — Modular Rules Archive Export
+PdM-Skills Builder вЂ” Modular Rules Archive Export
 Target Format: ${target.toUpperCase()}
 Language: ${currentLang.toUpperCase()}
 Total Exported Skills: ${selectedList.length}
 ==============================================================================
 
-КАК ИСПОЛЬЗОВАТЬ МОДУЛИ / HOW TO USE:
+РљРђРљ РРЎРџРћР›Р¬Р—РћР’РђРўР¬ РњРћР”РЈР›Р / HOW TO USE:
 
-1. Все выбранные навыки сохранены в виде изолированных модульных файлов.
-2. Подключайте только 3–5 целевых модулей под конкретную текущую задачу:
-   - Это защищает контекстное окно LLM от перегрузки (No Lost-in-the-Middle).
-   - Модель отвечает точнее, дешевле и быстрее.
-3. Если вам нужно скопировать скомпилированный текст для быстрой вставки в чат:
-   - Используйте кнопку «Копировать правила» в веб-интерфейсе конструктора.
+1. Р’СЃРµ РІС‹Р±СЂР°РЅРЅС‹Рµ РЅР°РІС‹РєРё СЃРѕС…СЂР°РЅРµРЅС‹ РІ РІРёРґРµ РёР·РѕР»РёСЂРѕРІР°РЅРЅС‹С… РјРѕРґСѓР»СЊРЅС‹С… С„Р°Р№Р»РѕРІ.
+2. РџРѕРґРєР»СЋС‡Р°Р№С‚Рµ С‚РѕР»СЊРєРѕ 3вЂ“5 С†РµР»РµРІС‹С… РјРѕРґСѓР»РµР№ РїРѕРґ РєРѕРЅРєСЂРµС‚РЅСѓСЋ С‚РµРєСѓС‰СѓСЋ Р·Р°РґР°С‡Сѓ:
+   - Р­С‚Рѕ Р·Р°С‰РёС‰Р°РµС‚ РєРѕРЅС‚РµРєСЃС‚РЅРѕРµ РѕРєРЅРѕ LLM РѕС‚ РїРµСЂРµРіСЂСѓР·РєРё (No Lost-in-the-Middle).
+   - РњРѕРґРµР»СЊ РѕС‚РІРµС‡Р°РµС‚ С‚РѕС‡РЅРµРµ, РґРµС€РµРІР»Рµ Рё Р±С‹СЃС‚СЂРµРµ.
+3. Р•СЃР»Рё РІР°Рј РЅСѓР¶РЅРѕ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ СЃРєРѕРјРїРёР»РёСЂРѕРІР°РЅРЅС‹Р№ С‚РµРєСЃС‚ РґР»СЏ Р±С‹СЃС‚СЂРѕР№ РІСЃС‚Р°РІРєРё РІ С‡Р°С‚:
+   - РСЃРїРѕР»СЊР·СѓР№С‚Рµ РєРЅРѕРїРєСѓ В«РљРѕРїРёСЂРѕРІР°С‚СЊ РїСЂР°РІРёР»Р°В» РІ РІРµР±-РёРЅС‚РµСЂС„РµР№СЃРµ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°.
 
 ==============================================================================
 Author: Anton Mikhailov (@mikhaylove_anton)
