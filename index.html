@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru" data-theme="light">
 
 <head>
@@ -139,6 +139,14 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .logo-title-text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .stat-badges-group {
@@ -1232,10 +1240,11 @@
             .logo-title {
                 font-size: 0.82rem;
                 letter-spacing: -0.03em;
-                white-space: nowrap;
                 overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 160px;
+            }
+            .logo-title-text {
+                font-size: 0.82rem;
+                letter-spacing: -0.03em;
             }
             .stat-badges-group { display: none; }
             .header-actions { gap: 0.35rem; flex-shrink: 0; }
@@ -1330,8 +1339,8 @@
     <header>
         <div class="logo">
             <span class="logo-title">
-                <i class="fa-solid fa-layer-group" style="color: var(--accent);"></i>
-                PdM-Skills Builder
+                <i class="fa-solid fa-layer-group" style="color: var(--accent); flex-shrink: 0;"></i>
+                <span class="logo-title-text">PdM&#8209;Skills Builder</span>
             </span>
             <div class="stat-badges-group">
                 <img id="view-badge-img" src="https://hits.sh/anton-creates.github.io/pdm-skills-builder.svg?style=flat-square&label=views&color=0284c7&labelColor=0f172a" alt="views count" height="20" style="border-radius: 4px; display: block;" title="РџСЂРѕСЃРјРѕС‚СЂС‹ РєР°С‚Р°Р»РѕРіР°" />
