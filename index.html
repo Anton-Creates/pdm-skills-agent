@@ -150,18 +150,15 @@
         .stat-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 0.35rem;
             font-family: var(--font-mono);
             font-size: 0.72rem;
             color: var(--text-secondary);
             border: 1px solid var(--border-color);
-            padding: 0.25rem 0.5rem;
+            padding: 0.2rem 0.5rem;
             border-radius: var(--radius-sm);
             background: var(--bg-primary);
-            -webkit-user-select: none;
             user-select: none;
-            line-height: 1;
         }
 
         .stat-badge i {
@@ -184,7 +181,7 @@
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
-            padding: 0.35rem 0.65rem;
+            padding: 0.3rem 0.65rem;
             border-radius: var(--radius-sm);
             font-family: var(--font-sans);
             font-size: 0.78rem;
@@ -192,10 +189,8 @@
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 0.4rem;
             transition: all 0.15s ease;
-            line-height: 1;
         }
 
         .theme-toggle-btn:hover {
@@ -208,13 +203,9 @@
             font-size: 0.72rem;
             color: var(--text-muted);
             border: 1px solid var(--border-color);
-            padding: 0.3rem 0.55rem;
+            padding: 0.25rem 0.55rem;
             border-radius: var(--radius-sm);
             background: var(--bg-primary);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
         }
 
         /* ── Hero / Onboarding Banner ─────────────────────────────────────── */
@@ -244,26 +235,6 @@
             color: var(--text-secondary);
             max-width: 850px;
             line-height: 1.45;
-        }
-
-        .agent-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, #a855f7, #6366f1);
-            color: #ffffff;
-            font-size: 0.85rem;
-            font-weight: 700;
-            padding: 0.55rem 1rem;
-            border-radius: var(--radius-md);
-            text-decoration: none;
-            transition: opacity 0.2s ease, transform 0.2s ease;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
-        }
-
-        .agent-badge:hover {
-            opacity: 0.92;
-            transform: translateY(-1px);
         }
 
         /* ── Main Layout ──────────────────────────────────────────────────── */
@@ -351,15 +322,8 @@
             color: var(--text-muted);
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            padding: 0.15rem 0.35rem;
+            padding: 0.1rem 0.35rem;
             border-radius: var(--radius-sm);
-            white-space: nowrap;
-            flex-shrink: 0;
-            margin-left: 0.5rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
         }
 
         /* ── Workspace / Content Area ─────────────────────────────────────── */
@@ -423,7 +387,6 @@
             border: 1px solid var(--border-color);
             padding: 0.15rem 0.4rem;
             border-radius: var(--radius-sm);
-            -webkit-user-select: none;
             user-select: none;
         }
 
@@ -624,10 +587,9 @@
             background: var(--bg-secondary);
             color: var(--text-secondary);
             border: 1px solid var(--border-color);
-            white-space: normal;
-            word-break: break-word;
+            white-space: nowrap;
             display: inline-block;
-            line-height: 1.3;
+            line-height: 1.2;
             transition: all 0.15s ease;
         }
 
@@ -731,12 +693,10 @@
             font-size: 0.78rem;
             font-weight: 600;
             cursor: pointer;
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            justify-content: center;
             gap: 0.35rem;
             transition: color 0.15s ease;
-            line-height: 1;
         }
 
         .btn-card:hover {
@@ -753,6 +713,7 @@
             border-radius: var(--radius-md);
             overflow-x: auto !important;
             overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
             box-shadow: var(--card-shadow);
             margin-bottom: 1rem;
         }
@@ -796,7 +757,6 @@
             color: var(--text-muted);
             border-bottom: 1px solid var(--border-color);
             border-right: 1px solid var(--border-color);
-            -webkit-user-select: none;
             user-select: none;
             white-space: nowrap;
         }
@@ -1008,7 +968,6 @@
             right: 0;
             bottom: 0;
             background: rgba(0, 0, 0, 0.65);
-            -webkit-backdrop-filter: blur(2px);
             backdrop-filter: blur(2px);
             z-index: 1000;
             justify-content: center;
@@ -1141,16 +1100,14 @@
         .author-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 0.35rem;
             color: var(--text-secondary);
             text-decoration: none;
             border: 1px solid var(--border-color);
-            padding: 0.35rem 0.45rem;
+            padding: 0.2rem 0.5rem;
             border-radius: var(--radius-sm);
             background: var(--bg-primary);
             transition: all 0.15s ease;
-            line-height: 1;
         }
 
         .author-badge:hover {
@@ -1158,115 +1115,212 @@
             color: var(--text-primary);
         }
 
+        /* ── Responsive: Tablet (≤ 1024px) ──────────────────────────────────── */
         @media (max-width: 1024px) {
-            .drawer {
-                width: 320px;
-            }
-            .sidebar {
-                width: 230px;
-            }
+            .drawer { width: 300px; }
+            .sidebar { width: 220px; }
+            .logo-title { font-size: 0.95rem; }
         }
 
+        /* ── Responsive: Tablet Portrait (≤ 768px) ───────────────────────── */
         @media (max-width: 768px) {
+            /* Header becomes 2-row on tablet portrait */
+            header {
+                height: auto;
+                padding: 0.6rem 1rem;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+            .logo {
+                flex: 1;
+                min-width: 0;
+                gap: 0.5rem;
+            }
+            .logo-title {
+                font-size: 0.9rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .stat-badges-group {
+                display: none; /* hide on tablet portrait */
+            }
+            .header-actions {
+                gap: 0.5rem;
+            }
+            .version {
+                display: none; /* hide library count badge on tablet */
+            }
+
+            /* Main layout stacks */
             .main-layout {
                 flex-direction: column;
                 height: auto;
+                overflow: visible;
             }
-            .sidebar, .drawer {
+
+            /* Sidebar becomes horizontal scrollable pill-list */
+            .sidebar {
                 width: 100%;
                 height: auto;
                 position: static;
+                padding: 0.75rem 1rem;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 0.65rem;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                overflow-x: auto;
+                overflow-y: visible;
             }
+            .sidebar-section {
+                min-width: 180px;
+                flex: 1 1 180px;
+            }
+            .sidebar-section h3 { margin-bottom: 0.4rem; }
+
+            /* Content area */
+            .content-area {
+                padding: 1rem;
+            }
+
+            /* Drawer goes to bottom as a collapsible panel */
+            .drawer {
+                width: 100%;
+                height: auto;
+                position: static;
+                border-left: none;
+                border-top: 1px solid var(--border-color);
+                padding: 1rem;
+            }
+            .prompt-preview-container { max-height: 100px; min-height: 60px; }
+
+            /* Footer */
             .app-footer {
                 flex-direction: column;
-                gap: 0.85rem;
+                gap: 0.65rem;
                 text-align: center;
+                padding: 0.75rem 1rem;
             }
-            .skills-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            .footer-left { justify-content: center; }
+
+            /* Modal */
+            .modal-overlay { padding: 0.75rem; align-items: flex-end; }
+            .modal-container {
+                max-width: 100%;
+                max-height: 90vh;
+                border-radius: var(--radius-lg) var(--radius-lg) 0 0;
             }
+            .modal-body { padding: 1rem; font-size: 0.85rem; }
+            .modal-header { padding: 0.75rem 1rem; }
+
+            /* Cards grid */
+            .skills-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
         }
 
+        /* ── Responsive: Mobile (≤ 480px) ─────────────────────────────────── */
         @media (max-width: 480px) {
+            /* Header: compact single row */
+            header {
+                padding: 0.5rem 0.85rem;
+                height: auto;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .logo { gap: 0.4rem; min-width: 0; flex: 1; overflow: hidden; }
+            .logo-title {
+                font-size: 0.82rem;
+                letter-spacing: -0.03em;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 160px;
+            }
+            .stat-badges-group { display: none; }
+            .header-actions { gap: 0.35rem; flex-shrink: 0; }
+            .theme-toggle-btn {
+                padding: 0.3rem 0.5rem;
+                font-size: 0.72rem;
+            }
+            /* Hide text labels in header buttons — icon only */
+            #theme-text, #lang-text { display: none; }
+            .version { display: none; }
+
+            /* Hero banner compact */
+            #hero-banner {
+                padding: 0.75rem 0.85rem;
+                gap: 0.5rem;
+            }
+            .hero-title { font-size: 0.85rem; }
+            .hero-desc { font-size: 0.78rem; }
+
+            /* Sidebar: vertical on mobile, with compact heading */
+            .sidebar {
+                flex-direction: column;
+                flex-wrap: nowrap;
+                overflow-x: hidden;
+                overflow-y: visible;
+                padding: 0.75rem 0.85rem;
+                gap: 0.5rem;
+            }
+            .sidebar-section { min-width: unset; flex: none; width: 100%; }
+
+            /* Preset buttons — larger touch targets */
+            .preset-btn { padding: 0.55rem 0.75rem; font-size: 0.82rem; min-height: 40px; }
+
+            /* Content area */
+            .content-area { padding: 0.75rem 0.85rem; gap: 0.85rem; }
+
+            /* Search */
+            .search-kbd-hint { display: none; }
+
+            /* Bulk actions */
+            .bulk-actions { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+            .bulk-buttons { flex-wrap: wrap; }
+            .view-switcher-group { align-self: flex-start; }
+
+            /* Cards: 1 column */
             .skills-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
+                gap: 0.65rem;
             }
-            .card-badge {
-                font-size: 0.6rem;
+            .skill-card { padding: 0.85rem; }
+            .card-actions { gap: 0.3rem; }
+            .btn-card { padding: 0.4rem 0.6rem; font-size: 0.75rem; }
+
+            /* Table view: ensure horizontal scroll */
+            .skills-table-container { -webkit-overflow-scrolling: touch; }
+
+            /* Drawer: full width, compact */
+            .drawer {
+                padding: 0.85rem;
+                gap: 0.65rem;
             }
+            .drawer-actions { gap: 0.4rem; }
+            .btn-full { padding: 0.55rem; font-size: 0.82rem; min-height: 42px; }
+
+            /* Modal: full screen sheet */
+            .modal-overlay { padding: 0; align-items: flex-end; }
+            .modal-container {
+                max-width: 100vw;
+                width: 100%;
+                max-height: 92vh;
+                border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            }
+            .modal-header { padding: 0.85rem 1rem; }
+            .modal-title { font-size: 0.92rem; }
+            .modal-body { padding: 0.85rem 1rem; font-size: 0.83rem; }
+            .modal-close { font-size: 1.2rem; padding: 0.4rem 0.6rem; }
+
+            /* Footer */
+            .app-footer { padding: 0.65rem 0.85rem; font-size: 0.75rem; gap: 0.5rem; }
         }
 
-        /* Utility and semantic styling classes */
-        .icon-accent {
-            color: var(--accent);
-        }
-        .icon-success {
-            color: #16a34a;
-        }
-        .icon-telegram {
-            color: #229ED9;
-        }
-        .icon-linkedin {
-            color: #0a66c2;
-        }
-        .icon-drawer-title {
-            color: var(--accent);
-            font-size: 0.85rem;
-        }
-        .view-badge-img {
-            border-radius: 4px;
-            display: block;
-        }
-        .hero-text-block {
-            flex: 1;
-            min-width: 260px;
-        }
-        .sidebar-section-divider {
-            border-top: 1px solid var(--border-color);
-            padding-top: 1rem;
-        }
-        .selected-badge-info {
-            margin-left: 0.5rem;
-        }
-        .combo-desc-banner {
-            display: none;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-left: 3px solid var(--accent);
-            border-radius: var(--radius-md);
-            padding: 0.85rem 1.15rem;
-        }
-        .combo-desc-title {
-            display: block;
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-        .combo-desc-text {
-            font-size: 0.83rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-            display: block;
-        }
-        .col-index {
-            width: 44px;
-            text-align: center;
-        }
-        .col-id {
-            width: 190px;
-        }
-        .col-title {
-            width: 210px;
-        }
-        .col-desc {
-            width: 400px;
-        }
-        .col-domain {
-            width: 140px;
-            text-align: center;
-        }
-        .col-action {
-            width: 116px;
-            text-align: center;
+        /* ── Responsive: Small Mobile (≤ 360px) ──────────────────────────── */
+        @media (max-width: 360px) {
+            .logo-title { max-width: 120px; font-size: 0.78rem; }
+            .theme-toggle-btn { padding: 0.25rem 0.4rem; }
         }
     </style>
 </head>
@@ -1276,19 +1330,19 @@
     <header>
         <div class="logo">
             <span class="logo-title">
-                <i class="fa-solid fa-layer-group icon-accent"></i>
+                <i class="fa-solid fa-layer-group" style="color: var(--accent);"></i>
                 PdM-Skills Builder
             </span>
             <div class="stat-badges-group">
-                <img id="view-badge-img" class="view-badge-img" src="https://hits.sh/anton-creates.github.io/pdm-skills-builder.svg?style=flat-square&label=views&color=0284c7&labelColor=0f172a" alt="views count" height="20" title="Просмотры каталога" />
+                <img id="view-badge-img" src="https://hits.sh/anton-creates.github.io/pdm-skills-builder.svg?style=flat-square&label=views&color=0284c7&labelColor=0f172a" alt="views count" height="20" style="border-radius: 4px; display: block;" title="Просмотры каталога" />
                 <div class="stat-badge" title="Скачанные сборки правил">
-                    <i class="fa-solid fa-download icon-success"></i> <span id="download-count">0</span>
+                    <i class="fa-solid fa-download" style="color: #16a34a;"></i> <span id="download-count">0</span>
                 </div>
             </div>
         </div>
         <div class="header-actions">
             <button class="theme-toggle-btn" id="lang-toggle" title="Switch Language (RU / EN)">
-                <i class="fa-solid fa-globe icon-accent"></i>
+                <i class="fa-solid fa-globe" style="color: var(--accent);"></i>
                 <span id="lang-text">EN</span>
             </button>
             <button class="theme-toggle-btn" id="theme-toggle" title="Переключить тему">
@@ -1301,17 +1355,14 @@
 
     <!-- Hero onboarding banner -->
     <div id="hero-banner">
-        <div class="hero-text-block">
+        <div style="flex: 1; min-width: 260px;">
             <div class="hero-title">
                 Каталог контекстных системных инструкций для продакт-менеджмента
             </div>
             <div class="hero-desc">
-                Сборка структурированных правил для Codex, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.
+                Сборка структурированных правил для ChatGPT, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.
             </div>
         </div>
-        <a href="https://github.com/Anton-Creates/pdm-skills-builder?tab=readme-ov-file#-использование-как-ai-агента-автоматический-режим" target="_blank" rel="noopener" class="agent-badge">
-            <i class="fa-solid fa-robot"></i> <span id="agent-badge-text">Доступен режим AI-Агента!</span>
-        </a>
     </div>
 
     <!-- Main 3-Column Layout -->
@@ -1355,7 +1406,7 @@
                 </div>
             </div>
 
-            <div class="sidebar-section sidebar-section-divider">
+            <div class="sidebar-section" style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
                 <h3><span class="sec-num">[02]</span> КАТЕГОРИИ И ДОМЕНЫ</h3>
                 <div class="preset-list">
                     <button class="preset-btn active" data-preset="all">
@@ -1476,15 +1527,18 @@
 
                 <div class="filter-status">
                     <span id="label-shown">Показано:</span> <b id="visible-count">0</b> <span id="label-from">из</span> <b id="total-count">0</b>
-                    <span id="selected-badge-info" class="selected-badge-info">(<span id="label-selected-word">выбрано</span>: <b id="stat-badge-count">0</b>)</span>
+                    <span id="selected-badge-info" style="margin-left: 0.5rem;">(<span id="label-selected-word">выбрано</span>: <b id="stat-badge-count">0</b>)</span>
                 </div>
             </div>
 
             <!-- Active Combo Description (when clicked from sidebar) -->
-            <div id="combo-desc-banner" class="combo-desc-banner">
+            <div id="combo-desc-banner"
+                style="display: none; background: var(--bg-secondary); border: 1px solid var(--border-color); border-left: 3px solid var(--accent); border-radius: var(--radius-md); padding: 0.85rem 1.15rem;">
                 <div>
-                    <strong id="combo-desc-title" class="combo-desc-title"></strong>
-                    <span id="combo-desc-text" class="combo-desc-text"></span>
+                    <strong id="combo-desc-title"
+                        style="display: block; font-size: 1rem; margin-bottom: 0.25rem;"></strong>
+                    <span id="combo-desc-text"
+                        style="font-size: 0.83rem; color: var(--text-secondary); line-height: 1.5; display: block;"></span>
                 </div>
             </div>
 
@@ -1498,12 +1552,12 @@
                 <table class="skills-table">
                     <thead>
                         <tr>
-                            <th class="col-index">#</th>
-                            <th class="col-id">ID Скилла</th>
-                            <th class="col-title">Название</th>
-                            <th class="col-desc">Описание</th>
-                            <th class="col-domain">Домен</th>
-                            <th class="col-action">Действие</th>
+                            <th style="width: 44px; text-align: center;">#</th>
+                            <th style="width: 190px;">ID Скилла</th>
+                            <th style="width: 210px;">Название</th>
+                            <th style="width: 400px;">Описание</th>
+                            <th style="width: 140px; text-align: center;">Домен</th>
+                            <th style="width: 116px; text-align: center;">Действие</th>
                         </tr>
                     </thead>
                     <tbody id="skills-table-body">
@@ -1516,7 +1570,7 @@
         <!-- Right Side: Rules Compiler Drawer -->
         <div class="drawer">
             <div class="drawer-header">
-                <h3><i class="fa-solid fa-code-branch icon-drawer-title"></i> // КОНСТРУКТОР ПРАВИЛ</h3>
+                <h3><i class="fa-solid fa-code-branch" style="color: var(--accent); font-size: 0.85rem;"></i> // КОНСТРУКТОР ПРАВИЛ</h3>
             </div>
 
             <!-- Context metrics widget -->
@@ -1539,8 +1593,8 @@
                 <label>Целевая IDE / Формат:</label>
                 <div class="exporter-select-wrapper">
                     <select id="exporter-type" title="Универсальный промпт (ChatGPT/DeepSeek/Claude Web)">
-                        <option value="prompt" title="Универсальный промпт (Codex/DeepSeek/Claude Web)">Универсальный промпт (Codex/Claude/DeepSeek)</option>
-                        <option value="cursor" title="Cursor / Codex rules (.cursorrules)">Cursor / Codex Rules (.cursor/rules)</option>
+                        <option value="prompt" title="Универсальный промпт (ChatGPT/DeepSeek/Claude Web)">Универсальный промпт (ChatGPT/Claude/DeepSeek)</option>
+                        <option value="cursor" title="Cursor rules (.cursorrules)">Cursor Rules (.cursor/rules)</option>
                         <option value="vscode" title="VS Code (Roo Code / Cline .clinerules)">VS Code / Roo Code / Cline (.clinerules)</option>
                         <option value="copilot" title="GitHub Copilot (.github/copilot-instructions.md)">GitHub Copilot (.github/copilot-instructions.md)</option>
                         <option value="windsurf" title="Windsurf rules (.windsurfrules)">Windsurf Rules (.windsurfrules)</option>
@@ -1569,7 +1623,7 @@
         <div class="modal-container">
             <div class="modal-header">
                 <div class="modal-title" id="modal-title">
-                    <i class="fa-solid fa-file-lines icon-accent"></i>
+                    <i class="fa-solid fa-file-lines" style="color: var(--accent);"></i>
                     <span>Детали скилла</span>
                 </div>
                 <button class="modal-close" id="modal-close-btn">&times;</button>
@@ -1583,14 +1637,14 @@
     <!-- Application Footer -->
     <footer class="app-footer">
         <div class="footer-left">
-            <a href="https://t.me/mikhaylove_anton" target="_blank" rel="noopener noreferrer" class="author-badge" title="Telegram">
-                <i class="fa-brands fa-telegram icon-telegram"></i>
+            <a href="https://t.me/mikhaylove_anton" target="_blank" class="author-badge">
+                <i class="fa-brands fa-telegram" style="color: #229ED9;"></i> @mikhaylove_anton
             </a>
-            <a href="https://www.linkedin.com/in/anton-mikhaylove/" target="_blank" rel="noopener noreferrer" class="author-badge" title="LinkedIn">
-                <i class="fa-brands fa-linkedin icon-linkedin"></i>
+            <a href="https://www.linkedin.com/in/anton-mikhaylove/" target="_blank" class="author-badge">
+                <i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i> LinkedIn
             </a>
-            <a href="https://github.com/Anton-Creates/pdm-skills-builder" target="_blank" rel="noopener noreferrer" class="author-badge" title="GitHub Репозиторий">
-                <i class="fa-brands fa-github"></i>
+            <a href="https://github.com/Anton-Creates/pdm-skills-builder" target="_blank" class="author-badge">
+                <i class="fa-brands fa-github"></i> GitHub Репозиторий
             </a>
         </div>
         <div>
@@ -1606,7 +1660,7 @@
         const I18N = {
             ru: {
                 heroTitle: "Каталог контекстных системных инструкций для продакт-менеджмента",
-                heroDesc: "Сборка структурированных правил для Codex, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.",
+                heroDesc: "Сборка структурированных правил для ChatGPT, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.",
                 searchPlaceholder: "Поиск по скиллам, тегам и метрикам (например: 'юзер стори', 'юнит-экономика', 'чекаут', 'okr')",
                 secCombos: "[01] РОЛЕВЫЕ СБОРКИ",
                 secCategories: "[02] КАТЕГОРИИ И ДОМЕНЫ",
@@ -1656,12 +1710,11 @@
                 relevantTitle: "Релевантные скиллы:",
                 comboPrefix: "Сборка:",
                 promptHeader: "# СИСТЕМНЫЕ ПРАВИЛА PRODUCT MANAGEMENT ({count} скиллов)\n\n",
-                copyPromptHeader: "# СИСТЕМНЫЕ ИНСТРУКЦИИ ДЛЯ АССИСТЕНТА PRODUCT MANAGEMENT\n\n",
-                agentBadgeText: "Доступен режим AI-Агента!"
+                copyPromptHeader: "# СИСТЕМНЫЕ ИНСТРУКЦИИ ДЛЯ АССИСТЕНТА PRODUCT MANAGEMENT\n\n"
             },
             en: {
                 heroTitle: "Contextual System Instructions Catalog for Product Management",
-                heroDesc: "Curated system prompts and rules for Codex, Claude, Cursor, Roo Code, Antigravity, and GitHub Copilot. Pick the skills you need, preview compiled instructions, and export clean configurations.",
+                heroDesc: "Curated system prompts and rules for ChatGPT, Claude, Cursor, Roo Code, Antigravity, and GitHub Copilot. Pick the skills you need, preview compiled instructions, and export clean configurations.",
                 searchPlaceholder: "Search skills, tags, metrics (e.g. 'user stories', 'unit economics', 'checkout', 'okr')",
                 secCombos: "[01] ROLE BUNDLES",
                 secCategories: "[02] CATEGORIES & DOMAINS",
@@ -1711,8 +1764,7 @@
                 relevantTitle: "Relevant skills:",
                 comboPrefix: "Bundle:",
                 promptHeader: "# PRODUCT MANAGEMENT SYSTEM RULES ({count} skills)\\n\\n",
-                copyPromptHeader: "# PRODUCT MANAGEMENT ASSISTANT SYSTEM INSTRUCTIONS\\n\\n",
-                agentBadgeText: "Agent Mode Available!"
+                copyPromptHeader: "# PRODUCT MANAGEMENT ASSISTANT SYSTEM INSTRUCTIONS\\n\\n"
             }
         };
 
@@ -1834,9 +1886,6 @@
             document.querySelector('.hero-desc').innerText = t.heroDesc;
             aiSearchInput.placeholder = t.searchPlaceholder;
             
-            const agentBadgeTextEl = document.getElementById('agent-badge-text');
-            if (agentBadgeTextEl) agentBadgeTextEl.innerText = t.agentBadgeText;
-            
             // Library count in header
             const libCountEl = document.getElementById('library-count');
             if (libCountEl) libCountEl.innerHTML = t.libraryCount.replace('{count}', SKILLS_DB.length);
@@ -1846,8 +1895,8 @@
             if (exporterSelect) {
                 const currentVal = exporterSelect.value;
                 const options = [
-                    { value: "prompt", text: lang === 'ru' ? "Универсальный промпт (Codex/Claude/DeepSeek)" : "Universal Prompt (Codex/Claude/DeepSeek)" },
-                    { value: "cursor", text: "Cursor / Codex Rules (.cursor/rules)" },
+                    { value: "prompt", text: lang === 'ru' ? "Универсальный промпт (ChatGPT/Claude/DeepSeek)" : "Universal Prompt (ChatGPT/Claude/DeepSeek)" },
+                    { value: "cursor", text: "Cursor Rules (.cursor/rules)" },
                     { value: "vscode", text: "VS Code / Roo Code / Cline (.clinerules)" },
                     { value: "copilot", text: "GitHub Copilot (.github/copilot-instructions.md)" },
                     { value: "windsurf", text: "Windsurf Rules (.windsurfrules)" },
@@ -2037,30 +2086,13 @@
 
         // Calculate count per category
         function updatePresetCounts() {
-            const totalSelected = selectedSkills.size;
-            const countAllEl = document.getElementById('count-all');
-            if (countAllEl) {
-                if (totalSelected > 0) {
-                    countAllEl.innerHTML = `<span style="color: var(--accent); font-weight: 700;">${totalSelected}</span> / ${SKILLS_DB.length}`;
-                } else {
-                    countAllEl.innerText = SKILLS_DB.length;
-                }
-            }
-
+            document.getElementById('count-all').innerText = SKILLS_DB.length;
             const presets = ['core', 'discovery', 'growth', 'saas', 'b2b', 'internal-products', 'strategy', 'platforms-tech', 'fintech', 'marketplace', 'e-commerce', 'retail-ops', 'media-adtech', 'edtech', 'telecom', 'govtech-b2g'];
             presets.forEach(p => {
                 const el = document.getElementById(`count-${p}`);
                 if (el) {
-                    const totalInCategory = SKILLS_DB.filter(s => s.preset === p).length;
-                    const selectedInCategory = SKILLS_DB.filter(s => s.preset === p && selectedSkills.has(s.id)).length;
-                    
-                    if (selectedInCategory > 0) {
-                        el.innerHTML = `<span style="color: var(--accent); font-weight: 700;">${selectedInCategory}</span> / ${totalInCategory}`;
-                        el.style.borderColor = 'var(--accent)';
-                    } else {
-                        el.innerText = totalInCategory;
-                        el.style.borderColor = 'transparent';
-                    }
+                    const count = SKILLS_DB.filter(s => s.preset === p).length;
+                    el.innerText = count;
                 }
             });
         }
@@ -2131,9 +2163,6 @@
             const t = I18N[currentLang];
             
             let filtered = SKILLS_DB.filter(skill => {
-                if (activeComboId !== null && queryTerms.length === 0) {
-                    return selectedSkills.has(skill.id);
-                }
                 if (currentPreset !== 'all' && skill.preset !== currentPreset) return false;
                 if (queryTerms.length === 0) return true;
                 const score = calculateRelevance(skill, queryTerms);
@@ -2341,7 +2370,6 @@
                 promptPreview.innerText = t.previewEmpty;
                 statTokensEst.innerText = "0 tok";
                 contextBarFill.style.width = "0%";
-                updatePresetCounts();
                 return;
             }
 
@@ -2364,7 +2392,6 @@
             });
 
             promptPreview.innerText = previewText;
-            updatePresetCounts();
         }
 
         // Modal Logic
