@@ -136,9 +136,14 @@
             font-weight: 800;
             letter-spacing: -0.02em;
             color: var(--text-primary);
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .logo-title-text {
+            white-space: nowrap;
         }
 
         .stat-badges-group {
@@ -150,18 +155,15 @@
         .stat-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 0.35rem;
             font-family: var(--font-mono);
             font-size: 0.72rem;
             color: var(--text-secondary);
             border: 1px solid var(--border-color);
-            padding: 0.25rem 0.5rem;
+            padding: 0.2rem 0.5rem;
             border-radius: var(--radius-sm);
             background: var(--bg-primary);
-            -webkit-user-select: none;
             user-select: none;
-            line-height: 1;
         }
 
         .stat-badge i {
@@ -184,7 +186,7 @@
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
-            padding: 0.35rem 0.65rem;
+            padding: 0.3rem 0.65rem;
             border-radius: var(--radius-sm);
             font-family: var(--font-sans);
             font-size: 0.78rem;
@@ -192,10 +194,8 @@
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 0.4rem;
             transition: all 0.15s ease;
-            line-height: 1;
         }
 
         .theme-toggle-btn:hover {
@@ -208,13 +208,9 @@
             font-size: 0.72rem;
             color: var(--text-muted);
             border: 1px solid var(--border-color);
-            padding: 0.3rem 0.55rem;
+            padding: 0.25rem 0.55rem;
             border-radius: var(--radius-sm);
             background: var(--bg-primary);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
         }
 
         /* ── Hero / Onboarding Banner ─────────────────────────────────────── */
@@ -244,29 +240,6 @@
             color: var(--text-secondary);
             max-width: 850px;
             line-height: 1.45;
-        }
-
-        .agent-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--accent-dim);
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            font-size: 0.82rem;
-            font-family: var(--font-mono);
-            font-weight: 600;
-            padding: 0.45rem 0.85rem;
-            border-radius: var(--radius-sm);
-            text-decoration: none;
-            transition: all 0.15s ease;
-        }
-
-        .agent-badge:hover {
-            background: var(--accent);
-            color: var(--accent-text);
-            border-color: var(--accent);
-            transform: translateY(-1px);
         }
 
         /* ── Main Layout ──────────────────────────────────────────────────── */
@@ -354,15 +327,8 @@
             color: var(--text-muted);
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            padding: 0.15rem 0.35rem;
+            padding: 0.1rem 0.35rem;
             border-radius: var(--radius-sm);
-            white-space: nowrap;
-            flex-shrink: 0;
-            margin-left: 0.5rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
         }
 
         /* ── Workspace / Content Area ─────────────────────────────────────── */
@@ -426,7 +392,6 @@
             border: 1px solid var(--border-color);
             padding: 0.15rem 0.4rem;
             border-radius: var(--radius-sm);
-            -webkit-user-select: none;
             user-select: none;
         }
 
@@ -627,10 +592,9 @@
             background: var(--bg-secondary);
             color: var(--text-secondary);
             border: 1px solid var(--border-color);
-            white-space: normal;
-            word-break: break-word;
+            white-space: nowrap;
             display: inline-block;
-            line-height: 1.3;
+            line-height: 1.2;
             transition: all 0.15s ease;
         }
 
@@ -734,12 +698,10 @@
             font-size: 0.78rem;
             font-weight: 600;
             cursor: pointer;
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            justify-content: center;
             gap: 0.35rem;
             transition: color 0.15s ease;
-            line-height: 1;
         }
 
         .btn-card:hover {
@@ -756,6 +718,7 @@
             border-radius: var(--radius-md);
             overflow-x: auto !important;
             overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
             box-shadow: var(--card-shadow);
             margin-bottom: 1rem;
         }
@@ -799,7 +762,6 @@
             color: var(--text-muted);
             border-bottom: 1px solid var(--border-color);
             border-right: 1px solid var(--border-color);
-            -webkit-user-select: none;
             user-select: none;
             white-space: nowrap;
         }
@@ -1011,7 +973,6 @@
             right: 0;
             bottom: 0;
             background: rgba(0, 0, 0, 0.65);
-            -webkit-backdrop-filter: blur(2px);
             backdrop-filter: blur(2px);
             z-index: 1000;
             justify-content: center;
@@ -1144,16 +1105,14 @@
         .author-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 0.35rem;
             color: var(--text-secondary);
             text-decoration: none;
             border: 1px solid var(--border-color);
-            padding: 0.35rem 0.45rem;
+            padding: 0.2rem 0.5rem;
             border-radius: var(--radius-sm);
             background: var(--bg-primary);
             transition: all 0.15s ease;
-            line-height: 1;
         }
 
         .author-badge:hover {
@@ -1161,116 +1120,316 @@
             color: var(--text-primary);
         }
 
+        /* ── Responsive: Tablet (≤ 1024px) ──────────────────────────────────── */
         @media (max-width: 1024px) {
-            .drawer {
-                width: 320px;
-            }
-            .sidebar {
-                width: 230px;
-            }
+            .drawer { width: 300px; }
+            .sidebar { width: 220px; }
+            .logo-title { font-size: 0.95rem; }
         }
 
+        
+        /* ── Mobile Sidebar Accordion ────────────────────────────────────────── */
+        .mobile-sidebar-toggle {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.65rem 0.85rem;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .mobile-sidebar-toggle:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+        }
+
+        .mobile-toggle-left {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mobile-toggle-left i {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        .mobile-toggle-right {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mobile-toggle-badge {
+            font-size: 0.74rem;
+            font-family: var(--font-mono);
+            font-weight: 500;
+            padding: 0.2rem 0.45rem;
+            border-radius: var(--radius-sm);
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            max-width: clamp(140px, 45vw, 220px);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .mobile-toggle-chevron {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sidebar.is-open .mobile-sidebar-toggle {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        .sidebar.is-open .mobile-toggle-chevron {
+            transform: rotate(180deg);
+        }
+
+        .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        /* ── Responsive: Tablet Portrait (≤ 768px) ───────────────────────── */
         @media (max-width: 768px) {
+            /* Header becomes 2-row on tablet portrait */
+            header {
+                height: auto;
+                padding: 0.6rem 1rem;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+            .logo {
+                flex: 1;
+                min-width: 0;
+                gap: 0.5rem;
+            }
+            .logo-title {
+                font-size: 0.9rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .stat-badges-group {
+                display: none; /* hide on tablet portrait */
+            }
+            .header-actions {
+                gap: 0.5rem;
+            }
+            .version {
+                display: none; /* hide library count badge on tablet */
+            }
+
+            /* Main layout stacks */
             .main-layout {
                 flex-direction: column;
                 height: auto;
+                overflow: visible;
             }
-            .sidebar, .drawer {
+
+            /* Sidebar collapsible accordion on tablet / mobile */
+            .sidebar {
                 width: 100%;
                 height: auto;
                 position: static;
+                padding: 0.65rem 1rem;
+                flex-direction: column;
+                gap: 0;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                overflow: visible;
             }
+            .mobile-sidebar-toggle {
+                display: flex;
+            }
+            .sidebar-content {
+                display: none;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                padding-top: 0.75rem;
+                width: 100%;
+            }
+            .sidebar.is-open .sidebar-content {
+                display: flex;
+            }
+            .sidebar-section {
+                min-width: 180px;
+                flex: 1 1 180px;
+            }
+            .sidebar-section h3 { margin-bottom: 0.4rem; }
+
+            /* Content area */
+            .content-area {
+                padding: 1rem;
+            }
+
+            /* Drawer goes to bottom as a collapsible panel */
+            .drawer {
+                width: 100%;
+                height: auto;
+                position: static;
+                border-left: none;
+                border-top: 1px solid var(--border-color);
+                padding: 1rem;
+            }
+            .prompt-preview-container { max-height: 100px; min-height: 60px; }
+
+            /* Footer */
             .app-footer {
                 flex-direction: column;
-                gap: 0.85rem;
+                gap: 0.65rem;
                 text-align: center;
+                padding: 0.75rem 1rem;
             }
-            .skills-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            .footer-left { justify-content: center; }
+
+            /* Modal */
+            .modal-overlay { padding: 0.75rem; align-items: flex-end; }
+            .modal-container {
+                max-width: 100%;
+                max-height: 90vh;
+                border-radius: var(--radius-lg) var(--radius-lg) 0 0;
             }
+            .modal-body { padding: 1rem; font-size: 0.85rem; }
+            .modal-header { padding: 0.75rem 1rem; }
+
+            /* Cards grid */
+            .skills-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
         }
 
+        /* ── Responsive: Mobile (≤ 480px) ─────────────────────────────────── */
         @media (max-width: 480px) {
+            /* Header: compact single row */
+            header {
+                padding: 0.5rem 0.85rem;
+                height: auto;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .logo { gap: 0.4rem; min-width: 0; flex: 1; overflow: hidden; }
+            .logo-title {
+                font-size: 0.88rem;
+                letter-spacing: -0.02em;
+                white-space: nowrap;
+            }
+            .logo-title-text {
+                white-space: nowrap;
+            }
+            .stat-badges-group { display: none; }
+            .header-actions { gap: 0.35rem; flex-shrink: 0; }
+            .theme-toggle-btn {
+                padding: 0.3rem 0.5rem;
+                font-size: 0.72rem;
+            }
+            /* Hide text labels in header buttons — icon only */
+            #theme-text, #lang-text { display: none; }
+            .version { display: none; }
+
+            /* Hero banner compact */
+            #hero-banner {
+                padding: 0.75rem 0.85rem;
+                gap: 0.5rem;
+            }
+            .hero-title { font-size: 0.85rem; }
+            .hero-desc { font-size: 0.78rem; }
+
+            /* Sidebar: compact accordion on mobile */
+            .sidebar {
+                padding: 0.55rem 0.85rem;
+                gap: 0;
+            }
+            .sidebar-content {
+                flex-direction: column;
+                flex-wrap: nowrap;
+                gap: 0.75rem;
+                padding-top: 0.65rem;
+            }
+            .sidebar-section { min-width: unset; flex: none; width: 100%; }
+
+            /* Preset buttons — larger touch targets */
+            .preset-btn { padding: 0.55rem 0.75rem; font-size: 0.82rem; min-height: 40px; }
+
+            /* Content area */
+            .content-area { padding: 0.75rem 0.85rem; gap: 0.85rem; }
+
+            /* Search */
+            .search-kbd-hint { display: none; }
+
+            /* Bulk actions */
+            .bulk-actions { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+            .bulk-buttons { flex-wrap: wrap; }
+            .view-switcher-group { align-self: flex-start; }
+
+            /* Cards: 1 column */
             .skills-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
+                gap: 0.65rem;
             }
-            .card-badge {
-                font-size: 0.6rem;
+            .skill-card { padding: 0.85rem; }
+            .card-actions { gap: 0.3rem; }
+            .btn-card { padding: 0.4rem 0.6rem; font-size: 0.75rem; }
+
+            /* Table view: ensure horizontal scroll */
+            .skills-table-container { -webkit-overflow-scrolling: touch; }
+
+            /* Drawer: full width, compact */
+            .drawer {
+                padding: 0.85rem;
+                gap: 0.65rem;
             }
+            .drawer-actions { gap: 0.4rem; }
+            .btn-full { padding: 0.55rem; font-size: 0.82rem; min-height: 42px; }
+
+            /* Modal: full screen sheet */
+            .modal-overlay { padding: 0; align-items: flex-end; }
+            .modal-container {
+                max-width: 100vw;
+                width: 100%;
+                max-height: 92vh;
+                border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            }
+            .modal-header { padding: 0.85rem 1rem; }
+            .modal-title { font-size: 0.92rem; }
+            .modal-body { padding: 0.85rem 1rem; font-size: 0.83rem; }
+            .modal-close { font-size: 1.2rem; padding: 0.4rem 0.6rem; }
+
+            /* Footer */
+            .app-footer { padding: 0.65rem 0.85rem; font-size: 0.75rem; gap: 0.5rem; }
         }
 
-        /* Utility and semantic styling classes */
-        .icon-accent {
-            color: var(--accent);
+        /* ── Responsive: Small Mobile (≤ 360px) ──────────────────────────── */
+        @media (max-width: 360px) {
+            .logo-title { font-size: 0.82rem; }
+            .logo-title-text { white-space: nowrap; }
+            .theme-toggle-btn { padding: 0.25rem 0.4rem; }
         }
-        .icon-success {
-            color: #16a34a;
+    
+        /* Hide theme text on mobile & narrow tablets to preserve header space */
+        @media (max-width: 640px) {
+            #theme-text { display: none; }
+            .theme-toggle-btn { padding: 0.35rem 0.55rem; font-size: 0.76rem; }
+            .logo-title { font-size: 0.88rem; }
+            .stat-badges-group { display: none; }
+            .version { display: none; }
         }
-        .icon-telegram {
-            color: #229ED9;
-        }
-        .icon-linkedin {
-            color: #0a66c2;
-        }
-        .icon-drawer-title {
-            color: var(--accent);
-            font-size: 0.85rem;
-        }
-        .view-badge-img {
-            border-radius: 4px;
-            display: block;
-        }
-        .hero-text-block {
-            flex: 1;
-            min-width: 260px;
-        }
-        .sidebar-section-divider {
-            border-top: 1px solid var(--border-color);
-            padding-top: 1rem;
-        }
-        .selected-badge-info {
-            margin-left: 0.5rem;
-        }
-        .combo-desc-banner {
-            display: none;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-left: 3px solid var(--accent);
-            border-radius: var(--radius-md);
-            padding: 0.85rem 1.15rem;
-        }
-        .combo-desc-title {
-            display: block;
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-        .combo-desc-text {
-            font-size: 0.83rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-            display: block;
-        }
-        .col-index {
-            width: 44px;
-            text-align: center;
-        }
-        .col-id {
-            width: 190px;
-        }
-        .col-title {
-            width: 210px;
-        }
-        .col-desc {
-            width: 400px;
-        }
-        .col-domain {
-            width: 140px;
-            text-align: center;
-        }
-        .col-action {
-            width: 116px;
-            text-align: center;
-        }
+    
     </style>
 </head>
 
@@ -1279,19 +1438,19 @@
     <header>
         <div class="logo">
             <span class="logo-title">
-                <i class="fa-solid fa-layer-group icon-accent"></i>
-                PdM-Skills Builder
+                <i class="fa-solid fa-layer-group" style="color: var(--accent); flex-shrink: 0;"></i>
+                <span class="logo-title-text">PdM&#8209;Skills Builder</span>
             </span>
             <div class="stat-badges-group">
-                <img id="view-badge-img" class="view-badge-img" src="https://hits.sh/anton-creates.github.io/pdm-skills-agent.svg?style=flat-square&label=views&color=0284c7&labelColor=0f172a" alt="views count" height="20" title="Просмотры каталога" />
+                <img id="view-badge-img" src="https://hits.sh/anton-creates.github.io/pdm-skills-agent.svg?style=flat-square&label=views&color=0284c7&labelColor=0f172a" alt="views count" height="20" style="border-radius: 4px; display: block;" title="Просмотры каталога" />
                 <div class="stat-badge" title="Скачанные сборки правил">
-                    <i class="fa-solid fa-download icon-success"></i> <span id="download-count">0</span>
+                    <i class="fa-solid fa-download" style="color: #16a34a;"></i> <span id="download-count">0</span>
                 </div>
             </div>
         </div>
         <div class="header-actions">
             <button class="theme-toggle-btn" id="lang-toggle" title="Switch Language (RU / EN)">
-                <i class="fa-solid fa-globe icon-accent"></i>
+                <i class="fa-solid fa-globe" style="color: var(--accent);"></i>
                 <span id="lang-text">EN</span>
             </button>
             <button class="theme-toggle-btn" id="theme-toggle" title="Переключить тему">
@@ -1304,53 +1463,61 @@
 
     <!-- Hero onboarding banner -->
     <div id="hero-banner">
-        <div class="hero-text-block">
+        <div style="flex: 1; min-width: 260px;">
             <div class="hero-title">
                 Каталог контекстных системных инструкций для продакт-менеджмента
             </div>
             <div class="hero-desc">
-                Сборка структурированных правил для Codex, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.
+                Сборка структурированных правил для ChatGPT, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.
             </div>
         </div>
-        <a href="https://github.com/Anton-Creates/pdm-skills-agent" target="_blank" rel="noopener" class="agent-badge">
-            <i class="fa-solid fa-robot"></i> <span id="agent-badge-text">Доступен режим AI-Агента!</span>
-        </a>
     </div>
 
     <!-- Main 3-Column Layout -->
     <div class="main-layout">
 
         <!-- Left Sidebar: Filters & Preset Roles -->
-        <div class="sidebar">
-            <div class="sidebar-section">
+        <div class="sidebar" id="app-sidebar">
+            <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle" type="button" aria-expanded="false" aria-controls="sidebar-content">
+                <span class="mobile-toggle-left">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span id="mobile-filter-title">Фильтры и роли</span>
+                </span>
+                <span class="mobile-toggle-right">
+                    <span class="mobile-toggle-badge" id="mobile-filter-badge">Все (130)</span>
+                    <i class="fa-solid fa-chevron-down mobile-toggle-chevron"></i>
+                </span>
+            </button>
+            <div class="sidebar-content" id="sidebar-content">
+                <div class="sidebar-section">
                 <h3><span class="sec-num">[01]</span> РОЛЕВЫЕ СБОРКИ</h3>
                 <div class="preset-list" id="role-combos-list">
                     <button class="preset-btn combo-btn" data-combo="0">
                         <span>Lead / Senior PM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="1">
-                        <span>B2B & Enterprise PM</span>
+                        <span>B2B & Enterprise PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="2">
-                        <span>SaaS & Subscription PM</span>
+                        <span>SaaS & Subscription PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="3">
-                        <span>Internal & HR-Tech PM</span>
+                        <span>Internal & HR-Tech PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="4">
-                        <span>Growth & PLG PM</span>
+                        <span>Growth & PLG PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="5">
-                        <span>Marketplace & E-com PM</span>
+                        <span>Marketplace & E-com PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="6">
-                        <span>Fintech & Banking PM</span>
+                        <span>Fintech & Banking PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="7">
-                        <span>AI, LLM & Data PM</span>
+                        <span>AI, LLM & Data PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="8">
-                        <span>GovTech & B2G PM</span>
+                        <span>GovTech & B2G PdM</span>
                     </button>
                     <button class="preset-btn combo-btn" data-combo="9">
                         <span>CPO / Leadership</span>
@@ -1358,7 +1525,7 @@
                 </div>
             </div>
 
-            <div class="sidebar-section sidebar-section-divider">
+            <div class="sidebar-section" style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
                 <h3><span class="sec-num">[02]</span> КАТЕГОРИИ И ДОМЕНЫ</h3>
                 <div class="preset-list">
                     <button class="preset-btn active" data-preset="all">
@@ -1431,6 +1598,7 @@
                     </button>
                 </div>
             </div>
+            </div> <!-- /#sidebar-content -->
         </div>
 
         <!-- Main Workspace -->
@@ -1479,16 +1647,23 @@
 
                 <div class="filter-status">
                     <span id="label-shown">Показано:</span> <b id="visible-count">0</b> <span id="label-from">из</span> <b id="total-count">0</b>
-                    <span id="selected-badge-info" class="selected-badge-info">(<span id="label-selected-word">выбрано</span>: <b id="stat-badge-count">0</b>)</span>
+                    <span id="selected-badge-info" style="margin-left: 0.5rem;">(<span id="label-selected-word">выбрано</span>: <b id="stat-badge-count">0</b>)</span>
                 </div>
             </div>
 
             <!-- Active Combo Description (when clicked from sidebar) -->
-            <div id="combo-desc-banner" class="combo-desc-banner">
-                <div>
-                    <strong id="combo-desc-title" class="combo-desc-title"></strong>
-                    <span id="combo-desc-text" class="combo-desc-text"></span>
+            <div id="combo-desc-banner"
+                style="display: none; background: var(--bg-secondary); border: 1px solid var(--border-color); border-left: 3px solid var(--accent); border-radius: var(--radius-md); padding: 0.85rem 1.15rem; position: relative;">
+                <div style="padding-right: 2rem;">
+                    <strong id="combo-desc-title"
+                        style="display: block; font-size: 1rem; margin-bottom: 0.25rem;"></strong>
+                    <span id="combo-desc-text"
+                        style="font-size: 0.83rem; color: var(--text-secondary); line-height: 1.5; display: block;"></span>
                 </div>
+                <button id="combo-desc-close" title="Сбросить фильтр сборки" type="button"
+                    style="position: absolute; top: 0.65rem; right: 0.75rem; background: none; border: none; font-size: 1.1rem; color: var(--text-muted); cursor: pointer; padding: 0.25rem 0.45rem; line-height: 1; border-radius: var(--radius-sm); transition: color 0.15s ease;">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
 
             <!-- Skills Cards Grid View -->
@@ -1501,12 +1676,12 @@
                 <table class="skills-table">
                     <thead>
                         <tr>
-                            <th class="col-index">#</th>
-                            <th class="col-id">ID Скилла</th>
-                            <th class="col-title">Название</th>
-                            <th class="col-desc">Описание</th>
-                            <th class="col-domain">Домен</th>
-                            <th class="col-action">Действие</th>
+                            <th style="width: 44px; text-align: center;">#</th>
+                            <th style="width: 190px;">ID Скилла</th>
+                            <th style="width: 210px;">Название</th>
+                            <th style="width: 400px;">Описание</th>
+                            <th style="width: 140px; text-align: center;">Домен</th>
+                            <th style="width: 116px; text-align: center;">Действие</th>
                         </tr>
                     </thead>
                     <tbody id="skills-table-body">
@@ -1519,7 +1694,7 @@
         <!-- Right Side: Rules Compiler Drawer -->
         <div class="drawer">
             <div class="drawer-header">
-                <h3><i class="fa-solid fa-code-branch icon-drawer-title"></i> // КОНСТРУКТОР ПРАВИЛ</h3>
+                <h3><i class="fa-solid fa-code-branch" style="color: var(--accent); font-size: 0.85rem;"></i> // КОНСТРУКТОР ПРАВИЛ</h3>
             </div>
 
             <!-- Context metrics widget -->
@@ -1541,17 +1716,16 @@
             <div class="exporter-section">
                 <label>Целевая IDE / Формат:</label>
                 <div class="exporter-select-wrapper">
-                    <select id="exporter-type" title="Выберите целевой формат или IDE">
-                        <option value="claudeprompt" title="Claude Code (CLAUDE.md)">Claude Code (CLAUDE.md)</option>
-                        <option value="codex" title="OpenAI Codex Rules (AGENTS.md / .codex)">OpenAI Codex Rules (AGENTS.md)</option>
-                        <option value="cursor" title="Cursor Rules (.cursorrules)">Cursor Rules (.cursorrules)</option>
-                        <option value="agents" title="Gemini Antigravity (.agents/skills)">Gemini Antigravity (.agents/skills)</option>
+                    <select id="exporter-type" title="Универсальный промпт (ChatGPT/DeepSeek/Claude Web)">
+                        <option value="prompt" title="Универсальный промпт (ChatGPT/DeepSeek/Claude Web)">Универсальный промпт (ChatGPT/Claude/DeepSeek)</option>
+                        <option value="cursor" title="Cursor rules (.cursorrules)">Cursor Rules (.cursor/rules)</option>
                         <option value="vscode" title="VS Code (Roo Code / Cline .clinerules)">VS Code / Roo Code / Cline (.clinerules)</option>
                         <option value="copilot" title="GitHub Copilot (.github/copilot-instructions.md)">GitHub Copilot (.github/copilot-instructions.md)</option>
                         <option value="windsurf" title="Windsurf rules (.windsurfrules)">Windsurf Rules (.windsurfrules)</option>
                         <option value="aider" title="Aider conventions (CONVENTIONS.md)">Aider Conventions (CONVENTIONS.md)</option>
                         <option value="pi" title="Pi Agent (APPEND_SYSTEM.md)">Pi Agent (APPEND_SYSTEM.md)</option>
-                        <option value="prompt" title="Универсальный промпт (любая нейросеть / LLM)">Универсальный промпт (любая нейросеть / LLM)</option>
+                        <option value="claudeprompt" title="Claude Code (CLAUDE.md)">Claude Code (CLAUDE.md)</option>
+                        <option value="agents" title="Gemini Antigravity (AGENTS.md)">Gemini Antigravity (.agents/skills)</option>
                     </select>
                 </div>
             </div>
@@ -1573,7 +1747,7 @@
         <div class="modal-container">
             <div class="modal-header">
                 <div class="modal-title" id="modal-title">
-                    <i class="fa-solid fa-file-lines icon-accent"></i>
+                    <i class="fa-solid fa-file-lines" style="color: var(--accent);"></i>
                     <span>Детали скилла</span>
                 </div>
                 <button class="modal-close" id="modal-close-btn">&times;</button>
@@ -1587,14 +1761,14 @@
     <!-- Application Footer -->
     <footer class="app-footer">
         <div class="footer-left">
-            <a href="https://t.me/mikhaylove_anton" target="_blank" rel="noopener noreferrer" class="author-badge" title="Telegram">
-                <i class="fa-brands fa-telegram icon-telegram"></i>
+            <a href="https://t.me/mikhaylove_anton" target="_blank" class="author-badge">
+                <i class="fa-brands fa-telegram" style="color: #229ED9;"></i> @mikhaylove_anton
             </a>
-            <a href="https://www.linkedin.com/in/anton-mikhaylove/" target="_blank" rel="noopener noreferrer" class="author-badge" title="LinkedIn">
-                <i class="fa-brands fa-linkedin icon-linkedin"></i>
+            <a href="https://www.linkedin.com/in/anton-mikhaylove/" target="_blank" class="author-badge">
+                <i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i> LinkedIn
             </a>
-            <a href="https://github.com/Anton-Creates/pdm-skills-builder" target="_blank" rel="noopener noreferrer" class="author-badge" title="GitHub Репозиторий">
-                <i class="fa-brands fa-github"></i>
+            <a href="https://github.com/Anton-Creates/pdm-skills-agent" target="_blank" class="author-badge">
+                <i class="fa-brands fa-github"></i> GitHub Репозиторий
             </a>
         </div>
         <div>
@@ -1610,9 +1784,10 @@
         const I18N = {
             ru: {
                 heroTitle: "Каталог контекстных системных инструкций для продакт-менеджмента",
-                heroDesc: "Сборка структурированных правил для Codex, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.",
+                heroDesc: "Сборка структурированных правил для ChatGPT, Claude, Cursor, Roo Code, Antigravity и GitHub Copilot. Выберите нужные скиллы, протестируйте предпросмотр и скачайте готовый архив в формате вашей IDE.",
                 searchPlaceholder: "Поиск по скиллам, тегам и метрикам (например: 'юзер стори', 'юнит-экономика', 'чекаут', 'okr')",
                 secCombos: "[01] РОЛЕВЫЕ СБОРКИ",
+                filterToggleTitle: "Фильтры и роли",
                 secCategories: "[02] КАТЕГОРИИ И ДОМЕНЫ",
                 allSkills: "Все скиллы",
                 coreSkills: "Ядро PdM (Core)",
@@ -1653,21 +1828,21 @@
                 thDesc: "Описание",
                 thDomain: "Домен",
                 thAction: "Действие",
-                libraryCount: "Библиотека: <b>{count}</b> скиллов",
+                libraryCount: "Библиотека: <b>{count}</b> скилла",
                 themeDark: "Тёмная",
                 themeLight: "Светлая",
                 modalTitle: "Детали скилла",
                 relevantTitle: "Релевантные скиллы:",
                 comboPrefix: "Сборка:",
                 promptHeader: "# СИСТЕМНЫЕ ПРАВИЛА PRODUCT MANAGEMENT ({count} скиллов)\n\n",
-                copyPromptHeader: "# СИСТЕМНЫЕ ИНСТРУКЦИИ ДЛЯ АССИСТЕНТА PRODUCT MANAGEMENT\n\n",
-                agentBadgeText: "Доступен режим AI-Агента!"
+                copyPromptHeader: "# СИСТЕМНЫЕ ИНСТРУКЦИИ ДЛЯ АССИСТЕНТА PRODUCT MANAGEMENT\n\n"
             },
             en: {
                 heroTitle: "Contextual System Instructions Catalog for Product Management",
-                heroDesc: "Curated system prompts and rules for Codex, Claude, Cursor, Roo Code, Antigravity, and GitHub Copilot. Pick the skills you need, preview compiled instructions, and export clean configurations.",
+                heroDesc: "Curated system prompts and rules for ChatGPT, Claude, Cursor, Roo Code, Antigravity, and GitHub Copilot. Pick the skills you need, preview compiled instructions, and export clean configurations.",
                 searchPlaceholder: "Search skills, tags, metrics (e.g. 'user stories', 'unit economics', 'checkout', 'okr')",
                 secCombos: "[01] ROLE BUNDLES",
+                filterToggleTitle: "Filters & Roles",
                 secCategories: "[02] CATEGORIES & DOMAINS",
                 allSkills: "All Skills",
                 coreSkills: "Core PdM Craft",
@@ -1715,21 +1890,20 @@
                 relevantTitle: "Relevant skills:",
                 comboPrefix: "Bundle:",
                 promptHeader: "# PRODUCT MANAGEMENT SYSTEM RULES ({count} skills)\\n\\n",
-                copyPromptHeader: "# PRODUCT MANAGEMENT ASSISTANT SYSTEM INSTRUCTIONS\\n\\n",
-                agentBadgeText: "Agent Mode Available!"
+                copyPromptHeader: "# PRODUCT MANAGEMENT ASSISTANT SYSTEM INSTRUCTIONS\\n\\n"
             }
         };
 
         const COMBOS = [
             { id: 0, ruName: "Lead / Senior PM", enName: "Lead / Senior PM", skills: ["prd", "user-stories", "roadmap", "prioritize", "decision-doc", "technical-translator", "meeting-prep", "metrics-analyzer", "ab-test-design", "risk-heatmap"] },
-            { id: 1, ruName: "B2B & Enterprise PM", enName: "B2B & Enterprise PM", skills: ["enterprise-discovery", "enterprise-rollout", "rfp-response", "build-buy-partner", "adoption-strategy", "admin-ux", "business-case", "icp-definition"] },
-            { id: 2, ruName: "SaaS & Subscription PM", enName: "SaaS & Subscription PM", skills: ["saas-metrics", "subscription-economics", "d2c-subscription-model", "plg-design", "pricing-experiment", "pricing-model", "monetization-audit", "retention-model"] },
-            { id: 3, ruName: "Internal & HR-Tech PM", enName: "Internal & HR-Tech PM", skills: ["digital-workspace-superapp", "hr-portal-growth", "corp-communication-suite", "internal-task-tracker", "internal-recruitment-crm", "internal-product-discovery", "admin-ux", "service-desk-metrics"] },
-            { id: 4, ruName: "Growth & PLG PM", enName: "Growth & PLG PM", skills: ["growth-loop", "gtm-strategy", "channel-mix", "plg-design", "referral-mechanics", "cro-audit", "onboarding-audit", "retention-model"] },
-            { id: 5, ruName: "Marketplace & E-com PM", enName: "Marketplace & E-com PM", skills: ["pdp-spec", "plp-filters-spec", "ecom-checkout-split", "ecom-recommendations", "wishlist-alert-mechanics", "marketplace-catalog", "seller-economics", "supply-quality", "fulfillment-model", "promo-engine"] },
-            { id: 6, ruName: "Fintech & Banking PM", enName: "Fintech & Banking PM", skills: ["fintech-product-teardown", "credit-product-spec", "unit-economics", "compliance-checkpoint", "risk-heatmap", "trust-safety", "incident-pm-role", "api-product-spec", "admin-ux"] },
-            { id: 7, ruName: "AI, LLM & Data PM", enName: "AI, LLM & Data PM", skills: ["ai-feature-spec", "llm-product-design", "data-product-spec", "ab-test-design", "metrics-analyzer", "decision-doc", "technical-translator", "trust-safety"] },
-            { id: 8, ruName: "GovTech & B2G PM", enName: "GovTech & B2G PM", skills: ["public-service-design", "citizen-journey", "govtech-metrics", "mini-app-platform", "localization-strategy", "compliance-checkpoint", "rfp-response"] },
+            { id: 1, ruName: "B2B & Enterprise PdM", enName: "B2B & Enterprise PdM", skills: ["enterprise-discovery", "enterprise-rollout", "rfp-response", "build-buy-partner", "adoption-strategy", "admin-ux", "business-case", "icp-definition"] },
+            { id: 2, ruName: "SaaS & Subscription PdM", enName: "SaaS & Subscription PdM", skills: ["saas-metrics", "subscription-economics", "d2c-subscription-model", "plg-design", "pricing-experiment", "pricing-model", "monetization-audit", "retention-model"] },
+            { id: 3, ruName: "Internal & HR-Tech PdM", enName: "Internal & HR-Tech PdM", skills: ["digital-workspace-superapp", "hr-portal-growth", "corp-communication-suite", "internal-task-tracker", "internal-recruitment-crm", "internal-product-discovery", "admin-ux", "service-desk-metrics"] },
+            { id: 4, ruName: "Growth & PLG PdM", enName: "Growth & PLG PdM", skills: ["growth-loop", "gtm-strategy", "channel-mix", "plg-design", "referral-mechanics", "cro-audit", "onboarding-audit", "retention-model"] },
+            { id: 5, ruName: "Marketplace & E-com PdM", enName: "Marketplace & E-com PdM", skills: ["pdp-spec", "plp-filters-spec", "ecom-checkout-split", "ecom-recommendations", "wishlist-alert-mechanics", "marketplace-catalog", "seller-economics", "supply-quality", "fulfillment-model", "promo-engine"] },
+            { id: 6, ruName: "Fintech & Banking PdM", enName: "Fintech & Banking PdM", skills: ["fintech-product-teardown", "credit-product-spec", "unit-economics", "compliance-checkpoint", "risk-heatmap", "trust-safety", "incident-pm-role", "api-product-spec", "admin-ux"] },
+            { id: 7, ruName: "AI, LLM & Data PdM", enName: "AI, LLM & Data PdM", skills: ["ai-feature-spec", "llm-product-design", "data-product-spec", "ab-test-design", "metrics-analyzer", "decision-doc", "technical-translator", "trust-safety"] },
+            { id: 8, ruName: "GovTech & B2G PdM", enName: "GovTech & B2G PdM", skills: ["public-service-design", "citizen-journey", "govtech-metrics", "mini-app-platform", "localization-strategy", "compliance-checkpoint", "rfp-response"] },
             { id: 9, ruName: "CPO / Leadership", enName: "CPO / Leadership", skills: ["product-strategy", "okr-writer", "north-star-metric", "business-case", "competitive-moat", "tenets-writer", "portfolio-review", "product-health-review", "kill-or-scale-decision"] }
         ];
 
@@ -1838,9 +2012,6 @@
             document.querySelector('.hero-desc').innerText = t.heroDesc;
             aiSearchInput.placeholder = t.searchPlaceholder;
             
-            const agentBadgeTextEl = document.getElementById('agent-badge-text');
-            if (agentBadgeTextEl) agentBadgeTextEl.innerText = t.agentBadgeText;
-            
             // Library count in header
             const libCountEl = document.getElementById('library-count');
             if (libCountEl) libCountEl.innerHTML = t.libraryCount.replace('{count}', SKILLS_DB.length);
@@ -1848,24 +2019,24 @@
             // Exporter select dropdown options
             const exporterSelect = document.getElementById('exporter-type');
             if (exporterSelect) {
-                const currentVal = exporterSelect.value || "claudeprompt";
+                const currentVal = exporterSelect.value;
                 const options = [
-                    { value: "claudeprompt", text: "Claude Code (CLAUDE.md)" },
-                    { value: "codex", text: "OpenAI Codex Rules (AGENTS.md)" },
-                    { value: "cursor", text: "Cursor Rules (.cursorrules)" },
-                    { value: "agents", text: "Gemini Antigravity (.agents/skills)" },
+                    { value: "prompt", text: lang === 'ru' ? "Универсальный промпт (ChatGPT/Claude/DeepSeek)" : "Universal Prompt (ChatGPT/Claude/DeepSeek)" },
+                    { value: "cursor", text: "Cursor Rules (.cursor/rules)" },
                     { value: "vscode", text: "VS Code / Roo Code / Cline (.clinerules)" },
                     { value: "copilot", text: "GitHub Copilot (.github/copilot-instructions.md)" },
                     { value: "windsurf", text: "Windsurf Rules (.windsurfrules)" },
                     { value: "aider", text: "Aider Conventions (CONVENTIONS.md)" },
                     { value: "pi", text: "Pi Agent (APPEND_SYSTEM.md)" },
-                    { value: "prompt", text: lang === 'ru' ? "Универсальный промпт (любая нейросеть / LLM)" : "Universal Prompt (Any LLM / AI Network)" }
+                    { value: "claudeprompt", text: "Claude Code (CLAUDE.md)" },
+                    { value: "agents", text: "Gemini Antigravity (.agents/skills)" }
                 ];
                 exporterSelect.innerHTML = options.map(o => `<option value="${o.value}" ${o.value === currentVal ? 'selected' : ''}>${o.text}</option>`).join('');
             }
             
             // Sidebar sections
             const secHeadings = document.querySelectorAll('.sidebar-section h3');
+            if (mobileFilterTitle) mobileFilterTitle.innerText = t.filterToggleTitle;
             if (secHeadings[0]) secHeadings[0].innerHTML = `<span class="sec-num">[01]</span> ${t.secCombos.replace('[01] ', '')}`;
             if (secHeadings[1]) secHeadings[1].innerHTML = `<span class="sec-num">[02]</span> ${t.secCategories.replace('[02] ', '')}`;
             
@@ -1945,6 +2116,21 @@
                 }
             });
 
+            if (activeComboId !== null) {
+                const activeCombo = COMBOS.find(c => c.id === activeComboId);
+                if (activeCombo) {
+                    const cName = lang === 'ru' ? activeCombo.ruName : activeCombo.enName;
+                    comboDescTitle.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent);"></i> ${t.comboPrefix} ${escapeHtml(cName)}`;
+                    comboDescText.innerText = COMBO_DESCRIPTIONS[lang][activeComboId] || '';
+                    updateMobileFilterBadge(`${cName} (${activeCombo.skills.length})`);
+                }
+            } else if (currentPreset === 'all') {
+                updateMobileFilterBadge(`${t.allSkills} (${SKILLS_DB.length})`);
+            } else {
+                const count = SKILLS_DB.filter(s => s.preset === currentPreset).length;
+                updateMobileFilterBadge(`${getPresetLabel(currentPreset)} (${count})`);
+            }
+
             // Tooltips
             document.getElementById('theme-toggle').title = (lang === 'ru' ? 'Переключить тему' : 'Toggle Theme');
             document.getElementById('lang-toggle').title = (lang === 'ru' ? 'Switch to English' : 'Переключить на русский');
@@ -2001,6 +2187,35 @@
         });
 
         // Initialize setup
+        
+        // ── Mobile Sidebar Accordion Logic ────────────────────────────────────
+        const mobileSidebarToggle = document.getElementById('mobile-sidebar-toggle');
+        const appSidebar = document.getElementById('app-sidebar');
+        const mobileFilterBadge = document.getElementById('mobile-filter-badge');
+        const mobileFilterTitle = document.getElementById('mobile-filter-title');
+
+        if (mobileSidebarToggle && appSidebar) {
+            mobileSidebarToggle.addEventListener('click', () => {
+                const isOpen = appSidebar.classList.toggle('is-open');
+                mobileSidebarToggle.setAttribute('aria-expanded', isOpen);
+            });
+        }
+
+        function closeMobileSidebar() {
+            if (window.innerWidth <= 768 && appSidebar && appSidebar.classList.contains('is-open')) {
+                appSidebar.classList.remove('is-open');
+                if (mobileSidebarToggle) {
+                    mobileSidebarToggle.setAttribute('aria-expanded', 'false');
+                }
+            }
+        }
+
+        function updateMobileFilterBadge(label) {
+            if (mobileFilterBadge) {
+                mobileFilterBadge.innerText = label;
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             initTheme();
             const isMac = navigator.userAgent.includes('Mac') || navigator.platform.includes('Mac');
@@ -2042,30 +2257,13 @@
 
         // Calculate count per category
         function updatePresetCounts() {
-            const totalSelected = selectedSkills.size;
-            const countAllEl = document.getElementById('count-all');
-            if (countAllEl) {
-                if (totalSelected > 0) {
-                    countAllEl.innerHTML = `<span style="color: var(--accent); font-weight: 700;">${totalSelected}</span> / ${SKILLS_DB.length}`;
-                } else {
-                    countAllEl.innerText = SKILLS_DB.length;
-                }
-            }
-
+            document.getElementById('count-all').innerText = SKILLS_DB.length;
             const presets = ['core', 'discovery', 'growth', 'saas', 'b2b', 'internal-products', 'strategy', 'platforms-tech', 'fintech', 'marketplace', 'e-commerce', 'retail-ops', 'media-adtech', 'edtech', 'telecom', 'govtech-b2g'];
             presets.forEach(p => {
                 const el = document.getElementById(`count-${p}`);
                 if (el) {
-                    const totalInCategory = SKILLS_DB.filter(s => s.preset === p).length;
-                    const selectedInCategory = SKILLS_DB.filter(s => s.preset === p && selectedSkills.has(s.id)).length;
-                    
-                    if (selectedInCategory > 0) {
-                        el.innerHTML = `<span style="color: var(--accent); font-weight: 700;">${selectedInCategory}</span> / ${totalInCategory}`;
-                        el.style.borderColor = 'var(--accent)';
-                    } else {
-                        el.innerText = totalInCategory;
-                        el.style.borderColor = 'transparent';
-                    }
+                    const count = SKILLS_DB.filter(s => s.preset === p).length;
+                    el.innerText = count;
                 }
             });
         }
@@ -2136,10 +2334,12 @@
             const t = I18N[currentLang];
             
             let filtered = SKILLS_DB.filter(skill => {
-                if (activeComboId !== null && queryTerms.length === 0) {
-                    return selectedSkills.has(skill.id);
+                if (activeComboId !== null) {
+                    const combo = COMBOS.find(c => c.id === activeComboId);
+                    if (combo && !combo.skills.includes(skill.id)) return false;
+                } else if (currentPreset !== 'all' && skill.preset !== currentPreset) {
+                    return false;
                 }
-                if (currentPreset !== 'all' && skill.preset !== currentPreset) return false;
                 if (queryTerms.length === 0) return true;
                 const score = calculateRelevance(skill, queryTerms);
                 return score > 0;
@@ -2147,6 +2347,11 @@
 
             if (queryTerms.length > 0) {
                 filtered.sort((a, b) => calculateRelevance(b, queryTerms) - calculateRelevance(a, queryTerms));
+            } else if (activeComboId !== null) {
+                const combo = COMBOS.find(c => c.id === activeComboId);
+                if (combo) {
+                    filtered.sort((a, b) => combo.skills.indexOf(a.id) - combo.skills.indexOf(b.id));
+                }
             }
 
             visibleCountEl.innerText = filtered.length;
@@ -2258,6 +2463,18 @@
                     tag.innerHTML = `<span>+ ${escapeHtml(getSkillName(item.skill))}</span>`;
                     tag.onclick = () => {
                         selectedSkills.add(item.skill.id);
+                        if (activeComboId !== null) {
+                            const combo = COMBOS.find(c => c.id === activeComboId);
+                            if (combo && !combo.skills.includes(item.skill.id)) {
+                                activeComboId = null;
+                                comboDescBanner.style.display = 'none';
+                                currentPreset = 'all';
+                                document.querySelectorAll('.combo-btn').forEach(b => b.classList.remove('active'));
+                                document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+                                const allBtn = document.querySelector('.preset-btn[data-preset="all"]');
+                                if (allBtn) allBtn.classList.add('active');
+                            }
+                        }
                         renderSkills();
                         updatePromptPreview();
                     };
@@ -2277,12 +2494,21 @@
         // Category Filter
         document.querySelectorAll('.preset-btn[data-preset]').forEach(btn => {
             btn.addEventListener('click', () => {
+                document.querySelectorAll('.combo-btn').forEach(b => b.classList.remove('active'));
                 document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 currentPreset = btn.getAttribute('data-preset');
                 comboDescBanner.style.display = 'none';
                 activeComboId = null;
+                const pSpan = btn.querySelector('span');
+                if (pSpan) {
+                    const count = currentPreset === 'all'
+                        ? SKILLS_DB.length
+                        : SKILLS_DB.filter(s => s.preset === currentPreset).length;
+                    updateMobileFilterBadge(`${pSpan.innerText} (${count})`);
+                }
                 renderSkills();
+                closeMobileSidebar();
             });
         });
 
@@ -2296,31 +2522,57 @@
                     selectedSkills.clear();
                     combo.skills.forEach(s => selectedSkills.add(s));
                     
+                    const comboName = currentLang === 'ru' ? combo.ruName : combo.enName;
+                    updateMobileFilterBadge(`${comboName} (${combo.skills.length})`);
+                    
+                    document.querySelectorAll('.combo-btn').forEach(b => b.classList.remove('active'));
                     document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
 
                     const t = I18N[currentLang];
-                    comboDescTitle.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent);"></i> ${t.comboPrefix} ${escapeHtml(currentLang === 'ru' ? combo.ruName : combo.enName)}`;
+                    comboDescTitle.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent);"></i> ${t.comboPrefix} ${escapeHtml(comboName)}`;
                     comboDescText.innerText = COMBO_DESCRIPTIONS[currentLang][comboId] || '';
                     comboDescBanner.style.display = 'block';
 
                     currentPreset = 'all';
-                    document.querySelector('.preset-btn[data-preset="all"]').classList.add('active');
 
                     renderSkills();
                     updatePromptPreview();
+                    closeMobileSidebar();
                 }
             });
         });
 
+        // Close Combo Banner
+        const comboDescCloseBtn = document.getElementById('combo-desc-close');
+        if (comboDescCloseBtn) {
+            comboDescCloseBtn.addEventListener('click', () => {
+                activeComboId = null;
+                comboDescBanner.style.display = 'none';
+                currentPreset = 'all';
+                document.querySelectorAll('.combo-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+                const allBtn = document.querySelector('.preset-btn[data-preset="all"]');
+                if (allBtn) allBtn.classList.add('active');
+                const t = I18N[currentLang];
+                updateMobileFilterBadge(`${t.allSkills} (${SKILLS_DB.length})`);
+                renderSkills();
+            });
+        }
+
         // Bulk Selection Actions
         document.getElementById('btn-select-preset').addEventListener('click', () => {
-            const queryTerms = searchQuery.toLowerCase().split(/\\s+/).filter(w => w && !STOPWORDS.has(w));
+            const queryTerms = searchQuery.toLowerCase().split(/\s+/).filter(w => w && !STOPWORDS.has(w));
             SKILLS_DB.forEach(skill => {
-                if (currentPreset === 'all' || skill.preset === currentPreset) {
-                    if (queryTerms.length === 0 || calculateRelevance(skill, queryTerms) > 0) {
-                        selectedSkills.add(skill.id);
-                    }
+                let matches = true;
+                if (activeComboId !== null) {
+                    const combo = COMBOS.find(c => c.id === activeComboId);
+                    matches = combo ? combo.skills.includes(skill.id) : false;
+                } else if (currentPreset !== 'all') {
+                    matches = skill.preset === currentPreset;
+                }
+                if (matches && (queryTerms.length === 0 || calculateRelevance(skill, queryTerms) > 0)) {
+                    selectedSkills.add(skill.id);
                 }
             });
             renderSkills();
@@ -2346,7 +2598,6 @@
                 promptPreview.innerText = t.previewEmpty;
                 statTokensEst.innerText = "0 tok";
                 contextBarFill.style.width = "0%";
-                updatePresetCounts();
                 return;
             }
 
@@ -2369,7 +2620,6 @@
             });
 
             promptPreview.innerText = previewText;
-            updatePresetCounts();
         }
 
         // Modal Logic
@@ -2430,17 +2680,7 @@
             const target = exporterType.value;
             const zip = new JSZip();
 
-            if (target === 'claudeprompt') {
-                const folder = zip.folder(".claude/skills");
-                selectedList.forEach(s => {
-                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
-                });
-            } else if (target === 'codex') {
-                const folder = zip.folder(".codex/rules");
-                selectedList.forEach(s => {
-                    folder.file(`${s.id}.md`, `# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`);
-                });
-            } else if (target === 'cursor') {
+            if (target === 'cursor') {
                 const folder = zip.folder(".cursor/rules");
                 selectedList.forEach(s => {
                     const ruleContent = `---\ndescription: ${getSkillDesc(s)}\nglobs: *\n---\n\n# /${s.id} — ${getSkillName(s)}\n\n${getSkillContent(s)}`;
@@ -2526,7 +2766,7 @@ Catalog: https://anton-creates.github.io/pdm-skills-agent/
             if (dlCountEl) dlCountEl.innerText = currentDl;
 
             // Trigger background hit only on download action
-            new Image().src = `https://hits.sh/anton-creates.github.io/pdm-skills-builder-downloads.svg?style=flat-square&label=downloads&_t=${Date.now()}`;
+            new Image().src = `https://hits.sh/anton-creates.github.io/pdm-skills-agent-downloads.svg?style=flat-square&label=downloads&_t=${Date.now()}`;
         });
 
         function escapeHtml(text) {
