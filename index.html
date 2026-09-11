@@ -1207,6 +1207,7 @@
             border-radius: var(--radius-sm);
             background: var(--bg-primary);
             transition: all 0.15s ease;
+            line-height: 1;
         }
 
         .author-badge:hover {
@@ -1434,7 +1435,7 @@
                 padding: 0;
                 justify-content: center;
                 font-size: 0.85rem;
-                line-height: 0;
+
             }
             /* Hide text labels in header buttons — icon only */
             #theme-text, #lang-text { display: none; }
@@ -1516,7 +1517,7 @@
         @media (max-width: 360px) {
             .logo-title { font-size: 0.82rem; }
             .logo-title-text { white-space: nowrap; }
-            .theme-toggle-btn { padding: 0.25rem 0.4rem; }
+            .theme-toggle-btn { width: 26px; height: 26px; font-size: 0.8rem; }
         }
     
         /* Hide theme text on mobile & narrow tablets to preserve header space */
