@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PdM-Skills Builder — Конструктор системных правил ИИ для продакт-менеджеров</title>
 
-    <!-- Google Fonts: Plus Jakarta Sans + JetBrains Mono -->
+    <!-- Google Fonts: Merriweather + Inter + JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,50 +21,51 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
     <style>
-        /* ── Anti-AI Design System — Swiss Grid & Dual-Theme Tokens ────────── */
+        /* ── Editorial Design System ───────────────────────────────────────── */
         :root {
-            /* Light Theme (Default: Clean Editorial) */
-            --bg-primary: #ffffff;
-            --bg-secondary: #f6f8fa;
-            --bg-tertiary: #eaeef2;
-            --bg-card: #ffffff;
-            --bg-card-hover: #f3f5f8;
-            --bg-selected: #edf5ff;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --text-muted: #64748b;
-            --border-color: #d0d7de;
-            --border-hover: #94a3b8;
-            --accent: #0284c7;
-            --accent-dim: rgba(2, 132, 199, 0.08);
+            /* Light — Warm Paper + Modern UI */
+            --bg-primary: #fdfbf8;
+            --bg-secondary: #f5f2ed;
+            --bg-tertiary: #ede8e0;
+            --bg-card: #fdfbf8;
+            --bg-card-hover: #f5f2ed;
+            --bg-selected: #eaf2fc;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a65;
+            --text-muted: #757580;
+            --border-color: #d6d0c8;
+            --border-hover: #a09890;
+            --accent: #1d5fa8;
+            --accent-dim: rgba(29, 95, 168, 0.09);
             --accent-text: #ffffff;
-            --success: #16a34a;
-            --warning: #d97706;
-            --danger: #dc2626;
-            --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-            --radius-sm: 4px;
-            --radius-md: 6px;
-            --radius-lg: 8px;
-            --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --success: #1e7c44;
+            --warning: #b06d00;
+            --danger: #b52424;
+            --card-shadow: 0 1px 4px rgba(60, 40, 10, 0.06);
+            --radius-sm: 3px;
+            --radius-md: 5px;
+            --radius-lg: 7px;
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
+            --font-display: 'Merriweather', Georgia, serif;
         }
 
         [data-theme="dark"] {
-            /* Dark Theme (Engineering Dark) */
-            --bg-primary: #090d13;
-            --bg-secondary: #0d1117;
-            --bg-tertiary: #161b22;
-            --bg-card: #161b22;
-            --bg-card-hover: #1c2128;
-            --bg-selected: rgba(56, 189, 248, 0.1);
-            --text-primary: #f0f6fc;
-            --text-secondary: #8b949e;
-            --text-muted: #6e7681;
-            --border-color: #30363d;
-            --border-hover: #484f58;
-            --accent: #38bdf8;
-            --accent-dim: rgba(56, 189, 248, 0.12);
-            --accent-text: #090d13;
+            /* Dark — Deep Ink + Warm Accents */
+            --bg-primary: #0f0e0d;
+            --bg-secondary: #171614;
+            --bg-tertiary: #1f1e1b;
+            --bg-card: #171614;
+            --bg-card-hover: #1f1e1b;
+            --bg-selected: rgba(79, 148, 230, 0.12);
+            --text-primary: #ece9e4;
+            --text-secondary: #9a968e;
+            --text-muted: #6e6a62;
+            --border-color: #2e2c28;
+            --border-hover: #504e48;
+            --accent: #5fa3e8;
+            --accent-dim: rgba(95, 163, 232, 0.12);
+            --accent-text: #0a0908;
             --success: #3fb950;
             --warning: #d29922;
             --danger: #f85149;
@@ -131,10 +132,10 @@
         }
 
         .logo-title {
-            font-family: var(--font-sans);
-            font-size: 1.05rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
             color: var(--text-primary);
             display: inline-flex;
             align-items: center;
@@ -228,20 +229,22 @@
         }
 
         .hero-title {
-            font-size: 0.95rem;
+            font-family: var(--font-display);
+            font-size: 1.15rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.3rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            line-height: 1.3;
         }
 
         .hero-desc {
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
             max-width: 850px;
-            line-height: 1.45;
+            line-height: 1.55;
         }
 
         /* ── Main Layout ──────────────────────────────────────────────────── */
@@ -576,11 +579,11 @@
         }
 
         .card-title {
-            font-size: 0.92rem;
+            font-family: var(--font-display);
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--text-primary);
-            line-height: 1.35;
-            letter-spacing: -0.015em;
+            line-height: 1.4;
         }
 
         .card-badge {
@@ -666,9 +669,10 @@
         }
 
         .card-desc {
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             color: var(--text-secondary);
-            line-height: 1.45;
+            line-height: 1.55;
+            text-align: justify;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             line-clamp: 3;
