@@ -646,9 +646,33 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: all 0.15s ease;
+            transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
             background: var(--bg-primary);
             flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .skill-card:hover .card-checkbox,
+        .table-row:hover .card-checkbox {
+            border-color: var(--accent);
+        }
+
+        .skill-card:hover .card-checkbox i:not(.show-checked),
+        .table-row:hover .card-checkbox i:not(.show-checked) {
+            display: block;
+            color: var(--accent);
+            opacity: 0.35;
+            font-size: 0.7rem;
+        }
+
+        .card-checkbox:hover {
+            transform: scale(1.18);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-dim);
+        }
+
+        .card-checkbox:active {
+            transform: scale(0.9);
         }
 
         .skill-card.selected .card-checkbox,
@@ -662,10 +686,12 @@
             color: #ffffff;
             font-size: 0.7rem;
             display: block;
+            opacity: 1 !important;
         }
 
         .card-checkbox i {
             display: none;
+            transition: transform 0.15s ease;
         }
 
         .card-desc {
@@ -698,20 +724,37 @@
 
         .btn-card {
             background: transparent;
-            border: none;
+            border: 1px solid transparent;
+            border-radius: var(--radius-sm);
+            padding: 0.25rem 0.55rem;
             color: var(--text-secondary);
             font-family: var(--font-sans);
             font-size: 0.78rem;
             font-weight: 600;
             cursor: pointer;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 0.35rem;
-            transition: color 0.15s ease;
+            transition: all 0.16s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .btn-card:hover {
-            color: var(--text-primary);
+            color: var(--accent);
+            background: var(--accent-dim);
+            border-color: rgba(29, 95, 168, 0.22);
+            transform: translateY(-1px);
+        }
+
+        .btn-card:active {
+            transform: translateY(0) scale(0.95);
+        }
+
+        .btn-card i {
+            transition: transform 0.15s ease;
+        }
+
+        .btn-card:hover i {
+            transform: scale(1.15);
         }
 
         /* ── Table / Matrix View ───────────────────────────────────────────── */
@@ -1021,15 +1064,36 @@
             background: transparent;
             border: none;
             color: var(--text-secondary);
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             cursor: pointer;
-            padding: 0.25rem 0.5rem;
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
             border-radius: var(--radius-sm);
-            transition: color 0.15s ease;
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            line-height: 1;
         }
 
         .modal-close:hover {
-            color: var(--text-primary);
+            color: var(--danger);
+            background: rgba(181, 36, 36, 0.1);
+            transform: rotate(90deg) scale(1.12);
+        }
+
+        .modal-close:active {
+            transform: rotate(90deg) scale(0.92);
+        }
+
+        #combo-desc-close:hover {
+            color: var(--danger) !important;
+            background: rgba(181, 36, 36, 0.1) !important;
+            transform: rotate(90deg) scale(1.12);
+        }
+
+        #combo-desc-close:active {
+            transform: rotate(90deg) scale(0.92);
         }
 
         .modal-body {
@@ -1762,7 +1826,7 @@
                     <i class="fa-solid fa-file-lines" style="color: var(--accent);"></i>
                     <span>Детали скилла</span>
                 </div>
-                <button class="modal-close" id="modal-close-btn">&times;</button>
+                <button class="modal-close" id="modal-close-btn" title="Закрыть окно (Esc)">&times;</button>
             </div>
             <div class="modal-body" id="modal-body">
                 <!-- Rendered Markdown will appear here -->
@@ -1847,7 +1911,12 @@
                 relevantTitle: "Релевантные скиллы:",
                 comboPrefix: "Сборка:",
                 promptHeader: "# СИСТЕМНЫЕ ПРАВИЛА PRODUCT MANAGEMENT ({count} скиллов)\n\n",
-                copyPromptHeader: "# СИСТЕМНЫЕ ИНСТРУКЦИИ ДЛЯ АССИСТЕНТА PRODUCT MANAGEMENT\n\n"
+                copyPromptHeader: "# СИСТЕМНЫЕ ИНСТРУКЦИИ ДЛЯ АССИСТЕНТА PRODUCT MANAGEMENT\n\n",
+                tooltipSelectSkill: "Выбрать скилл (добавить в сборку)",
+                tooltipDeselectSkill: "Снять выбор (убрать из сборки)",
+                tooltipSkillInfo: "Открыть полную спецификацию и сценарии",
+                tooltipCloseModal: "Закрыть окно (Esc)",
+                tooltipCloseCombo: "Сбросить фильтр роли"
             },
             en: {
                 heroTitle: "Contextual System Instructions Catalog for Product Management",
@@ -1901,8 +1970,13 @@
                 modalTitle: "Skill Details",
                 relevantTitle: "Relevant skills:",
                 comboPrefix: "Bundle:",
-                promptHeader: "# PRODUCT MANAGEMENT SYSTEM RULES ({count} skills)\\n\\n",
-                copyPromptHeader: "# PRODUCT MANAGEMENT ASSISTANT SYSTEM INSTRUCTIONS\\n\\n"
+                promptHeader: "# PRODUCT MANAGEMENT SYSTEM RULES ({count} skills)\n\n",
+                copyPromptHeader: "# PRODUCT MANAGEMENT ASSISTANT SYSTEM INSTRUCTIONS\n\n",
+                tooltipSelectSkill: "Select skill (add to bundle)",
+                tooltipDeselectSkill: "Deselect skill (remove from bundle)",
+                tooltipSkillInfo: "View full skill guide & spec",
+                tooltipCloseModal: "Close dialog (Esc)",
+                tooltipCloseCombo: "Reset role filter"
             }
         };
 
@@ -2385,10 +2459,11 @@
                     toggleSkill(skill.id);
                 };
 
+                const checkboxTooltip = isSelected ? t.tooltipDeselectSkill : t.tooltipSelectSkill;
                 card.innerHTML = `
                     <div class="card-header">
                         <span class="card-badge badge-${presetKey}">${escapeHtml(badgeText)}</span>
-                        <div class="card-checkbox">
+                        <div class="card-checkbox" title="${checkboxTooltip}">
                             <i class="fa-solid fa-check"></i>
                         </div>
                     </div>
@@ -2396,7 +2471,7 @@
                     <div class="card-desc">${escapeHtml(desc)}</div>
                     <div class="card-actions">
                         <span class="card-id">/${escapeHtml(skill.id)}</span>
-                        <button class="btn-card" onclick="openSkillDetail('${skill.id}', event)">
+                        <button class="btn-card" onclick="openSkillDetail('${skill.id}', event)" title="${t.tooltipSkillInfo}">
                             <i class="fa-regular fa-file-lines"></i> ${t.btnInfo}
                         </button>
                     </div>
@@ -2420,9 +2495,10 @@
                     toggleSkill(skill.id);
                 };
 
+                const rowCheckboxTooltip = isSelected ? t.tooltipDeselectSkill : t.tooltipSelectSkill;
                 row.innerHTML = `
                     <td style="text-align: center;">
-                        <div class="card-checkbox" style="margin: 0 auto;">
+                        <div class="card-checkbox" style="margin: 0 auto;" title="${rowCheckboxTooltip}">
                             <i class="fa-solid fa-check"></i>
                         </div>
                     </td>
@@ -2431,7 +2507,7 @@
                     <td class="table-cell-desc" title="${escapeHtml(desc)}">${escapeHtml(desc)}</td>
                     <td style="text-align: center;"><span class="card-badge badge-${presetKey}">${escapeHtml(badgeText)}</span></td>
                     <td style="text-align: center;">
-                        <button class="btn-card" style="display: inline-flex; justify-content: center; margin: 0 auto;" onclick="openSkillDetail('${skill.id}', event)">
+                        <button class="btn-card" style="display: inline-flex; justify-content: center; margin: 0 auto;" onclick="openSkillDetail('${skill.id}', event)" title="${t.tooltipSkillInfo}">
                             <i class="fa-regular fa-file-lines"></i> ${t.btnInfo}
                         </button>
                     </td>
