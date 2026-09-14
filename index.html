@@ -336,6 +336,38 @@
             border-radius: var(--radius-sm);
         }
 
+        .preset-btn-right {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .preset-selected-badge {
+            display: none;
+            font-family: var(--font-mono);
+            font-size: 0.66rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--success);
+            padding: 0.1rem 0.35rem;
+            border-radius: var(--radius-sm);
+            line-height: 1.3;
+            animation: popIn 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .preset-selected-badge.visible {
+            display: inline-block;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.6); opacity: 0; }
+            to   { transform: scale(1);   opacity: 1; }
+        }
+
+        .preset-btn.has-selected {
+            border-left-color: var(--success) !important;
+        }
+
         /* ── Workspace / Content Area ─────────────────────────────────────── */
         .content-area {
             flex: 1;
@@ -2525,6 +2557,50 @@
             }
             renderSkills();
             updatePromptPreview();
+            updateSidebarSelectedCounts();
+        }
+
+        // Sidebar Domain Selection Highlighting
+        function updateSidebarSelectedCounts() {
+            const presets = ['all', 'core', 'discovery', 'growth', 'saas', 'b2b', 'internal-products', 'strategy', 'platforms-tech', 'fintech', 'marketplace', 'e-commerce', 'retail-ops', 'media-adtech', 'edtech', 'telecom', 'govtech-b2g'];
+
+            presets.forEach(preset => {
+                const btn = document.querySelector(`.preset-btn[data-preset="${preset}"]`);
+                if (!btn) return;
+
+                let count;
+                if (preset === 'all') {
+                    count = selectedSkills.size;
+                } else {
+                    count = SKILLS_DB.filter(s => s.preset === preset && selectedSkills.has(s.id)).length;
+                }
+
+                let badge = btn.querySelector('.preset-selected-badge');
+                if (!badge) {
+                    // Wrap existing content if needed
+                    let right = btn.querySelector('.preset-btn-right');
+                    if (!right) {
+                        const countEl = btn.querySelector('.preset-count');
+                        right = document.createElement('span');
+                        right.className = 'preset-btn-right';
+                        if (countEl) btn.insertBefore(right, countEl);
+                        else btn.appendChild(right);
+                        if (countEl) right.appendChild(countEl);
+                    }
+                    badge = document.createElement('span');
+                    badge.className = 'preset-selected-badge';
+                    right.appendChild(badge);
+                }
+
+                if (count > 0) {
+                    badge.textContent = '+' + count;
+                    badge.classList.add('visible');
+                    btn.classList.add('has-selected');
+                } else {
+                    badge.classList.remove('visible');
+                    btn.classList.remove('has-selected');
+                }
+            });
         }
 
         // Live RAG Suggestions
@@ -2565,6 +2641,7 @@
                         }
                         renderSkills();
                         updatePromptPreview();
+                        updateSidebarSelectedCounts();
                     };
                     ragList.appendChild(tag);
                 });
@@ -2626,6 +2703,7 @@
 
                     renderSkills();
                     updatePromptPreview();
+                    updateSidebarSelectedCounts();
                     closeMobileSidebar();
                 }
             });
@@ -2645,6 +2723,7 @@
                 const t = I18N[currentLang];
                 updateMobileFilterBadge(`${t.allSkills} (${SKILLS_DB.length})`);
                 renderSkills();
+                updateSidebarSelectedCounts();
             });
         }
 
@@ -2665,12 +2744,14 @@
             });
             renderSkills();
             updatePromptPreview();
+            updateSidebarSelectedCounts();
         });
 
         document.getElementById('btn-reset-preset').addEventListener('click', () => {
             selectedSkills.clear();
             renderSkills();
             updatePromptPreview();
+            updateSidebarSelectedCounts();
         });
 
         // Token Estimator & Live Prompt Preview
