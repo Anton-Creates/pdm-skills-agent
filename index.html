@@ -1446,21 +1446,65 @@
                 z-index: 200;
                 background: var(--bg-secondary);
                 border-top: 2px solid var(--accent);
-                box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+                box-shadow: 0 -6px 24px rgba(0,0,0,0.18);
                 transform: translateY(100%);
-                transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 padding-bottom: env(safe-area-inset-bottom);
+                overflow: hidden;
             }
             #mobile-action-bar.is-visible {
                 transform: translateY(0);
             }
-            /* Summary row */
+
+            /* ── Picker row (IDE selector) — slides in from top ── */
+            .mob-bar-picker {
+                display: flex;
+                align-items: center;
+                gap: 0.6rem;
+                padding: 0 1rem;
+                background: var(--bg-tertiary);
+                border-bottom: 1px solid var(--border-color);
+                /* Hidden state */
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                transform: translateY(-6px);
+                transition:
+                    max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity    0.22s ease,
+                    transform  0.25s ease,
+                    padding    0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            #mobile-action-bar.is-expanded .mob-bar-picker {
+                max-height: 80px;
+                opacity: 1;
+                transform: translateY(0);
+                padding: 0.7rem 1rem;
+            }
+
+            /* ── Summary row (count + trigger) — fades out ── */
             .mob-bar-summary {
                 display: flex;
                 align-items: center;
                 gap: 0.75rem;
-                padding: 0.7rem 1rem;
+                padding: 0.75rem 1rem;
+                max-height: 70px;
+                opacity: 1;
+                overflow: hidden;
+                transition:
+                    max-height 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity    0.18s ease,
+                    padding    0.25s ease;
             }
+            #mobile-action-bar.is-expanded .mob-bar-summary {
+                max-height: 0;
+                opacity: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                pointer-events: none;
+            }
+
+            /* ── Count label ── */
             #mobile-action-bar-count {
                 flex: 1;
                 font-family: var(--font-mono);
@@ -1469,104 +1513,114 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                line-height: 1.3;
             }
             #mobile-action-bar-count b {
                 color: var(--accent);
-                font-size: 1.05rem;
+                font-size: 1.1rem;
                 font-weight: 700;
             }
+
+            /* ── Trigger button (Скачать ZIP ↑) ── */
             #mobile-action-bar-download {
                 flex-shrink: 0;
                 display: inline-flex;
                 align-items: center;
+                justify-content: center;
                 gap: 0.45rem;
                 background: var(--accent);
                 color: var(--accent-text);
                 border: none;
                 border-radius: var(--radius-sm);
-                padding: 0.6rem 1.1rem;
+                padding: 0 1.2rem;
+                height: 44px;
                 font-family: var(--font-sans);
                 font-size: 0.85rem;
                 font-weight: 700;
                 cursor: pointer;
-                min-height: 44px;
+                letter-spacing: -0.01em;
                 transition: opacity 0.15s ease;
+                white-space: nowrap;
             }
-            #mobile-action-bar-download #mob-bar-chevron {
-                transition: transform 0.25s ease;
+            #mobile-action-bar-download:active { opacity: 0.8; }
+            #mob-bar-chevron {
+                transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+                font-size: 0.65rem;
+                margin-left: 0.05rem;
             }
             #mobile-action-bar.is-expanded #mob-bar-chevron {
                 transform: rotate(180deg);
             }
-            /* Hide trigger button when picker is open */
-            #mobile-action-bar.is-expanded .mob-bar-summary {
-                display: none;
-            }
-            #mobile-action-bar-download:active { opacity: 0.85; }
-            /* Picker row */
-            .mob-bar-picker {
-                display: none;
-                align-items: center;
-                gap: 0.5rem;
-                padding: 0.65rem 1rem;
-                border-top: 1px solid var(--border-color);
-                background: var(--bg-tertiary);
-                order: -1;
-            }
-            #mobile-action-bar.is-expanded .mob-bar-picker {
-                display: flex;
-            }
+
+            /* ── IDE Format select ── */
             .mob-bar-select {
                 flex: 1;
                 min-width: 0;
                 background: var(--bg-primary);
                 border: 1px solid var(--border-color);
                 border-radius: var(--radius-sm);
-                padding: 0.45rem 0.6rem;
+                padding: 0 0.7rem;
+                height: 42px;
                 font-family: var(--font-sans);
-                font-size: 0.78rem;
+                font-size: 0.8rem;
                 font-weight: 500;
                 color: var(--text-primary);
                 outline: none;
                 cursor: pointer;
+                appearance: auto;
             }
+            .mob-bar-select:focus {
+                border-color: var(--accent);
+            }
+
+            /* ── Confirm download button ── */
             .mob-bar-confirm {
                 flex-shrink: 0;
                 display: inline-flex;
                 align-items: center;
+                justify-content: center;
                 gap: 0.4rem;
                 background: var(--accent);
                 color: var(--accent-text);
                 border: none;
                 border-radius: var(--radius-sm);
-                padding: 0.5rem 0.9rem;
+                padding: 0 1rem;
+                height: 42px;
                 font-family: var(--font-sans);
                 font-size: 0.82rem;
                 font-weight: 700;
                 cursor: pointer;
-                min-height: 40px;
                 white-space: nowrap;
+                letter-spacing: -0.01em;
                 transition: opacity 0.15s ease;
             }
-            .mob-bar-confirm:active { opacity: 0.85; }
+            .mob-bar-confirm:active { opacity: 0.8; }
+
+            /* ── Close button ── */
             .mob-bar-close {
                 flex-shrink: 0;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
                 background: transparent;
                 border: 1px solid var(--border-color);
                 border-radius: var(--radius-sm);
                 color: var(--text-muted);
-                padding: 0.45rem 0.6rem;
-                font-size: 0.9rem;
+                width: 42px;
+                height: 42px;
+                font-size: 0.95rem;
                 cursor: pointer;
-                min-height: 40px;
-                transition: color 0.15s ease;
+                transition: color 0.15s ease, border-color 0.15s ease;
             }
-            .mob-bar-close:active { color: var(--text-primary); }
+            .mob-bar-close:active {
+                color: var(--text-primary);
+                border-color: var(--border-hover);
+            }
+
             body.has-mobile-bar .app-footer {
-                margin-bottom: 68px;
+                margin-bottom: 72px;
             }
         }
-    
     </style>
 </head>
 
