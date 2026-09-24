@@ -1527,7 +1527,155 @@
             .theme-toggle-btn { padding: 0.35rem 0.55rem; font-size: 0.76rem; }
             .logo-title { font-size: 0.88rem; }
             .stat-badges-group { display: none; }
-            .version { display: none; }
+        /* Mobile Sticky Action Bar */
+        @media (max-width: 900px) {
+            body.has-mobile-bar {
+                padding-bottom: 72px;
+            }
+            #mobile-action-bar {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 999;
+                background: var(--bg-card);
+                border-top: 1px solid var(--border-color);
+                box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.35);
+                transform: translateY(100%);
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            #mobile-action-bar.is-visible {
+                transform: translateY(0);
+            }
+            /* Summary row */
+            .mob-bar-summary {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 0.7rem 1rem;
+                max-height: 72px;
+                opacity: 1;
+                overflow: hidden;
+                transition: max-height 0.28s ease, opacity 0.2s ease, padding 0.28s ease;
+            }
+            #mobile-action-bar.is-expanded .mob-bar-summary {
+                max-height: 0;
+                opacity: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                pointer-events: none;
+            }
+            #mobile-action-bar-count {
+                flex: 1;
+                font-family: var(--font-mono);
+                font-size: 0.8rem;
+                color: var(--text-secondary);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            #mobile-action-bar-count b {
+                color: var(--accent);
+                font-size: 1.05rem;
+                font-weight: 700;
+            }
+            #mobile-action-bar-download {
+                flex-shrink: 0;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.45rem;
+                background: var(--accent);
+                color: var(--accent-text);
+                border: none;
+                border-radius: var(--radius-sm);
+                padding: 0.6rem 1.1rem;
+                font-family: var(--font-sans);
+                font-size: 0.85rem;
+                font-weight: 700;
+                cursor: pointer;
+                min-height: 44px;
+                transition: opacity 0.15s ease;
+            }
+            #mobile-action-bar-download #mob-bar-chevron {
+                transition: transform 0.25s ease;
+            }
+            #mobile-action-bar.is-expanded #mob-bar-chevron {
+                transform: rotate(180deg);
+            }
+            #mobile-action-bar-download:active { opacity: 0.85; }
+            /* Picker row */
+            .mob-bar-picker {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                padding: 0;
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, padding 0.3s ease;
+            }
+            #mobile-action-bar.is-expanded .mob-bar-picker {
+                max-height: 80px;
+                opacity: 1;
+                padding: 0.65rem 0.85rem;
+            }
+            .mob-bar-select {
+                flex: 1;
+                min-width: 0;
+                max-width: 220px;
+                background: var(--bg-secondary);
+                color: var(--text-primary);
+                border: 1px solid var(--border-color);
+                border-radius: var(--radius-sm);
+                padding: 0.55rem 0.6rem;
+                font-family: var(--font-sans);
+                font-size: 0.82rem;
+                outline: none;
+                cursor: pointer;
+                text-overflow: ellipsis;
+                height: 42px;
+            }
+            .mob-bar-select:focus {
+                border-color: var(--accent);
+            }
+            .mob-bar-confirm {
+                flex-shrink: 0;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.4rem;
+                background: var(--accent);
+                color: var(--accent-text);
+                border: none;
+                border-radius: var(--radius-sm);
+                padding: 0.55rem 0.95rem;
+                font-family: var(--font-sans);
+                font-size: 0.82rem;
+                font-weight: 700;
+                cursor: pointer;
+                height: 42px;
+                transition: opacity 0.15s ease;
+            }
+            .mob-bar-confirm:active { opacity: 0.85; }
+            .mob-bar-close {
+                flex-shrink: 0;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                background: transparent;
+                color: var(--text-muted);
+                border: 1px solid var(--border-color);
+                border-radius: var(--radius-sm);
+                width: 42px;
+                height: 42px;
+                cursor: pointer;
+                transition: color 0.15s ease, border-color 0.15s ease;
+            }
+            .mob-bar-close:hover {
+                color: var(--text-primary);
+                border-color: var(--text-secondary);
+            }
         }
     
     </style>
@@ -1875,6 +2023,42 @@
             PdM-Skills Builder · 2026
         </div>
     </footer>
+
+    <!-- Mobile Sticky Action Bar -->
+    <div id="mobile-action-bar" role="region" aria-label="Quick Download">
+        <!-- Expanded row: IDE format picker (visible when .is-expanded) -->
+        <div class="mob-bar-picker" id="mob-bar-picker">
+            <select id="mob-exporter-select" class="mob-bar-select">
+                <option value="prompt">ChatGPT / Claude / DeepSeek</option>
+                <option value="cursor">Cursor Rules (.cursor/rules)</option>
+                <option value="vscode">VS Code / Roo Code (.clinerules)</option>
+                <option value="copilot">GitHub Copilot</option>
+                <option value="windsurf">Windsurf Rules</option>
+                <option value="aider">Aider Conventions</option>
+                <option value="pi">Pi Agent</option>
+                <option value="claudeprompt">Claude Code (CLAUDE.md)</option>
+                <option value="agents">Gemini Antigravity (.agents)</option>
+            </select>
+            <button id="mob-bar-confirm-dl" class="mob-bar-confirm">
+                <i class="fa-solid fa-file-zipper"></i>
+                <span id="mob-bar-confirm-text">Скачать</span>
+            </button>
+            <button id="mob-bar-collapse" class="mob-bar-close" title="Закрыть">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <!-- Summary row: count + trigger button -->
+        <div class="mob-bar-summary">
+            <div id="mobile-action-bar-count">
+                <b id="mob-bar-count">0</b> <span id="mob-bar-label">скиллов выбрано</span>
+            </div>
+            <button id="mobile-action-bar-download">
+                <i class="fa-solid fa-download"></i>
+                <span id="mob-bar-btn-text">Скачать ZIP</span>
+                <i class="fa-solid fa-chevron-up" id="mob-bar-chevron" style="font-size:0.7rem;"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- Load Skills Database with Cache-Busting -->
     <script src="skills_db.js?v=4.0"></script>
@@ -2746,11 +2930,81 @@
             updateSidebarSelectedCounts();
         });
 
+        // Mobile Action Bar logic
+        const mobileActionBar = document.getElementById('mobile-action-bar');
+        const mobBarCount = document.getElementById('mob-bar-count');
+        const mobBarLabel = document.getElementById('mob-bar-label');
+        const mobBarBtnText = document.getElementById('mob-bar-btn-text');
+
+        function updateMobileActionBar(count) {
+            if (!mobileActionBar) return;
+            if (count > 0) {
+                mobileActionBar.classList.add('is-visible');
+                document.body.classList.add('has-mobile-bar');
+            } else {
+                mobileActionBar.classList.remove('is-visible');
+                document.body.classList.remove('has-mobile-bar');
+            }
+            if (mobBarCount) mobBarCount.textContent = count;
+            if (mobBarLabel) {
+                mobBarLabel.textContent = currentLang === 'ru'
+                    ? (count === 1 ? 'скилл выбран' : count >= 2 && count <= 4 ? 'скилла выбрано' : 'скиллов выбрано')
+                    : (count === 1 ? 'skill selected' : 'skills selected');
+            }
+            if (mobBarBtnText) {
+                mobBarBtnText.textContent = currentLang === 'ru' ? 'Скачать ZIP' : 'Download ZIP';
+            }
+        }
+
+        if (mobileActionBar) {
+            const mobBarDownloadBtn = document.getElementById('mobile-action-bar-download');
+            const mobBarConfirmDl = document.getElementById('mob-bar-confirm-dl');
+            const mobBarCollapseBtn = document.getElementById('mob-bar-collapse');
+            const mobExporterSelect = document.getElementById('mob-exporter-select');
+            const mainExporterSelect = document.getElementById('exporter-type');
+
+            // Sync mob select options with main select initial value
+            if (mobExporterSelect && mainExporterSelect) {
+                mobExporterSelect.value = mainExporterSelect.value;
+                // When mob select changes, sync to main
+                mobExporterSelect.addEventListener('change', () => {
+                    mainExporterSelect.value = mobExporterSelect.value;
+                });
+            }
+
+            // Toggle expand
+            mobBarDownloadBtn.addEventListener('click', () => {
+                const isExpanded = mobileActionBar.classList.toggle('is-expanded');
+                if (isExpanded && mobExporterSelect && mainExporterSelect) {
+                    mobExporterSelect.value = mainExporterSelect.value;
+                }
+            });
+
+            // Confirm download: sync format, trigger download, collapse
+            if (mobBarConfirmDl) {
+                mobBarConfirmDl.addEventListener('click', () => {
+                    if (mobExporterSelect && mainExporterSelect) {
+                        mainExporterSelect.value = mobExporterSelect.value;
+                    }
+                    document.getElementById('btn-download-zip').click();
+                    mobileActionBar.classList.remove('is-expanded');
+                });
+            }
+
+            // Collapse without downloading
+            if (mobBarCollapseBtn) {
+                mobBarCollapseBtn.addEventListener('click', () => {
+                    mobileActionBar.classList.remove('is-expanded');
+                });
+            }
+        }
+
         // Token Estimator & Live Prompt Preview
         function updatePromptPreview() {
             const selectedList = SKILLS_DB.filter(s => selectedSkills.has(s.id));
             const count = selectedList.length;
             const t = I18N[currentLang];
+            updateMobileActionBar(count);
             
             selectedBadgeInfo.innerHTML = `(${t.selected}: <b>${count}</b>)`;
             statSelectedCount.innerText = count;
