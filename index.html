@@ -1438,23 +1438,28 @@
         @media (max-width: 768px) {
             #mobile-action-bar {
                 display: flex;
+                flex-direction: column;
                 position: fixed;
                 bottom: 0;
                 left: 0;
                 right: 0;
                 z-index: 200;
-                align-items: center;
-                gap: 0.75rem;
-                padding: 0.75rem 1rem;
-                padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
                 background: var(--bg-secondary);
                 border-top: 2px solid var(--accent);
                 box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
                 transform: translateY(100%);
                 transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+                padding-bottom: env(safe-area-inset-bottom);
             }
             #mobile-action-bar.is-visible {
                 transform: translateY(0);
+            }
+            /* Summary row */
+            .mob-bar-summary {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 0.7rem 1rem;
             }
             #mobile-action-bar-count {
                 flex: 1;
@@ -1474,23 +1479,85 @@
                 flex-shrink: 0;
                 display: inline-flex;
                 align-items: center;
-                gap: 0.5rem;
+                gap: 0.45rem;
                 background: var(--accent);
                 color: var(--accent-text);
                 border: none;
                 border-radius: var(--radius-sm);
-                padding: 0.65rem 1.25rem;
+                padding: 0.6rem 1.1rem;
                 font-family: var(--font-sans);
                 font-size: 0.85rem;
                 font-weight: 700;
                 cursor: pointer;
                 min-height: 44px;
-                transition: opacity 0.15s ease, transform 0.1s ease;
+                transition: opacity 0.15s ease;
             }
-            #mobile-action-bar-download:active {
-                opacity: 0.85;
-                transform: scale(0.97);
+            #mobile-action-bar-download #mob-bar-chevron {
+                transition: transform 0.25s ease;
             }
+            #mobile-action-bar.is-expanded #mob-bar-chevron {
+                transform: rotate(180deg);
+            }
+            #mobile-action-bar-download:active { opacity: 0.85; }
+            /* Picker row */
+            .mob-bar-picker {
+                display: none;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.65rem 1rem;
+                border-top: 1px solid var(--border-color);
+                background: var(--bg-tertiary);
+                order: -1;
+            }
+            #mobile-action-bar.is-expanded .mob-bar-picker {
+                display: flex;
+            }
+            .mob-bar-select {
+                flex: 1;
+                min-width: 0;
+                background: var(--bg-primary);
+                border: 1px solid var(--border-color);
+                border-radius: var(--radius-sm);
+                padding: 0.45rem 0.6rem;
+                font-family: var(--font-sans);
+                font-size: 0.78rem;
+                font-weight: 500;
+                color: var(--text-primary);
+                outline: none;
+                cursor: pointer;
+            }
+            .mob-bar-confirm {
+                flex-shrink: 0;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.4rem;
+                background: var(--accent);
+                color: var(--accent-text);
+                border: none;
+                border-radius: var(--radius-sm);
+                padding: 0.5rem 0.9rem;
+                font-family: var(--font-sans);
+                font-size: 0.82rem;
+                font-weight: 700;
+                cursor: pointer;
+                min-height: 40px;
+                white-space: nowrap;
+                transition: opacity 0.15s ease;
+            }
+            .mob-bar-confirm:active { opacity: 0.85; }
+            .mob-bar-close {
+                flex-shrink: 0;
+                background: transparent;
+                border: 1px solid var(--border-color);
+                border-radius: var(--radius-sm);
+                color: var(--text-muted);
+                padding: 0.45rem 0.6rem;
+                font-size: 0.9rem;
+                cursor: pointer;
+                min-height: 40px;
+                transition: color 0.15s ease;
+            }
+            .mob-bar-close:active { color: var(--text-primary); }
             body.has-mobile-bar .app-footer {
                 margin-bottom: 68px;
             }
@@ -1844,13 +1911,38 @@
 
     <!-- Mobile Sticky Action Bar -->
     <div id="mobile-action-bar" role="region" aria-label="Quick Download">
-        <div id="mobile-action-bar-count">
-            <b id="mob-bar-count">0</b> <span id="mob-bar-label">скиллов выбрано</span>
+        <!-- Expanded row: IDE format picker (visible when .is-expanded) -->
+        <div class="mob-bar-picker" id="mob-bar-picker">
+            <select id="mob-exporter-select" class="mob-bar-select">
+                <option value="prompt">ChatGPT / Claude / DeepSeek</option>
+                <option value="cursor">Cursor Rules (.cursor/rules)</option>
+                <option value="vscode">VS Code / Roo Code (.clinerules)</option>
+                <option value="copilot">GitHub Copilot</option>
+                <option value="windsurf">Windsurf Rules</option>
+                <option value="aider">Aider Conventions</option>
+                <option value="pi">Pi Agent</option>
+                <option value="claudeprompt">Claude Code (CLAUDE.md)</option>
+                <option value="agents">Gemini Antigravity (.agents)</option>
+            </select>
+            <button id="mob-bar-confirm-dl" class="mob-bar-confirm">
+                <i class="fa-solid fa-file-zipper"></i>
+                <span id="mob-bar-confirm-text">Скачать</span>
+            </button>
+            <button id="mob-bar-collapse" class="mob-bar-close" title="Закрыть">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
-        <button id="mobile-action-bar-download">
-            <i class="fa-solid fa-download"></i>
-            <span id="mob-bar-btn-text">Скачать ZIP</span>
-        </button>
+        <!-- Summary row: count + trigger button -->
+        <div class="mob-bar-summary">
+            <div id="mobile-action-bar-count">
+                <b id="mob-bar-count">0</b> <span id="mob-bar-label">скиллов выбрано</span>
+            </div>
+            <button id="mobile-action-bar-download">
+                <i class="fa-solid fa-download"></i>
+                <span id="mob-bar-btn-text">Скачать ZIP</span>
+                <i class="fa-solid fa-chevron-up" id="mob-bar-chevron" style="font-size:0.7rem;"></i>
+            </button>
+        </div>
     </div>
 
     <!-- Load Skills Database with Cache-Busting -->
@@ -2689,9 +2781,46 @@
         }
 
         if (mobileActionBar) {
-            document.getElementById('mobile-action-bar-download').addEventListener('click', () => {
-                document.getElementById('btn-download-zip').click();
+            const mobBarDownloadBtn = document.getElementById('mobile-action-bar-download');
+            const mobBarConfirmDl = document.getElementById('mob-bar-confirm-dl');
+            const mobBarCollapseBtn = document.getElementById('mob-bar-collapse');
+            const mobExporterSelect = document.getElementById('mob-exporter-select');
+            const mainExporterSelect = document.getElementById('exporter-type');
+
+            // Sync mob select options with main select initial value
+            if (mobExporterSelect && mainExporterSelect) {
+                mobExporterSelect.value = mainExporterSelect.value;
+                // When mob select changes, sync to main
+                mobExporterSelect.addEventListener('change', () => {
+                    mainExporterSelect.value = mobExporterSelect.value;
+                });
+            }
+
+            // Toggle expand
+            mobBarDownloadBtn.addEventListener('click', () => {
+                const isExpanded = mobileActionBar.classList.toggle('is-expanded');
+                if (isExpanded && mobExporterSelect && mainExporterSelect) {
+                    mobExporterSelect.value = mainExporterSelect.value;
+                }
             });
+
+            // Confirm download: sync format, trigger download, collapse
+            if (mobBarConfirmDl) {
+                mobBarConfirmDl.addEventListener('click', () => {
+                    if (mobExporterSelect && mainExporterSelect) {
+                        mainExporterSelect.value = mobExporterSelect.value;
+                    }
+                    document.getElementById('btn-download-zip').click();
+                    mobileActionBar.classList.remove('is-expanded');
+                });
+            }
+
+            // Collapse without downloading
+            if (mobBarCollapseBtn) {
+                mobBarCollapseBtn.addEventListener('click', () => {
+                    mobileActionBar.classList.remove('is-expanded');
+                });
+            }
         }
 
         // Token Estimator & Live Prompt Preview
