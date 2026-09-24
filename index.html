@@ -1430,6 +1430,72 @@
             .version { display: none; }
         }
     
+        /* ── Mobile Sticky Bottom Action Bar ──────────────────────────────────── */
+        #mobile-action-bar {
+            display: none; /* hidden on desktop */
+        }
+
+        @media (max-width: 768px) {
+            #mobile-action-bar {
+                display: flex;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 200;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 0.75rem 1rem;
+                padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+                background: var(--bg-secondary);
+                border-top: 2px solid var(--accent);
+                box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+                transform: translateY(100%);
+                transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            #mobile-action-bar.is-visible {
+                transform: translateY(0);
+            }
+            #mobile-action-bar-count {
+                flex: 1;
+                font-family: var(--font-mono);
+                font-size: 0.8rem;
+                color: var(--text-secondary);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            #mobile-action-bar-count b {
+                color: var(--accent);
+                font-size: 1.05rem;
+                font-weight: 700;
+            }
+            #mobile-action-bar-download {
+                flex-shrink: 0;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                background: var(--accent);
+                color: var(--accent-text);
+                border: none;
+                border-radius: var(--radius-sm);
+                padding: 0.65rem 1.25rem;
+                font-family: var(--font-sans);
+                font-size: 0.85rem;
+                font-weight: 700;
+                cursor: pointer;
+                min-height: 44px;
+                transition: opacity 0.15s ease, transform 0.1s ease;
+            }
+            #mobile-action-bar-download:active {
+                opacity: 0.85;
+                transform: scale(0.97);
+            }
+            body.has-mobile-bar .app-footer {
+                margin-bottom: 68px;
+            }
+        }
+    
     </style>
 </head>
 
@@ -1775,6 +1841,17 @@
             PdM-Skills Builder · 2026
         </div>
     </footer>
+
+    <!-- Mobile Sticky Action Bar -->
+    <div id="mobile-action-bar" role="region" aria-label="Quick Download">
+        <div id="mobile-action-bar-count">
+            <b id="mob-bar-count">0</b> <span id="mob-bar-label">скиллов выбрано</span>
+        </div>
+        <button id="mobile-action-bar-download">
+            <i class="fa-solid fa-download"></i>
+            <span id="mob-bar-btn-text">Скачать ZIP</span>
+        </button>
+    </div>
 
     <!-- Load Skills Database with Cache-Busting -->
     <script src="skills_db.js?v=4.0"></script>
@@ -2585,11 +2662,44 @@
             updatePromptPreview();
         });
 
+        // Mobile Action Bar logic
+        const mobileActionBar = document.getElementById('mobile-action-bar');
+        const mobBarCount = document.getElementById('mob-bar-count');
+        const mobBarLabel = document.getElementById('mob-bar-label');
+        const mobBarBtnText = document.getElementById('mob-bar-btn-text');
+
+        function updateMobileActionBar(count) {
+            if (!mobileActionBar) return;
+            if (count > 0) {
+                mobileActionBar.classList.add('is-visible');
+                document.body.classList.add('has-mobile-bar');
+            } else {
+                mobileActionBar.classList.remove('is-visible');
+                document.body.classList.remove('has-mobile-bar');
+            }
+            if (mobBarCount) mobBarCount.textContent = count;
+            if (mobBarLabel) {
+                mobBarLabel.textContent = currentLang === 'ru'
+                    ? (count === 1 ? 'скилл выбран' : count >= 2 && count <= 4 ? 'скилла выбрано' : 'скиллов выбрано')
+                    : (count === 1 ? 'skill selected' : 'skills selected');
+            }
+            if (mobBarBtnText) {
+                mobBarBtnText.textContent = currentLang === 'ru' ? 'Скачать ZIP' : 'Download ZIP';
+            }
+        }
+
+        if (mobileActionBar) {
+            document.getElementById('mobile-action-bar-download').addEventListener('click', () => {
+                document.getElementById('btn-download-zip').click();
+            });
+        }
+
         // Token Estimator & Live Prompt Preview
         function updatePromptPreview() {
             const selectedList = SKILLS_DB.filter(s => selectedSkills.has(s.id));
             const count = selectedList.length;
             const t = I18N[currentLang];
+            updateMobileActionBar(count);
             
             selectedBadgeInfo.innerHTML = `(${t.selected}: <b>${count}</b>)`;
             statSelectedCount.innerText = count;
