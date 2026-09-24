@@ -2062,7 +2062,14 @@
                 relevantTitle: "Релевантные скиллы:",
                 comboPrefix: "Сборка:",
                 promptHeader: "# СИСТЕМНЫЕ ПРАВИЛА PRODUCT MANAGEMENT ({count} скиллов)\n\n",
-                copyPromptHeader: "# СИСТЕМНЫЕ ИНСТРУКЦИИ ДЛЯ АССИСТЕНТА PRODUCT MANAGEMENT\n\n"
+                copyPromptHeader: "# СИСТЕМНЫЕ ИНСТРУКЦИИ ДЛЯ АССИСТЕНТА PRODUCT MANAGEMENT\n\n",
+                mobBarConfirmText: "Скачать",
+                mobBarCloseTitle: "Закрыть",
+                mobBarAriaLabel: "Быстрое скачивание",
+                mobSkill1: "скилл выбран",
+                mobSkill24: "скилла выбрано",
+                mobSkillMany: "скиллов выбрано",
+                mobDownloadZip: "Скачать ZIP"
             },
             en: {
                 heroTitle: "Contextual System Instructions Catalog for Product Management",
@@ -2117,7 +2124,14 @@
                 relevantTitle: "Relevant skills:",
                 comboPrefix: "Bundle:",
                 promptHeader: "# PRODUCT MANAGEMENT SYSTEM RULES ({count} skills)\\n\\n",
-                copyPromptHeader: "# PRODUCT MANAGEMENT ASSISTANT SYSTEM INSTRUCTIONS\\n\\n"
+                copyPromptHeader: "# PRODUCT MANAGEMENT ASSISTANT SYSTEM INSTRUCTIONS\\n\\n",
+                mobBarConfirmText: "Download",
+                mobBarCloseTitle: "Close",
+                mobBarAriaLabel: "Quick Download",
+                mobSkill1: "skill selected",
+                mobSkill24: "skills selected",
+                mobSkillMany: "skills selected",
+                mobDownloadZip: "Download ZIP"
             }
         };
 
@@ -2260,6 +2274,34 @@
                 ];
                 exporterSelect.innerHTML = options.map(o => `<option value="${o.value}" ${o.value === currentVal ? 'selected' : ''}>${o.text}</option>`).join('');
             }
+
+            // Mobile action bar exporter select options
+            const mobExporterSelectEl = document.getElementById('mob-exporter-select');
+            if (mobExporterSelectEl) {
+                const currentMobVal = mobExporterSelectEl.value;
+                const mobOptions = [
+                    { value: "prompt", text: lang === 'ru' ? "Универсальный промпт" : "Universal Prompt" },
+                    { value: "cursor", text: "Cursor Rules (.cursor/rules)" },
+                    { value: "vscode", text: "VS Code / Roo Code (.clinerules)" },
+                    { value: "copilot", text: "GitHub Copilot" },
+                    { value: "windsurf", text: "Windsurf Rules" },
+                    { value: "aider", text: "Aider Conventions" },
+                    { value: "pi", text: "Pi Agent" },
+                    { value: "claudeprompt", text: "Claude Code (CLAUDE.md)" },
+                    { value: "agents", text: "Gemini Antigravity (.agents)" }
+                ];
+                mobExporterSelectEl.innerHTML = mobOptions.map(o => `<option value="${o.value}" ${o.value === currentMobVal ? 'selected' : ''}>${o.text}</option>`).join('');
+            }
+
+            // Mobile action bar buttons & accessibility
+            const mobConfirmText = document.getElementById('mob-bar-confirm-text');
+            if (mobConfirmText) mobConfirmText.textContent = t.mobBarConfirmText;
+
+            const mobCollapseBtn = document.getElementById('mob-bar-collapse');
+            if (mobCollapseBtn) mobCollapseBtn.title = t.mobBarCloseTitle;
+
+            const mobActionBarEl = document.getElementById('mobile-action-bar');
+            if (mobActionBarEl) mobActionBarEl.setAttribute('aria-label', t.mobBarAriaLabel);
             
             // Sidebar sections
             const secHeadings = document.querySelectorAll('.sidebar-section h3');
@@ -2820,6 +2862,7 @@
 
         function updateMobileActionBar(count) {
             if (!mobileActionBar) return;
+            const t = I18N[currentLang];
             if (count > 0) {
                 mobileActionBar.classList.add('is-visible');
                 document.body.classList.add('has-mobile-bar');
@@ -2830,11 +2873,11 @@
             if (mobBarCount) mobBarCount.textContent = count;
             if (mobBarLabel) {
                 mobBarLabel.textContent = currentLang === 'ru'
-                    ? (count === 1 ? 'скилл выбран' : count >= 2 && count <= 4 ? 'скилла выбрано' : 'скиллов выбрано')
-                    : (count === 1 ? 'skill selected' : 'skills selected');
+                    ? (count === 1 ? t.mobSkill1 : count >= 2 && count <= 4 ? t.mobSkill24 : t.mobSkillMany)
+                    : (count === 1 ? t.mobSkill1 : t.mobSkillMany);
             }
             if (mobBarBtnText) {
-                mobBarBtnText.textContent = currentLang === 'ru' ? 'Скачать ZIP' : 'Download ZIP';
+                mobBarBtnText.textContent = t.mobDownloadZip;
             }
         }
 
@@ -2851,6 +2894,10 @@
                 // When mob select changes, sync to main
                 mobExporterSelect.addEventListener('change', () => {
                     mainExporterSelect.value = mobExporterSelect.value;
+                });
+                // When main select changes, sync to mob
+                mainExporterSelect.addEventListener('change', () => {
+                    mobExporterSelect.value = mainExporterSelect.value;
                 });
             }
 
