@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PdM-Skills Builder — Конструктор системных правил ИИ для продакт-менеджеров</title>
+    <title>PdM Skills Agent - Конструктор системных правил ИИ для продакт-менеджеров</title>
 
     <!-- Google Fonts: Plus Jakarta Sans + JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1630,10 +1630,10 @@
         <div class="logo">
             <span class="logo-title">
                 <i class="fa-solid fa-layer-group" style="color: var(--accent); flex-shrink: 0;"></i>
-                <span class="logo-title-text">PdM&#8209;Skills Builder</span>
+                <span class="logo-title-text">PdM Skills Agent</span>
             </span>
             <div class="stat-badges-group">
-                <img id="view-badge-img" src="https://hits.sh/anton-creates.github.io/pdm-skills-builder.svg?style=flat-square&label=views&color=0284c7&labelColor=0f172a" alt="views count" height="20" style="border-radius: 4px; display: block;" title="Просмотры каталога" />
+                <img id="view-badge-img" src="https://hits.sh/anton-creates.github.io/pdm-skills-agent.svg?style=flat-square&label=views&color=0284c7&labelColor=0f172a" alt="views count" height="20" style="border-radius: 4px; display: block;" title="Просмотры каталога" />
                 <div class="stat-badge" title="Скачанные сборки правил">
                     <i class="fa-solid fa-download" style="color: #16a34a;"></i> <span id="download-count">0</span>
                 </div>
@@ -1958,12 +1958,12 @@
             <a href="https://www.linkedin.com/in/anton-mikhaylove/" target="_blank" class="author-badge">
                 <i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i> LinkedIn
             </a>
-            <a href="https://github.com/Anton-Creates/pdm-skills-builder" target="_blank" class="author-badge">
+            <a href="https://github.com/Anton-Creates/pdm-skills-agent" target="_blank" class="author-badge">
                 <i class="fa-brands fa-github"></i> GitHub Репозиторий
             </a>
         </div>
         <div>
-            PdM-Skills Builder · 2026
+            PdM Skills Agent · 2026
         </div>
     </footer>
 
@@ -2123,8 +2123,8 @@
                 modalTitle: "Skill Details",
                 relevantTitle: "Relevant skills:",
                 comboPrefix: "Bundle:",
-                promptHeader: "# PRODUCT MANAGEMENT SYSTEM RULES ({count} skills)\\n\\n",
-                copyPromptHeader: "# PRODUCT MANAGEMENT ASSISTANT SYSTEM INSTRUCTIONS\\n\\n",
+                promptHeader: "# PRODUCT MANAGEMENT SYSTEM RULES ({count} skills)\n\n",
+                copyPromptHeader: "# PRODUCT MANAGEMENT ASSISTANT SYSTEM INSTRUCTIONS\n\n",
                 mobBarConfirmText: "Download",
                 mobBarCloseTitle: "Close",
                 mobBarAriaLabel: "Quick Download",
@@ -2947,7 +2947,7 @@
 
             let fullContent = "";
             selectedList.forEach(s => {
-                fullContent += getSkillContent(s) + "\\n\\n";
+                fullContent += getSkillContent(s) + "\n\n";
             });
 
             // Token estimation (approx 3.2 chars per token)
@@ -2960,7 +2960,7 @@
 
             let previewText = t.promptHeader.replace('{count}', count);
             selectedList.forEach(s => {
-                previewText += `## ${getSkillName(s)} (/${s.id})\\n${getSkillDesc(s)}\\n\\n`;
+                previewText += `## ${getSkillName(s)} (/${s.id})\n${getSkillDesc(s)}\n\n`;
             });
 
             promptPreview.innerText = previewText;
@@ -3001,7 +3001,7 @@
 
             let fullPrompt = t.copyPromptHeader;
             selectedList.forEach(s => {
-                fullPrompt += getSkillContent(s) + "\\n\\n---\\n\\n";
+                fullPrompt += getSkillContent(s) + "\n\n---\n\n";
             });
 
             navigator.clipboard.writeText(fullPrompt).then(() => {
@@ -3076,7 +3076,7 @@
 
             // Add clear README inside archive
             const readmeTxt = `==============================================================================
-PdM-Skills Builder — Modular Rules Archive Export
+PdM Skills Agent - Modular Rules Archive Export
 Target Format: ${target.toUpperCase()}
 Language: ${currentLang.toUpperCase()}
 Total Exported Skills: ${selectedList.length}
@@ -3093,7 +3093,7 @@ Total Exported Skills: ${selectedList.length}
 
 ==============================================================================
 Author: Anton Mikhailov (@mikhaylove_anton)
-Catalog: https://anton-creates.github.io/pdm-skills-builder/
+Catalog: https://anton-creates.github.io/pdm-skills-agent/
 ==============================================================================`;
             zip.file("README_PDM_SKILLS.txt", readmeTxt);
 
@@ -3110,7 +3110,7 @@ Catalog: https://anton-creates.github.io/pdm-skills-builder/
             if (dlCountEl) dlCountEl.innerText = currentDl;
 
             // Trigger background hit only on download action
-            new Image().src = `https://hits.sh/anton-creates.github.io/pdm-skills-builder-downloads.svg?style=flat-square&label=downloads&_t=${Date.now()}`;
+            new Image().src = `https://hits.sh/anton-creates.github.io/pdm-skills-agent-downloads.svg?style=flat-square&label=downloads&_t=${Date.now()}`;
         });
 
         function escapeHtml(text) {

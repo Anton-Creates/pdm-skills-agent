@@ -41,10 +41,10 @@ output-artifact: document
 
 | Метрика эффективности | Формула расчета | Текущее значение | Целевой бенчмарк |
 | :--- | :--- | :--- | :--- |
-| [Net Revenue Retention (NRR)] | [$rac{	ext{Starting} + 	ext{Expansion} - 	ext{Contraction} - 	ext{Churn}}{	ext{Starting}}$] | [102.0%] | [$\ge 115\%$ (Best-in-Class)] |
-| [SaaS Quick Ratio] | [$rac{	ext{New MRR} + 	ext{Expansion MRR}}{	ext{Contraction MRR} + 	ext{Churned MRR}}$] | [4.11x] | [$> 4.0x$ (Здоровый быстрый рост)] |
+| [Net Revenue Retention (NRR)] | [$\frac{\text{Starting} + \text{Expansion} - \text{Contraction} - \text{Churn}}{\text{Starting}}$] | [102.0%] | [$\ge 115\%$ (Best-in-Class)] |
+| [SaaS Quick Ratio] | [$\frac{\text{New MRR} + \text{Expansion MRR}}{\text{Contraction MRR} + \text{Churned MRR}}$] | [4.11x] | [$> 4.0x$ (Здоровый быстрый рост)] |
 | [Rule of 40] | [YoY ARR Growth % + FCF Margin %] | [35% + 12% = 47%] | [$\ge 40\%$ (Инвестиционная привлекательность)] |
-| [Magic Number] | [$rac{	ext{Quarterly Net New ARR} 	imes 4}{	ext{S&M Expense}}$] | [1.15x] | [$> 1.0x$ (Эффективные продажи)] |
+| [Magic Number] | [$\frac{\text{Quarterly Net New ARR} 	imes 4}{\text{S&M Expense}}$] | [1.15x] | [$> 1.0x$ (Эффективные продажи)] |
 
 ### 3. Метрики эффективности SaaS бизнеса
 - **Annual Recurring Revenue (ARR):** Годовая регулярная контрактная выручка от подписок.

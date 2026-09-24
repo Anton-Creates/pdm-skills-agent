@@ -1,12 +1,12 @@
-﻿# PdM Skills Builder
+# PdM Skills Agent
 
 ![Skills](https://img.shields.io/badge/Skills-130-blue) ![E2E Tested](https://img.shields.io/badge/E2E-100%25_Tested-success) ![Antigravity](https://img.shields.io/badge/AI-Agent_Ready-purple)
 
 Библиотека из 130 структурированных инструкций для LLM, заточенных под задачи продакт-менеджера: PRD, Roadmap, User Stories, CJM, юнит-экономика, OKR, конкурентный анализ и многое другое.
 
-Каждая инструкция написана в Markdown, содержит строгую выходную структуру с BDD-сценариями и протестирована на реальных прогонах через LLM. Без воды, без «помоги мне написать промпт» — только конкретные артефакты.
+Каждая инструкция написана в Markdown, содержит строгую выходную структуру с BDD-сценариями и протестирована на реальных прогонах через LLM. Без воды, без «помоги мне написать промпт» - только конкретные артефакты.
 
-**Каталог с поиском и экспортом:** https://anton-creates.github.io/pdm-skills-builder/
+**Каталог с поиском и экспортом:** https://anton-creates.github.io/pdm-skills-agent/
 
 ---
 

@@ -48,7 +48,8 @@ def parse_skill_file(file_path):
     }
 
 def build_db():
-    skill_dirs = sorted([d for d in ROOT_DIR.iterdir() if d.is_dir() and (d / "SKILL.md").exists()])
+    source_dir = ROOT_DIR / "skills" if (ROOT_DIR / "skills").exists() and (ROOT_DIR / "skills").is_dir() else ROOT_DIR
+    skill_dirs = sorted([d for d in source_dir.iterdir() if d.is_dir() and (d / "SKILL.md").exists()])
     db = []
     
     for d in skill_dirs:
@@ -71,7 +72,7 @@ def build_db():
         }
         db.append(entry)
         
-    js_content = "// Automatically generated bilingual database of 122 PM Skills (RU/EN)\n"
+    js_content = "// Automatically generated bilingual database of 130 PM Skills (RU/EN)\n"
     js_content += "const SKILLS_DB = " + json.dumps(db, ensure_ascii=False, indent=2) + ";\n"
     
     (ROOT_DIR / "skills_db.js").write_text(js_content, encoding="utf-8")
