@@ -1432,28 +1432,24 @@
     
         /* ── Mobile Sticky Bottom Action Bar ──────────────────────────────────── */
         #mobile-action-bar {
-            display: none; /* hidden on desktop */
+            display: none; /* always hidden by default, JS controls visibility */
+            flex-direction: column;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: var(--bg-secondary);
+            border-top: 2px solid var(--accent);
+            box-shadow: 0 -6px 24px rgba(0,0,0,0.18);
+            padding-bottom: env(safe-area-inset-bottom);
+            overflow: hidden;
+            transition: opacity 0.25s ease;
         }
 
         @media (max-width: 768px) {
-            #mobile-action-bar {
-                display: flex;
-                flex-direction: column;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                z-index: 200;
-                background: var(--bg-secondary);
-                border-top: 2px solid var(--accent);
-                box-shadow: 0 -6px 24px rgba(0,0,0,0.18);
-                transform: translateY(100%);
-                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                padding-bottom: env(safe-area-inset-bottom);
-                overflow: hidden;
-            }
             #mobile-action-bar.is-visible {
-                transform: translateY(0);
+                display: flex;
             }
 
             /* ── Picker row (IDE selector) — slides in from top ── */
@@ -2881,6 +2877,9 @@
                 mobBarBtnText.textContent = t.mobDownloadZip;
             }
         }
+
+        // Hide bar immediately on page load regardless of viewport
+        if (mobileActionBar) mobileActionBar.classList.remove('is-visible');
 
         if (mobileActionBar) {
             const mobBarDownloadBtn = document.getElementById('mobile-action-bar-download');
