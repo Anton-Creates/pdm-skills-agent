@@ -2863,7 +2863,8 @@
         function updateMobileActionBar(count) {
             if (!mobileActionBar) return;
             const t = I18N[currentLang];
-            if (count > 0) {
+            const isMobile = window.innerWidth <= 768;
+            if (count > 0 && isMobile) {
                 mobileActionBar.classList.add('is-visible');
                 document.body.classList.add('has-mobile-bar');
             } else {
