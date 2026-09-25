@@ -1432,7 +1432,7 @@
     
         /* ── Mobile Sticky Bottom Action Bar ──────────────────────────────────── */
         #mobile-action-bar {
-            display: none; /* always hidden by default, JS controls visibility */
+            display: none !important; /* strictly hidden on desktop */
             flex-direction: column;
             position: fixed;
             bottom: 0;
@@ -1449,7 +1449,7 @@
 
         @media (max-width: 768px) {
             #mobile-action-bar.is-visible {
-                display: flex;
+                display: flex !important;
             }
 
             /* ── Picker row (IDE selector) — slides in from top ── */
