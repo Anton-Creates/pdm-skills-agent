@@ -18,8 +18,8 @@ output-artifact: document
 ## Процесс
 
 1. **Построй детализированный мостик MRR (MRR Bridge):** Декомпозиция ежемесячной выручки: Starting MRR + New MRR + Expansion MRR - Contraction MRR - Churned MRR = Ending MRR.
-2. **Рассчитай метрики эффективности удержания выручки (NRR & GRR):** Net Revenue Retention (цель $> 110\%$ для B2B SaaS) и Gross Revenue Retention.
-3. **Спроектируй скоринговую модель Rule of 40 и SaaS Quick Ratio:** Оценка баланса темпов роста выручки и маржинальности свободного денежного потока (Growth Rate % + Free Cash Flow Margin % $\ge 40\%$).
+2. **Рассчитай метрики эффективности удержания выручки (NRR & GRR):** Net Revenue Retention (цель > 110% для B2B SaaS) и Gross Revenue Retention.
+3. **Спроектируй скоринговую модель Rule of 40 и SaaS Quick Ratio:** Оценка баланса темпов роста выручки и маржинальности свободного денежного потока (Growth Rate % + Free Cash Flow Margin % ≥ 40%).
 4. **Рассчитай эффективность маркетинга и продаж (Magic Number & CAC Payback):** Оценка отдачи каждого вложенного рубля в продажи (Net New ARR / Sales & Marketing Spend).
 5. **Сформируй дашборд для Совета директоров и инвесторов (Executive SaaS Dashboard):** Ежемесячный срез ключевых SaaS-метрик со светофорным статусом.
 6. **Сохрани артефакт** в текущей рабочей директории как `saas-metrics-[контекст].md`.
@@ -41,10 +41,10 @@ output-artifact: document
 
 | Метрика эффективности | Формула расчета | Текущее значение | Целевой бенчмарк |
 | :--- | :--- | :--- | :--- |
-| [Net Revenue Retention (NRR)] | [$\frac{\text{Starting} + \text{Expansion} - \text{Contraction} - \text{Churn}}{\text{Starting}}$] | [102.0%] | [$\ge 115\%$ (Best-in-Class)] |
-| [SaaS Quick Ratio] | [$\frac{\text{New MRR} + \text{Expansion MRR}}{\text{Contraction MRR} + \text{Churned MRR}}$] | [4.11x] | [$> 4.0x$ (Здоровый быстрый рост)] |
-| [Rule of 40] | [YoY ARR Growth % + FCF Margin %] | [35% + 12% = 47%] | [$\ge 40\%$ (Инвестиционная привлекательность)] |
-| [Magic Number] | [$\frac{\text{Quarterly Net New ARR} 	imes 4}{\text{S&M Expense}}$] | [1.15x] | [$> 1.0x$ (Эффективные продажи)] |
+| [Net Revenue Retention (NRR)] | [(Starting + Expansion − Contraction − Churn) / Starting] | [102.0%] | [≥ 115% (Best-in-Class)] |
+| [SaaS Quick Ratio] | [(New MRR + Expansion MRR) / (Contraction MRR + Churned MRR)] | [4.11x] | [> 4.0x (Здоровый быстрый рост)] |
+| [Rule of 40] | [YoY ARR Growth % + FCF Margin %] | [35% + 12% = 47%] | [≥ 40% (Инвестиционная привлекательность)] |
+| [Magic Number] | [(Quarterly Net New ARR × 4) / S&M Expense] | [1.15x] | [> 1.0x (Эффективные продажи)] |
 
 ### 3. Метрики эффективности SaaS бизнеса
 - **Annual Recurring Revenue (ARR):** Годовая регулярная контрактная выручка от подписок.

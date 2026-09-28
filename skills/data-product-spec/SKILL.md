@@ -31,7 +31,7 @@ output-artifact: document
 | Название поля витрины | Тип данных | Ограничение (Constraint) | Описание бизнес-сущности | Источник в сырых логах |
 | :--- | :--- | :--- | :--- | :--- |
 | [`user_id`] | [UUID / BIGINT] | [Primary Key, Not Null] | [Уникальный сквозной ID пользователя] | [`raw_events.user_id`] |
-| [`order_gmv_rub`] | [DECIMAL(12,2)] | [Check: $\ge 0.00$] | [Сумма заказа с учетом всех скидок] | [`billing.transactions.amount`] |
+| [`order_gmv_rub`] | [DECIMAL(12,2)] | [Check: ≥ 0.00] | [Сумма заказа с учетом всех скидок] | [`billing.transactions.amount`] |
 | [`event_timestamp`] | [TIMESTAMP UTC] | [Not Null, Past only] | [Точное время совершения транзакции] | [`kafka.orders.event_time`] |
 | [`payment_status`] | [VARCHAR(32)] | [Enum: 'paid', 'refund'] | [Финальный статус оплаты заказа] | [`billing.payments.status`] |
 

@@ -47,7 +47,7 @@ output-artifact: document
 
 ### 3. Метрики эффективности документирования решений
 - **Decision Velocity (Days to Approve):** Время от создания черновика RFC до финального утверждения Approver.
-- **Decision Reversal Rate:** Процент решений, пересмотренных или отмененных в течение 6 месяцев (Target: $< 5\%$).
+- **Decision Reversal Rate:** Процент решений, пересмотренных или отмененных в течение 6 месяцев (Target: < 5%).
 - **Stakeholder Alignment Score:** Оценка прозрачности принятия решений в команде.
 - **Rollout Schedule Adherence:** Точность соблюдения дедлайнов внедрения утвержденного решения.
 
